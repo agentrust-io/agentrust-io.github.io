@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgentTrust — Open Standards for AI Agent Governance</title>
+  <meta name="description" content="AgentTrust provides open standards, tools, and specifications for governing AI agents at runtime: attestation, identity, and trust verification.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #F2F4F7;
+      --surface:  #FFFFFF;
+      --border:   #D0D9E3;
+      --navy:     #15294B;
+      --body:     #2E4057;
+      --muted:    #6B7F94;
+      --red:      #B91C1C;
+      --blue:     #1B5EA0;
+      --green:    #1B7A4A;
+      --amber:    #C17817;
+      --purple:   #6D28D9;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--body);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--navy);
+      color: #fff;
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 3px solid var(--red);
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .logo {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo-dot { color: var(--red); }
+    .header-nav {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .header-nav a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.15s;
+    }
+    .header-nav a:hover { color: #fff; }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--navy);
+      color: #fff;
+      padding: 4rem 2rem 3.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: #fff;
+      max-width: 700px;
+      margin-bottom: 1.25rem;
+    }
+    .hero p {
+      font-size: 1.0625rem;
+      color: rgba(255,255,255,0.68);
+      max-width: 580px;
+      line-height: 1.65;
+      margin-bottom: 2rem;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 0.875rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.625rem 1.25rem;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--red);
+      color: #fff;
+    }
+    .btn-primary:hover { background: #991B1B; }
+    .btn-ghost {
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.85);
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.14); }
+
+    /* ── Section layout ── */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    .section-header {
+      margin-bottom: 1.75rem;
+    }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+    .section-title {
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+
+    /* ── Product grid ── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.15s, transform 0.15s;
+    }
+    .product-card:hover {
+      box-shadow: 0 4px 20px rgba(21,41,75,0.12);
+      transform: translateY(-2px);
+    }
+    .card-accent {
+      height: 4px;
+    }
+    .card-body {
+      padding: 1.375rem 1.375rem 1rem;
+      flex: 1;
+    }
+    .card-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .card-name {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .card-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .card-footer {
+      padding: 0.875rem 1.375rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-url {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    }
+    .card-arrow {
+      width: 20px;
+      height: 20px;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .card-badge {
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .badge-live { background: #DCFCE7; color: var(--green); }
+    .badge-oss  { background: #EFF6FF; color: var(--blue); }
+    .badge-ext  { background: #F3F4F6; color: var(--muted); }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Quick nav bar ── */
+    .domain-nav {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .domain-nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+    }
+    .domain-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.875rem 1.125rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: all 0.12s;
+    }
+    .domain-nav a:hover {
+      color: var(--navy);
+      border-bottom-color: var(--navy);
+    }
+    .domain-nav a.active {
+      color: var(--red);
+      border-bottom-color: var(--red);
+    }
+    .nav-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── Specs table ── */
+    .spec-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .spec-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.125rem 1.25rem;
+    }
+    .spec-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+    .spec-value {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.55);
+      padding: 2rem;
+      margin-top: 3rem;
+      border-top: 3px solid var(--red);
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.12s;
+    }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { font-size: 0.8rem; }
+
+    @media (max-width: 640px) {
+      .spec-row { grid-template-columns: 1fr 1fr; }
+      .hero { padding: 2.5rem 1.25rem 2rem; }
+      .section { padding: 2rem 1.25rem; }
+      .header-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">agentrust<span class="logo-dot">.</span>io</a>
+    <nav>
+      <ul class="header-nav">
+        <li><a href="#standards">Standards</a></li>
+        <li><a href="#tools">Tools</a></li>
+        <li><a href="https://github.com/agentrust-io">GitHub</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Domain Quick Nav -->
+<div class="domain-nav">
+  <div class="domain-nav-inner">
+    <a href="https://agentrust-io.com" class="active">
+      <span class="nav-dot" style="background:#B91C1C;"></span>
+      agentrust-io.com
+    </a>
+    <a href="https://trace.agentrust-io.com">
+      <span class="nav-dot" style="background:#1B5EA0;"></span>
+      trace
+    </a>
+    <a href="https://manifest.agentrust-io.com">
+      <span class="nav-dot" style="background:#1B7A4A;"></span>
+      manifest
+    </a>
+    <a href="https://cmcp.agentrust-io.com">
+      <span class="nav-dot" style="background:#6D28D9;"></span>
+      cmcp
+    </a>
+    <a href="https://tests.agentrust-io.com">
+      <span class="nav-dot" style="background:#C17817;"></span>
+      tests
+    </a>
+    <a href="https://github.com/microsoft/agent-governance-toolkit">
+      <span class="nav-dot" style="background:#6B7F94;"></span>
+      agt ↗
+    </a>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Open Standards &amp; Tools</p>
+    <h1>Govern AI Agents<br>at the Hardware Boundary</h1>
+    <p>AgentTrust provides open specifications, test infrastructure, and attestation tooling for organizations deploying AI agents in production — with cryptographic proof of identity, intent, and behavior.</p>
+    <div class="hero-actions">
+      <a href="https://trace.agentrust-io.com" class="btn btn-primary">Explore TRACE Spec →</a>
+      <a href="https://github.com/agentrust-io" class="btn btn-ghost">View on GitHub</a>
+    </div>
+  </div>
+</div>
+
+<!-- Products -->
+<section class="section" id="standards">
+  <div class="section-header">
+    <div class="section-label">Open Specifications</div>
+    <div class="section-title">Standards &amp; Protocols</div>
+  </div>
+
+  <div class="product-grid">
+
+    <!-- TRACE -->
+    <a href="https://trace.agentrust-io.com" class="product-card">
+      <div class="card-accent" style="background: var(--blue);"></div>
+      <div class="card-body">
+        <div class="card-tag" style="color: var(--blue);">Attestation Standard</div>
+        <div class="card-name">TRACE</div>
+        <div class="card-desc">Transparent Runtime Attestation for Confidential Execution. Hardware-rooted cryptographic receipts for every agent action — signed by the TEE, verifiable by anyone.</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-url">trace.agentrust-io.com</span>
+        <div style="display:flex;gap:0.5rem;align-items:center;">
+          <span class="card-badge badge-live">Live</span>
+          <svg class="card-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- Agent Manifest -->
+    <a href="https://manifest.agentrust-io.com" class="product-card">
+      <div class="card-accent" style="background: var(--green);"></div>
+      <div class="card-body">
+        <div class="card-tag" style="color: var(--green);">Identity Standard</div>
+        <div class="card-name">Agent Manifest</div>
+        <div class="card-desc">A structured declaration of an agent's capabilities, permissions, and data access policies. Machine-readable identity that operators and orchestrators can verify before invocation.</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-url">manifest.agentrust-io.com</span>
+        <div style="display:flex;gap:0.5rem;align-items:center;">
+          <span class="card-badge badge-live">Live</span>
+          <svg class="card-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- cMCP -->
+    <a href="https://cmcp.agentrust-io.com" class="product-card">
+      <div class="card-accent" style="background: var(--purple);"></div>
+      <div class="card-body">
+        <div class="card-tag" style="color: var(--purple);">Protocol Extension</div>
+        <div class="card-name">Confidential MCP</div>
+        <div class="card-desc">An extension to the Model Context Protocol that runs tool calls inside a Trusted Execution Environment. Prevents the host process from observing inputs, outputs, or intermediate state.</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-url">cmcp.agentrust-io.com</span>
+        <div style="display:flex;gap:0.5rem;align-items:center;">
+          <span class="card-badge badge-live">Live</span>
+          <svg class="card-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- Tools -->
+<section class="section" id="tools">
+  <div class="section-header">
+    <div class="section-label">Infrastructure</div>
+    <div class="section-title">Test Suite &amp; Tooling</div>
+  </div>
+
+  <div class="product-grid">
+
+    <!-- TRACE Tests -->
+    <a href="https://tests.agentrust-io.com" class="product-card">
+      <div class="card-accent" style="background: var(--amber);"></div>
+      <div class="card-body">
+        <div class="card-tag" style="color: var(--amber);">Test Infrastructure</div>
+        <div class="card-name">TRACE Test Suite</div>
+        <div class="card-desc">Conformance tests and integration harness for TRACE implementations. Verify that your attestation receipts meet the spec before shipping to production.</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-url">tests.agentrust-io.com</span>
+        <div style="display:flex;gap:0.5rem;align-items:center;">
+          <span class="card-badge badge-oss">OSS</span>
+          <svg class="card-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- AGT -->
+    <a href="https://github.com/microsoft/agent-governance-toolkit" class="product-card">
+      <div class="card-accent" style="background: var(--muted);"></div>
+      <div class="card-body">
+        <div class="card-tag" style="color: var(--muted);">Microsoft Open Source</div>
+        <div class="card-name">Agent Governance Toolkit</div>
+        <div class="card-desc">GitHub Actions, policy checks, and CI integrations for governing agent behavior in software repositories. Contributor reputation, workflow provenance, and supply-chain verification.</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-url">github.com/microsoft/agt</span>
+        <div style="display:flex;gap:0.5rem;align-items:center;">
+          <span class="card-badge badge-ext">External ↗</span>
+          <svg class="card-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- GitHub Org -->
+    <a href="https://github.com/agentrust-io" class="product-card">
+      <div class="card-accent" style="background: #24292F;"></div>
+      <div class="card-body">
+        <div class="card-tag" style="color: #6B7F94;">Source Code</div>
+        <div class="card-name">GitHub Organization</div>
+        <div class="card-desc">All spec source, examples, registry entries, and integration guides. TRACE spec, Agent Manifest schema, cMCP protocol, and the awesome-ai-governance curated list.</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-url">github.com/agentrust-io</span>
+        <div style="display:flex;gap:0.5rem;align-items:center;">
+          <span class="card-badge badge-oss">OSS</span>
+          <svg class="card-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- Quick stats -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-label">At a Glance</div>
+    <div class="section-title">What's Launched</div>
+  </div>
+  <div class="spec-row">
+    <div class="spec-card">
+      <div class="spec-label">Attestation Standard</div>
+      <div class="spec-value">TRACE v0.1</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Identity Standard</div>
+      <div class="spec-value">Agent Manifest v1</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Protocol Extension</div>
+      <div class="spec-value">cMCP v0.1</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Launched</div>
+      <div class="spec-value">June 23, 2026</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">License</div>
+      <div class="spec-value">Apache 2.0</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Standardization</div>
+      <div class="spec-value">CoSAI / AIF</div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">© 2026 AgentTrust Contributors. Apache 2.0.</div>
+    <div class="footer-links">
+      <a href="https://trace.agentrust-io.com">TRACE</a>
+      <a href="https://manifest.agentrust-io.com">Manifest</a>
+      <a href="https://cmcp.agentrust-io.com">cMCP</a>
+      <a href="https://tests.agentrust-io.com">Tests</a>
+      <a href="https://github.com/agentrust-io">GitHub</a>
+      <a href="https://github.com/microsoft/agent-governance-toolkit">AGT ↗</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
