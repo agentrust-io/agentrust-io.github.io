@@ -6,8 +6,9 @@
     { id: 'home',     label: 'agentrust-io',  url: 'https://agentrust-io.com',                                   dot: '#B91C1C', ext: false },
     { id: 'trace',    label: 'TRACE',          url: 'https://trace.agentrust-io.com',                             dot: '#1B5EA0', ext: false },
     { id: 'manifest', label: 'Manifest',       url: 'https://manifest.agentrust-io.com',                          dot: '#1B7A4A', ext: false },
-    { id: 'cmcp',     label: 'cMCP',           url: 'https://cmcp.agentrust-io.com',                              dot: '#6D28D9', ext: false },
-    { id: 'agt',      label: 'AGT',            url: 'https://github.com/microsoft/agent-governance-toolkit',     dot: '#6B7F94', ext: true  },
+    { id: 'cmcp',       label: 'cMCP',        url: 'https://cmcp.agentrust-io.com',                            dot: '#6D28D9', ext: false },
+    { id: 'governance', label: 'Governance',  url: 'https://governance.agentrust-io.com',                       dot: '#EA580C', ext: false },
+    { id: 'agt',        label: 'AGT',         url: 'https://github.com/microsoft/agent-governance-toolkit',    dot: '#6B7F94', ext: true  },
     { id: 'github',   label: 'GitHub',         url: 'https://github.com/agentrust-io',                           dot: '#8B949E', ext: true  }
   ];
 
@@ -15,8 +16,9 @@
   var CURRENT_ID = HOST === 'agentrust-io.com' ? 'home'
     : HOST.indexOf('trace.') === 0    ? 'trace'
     : HOST.indexOf('manifest.') === 0 ? 'manifest'
-    : HOST.indexOf('cmcp.') === 0     ? 'cmcp'
-    : HOST.indexOf('tests.') === 0    ? 'trace'
+    : HOST.indexOf('cmcp.') === 0        ? 'cmcp'
+    : HOST.indexOf('governance.') === 0  ? 'governance'
+    : HOST.indexOf('tests.') === 0       ? 'trace'
     : 'home';
 
   var NAV_ID = 'agt-supernav';
