@@ -1,4 +1,4 @@
-/* AgentTrust super-navigation — injected into all agentrust-io.com properties */
+/* AgenTrust super-navigation — injected into all agentrust-io.com properties */
 (function () {
   'use strict';
 
