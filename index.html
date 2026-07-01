@@ -5,6 +5,154 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AgenTrust — Open Standards for AI Agent Governance</title>
   <meta name="description" content="AgenTrust provides open standards, tools, and specifications for governing AI agents at runtime: attestation, identity, and trust verification.">
+  <link rel="canonical" href="https://agentrust-io.com/">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AgenTrust">
+  <meta property="og:title" content="AgenTrust: Open Standards for AI Agent Governance">
+  <meta property="og:description" content="Open standards, tools, and specifications for governing AI agents at runtime: attestation, identity, and trust verification. Home of the TRACE, Agent Manifest, and Confidential MCP specifications.">
+  <meta property="og:url" content="https://agentrust-io.com/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://agentrust-io.com/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="AgenTrust: open standards for AI agent governance">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AgenTrust: Open Standards for AI Agent Governance">
+  <meta name="twitter:description" content="Open standards for governing AI agents at runtime: attestation, identity, and trust verification. Home of TRACE, Agent Manifest, and Confidential MCP.">
+  <meta name="twitter:image" content="https://agentrust-io.com/og.png">
+
+  <!-- Structured data: Organization + WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://agentrust-io.com/#organization",
+        "name": "AgenTrust",
+        "url": "https://agentrust-io.com/",
+        "description": "Open standards, tools, and specifications for governing AI agents at runtime: attestation, identity, and trust verification.",
+        "sameAs": [
+          "https://github.com/agentrust-io",
+          "https://trace.agentrust-io.com",
+          "https://manifest.agentrust-io.com",
+          "https://cmcp.agentrust-io.com"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://agentrust-io.com/#website",
+        "name": "AgenTrust",
+        "url": "https://agentrust-io.com/",
+        "publisher": { "@id": "https://agentrust-io.com/#organization" }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Structured data: the open standards -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "AgenTrust open standards",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "TechArticle",
+          "name": "TRACE",
+          "url": "https://trace.agentrust-io.com/",
+          "description": "Transparent Runtime Attestation for Confidential Execution. Hardware-rooted cryptographic receipts for every agent action, signed by the TEE and verifiable by anyone."
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "TechArticle",
+          "name": "Agent Manifest",
+          "url": "https://manifest.agentrust-io.com/",
+          "description": "A structured, machine-readable declaration of an agent's capabilities, permissions, and data access policies that operators and orchestrators can verify before invocation."
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "TechArticle",
+          "name": "Confidential MCP (cMCP)",
+          "url": "https://cmcp.agentrust-io.com/",
+          "description": "An extension to the Model Context Protocol that runs tool calls inside a Trusted Execution Environment so the host process cannot observe inputs, outputs, or intermediate state."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Structured data: FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is AgenTrust?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AgenTrust is a set of open standards, tools, and specifications for governing AI agents at runtime. It provides cryptographic proof of an agent's identity, intent, and behavior through the TRACE attestation standard, the Agent Manifest identity standard, and the Confidential MCP protocol extension. All specifications are open source under Apache 2.0."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is TRACE?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "TRACE stands for Transparent Runtime Attestation for Confidential Execution. It defines hardware-rooted cryptographic receipts for every agent action, signed by the Trusted Execution Environment and verifiable by anyone."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Agent Manifest?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Agent Manifest is a structured, machine-readable declaration of an agent's capabilities, permissions, and data access policies. Operators and orchestrators can verify an agent's manifest before invocation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Confidential MCP (cMCP)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Confidential MCP is an extension to the Model Context Protocol that runs tool calls inside a Trusted Execution Environment, preventing the host process from observing inputs, outputs, or intermediate state."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do the AgenTrust standards relate to each other?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Agent Manifest establishes who an agent is and what it is allowed to do, cMCP executes tool calls confidentially inside a Trusted Execution Environment, and TRACE produces hardware-signed receipts that prove what actually happened. Together they cover identity, intent, and behavior."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are the AgenTrust standards open source?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. TRACE, Agent Manifest, and cMCP are open source under the Apache 2.0 license, with source, schemas, and examples on GitHub at github.com/agentrust-io."
+        }
+      }
+    ]
+  }
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -348,6 +496,30 @@
     .footer-links a:hover { color: #fff; }
     .footer-copy { font-size: 0.8rem; }
 
+    /* ── Prose + FAQ ── */
+    .lead-copy {
+      max-width: 760px;
+      font-size: 1.0625rem;
+      color: var(--body);
+      line-height: 1.7;
+    }
+    .lead-copy + .lead-copy { margin-top: 1rem; }
+    .qa { max-width: 760px; }
+    .qa-item { padding: 1.125rem 0; border-bottom: 1px solid var(--border); }
+    .qa-item:first-child { border-top: 1px solid var(--border); }
+    .qa-q {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.45rem;
+    }
+    .qa-a {
+      font-size: 0.9375rem;
+      color: var(--body);
+      line-height: 1.65;
+    }
+
     @media (max-width: 640px) {
       .spec-row { grid-template-columns: 1fr 1fr; }
       .hero { padding: 2.5rem 1.25rem 2rem; }
@@ -592,6 +764,50 @@
     <div class="spec-card">
       <div class="spec-label">Standardization</div>
       <div class="spec-value">CoSAI / AIF</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- What is AgenTrust -->
+<section class="section" id="about">
+  <div class="section-header">
+    <div class="section-label">Overview</div>
+    <div class="section-title">What is AgenTrust?</div>
+  </div>
+  <p class="lead-copy">AgenTrust is a set of open standards, tools, and specifications for governing AI agents at runtime. It gives operators cryptographic proof of an agent's identity, intent, and behavior, so that an agent running in production can be verified independently of the party that deployed it.</p>
+  <p class="lead-copy">Three specifications work together. <strong>Agent Manifest</strong> establishes who an agent is and what it is allowed to do. <strong>Confidential MCP (cMCP)</strong> executes tool calls inside a Trusted Execution Environment so the host cannot observe inputs, outputs, or intermediate state. <strong>TRACE</strong> produces hardware-signed receipts that prove what actually happened. All three are open source under Apache 2.0.</p>
+</section>
+
+<hr class="divider">
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-header">
+    <div class="section-label">FAQ</div>
+    <div class="section-title">Frequently Asked Questions</div>
+  </div>
+  <div class="qa">
+    <div class="qa-item">
+      <div class="qa-q">What is TRACE?</div>
+      <div class="qa-a">TRACE stands for Transparent Runtime Attestation for Confidential Execution. It defines hardware-rooted cryptographic receipts for every agent action, signed by the Trusted Execution Environment and verifiable by anyone.</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q">What is Agent Manifest?</div>
+      <div class="qa-a">Agent Manifest is a structured, machine-readable declaration of an agent's capabilities, permissions, and data access policies. Operators and orchestrators can verify an agent's manifest before invocation.</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q">What is Confidential MCP (cMCP)?</div>
+      <div class="qa-a">Confidential MCP is an extension to the Model Context Protocol that runs tool calls inside a Trusted Execution Environment, preventing the host process from observing inputs, outputs, or intermediate state.</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q">How do the AgenTrust standards relate to each other?</div>
+      <div class="qa-a">Agent Manifest covers identity, cMCP covers confidential execution, and TRACE covers verifiable behavior. Manifest says who an agent is and what it may do, cMCP runs its tool calls confidentially, and TRACE produces hardware-signed receipts of what actually happened.</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q">Are the AgenTrust standards open source?</div>
+      <div class="qa-a">Yes. TRACE, Agent Manifest, and cMCP are open source under the Apache 2.0 license, with source, schemas, and examples on GitHub at github.com/agentrust-io.</div>
     </div>
   </div>
 </section>

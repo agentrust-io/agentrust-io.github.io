@@ -1,0 +1,27 @@
+# AgenTrust
+
+> Open standards, tools, and specifications for governing AI agents at runtime. AgenTrust gives operators cryptographic proof of an agent's identity, intent, and behavior, so an agent running in production can be verified independently of the party that deployed it.
+
+AgenTrust is organized around three complementary open standards, all licensed under Apache 2.0. Agent Manifest establishes agent identity and permissions, Confidential MCP runs tool calls inside a Trusted Execution Environment, and TRACE produces hardware-signed receipts of agent actions.
+
+## Standards
+
+- [TRACE](https://trace.agentrust-io.com): Transparent Runtime Attestation for Confidential Execution. Hardware-rooted cryptographic receipts for every agent action, signed by the TEE and verifiable by anyone.
+- [Agent Manifest](https://manifest.agentrust-io.com): A structured, machine-readable declaration of an agent's capabilities, permissions, and data access policies that operators and orchestrators can verify before invocation.
+- [Confidential MCP (cMCP)](https://cmcp.agentrust-io.com): An extension to the Model Context Protocol that runs tool calls inside a Trusted Execution Environment so the host process cannot observe inputs, outputs, or intermediate state.
+
+## Docs and machine-readable summaries
+
+- [TRACE llms.txt](https://trace.agentrust-io.com/llms.txt)
+- [Agent Manifest llms.txt](https://manifest.agentrust-io.com/llms.txt)
+- [cMCP llms.txt](https://cmcp.agentrust-io.com/llms.txt)
+
+## Resources
+
+- [Awesome AI Governance](https://governance.agentrust-io.com): A community-curated list of tools, frameworks, standards, and research for governing autonomous AI agents.
+- [TRACE Test Suite](https://tests.agentrust-io.com): Conformance tests and integration harness for TRACE implementations.
+- [GitHub organization](https://github.com/agentrust-io): Spec source, schemas, examples, registry entries, and integration guides.
+
+## About
+
+AgenTrust standards launched June 23, 2026. Work is aligned with CoSAI and AIF standardization efforts. Current releases: TRACE v0.1, Agent Manifest v1, and cMCP v0.1.
