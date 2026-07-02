@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AgenTrust — Open Standards for AI Agent Governance</title>
-  <meta name="description" content="AgenTrust provides open standards, tools, and specifications for governing AI agents at runtime: attestation, identity, and trust verification.">
+  <meta name="description" content="AgenTrust provides open standards, tools, and specifications for governing AI agents at runtime: attestation, identity, delegation, and trust verification.">
   <link rel="canonical" href="https://agentrust-io.com/">
   <meta name="robots" content="index, follow">
 
@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AgenTrust">
   <meta property="og:title" content="AgenTrust: Open Standards for AI Agent Governance">
-  <meta property="og:description" content="Open standards, tools, and specifications for governing AI agents at runtime: attestation, identity, and trust verification. Home of the TRACE, Agent Manifest, and Confidential MCP specifications.">
+  <meta property="og:description" content="Open standards, tools, and specifications for governing AI agents at runtime: attestation, identity, delegation, and trust verification. Home of the TRACE, Agent Manifest, Confidential MCP, and Confidential A2A specifications.">
   <meta property="og:url" content="https://agentrust-io.com/">
   <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://agentrust-io.com/og.png">
@@ -23,7 +23,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="AgenTrust: Open Standards for AI Agent Governance">
-  <meta name="twitter:description" content="Open standards for governing AI agents at runtime: attestation, identity, and trust verification. Home of TRACE, Agent Manifest, and Confidential MCP.">
+  <meta name="twitter:description" content="Open standards for governing AI agents at runtime: attestation, identity, delegation, and trust verification. Home of TRACE, Agent Manifest, Confidential MCP, and Confidential A2A.">
   <meta name="twitter:image" content="https://agentrust-io.com/og.png">
 
   <!-- Structured data: Organization + WebSite -->
@@ -91,6 +91,16 @@
           "url": "https://cmcp.agentrust-io.com/",
           "description": "An extension to the Model Context Protocol that runs tool calls inside a Trusted Execution Environment so the host process cannot observe inputs, outputs, or intermediate state."
         }
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "item": {
+          "@type": "TechArticle",
+          "name": "Confidential A2A (cA2A)",
+          "url": "https://github.com/agentrust-io/ca2a",
+          "description": "A trust profile on the Agent2Agent (A2A) protocol that makes agent-to-agent delegation verifiable and confidential: attested, attenuated delegation, a sealed peer channel, and an offline-verifiable provenance record for every hop."
+        }
       }
     ]
   }
@@ -136,10 +146,18 @@
       },
       {
         "@type": "Question",
+        "name": "What is Confidential A2A (cA2A)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Confidential A2A is a trust profile layered on the Agent2Agent (A2A) protocol, not a competing transport. Where A2A's Signed Agent Card verifies only the domain owner, cA2A adds attested, attenuated delegation (each hop's authority is a provable subset of its parent's), runtime attestation of the peer, a sealed channel that binds the task payload to the peer's attested measurement, and a linked provenance record per hop that forms an offline-verifiable delegation DAG. It is a developer preview."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "How do the AgenTrust standards relate to each other?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Agent Manifest establishes who an agent is and what it is allowed to do, cMCP executes tool calls confidentially inside a Trusted Execution Environment, and TRACE produces hardware-signed receipts that prove what actually happened. Together they cover identity, intent, and behavior."
+          "text": "Agent Manifest establishes who an agent is and what it is allowed to do, cMCP executes tool calls confidentially inside a Trusted Execution Environment, cA2A carries that trust across agent-to-agent delegation on A2A, and TRACE produces hardware-signed receipts that prove what actually happened. Together they cover identity, intent, delegation, and behavior."
         }
       },
       {
@@ -147,7 +165,7 @@
         "name": "Are the AgenTrust standards open source?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. TRACE, Agent Manifest, and cMCP are open source under the Apache 2.0 license, with source, schemas, and examples on GitHub at github.com/agentrust-io."
+          "text": "Yes. TRACE, Agent Manifest, cMCP, and cA2A are open source, with source, schemas, and examples on GitHub at github.com/agentrust-io."
         }
       }
     ]
@@ -389,6 +407,7 @@
     .badge-live { background: #DCFCE7; color: var(--green); }
     .badge-oss  { background: #EFF6FF; color: var(--blue); }
     .badge-ext  { background: #F3F4F6; color: var(--muted); }
+    .badge-preview { background: #FEF3C7; color: #92400E; }
 
     /* ── Divider ── */
     .divider {
@@ -563,6 +582,10 @@
       <span class="nav-dot" style="background:#6D28D9;"></span>
       cmcp
     </a>
+    <a href="https://github.com/agentrust-io/ca2a">
+      <span class="nav-dot" style="background:#0D9488;"></span>
+      ca2a ↗
+    </a>
     <a href="https://governance.agentrust-io.com">
       <span class="nav-dot" style="background:#EA580C;"></span>
       governance
@@ -647,6 +670,23 @@
       </div>
     </a>
 
+    <!-- cA2A -->
+    <a href="https://github.com/agentrust-io/ca2a" class="product-card">
+      <div class="card-accent" style="background: #0D9488;"></div>
+      <div class="card-body">
+        <div class="card-tag" style="color: #0D9488;">Delegation Profile</div>
+        <div class="card-name">Confidential A2A</div>
+        <div class="card-desc">A trust profile on the Agent2Agent (A2A) protocol. Adds attested, attenuated delegation, a sealed peer channel, and an offline-verifiable provenance record for every hop — so agent-to-agent delegation is verifiable and confidential, not just authenticated at the front door.</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-url">github.com/agentrust-io/ca2a</span>
+        <div style="display:flex;gap:0.5rem;align-items:center;">
+          <span class="card-badge badge-preview">Preview</span>
+          <svg class="card-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+
     <!-- Awesome AI Governance -->
     <a href="https://governance.agentrust-io.com" class="product-card">
       <div class="card-accent" style="background: var(--orange);"></div>
@@ -718,7 +758,7 @@
       <div class="card-body">
         <div class="card-tag" style="color: #6B7F94;">Source Code</div>
         <div class="card-name">GitHub Organization</div>
-        <div class="card-desc">All spec source, examples, registry entries, and integration guides. TRACE spec, Agent Manifest schema, cMCP protocol, and the full awesome-ai-governance curated list.</div>
+        <div class="card-desc">All spec source, examples, registry entries, and integration guides. TRACE spec, Agent Manifest schema, cMCP protocol, cA2A profile, and the full awesome-ai-governance curated list.</div>
       </div>
       <div class="card-footer">
         <span class="card-url">github.com/agentrust-io</span>
@@ -752,6 +792,10 @@
     <div class="spec-card">
       <div class="spec-label">Protocol Extension</div>
       <div class="spec-value">cMCP v0.1</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-label">Delegation Profile</div>
+      <div class="spec-value">cA2A v0.1 · preview</div>
     </div>
     <div class="spec-card">
       <div class="spec-label">Launched</div>
