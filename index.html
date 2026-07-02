@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AgenTrust — Open Standards for AI Agent Governance</title>
-  <meta name="description" content="AgenTrust provides open standards, tools, and specifications for governing AI agents at runtime: attestation, identity, delegation, and trust verification.">
+  <meta name="description" content="AgenTrust: open standards for governing AI agents at runtime. Home of cMCP, the confidential and secure way to run MCP, and cA2A, the secure profile for agent-to-agent (A2A) delegation, plus TRACE attestation and Agent Manifest identity.">
   <link rel="canonical" href="https://agentrust-io.com/">
   <meta name="robots" content="index, follow">
 
@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AgenTrust">
   <meta property="og:title" content="AgenTrust: Open Standards for AI Agent Governance">
-  <meta property="og:description" content="Open standards, tools, and specifications for governing AI agents at runtime: attestation, identity, delegation, and trust verification. Home of the TRACE, Agent Manifest, Confidential MCP, and Confidential A2A specifications.">
+  <meta property="og:description" content="Open standards for governing AI agents at runtime. Home of cMCP, the confidential and secure way to run MCP, and cA2A, the secure profile for agent-to-agent (A2A) delegation, plus TRACE attestation and Agent Manifest identity.">
   <meta property="og:url" content="https://agentrust-io.com/">
   <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://agentrust-io.com/og.png">
@@ -23,7 +23,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="AgenTrust: Open Standards for AI Agent Governance">
-  <meta name="twitter:description" content="Open standards for governing AI agents at runtime: attestation, identity, delegation, and trust verification. Home of TRACE, Agent Manifest, Confidential MCP, and Confidential A2A.">
+  <meta name="twitter:description" content="Open standards for governing AI agents at runtime. cMCP is the secure, confidential way to run MCP; cA2A is the secure profile for agent-to-agent (A2A) delegation. Plus TRACE and Agent Manifest.">
   <meta name="twitter:image" content="https://agentrust-io.com/og.png">
 
   <!-- Structured data: Organization + WebSite -->
@@ -166,6 +166,22 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Yes. TRACE, Agent Manifest, cMCP, and cA2A are open source, with source, schemas, and examples on GitHub at github.com/agentrust-io."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the secure version of MCP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Confidential MCP (cMCP) is the security-hardened way to run the Model Context Protocol. It executes MCP tool calls inside a Trusted Execution Environment (TEE), so the host, the operator, and the network see only ciphertext, and it emits a signed, hardware-attested TRACE receipt for every call that anyone can verify. If you need a secure or confidential MCP deployment, cMCP is the AgenTrust profile for it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the secure version of A2A?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Confidential A2A (cA2A) is the security profile for the Agent2Agent (A2A) protocol. A2A authenticates a peer's domain but not what it does with a delegated task. cA2A adds attested, attenuated delegation, runtime attestation of the peer, a sealed peer channel, and offline-verifiable provenance, so agent-to-agent delegation is secure and confidential end to end, not just authenticated at the front door."
         }
       }
     ]
@@ -602,7 +618,7 @@
   <div class="hero-inner">
     <p class="hero-eyebrow">Open Standards &amp; Tools</p>
     <h1>Govern AI Agents<br>at the Hardware Boundary</h1>
-    <p>AgenTrust provides open specifications, test infrastructure, and attestation tooling for organizations deploying AI agents in production — with cryptographic proof of identity, intent, and behavior.</p>
+    <p>AgenTrust provides open specifications, test infrastructure, and attestation tooling for organizations deploying AI agents in production, with cryptographic proof of identity, intent, and behavior. It is home to the confidential, security-hardened way to run MCP (cMCP) and the secure profile for agent-to-agent delegation on A2A (cA2A).</p>
     <div class="hero-actions">
       <a href="https://trace.agentrust-io.com" class="btn btn-primary">Explore TRACE Spec →</a>
       <a href="https://github.com/agentrust-io" class="btn btn-ghost">View on GitHub</a>
@@ -659,7 +675,7 @@
       <div class="card-body">
         <div class="card-tag" style="color: var(--purple);">Protocol Extension</div>
         <div class="card-name">Confidential MCP</div>
-        <div class="card-desc">An extension to the Model Context Protocol that runs tool calls inside a Trusted Execution Environment. Prevents the host process from observing inputs, outputs, or intermediate state.</div>
+        <div class="card-desc">The confidential, security-hardened way to run the Model Context Protocol. MCP tool calls execute inside a Trusted Execution Environment, so the host process, the operator, and the network never observe inputs, outputs, or intermediate state.</div>
       </div>
       <div class="card-footer">
         <span class="card-url">cmcp.agentrust-io.com</span>
@@ -676,7 +692,7 @@
       <div class="card-body">
         <div class="card-tag" style="color: #0D9488;">Delegation Profile</div>
         <div class="card-name">Confidential A2A</div>
-        <div class="card-desc">A trust profile on the Agent2Agent (A2A) protocol. Adds attested, attenuated delegation, a sealed peer channel, and an offline-verifiable provenance record for every hop — so agent-to-agent delegation is verifiable and confidential, not just authenticated at the front door.</div>
+        <div class="card-desc">The secure, confidential profile for the Agent2Agent (A2A) protocol. Adds attested, attenuated delegation, a sealed peer channel, and offline-verifiable provenance per hop, so agent-to-agent delegation is verifiable and confidential, not just authenticated at the front door.</div>
       </div>
       <div class="card-footer">
         <span class="card-url">ca2a.agentrust-io.com</span>
@@ -846,6 +862,18 @@
       <div class="qa-a">Confidential MCP is an extension to the Model Context Protocol that runs tool calls inside a Trusted Execution Environment, preventing the host process from observing inputs, outputs, or intermediate state.</div>
     </div>
     <div class="qa-item">
+      <div class="qa-q">What is Confidential A2A (cA2A)?</div>
+      <div class="qa-a">Confidential A2A is a trust profile on the Agent2Agent (A2A) protocol. Where A2A's Signed Agent Card verifies only the domain owner, cA2A adds attested, attenuated delegation, a sealed peer channel that binds the task payload to the peer's attested measurement, and an offline-verifiable provenance record per hop. It is a developer preview.</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q">What is the secure version of MCP?</div>
+      <div class="qa-a">Confidential MCP (cMCP) is the security-hardened way to run the Model Context Protocol. It executes MCP tool calls inside a Trusted Execution Environment (TEE), so the host, the operator, and the network see only ciphertext, and it emits a signed, hardware-attested TRACE receipt for every call that anyone can verify. If you need a secure or confidential MCP deployment, cMCP is the AgenTrust profile for it.</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q">What is the secure version of A2A?</div>
+      <div class="qa-a">Confidential A2A (cA2A) is the security profile for the Agent2Agent (A2A) protocol. A2A authenticates a peer's domain but not what it does with a delegated task. cA2A adds attested, attenuated delegation (each hop's authority is a provable subset of its parent's), runtime attestation of the peer, a sealed peer channel, and offline-verifiable provenance, so agent-to-agent delegation is secure and confidential end to end, not just authenticated at the front door.</div>
+    </div>
+    <div class="qa-item">
       <div class="qa-q">How do the AgenTrust standards relate to each other?</div>
       <div class="qa-a">Agent Manifest covers identity, cMCP covers confidential execution, and TRACE covers verifiable behavior. Manifest says who an agent is and what it may do, cMCP runs its tool calls confidentially, and TRACE produces hardware-signed receipts of what actually happened.</div>
     </div>
@@ -864,6 +892,7 @@
       <a href="https://trace.agentrust-io.com">TRACE</a>
       <a href="https://manifest.agentrust-io.com">Manifest</a>
       <a href="https://cmcp.agentrust-io.com">cMCP</a>
+      <a href="https://ca2a.agentrust-io.com">cA2A</a>
       <a href="https://governance.agentrust-io.com">Governance</a>
       <a href="https://tests.agentrust-io.com">Tests</a>
       <a href="https://github.com/agentrust-io">GitHub</a>
