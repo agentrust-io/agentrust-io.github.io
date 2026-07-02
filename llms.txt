@@ -22,6 +22,7 @@ AgenTrust is organized around four complementary open standards. Agent Manifest 
 - [TRACE llms.txt](https://trace.agentrust-io.com/llms.txt)
 - [Agent Manifest llms.txt](https://manifest.agentrust-io.com/llms.txt)
 - [cMCP llms.txt](https://cmcp.agentrust-io.com/llms.txt)
+- [cA2A llms.txt](https://ca2a.agentrust-io.com/llms.txt)
 
 ## Resources
 
