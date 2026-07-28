@@ -69,7 +69,7 @@
           "@type": "TechArticle",
           "name": "TRACE",
           "url": "https://trace.agentrust-io.com/",
-          "description": "Transparent Runtime Attestation for Confidential Execution. Hardware-rooted cryptographic receipts for every agent action, signed by the TEE and verifiable by anyone."
+          "description": "Trust, Runtime Attestation, and Compliance Evidence. Hardware-rooted cryptographic receipts for every agent action, signed by the TEE and verifiable by anyone."
         }
       },
       {
@@ -117,7 +117,7 @@
         "name": "What is AgenTrust?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "AgenTrust is a set of open standards, tools, and specifications for governing AI agents at runtime. It provides cryptographic proof of an agent's identity, intent, and behavior through the TRACE attestation standard, the Agent Manifest identity standard, and the Confidential MCP protocol extension. All specifications are open source under Apache 2.0."
+          "text": "AgenTrust is a set of open standards, tools, and specifications for governing AI agents at runtime. It provides cryptographic proof of an agent's identity, intent, and behavior through the TRACE attestation standard, the Agent Manifest identity standard, and the Confidential MCP protocol extension. All specifications are open source. Licences differ by project: Agent Manifest is Apache 2.0, cMCP and cA2A are MIT, and TRACE is dual licensed, CC BY 4.0 for the specification text and Apache 2.0 for the reference code."
         }
       },
       {
@@ -125,7 +125,7 @@
         "name": "What is TRACE?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "TRACE stands for Transparent Runtime Attestation for Confidential Execution. It defines hardware-rooted cryptographic receipts for every agent action, signed by the Trusted Execution Environment and verifiable by anyone."
+          "text": "TRACE stands for Trust, Runtime Attestation, and Compliance Evidence. It defines hardware-rooted cryptographic receipts for every agent action, signed by the Trusted Execution Environment and verifiable by anyone."
         }
       },
       {
@@ -141,7 +141,7 @@
         "name": "What is Confidential MCP (cMCP)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Confidential MCP is an extension to the Model Context Protocol that runs tool calls inside a Trusted Execution Environment, preventing the host process from observing inputs, outputs, or intermediate state."
+          "text": "Confidential MCP is an extension to the Model Context Protocol that runs tool calls inside a Trusted Execution Environment, so the host process cannot read tool-call plaintext from enclave memory. That protection is structural only where the Cedar egress policy denies telemetry and APM endpoints, and it covers the tool-call boundary rather than model inference or the agent's context window."
         }
       },
       {
@@ -173,7 +173,7 @@
         "name": "What is the secure version of MCP?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Confidential MCP (cMCP) is the security-hardened way to run the Model Context Protocol. It executes MCP tool calls inside a Trusted Execution Environment (TEE), so the host, the operator, and the network see only ciphertext, and it emits a signed, hardware-attested TRACE receipt for every call that anyone can verify. If you need a secure or confidential MCP deployment, cMCP is the AgenTrust profile for it."
+          "text": "Confidential MCP (cMCP) is the security-hardened way to run the Model Context Protocol. It executes MCP tool calls inside a Trusted Execution Environment (TEE), so tool-call plaintext is not readable from the host, and it emits a signed TRACE receipt for every call that anyone can verify. Two bounds worth stating: the plaintext guarantee holds where the egress policy denies telemetry and APM endpoints, and the receipt is hardware-attested when the gateway runs in a TEE and signed-only in software mode. If you need a secure or confidential MCP deployment, cMCP is the AgenTrust profile for it."
         }
       },
       {
@@ -641,7 +641,7 @@
       <div class="card-body">
         <div class="card-tag" style="color: var(--blue);">Attestation Standard</div>
         <div class="card-name">TRACE</div>
-        <div class="card-desc">Transparent Runtime Attestation for Confidential Execution. Hardware-rooted cryptographic receipts for every agent action — signed by the TEE, verifiable by anyone.</div>
+        <div class="card-desc">Trust, Runtime Attestation, and Compliance Evidence. Hardware-rooted cryptographic receipts for every agent action — signed by the TEE, verifiable by anyone.</div>
       </div>
       <div class="card-footer">
         <span class="card-url">trace.agentrust-io.com</span>
@@ -675,7 +675,7 @@
       <div class="card-body">
         <div class="card-tag" style="color: var(--purple);">Protocol Extension</div>
         <div class="card-name">Confidential MCP</div>
-        <div class="card-desc">The confidential, security-hardened way to run the Model Context Protocol. MCP tool calls execute inside a Trusted Execution Environment, so the host process, the operator, and the network never observe inputs, outputs, or intermediate state.</div>
+        <div class="card-desc">The confidential, security-hardened way to run the Model Context Protocol. MCP tool calls are evaluated against policy inside a Trusted Execution Environment, so tool-call plaintext is not readable from the host. The guarantee is bounded: it holds where the egress policy denies telemetry endpoints, and it covers the tool boundary, not model inference.</div>
       </div>
       <div class="card-footer">
         <span class="card-url">cmcp.agentrust-io.com</span>
@@ -799,15 +799,15 @@
   <div class="spec-row">
     <div class="spec-card">
       <div class="spec-label">Attestation Standard</div>
-      <div class="spec-value">TRACE v0.1</div>
+      <div class="spec-value">TRACE v0.2</div>
     </div>
     <div class="spec-card">
       <div class="spec-label">Identity Standard</div>
-      <div class="spec-value">Agent Manifest v1</div>
+      <div class="spec-value">Agent Manifest spec v0.1</div>
     </div>
     <div class="spec-card">
       <div class="spec-label">Protocol Extension</div>
-      <div class="spec-value">cMCP v0.1</div>
+      <div class="spec-value">cMCP v0.3.0</div>
     </div>
     <div class="spec-card">
       <div class="spec-label">Delegation Profile</div>
@@ -819,11 +819,11 @@
     </div>
     <div class="spec-card">
       <div class="spec-label">License</div>
-      <div class="spec-value">Apache 2.0</div>
+      <div class="spec-value">Apache 2.0, MIT, CC BY 4.0</div>
     </div>
     <div class="spec-card">
       <div class="spec-label">Standardization</div>
-      <div class="spec-value">CoSAI / AIF</div>
+      <div class="spec-value">CoSAI / AAIF</div>
     </div>
   </div>
 </section>
@@ -837,7 +837,7 @@
     <div class="section-title">What is AgenTrust?</div>
   </div>
   <p class="lead-copy">AgenTrust is a set of open standards, tools, and specifications for governing AI agents at runtime. It gives operators cryptographic proof of an agent's identity, intent, and behavior, so that an agent running in production can be verified independently of the party that deployed it.</p>
-  <p class="lead-copy">Three specifications work together. <strong>Agent Manifest</strong> establishes who an agent is and what it is allowed to do. <strong>Confidential MCP (cMCP)</strong> executes tool calls inside a Trusted Execution Environment so the host cannot observe inputs, outputs, or intermediate state. <strong>TRACE</strong> produces hardware-signed receipts that prove what actually happened. All three are open source under Apache 2.0.</p>
+  <p class="lead-copy">Three specifications work together. <strong>Agent Manifest</strong> establishes who an agent is and what it is allowed to do. <strong>Confidential MCP (cMCP)</strong> evaluates tool calls against policy inside a Trusted Execution Environment, so tool-call plaintext is not readable from the host. <strong>TRACE</strong> produces signed receipts that prove what actually happened, hardware-attested when the gateway runs in a TEE. All three are open source, under Apache 2.0 for Agent Manifest, MIT for cMCP, and CC BY 4.0 plus Apache 2.0 for TRACE.</p>
 </section>
 
 <hr class="divider">
@@ -851,7 +851,7 @@
   <div class="qa">
     <div class="qa-item">
       <div class="qa-q">What is TRACE?</div>
-      <div class="qa-a">TRACE stands for Transparent Runtime Attestation for Confidential Execution. It defines hardware-rooted cryptographic receipts for every agent action, signed by the Trusted Execution Environment and verifiable by anyone.</div>
+      <div class="qa-a">TRACE stands for Trust, Runtime Attestation, and Compliance Evidence. It defines hardware-rooted cryptographic receipts for every agent action, signed by the Trusted Execution Environment and verifiable by anyone.</div>
     </div>
     <div class="qa-item">
       <div class="qa-q">What is Agent Manifest?</div>
@@ -859,7 +859,7 @@
     </div>
     <div class="qa-item">
       <div class="qa-q">What is Confidential MCP (cMCP)?</div>
-      <div class="qa-a">Confidential MCP is an extension to the Model Context Protocol that runs tool calls inside a Trusted Execution Environment, preventing the host process from observing inputs, outputs, or intermediate state.</div>
+      <div class="qa-a">Confidential MCP is an extension to the Model Context Protocol that runs tool calls inside a Trusted Execution Environment, so the host process cannot read tool-call plaintext from enclave memory. That protection is structural only where the Cedar egress policy denies telemetry and APM endpoints, and it covers the tool-call boundary rather than model inference or the agent's context window.</div>
     </div>
     <div class="qa-item">
       <div class="qa-q">What is Confidential A2A (cA2A)?</div>
@@ -867,7 +867,7 @@
     </div>
     <div class="qa-item">
       <div class="qa-q">What is the secure version of MCP?</div>
-      <div class="qa-a">Confidential MCP (cMCP) is the security-hardened way to run the Model Context Protocol. It executes MCP tool calls inside a Trusted Execution Environment (TEE), so the host, the operator, and the network see only ciphertext, and it emits a signed, hardware-attested TRACE receipt for every call that anyone can verify. If you need a secure or confidential MCP deployment, cMCP is the AgenTrust profile for it.</div>
+      <div class="qa-a">Confidential MCP (cMCP) is the security-hardened way to run the Model Context Protocol. It executes MCP tool calls inside a Trusted Execution Environment (TEE), so tool-call plaintext is not readable from the host, and it emits a signed TRACE receipt for every call that anyone can verify. Two bounds worth stating: the plaintext guarantee holds where the egress policy denies telemetry and APM endpoints, and the receipt is hardware-attested when the gateway runs in a TEE and signed-only in software mode. If you need a secure or confidential MCP deployment, cMCP is the AgenTrust profile for it.</div>
     </div>
     <div class="qa-item">
       <div class="qa-q">What is the secure version of A2A?</div>
@@ -879,7 +879,7 @@
     </div>
     <div class="qa-item">
       <div class="qa-q">Are the AgenTrust standards open source?</div>
-      <div class="qa-a">Yes. TRACE, Agent Manifest, and cMCP are open source under the Apache 2.0 license, with source, schemas, and examples on GitHub at github.com/agentrust-io.</div>
+      <div class="qa-a">Yes, though not all under one licence. Agent Manifest and the TRACE conformance suite are Apache 2.0, cMCP and cA2A are MIT, and the TRACE specification text is CC BY 4.0 with its reference code under Apache 2.0. Source, schemas, and examples are on GitHub at github.com/agentrust-io.</div>
     </div>
   </div>
 </section>
@@ -887,7 +887,7 @@
 <!-- Footer -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-copy">© 2026 AgenTrust Contributors. Apache 2.0.</div>
+    <div class="footer-copy">© 2026 AgenTrust Contributors. Open source; licences vary by project.</div>
     <div class="footer-links">
       <a href="https://trace.agentrust-io.com">TRACE</a>
       <a href="https://manifest.agentrust-io.com">Manifest</a>

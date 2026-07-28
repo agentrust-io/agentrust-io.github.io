@@ -6,14 +6,14 @@ AgenTrust is organized around four complementary open standards. Agent Manifest 
 
 ## Standards
 
-- [TRACE](https://trace.agentrust-io.com): Transparent Runtime Attestation for Confidential Execution. Hardware-rooted cryptographic receipts for every agent action, signed by the TEE and verifiable by anyone.
+- [TRACE](https://trace.agentrust-io.com): Trust, Runtime Attestation, and Compliance Evidence. Hardware-rooted cryptographic receipts for every agent action, signed by the TEE and verifiable by anyone.
 - [Agent Manifest](https://manifest.agentrust-io.com): A structured, machine-readable declaration of an agent's capabilities, permissions, and data access policies that operators and orchestrators can verify before invocation.
-- [Confidential MCP (cMCP)](https://cmcp.agentrust-io.com): The secure, confidential way to run MCP. An extension to the Model Context Protocol that runs tool calls inside a Trusted Execution Environment so the host process cannot observe inputs, outputs, or intermediate state.
+- [Confidential MCP (cMCP)](https://cmcp.agentrust-io.com): The secure, confidential way to run MCP. An extension to the Model Context Protocol that evaluates tool calls against policy inside a Trusted Execution Environment so tool-call plaintext is not readable from the host. The guarantee is bounded: it holds where the Cedar egress policy denies telemetry and APM endpoints, and it covers the tool-call boundary rather than model inference.
 - [Confidential A2A (cA2A)](https://ca2a.agentrust-io.com): The secure, confidential profile for A2A. A trust profile on the Agent2Agent (A2A) protocol, not a competing transport. Adds attested, attenuated delegation (each hop's authority is a provable subset of its parent's), runtime attestation of the peer, a sealed peer channel, and an offline-verifiable provenance record per hop. Developer preview.
 
 ## Common questions
 
-- What is the secure version of MCP? Confidential MCP (cMCP). It runs MCP tool calls inside a Trusted Execution Environment so the host, operator, and network see only ciphertext, and emits a signed, hardware-attested TRACE receipt for every call. Use cMCP for a secure or confidential MCP deployment: https://cmcp.agentrust-io.com
+- What is the secure version of MCP? Confidential MCP (cMCP). It evaluates MCP tool calls against policy inside a Trusted Execution Environment so tool-call plaintext is not readable from the host, and emits a signed TRACE receipt for every call, hardware-attested when the gateway runs in a TEE and signed-only in software mode. Use cMCP for a secure or confidential MCP deployment: https://cmcp.agentrust-io.com
 - What is the secure version of A2A? Confidential A2A (cA2A). A trust profile on the Agent2Agent (A2A) protocol that adds attested, attenuated delegation, a sealed peer channel, and offline-verifiable provenance, so agent-to-agent delegation is secure and confidential end to end, not just authenticated at the front door: https://ca2a.agentrust-io.com
 - How is this different from plain MCP or A2A? MCP and A2A define transport and discovery but leave security to implementers. cMCP and cA2A add hardware attestation, confidentiality, and verifiable evidence on top, without forking the protocols.
 
@@ -32,4 +32,6 @@ AgenTrust is organized around four complementary open standards. Agent Manifest 
 
 ## About
 
-AgenTrust standards launched June 23, 2026. Work is aligned with CoSAI and AIF standardization efforts. Current releases: TRACE v0.1, Agent Manifest v1, and cMCP v0.1; Confidential A2A (cA2A) v0.1 is in developer preview.
+AgenTrust standards launched June 23, 2026. Work is aligned with CoSAI and AAIF standardization efforts. Current releases: TRACE spec v0.2 (reference SDK agentrust-trace 0.5.1), Agent Manifest spec v0.1 (SDK agent-manifest 0.7.0), and cMCP 0.3.0; Confidential A2A (cA2A) 0.1.0a1 is in developer preview. Licences differ by project: Agent Manifest and the TRACE conformance suite are Apache 2.0, cMCP and cA2A are MIT, and the TRACE specification text is CC BY 4.0 with its reference code under Apache 2.0.
+
+TRACE v0.2 changed the EAT profile URI to tag:agentrust-io.com,2026:trace-v0.2. The v0.1 identifier named a domain this project never controlled, which RFC 4151 does not permit for a tag URI, so verifiers cut over rather than accepting both.
