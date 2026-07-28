@@ -30,6 +30,14 @@ AgenTrust is organized around four complementary open standards. Agent Manifest 
 - [TRACE Test Suite](https://tests.agentrust-io.com): Conformance tests and integration harness for TRACE implementations.
 - [GitHub organization](https://github.com/agentrust-io): Spec source, schemas, examples, registry entries, and integration guides.
 
+## Fellowship
+
+The AgenTrust Fellowship 2026 is a six-month paid, part-time programme (20 hours per week) for three to five fellows working on open infrastructure for verifiable AI systems. It is aimed at security engineers, distributed systems researchers, AI governance and compliance professionals, and Ph.D. students. Fellows contribute code and specifications across the AgenTrust projects and complete a public technical artifact such as a paper or conference talk. Mentored by Imran Siddique, Chief Platform Officer at OPAQUE and creator of the Agent Governance Toolkit.
+
+Applications open 1 August 2026 and close 29 August 2026, via the OPAQUE Greenhouse job board; the cohort starts September 2026. Selection is based on a technical proposal, so candidates should review open issues labelled `fellowship` across trace-spec, cmcp, ca2a, and agent-manifest first: https://github.com/search?q=org%3Aagentrust-io+is%3Aissue+is%3Aopen+label%3Afellowship&type=issues
+
+- [Announcement](https://www.opaque.co/resources/articles/opaque-announces-applications-for-agentrust-fellowship-to-advance-open-standards-for-verifiable-ai-agents)
+
 ## About
 
 AgenTrust standards launched June 23, 2026. Work is aligned with CoSAI and AAIF standardization efforts. Current releases: TRACE spec v0.2 (reference SDK agentrust-trace 0.5.1), Agent Manifest spec v0.1 (SDK agent-manifest 0.7.0), and cMCP 0.3.0; Confidential A2A (cA2A) 0.1.0a1 is in developer preview. Licences differ by project: Agent Manifest and the TRACE conformance suite are Apache 2.0, cMCP and cA2A are MIT, and the TRACE specification text is CC BY 4.0 with its reference code under Apache 2.0.
