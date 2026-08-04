@@ -3,24 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>cMCP Quickstart | AgenTrust</title>
+<title>cMCP Quickstart: Block a Tool Call and Verify the Receipt | AgenTrust</title>
+<meta name="description" content="A hands-on cMCP quickstart: install the runtime with pip, write a Cedar policy, watch it deny a tool call tagged as PII with HTTP 403 before it is forwarded, and verify the signed TRACE claim. Runs on your laptop in about ten minutes, no special hardware.">
+<link rel="canonical" href="https://agentrust-io.com/quickstart/">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AgenTrust">
+<meta property="og:title" content="cMCP Quickstart: Block a Tool Call and Verify the Receipt">
+<meta property="og:description" content="Install the cMCP runtime, write a Cedar policy, watch it deny a tool call tagged as PII with HTTP 403 before it is forwarded, and verify the signed TRACE claim. On your laptop, in about ten minutes.">
+<meta property="og:url" content="https://agentrust-io.com/quickstart/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://agentrust-io.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AgenTrust: open standards for AI agent governance">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="cMCP Quickstart: Block a Tool Call and Verify the Receipt">
+<meta name="twitter:description" content="Install the cMCP runtime, write a Cedar policy, watch it deny a tool call with HTTP 403 before it is forwarded, and verify the signed TRACE claim. About ten minutes on your laptop.">
+<meta name="twitter:image" content="https://agentrust-io.com/og.png">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "cMCP Quickstart: block a tool call and verify the receipt",
+  "description": "Install the cMCP runtime, write a Cedar policy that denies a tool call tagged as PII, confirm the runtime returns HTTP 403 before forwarding, and verify the signed TRACE claim the session produces.",
+  "totalTime": "PT10M",
+  "url": "https://agentrust-io.com/quickstart/",
+  "publisher": { "@id": "https://agentrust-io.com/#organization" },
+  "supply": [
+    { "@type": "HowToSupply", "name": "Python 3.11 or newer" },
+    { "@type": "HowToSupply", "name": "macOS or Linux, two terminal windows" }
+  ],
+  "step": [
+    { "@type": "HowToStep", "name": "Install the runtime", "url": "https://agentrust-io.com/quickstart/#quickstart" },
+    { "@type": "HowToStep", "name": "Write the config and the Cedar policy", "url": "https://agentrust-io.com/quickstart/#quickstart" },
+    { "@type": "HowToStep", "name": "Start the runtime", "url": "https://agentrust-io.com/quickstart/#quickstart" },
+    { "@type": "HowToStep", "name": "Fire a forbidden tool call and watch it return 403", "url": "https://agentrust-io.com/quickstart/#quickstart" },
+    { "@type": "HowToStep", "name": "Verify the signed TRACE claim", "url": "https://agentrust-io.com/quickstart/#proof" }
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Roboto:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --black:#15294B; --white:#FEFAFA; --green:#818cf8; --blue:#00B0FF;
+    --black:#15294B; --white:#FEFAFA; --green:#10BA87; --blue:#00B0FF;
     --neutral:#a6b0b4; --ember:#E1765A; --sand:#E2C99E;
     --surface:#000000; --code:#141519; --line:#33363C;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} }
   body{
     background:var(--black); color:var(--white);
-    font-family:'Inter',sans-serif; font-weight:400; line-height:1.6;
+    font-family:'Roboto',sans-serif; font-weight:400; line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
-  h1,h2,h3,h4,.mont{font-family:'Inter',sans-serif;}
+  h1,h2,h3,h4,.mont{font-family:'Montserrat',sans-serif;}
   a{color:var(--green); text-decoration:none;}
   .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
   .eyebrow{font-family:'Montserrat',sans-serif; font-weight:600; font-size:13px; letter-spacing:2.5px; text-transform:uppercase; color:var(--green);}
@@ -31,10 +78,9 @@
   .blue{color:var(--blue);}
 
   /* NAV */
-  nav{border-bottom:1px solid var(--line); position:sticky; top:0; background:rgba(31,33,37,.94); backdrop-filter:blur(6px); z-index:50;}
+  nav{border-bottom:1px solid var(--line); position:sticky; top:0; background:rgba(21,41,75,.94); backdrop-filter:blur(6px); z-index:50;}
   .nav-in{display:flex; align-items:center; justify-content:space-between; height:64px;}
   .brand{display:flex; align-items:center; gap:14px;}
-  .wordmark{font-family:'Montserrat',sans-serif; font-weight:800; letter-spacing:2px; font-size:20px; color:var(--green);}
   .prod{font-family:'Montserrat',sans-serif; font-weight:600; font-size:13px; letter-spacing:1px; color:var(--white); padding-left:14px; border-left:1px solid var(--line);}
   .nav-cta{font-family:'Montserrat',sans-serif; font-weight:600; font-size:14px; background:var(--green); color:var(--black); padding:9px 18px; border-radius:2px;}
   .nav-links{display:flex; gap:26px; align-items:center; font-size:14px;}
@@ -60,9 +106,6 @@
   .btn-primary{background:var(--green); color:var(--black);}
   .btn-ghost{background:transparent; color:var(--white); border:1px solid var(--line);}
   .btn-ghost:hover{border-color:var(--green); color:var(--green);}
-  .badges{margin-top:30px; display:flex; gap:10px; flex-wrap:wrap;}
-  .badge{font-size:12.5px; font-family:'Roboto Mono',monospace; color:var(--neutral); border:1px solid var(--line); padding:6px 12px; border-radius:2px;}
-  .badge b{color:var(--green); font-weight:500;}
 
   /* SECTION */
   section{padding:76px 0;}
@@ -83,9 +126,9 @@
   .step{border:1px solid var(--line); border-radius:3px; padding:22px 18px; background:var(--surface); position:relative;}
   .step.win{border-color:var(--green);}
   .step .n{font-family:'Roboto Mono',monospace; font-size:12px; color:var(--green); margin-bottom:14px;}
-  .step h4{font-weight:600; font-size:16px; margin-bottom:8px;}
+  .step h3{font-weight:600; font-size:16px; margin-bottom:8px;}
   .step p{font-size:13.5px; color:var(--neutral); line-height:1.5;}
-  .step .tag{position:absolute; top:14px; right:14px; font-size:10px; font-family:'Montserrat'; font-weight:700; letter-spacing:1px; color:var(--green);}
+  .step .tag{position:absolute; top:14px; right:14px; font-size:10px; font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:1px; color:var(--green);}
 
   /* QUICKSTART STEPPER */
   .qs-step{display:grid; grid-template-columns:52px 1fr; gap:22px; padding:30px 0; border-bottom:1px solid var(--line);}
@@ -101,71 +144,55 @@
   .code-head{display:flex; align-items:center; justify-content:space-between; padding:9px 14px; border-bottom:1px solid var(--line); background:#0f1013;}
   .code-label{font-family:'Roboto Mono',monospace; font-size:12px; color:var(--neutral);}
   .code-label .file{color:var(--blue);}
-  .copy{background:transparent; border:1px solid var(--line); color:var(--neutral); font-family:'Montserrat'; font-size:11px; font-weight:600; letter-spacing:.5px; padding:4px 10px; border-radius:2px; cursor:pointer;}
+  .copy{background:transparent; border:1px solid var(--line); color:var(--neutral); font-family:'Montserrat',sans-serif; font-size:11px; font-weight:600; letter-spacing:.5px; padding:4px 10px; border-radius:2px; cursor:pointer;}
   .copy:hover{border-color:var(--green); color:var(--green);}
   pre{font-family:'Roboto Mono',monospace; font-size:13px; line-height:1.65; padding:16px; overflow-x:auto; color:#d3d6da;}
   pre .p{color:var(--green);} pre .c{color:var(--neutral);} pre .s{color:var(--sand);} pre .b{color:var(--blue);}
 
-  /* MONEY MOMENT */
-  .money{background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
-  .money .title{font-size:38px;}
+  /* TERMINAL */
   .term{background:var(--code); border:1px solid var(--line); border-radius:6px; margin-top:26px; overflow:hidden;}
   .term-bar{display:flex; align-items:center; gap:7px; padding:11px 15px; border-bottom:1px solid var(--line); background:#0f1013;}
   .dot{width:11px; height:11px; border-radius:50%; background:var(--line);}
   .term-title{margin-left:10px; font-family:'Roboto Mono',monospace; font-size:12px; color:var(--neutral);}
   .term-body{padding:20px; font-family:'Roboto Mono',monospace; font-size:13.5px; line-height:1.7;}
   .term-body .cmd{color:#d3d6da;} .term-body .cmd .pii{color:var(--ember); font-weight:500;}
-  .runbtn{margin-top:16px; background:transparent; color:var(--white); font-family:'Montserrat'; font-weight:600; font-size:14px; border:1px solid var(--neutral); padding:10px 21px; border-radius:2px; cursor:pointer;}
+  .runbtn{margin-top:16px; background:transparent; color:var(--white); font-family:'Montserrat',sans-serif; font-weight:600; font-size:14px; border:1px solid var(--neutral); padding:10px 21px; border-radius:2px; cursor:pointer;}
   .runbtn:hover{border-color:#9aa4a8;}
-  #response{display:none; margin-top:18px;}
   .resp-line{color:var(--neutral);}
   .resp-403{color:var(--ember); font-weight:600;}
   .verdict{margin-top:20px; border:1px solid var(--green); border-radius:5px; padding:22px 24px; background:rgba(16,186,135,.06);}
-  .verdict .flag{font-family:'Montserrat'; font-weight:700; font-size:14px; letter-spacing:1px; color:var(--green); display:flex; align-items:center; gap:10px; margin-bottom:10px;}
+  .verdict .flag{font-family:'Montserrat',sans-serif; font-weight:700; font-size:14px; letter-spacing:1px; color:var(--green); display:flex; align-items:center; gap:10px; margin-bottom:10px;}
   .verdict .check{width:22px; height:22px; background:var(--green); color:var(--black); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:13px; font-weight:800;}
   .verdict p{font-size:16px; color:#d6d9dc;}
   .verdict p strong{color:var(--white); font-weight:500;}
 
   /* PROOF */
-  .proof-card{display:grid; grid-template-columns:1fr 1fr; gap:34px; align-items:center; margin-top:22px;}
   .checks{border:1px solid var(--line); border-radius:5px; overflow:hidden;}
   .chk{display:flex; align-items:center; justify-content:space-between; padding:12px 18px; border-bottom:1px solid var(--line); font-family:'Roboto Mono',monospace; font-size:13px;}
   .chk:last-child{border-bottom:none;}
   .chk .pass{color:var(--green); font-weight:600;} .chk .note{color:var(--neutral); font-weight:500;}
   .warn{color:#EDAE5A;}
-  .result{background:rgba(16,186,135,.08); font-family:'Montserrat'; font-weight:700; letter-spacing:.5px;}
+  .result{background:rgba(16,186,135,.08); font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:.5px;}
 
   /* FEEDBACK */
   .feedback{background:var(--surface); border-top:1px solid var(--line);}
   .form{border:1px solid var(--line); border-radius:6px; padding:34px; margin-top:24px; background:var(--code);}
-  .fld{margin-bottom:24px;}
-  .fld label{display:block; font-family:'Montserrat'; font-weight:600; font-size:15px; margin-bottom:6px;}
-  .fld .sm{font-size:13px; color:var(--neutral); margin-bottom:10px;}
-  textarea, input[type=email]{width:100%; background:var(--black); border:1px solid var(--line); border-radius:3px; color:var(--white); font-family:'Roboto Mono',monospace; font-size:13px; padding:12px; resize:vertical;}
-  textarea:focus, input:focus{outline:none; border-color:var(--green);}
-  .radios{display:flex; flex-direction:column; gap:10px;}
-  .radio{border:1px solid var(--line); border-radius:3px; padding:13px 16px; cursor:pointer; display:flex; align-items:center; gap:12px; font-size:15px;}
-  .radio:hover{border-color:var(--green);}
-  .radio input{accent-color:var(--green); width:17px; height:17px;}
-  .radio.sel{border-color:var(--green); background:rgba(16,186,135,.06);}
-  #thanks{display:none; text-align:center; padding:40px 20px;}
-  #thanks .big{font-family:'Montserrat'; font-weight:700; font-size:26px; color:var(--green); margin-bottom:10px;}
+  .sm{font-size:13px; color:var(--neutral); margin-bottom:10px;}
 
   /* FOOTER */
   footer{border-top:1px solid var(--line); padding:52px 0 60px;}
   .foot-in{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:30px;}
-  .foot-brand .wordmark{font-size:22px;}
   .foot-brand .tag{font-size:13px; color:var(--neutral); margin-top:8px;}
   .credit{max-width:420px; font-size:14px; color:#b6b9bd; border-left:2px solid var(--green); padding-left:16px;}
   .credit b{color:var(--white); font-weight:500;}
   .foot-legal{margin-top:34px; font-size:12px; color:var(--neutral);}
 
-  .mock-note{font-size:11px; font-family:'Roboto Mono',monospace; color:var(--neutral); text-align:center; padding:14px; background:var(--code); border-bottom:1px solid var(--line);}
-
   @media(max-width:860px){
     .hero h1{font-size:38px;} .loop-grid{grid-template-columns:1fr 1fr;}
-    .prob-grid,.proof-card{grid-template-columns:1fr;} .nav-links{display:none;}
-    .money .title{font-size:28px;} .hero-grid{grid-template-columns:1fr;} .hero-right{margin-top:22px;}
+    .prob-grid{grid-template-columns:1fr;}
+    /* Collapse the section links but keep the primary action reachable on mobile. */
+    .nav-links span{display:none;}
+    .hero-grid{grid-template-columns:1fr;} .hero-right{margin-top:22px;}
   }
 </style>
 </head>
@@ -175,7 +202,7 @@
 <!-- NAV -->
 <nav><div class="wrap nav-in">
   <div class="brand">
-    <span class="atwordmark">AgenTrust</span>
+    <a class="atwordmark" href="/">AgenTrust</a>
     <span class="prod">cMCP Quickstart</span>
   </div>
   <div class="nav-links">
@@ -186,6 +213,8 @@
     <a class="nav-cta" href="#quickstart">Run it →</a>
   </div>
 </div></nav>
+
+<main>
 
 <!-- HERO -->
 <header class="hero"><div class="wrap hero-grid">
@@ -202,7 +231,7 @@
     <div class="term preview-term">
       <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="term-title">agent → runtime</span></div>
       <div class="term-body">
-        <div class="cmd">$ agent calls <span style="color:#d3d6da;">salesforce.contacts</span><br>&nbsp;&nbsp;<span class="pii">session_max_sensitivity: "pii"</span></div>
+        <div class="cmd">$ agent calls <span style="color:#d3d6da;">salesforce.contacts</span><br>&nbsp;&nbsp;catalog tag: <span class="pii">compliance_domain: "pii"</span></div>
         <button class="runbtn" id="previewBtn" onclick="runPreview()">▶ See it in action</button>
         <div id="preview-response">
           <div class="resp-line">&lt; HTTP/1.1 <span class="resp-403">403 Forbidden</span></div>
@@ -212,7 +241,7 @@
         </div>
       </div>
     </div>
-    <div class="preview-stat"><span class="green">&lt; 0.5ms</span> governance overhead per tool call</div>
+    <div class="preview-stat">Policy overhead target: <span class="green">p50 under 1ms</span> per tool call (<a href="https://github.com/agentrust-io/cmcp/blob/main/docs/testing/benchmarks.md" target="_blank" rel="noopener">documented targets</a>, not a measurement on your machine)</div>
   </div>
 </div></header>
 
@@ -226,7 +255,7 @@
     <div>
       <p class="prob-p">An agent calls a tool. Your policy engine says <em>allow</em>. The call goes through. None of that proves the engine itself wasn't tampered with, or that your audit log reflects what actually happened.</p>
       <br>
-      <p class="prob-p"><strong>cMCP runs the policy where the agent can't reach it</strong> — every tool call your agent routes through the runtime is checked, enforced, and signed into a tamper-evident record. This quickstart lets you feel that in half an hour, on your laptop.</p>
+      <p class="prob-p"><strong>cMCP runs the policy where the agent can't reach it</strong> — every tool call your agent routes through the runtime is checked, enforced, and signed into a tamper-evident record. This quickstart lets you feel that in about ten minutes, on your laptop.</p>
     </div>
   </div>
 </div></section>
@@ -237,11 +266,11 @@
   <h2 class="title">Five quick steps from install to a blocked leak</h2>
   <p class="lead">Everything leads to step four — the moment you watch your own policy stop something it shouldn't allow.</p>
   <div class="loop-grid">
-    <div class="step"><div class="n">01</div><h4>Install</h4><p>One <span class="green">pip install</span> — the runtime, that's it.</p></div>
-    <div class="step"><div class="n">02</div><h4>Write your policy</h4><p>A few lines of Cedar — your rules, not ours.</p></div>
-    <div class="step"><div class="n">03</div><h4>Wire it in</h4><p>Point one call at the runtime. Nothing else changes.</p></div>
-    <div class="step win"><span class="tag">THE POINT</span><div class="n">04</div><h4>Watch it block</h4><p>Fire a bad action. Watch the policy return <span class="green">403</span>.</p></div>
-    <div class="step"><div class="n">05</div><h4>Prove it</h4><p>Get a signed, verifiable record of what happened.</p></div>
+    <div class="step"><div class="n">01</div><h3>Install</h3><p>One <span class="green">pip install</span> — the runtime, that's it.</p></div>
+    <div class="step"><div class="n">02</div><h3>Write your policy</h3><p>A few lines of Cedar — your rules, not ours.</p></div>
+    <div class="step"><div class="n">03</div><h3>Wire it in</h3><p>Point one call at the runtime. Nothing else changes.</p></div>
+    <div class="step win"><span class="tag">THE POINT</span><div class="n">04</div><h3>Watch it block</h3><p>Fire a bad action. Watch the policy return <span class="green">403</span>.</p></div>
+    <div class="step"><div class="n">05</div><h3>Prove it</h3><p>Get a signed, verifiable record of what happened.</p></div>
   </div>
 </div></section>
 
@@ -275,16 +304,17 @@ pip install cmcp-runtime</pre>
       <div class="qs-num">2</div>
       <div class="qs-body">
         <h3>Drop in the config &amp; your policy</h3>
-        <p class="hint"><b>Paste each block into the same Terminal 1, top to bottom</b> — you're already inside <span class="green">cmcp-quickstart</span> from Step 1. The <span class="green">cat &gt; … EOF</span> wrapper writes each file for you, no editor needed. Your policy (block 2) is what decides what's allowed.</p>
+        <p class="hint"><b>Paste each block into the same Terminal 1, top to bottom</b> — you're already inside <span class="green">cmcp-quickstart</span> from Step 1. The <span class="green">cat &gt; … EOF</span> wrapper writes each file for you, no editor needed. Your policy (block 2) is what decides what's allowed. Any <span class="green">*.cedar</span> filename works; <span class="green">manifest.json</span> and <span class="green">schema.cedarschema</span> are the two names the runtime requires.</p>
         <div class="code">
           <div class="code-head"><span class="code-label">1 · Creates <span class="file">cmcp-config.yaml</span></span><button class="copy" onclick="cp(this)">COPY</button></div>
 <pre>mkdir -p policies
 cat &gt; cmcp-config.yaml &lt;&lt; 'EOF'
 attestation:
   provider: auto
-  <span class="s">enforcement_mode: enforcing</span>   <span class="c"># block, don't just log</span>
+  <span class="s">enforcement_mode: enforcing</span>   <span class="c"># enforcing | advisory | silent</span>
 policy_bundle_path: ./policies/
 catalog_path: ./catalog.json
+<span class="s">listen_addr: "127.0.0.1:8443"</span>   <span class="c"># dev mode runs without a bearer token, so stay on loopback</span>
 EOF</pre>
         </div>
         <div class="code">
@@ -295,25 +325,25 @@ EOF</pre>
 EOF
 
 cat &gt; policies/agent.cedar &lt;&lt; 'EOF'
-<span class="c">// Rule 1 — allow the demo-agent workflow to call tools</span>
+<span class="c">// Cedar is default-deny: anything these rules don't permit is denied.</span>
+
+<span class="c">// Rule 1 — let the demo-agent workflow call tools at all</span>
 permit ( principal, action == cMCP::Action::"call_tool", resource )
 when { context.workflow_id == "demo-agent" };
 
-<span class="c">// Rule 2 — block salesforce.contacts once the session has touched PII</span>
-forbid ( principal, action == cMCP::Action::"call_tool",
-         resource == cMCP::Resource::<span class="s">"salesforce.contacts"</span> )
-when { context.session_max_sensitivity == <span class="s">"pii"</span> };
-
-<span class="c">// Rule 3 — allow everything else</span>
-permit ( principal, action == cMCP::Action::"call_tool", resource );
+<span class="c">// Rule 2 — but never let it call a tool the catalog tags as PII.</span>
+<span class="c">// forbid always wins over permit in Cedar, so this is the rule</span>
+<span class="c">// that produces the 403 in Step 4.</span>
+forbid ( principal, action == cMCP::Action::"call_tool", resource )
+when { context.compliance_domain == <span class="s">"pii"</span> };
 EOF
 
 cat &gt; policies/schema.cedarschema &lt;&lt; 'EOF'
-{"cMCP":{"entityTypes":{"Principal":{"memberOfTypes":[],"shape":{"type":"Record","attributes":{"session_id":{"type":"String","required":true},"workflow_id":{"type":"String","required":true}}}},"Resource":{"memberOfTypes":[],"shape":{"type":"Record","attributes":{"tool_name":{"type":"String","required":true}}}}},"actions":{"call_tool":{"appliesTo":{"principalTypes":["cMCP::Principal"],"resourceTypes":["cMCP::Resource"],"context":{"type":"Record","attributes":{"session_max_sensitivity":{"type":"String","required":true},"workflow_id":{"type":"String","required":true}}}}}}}}
+{"cMCP":{"entityTypes":{"Principal":{"memberOfTypes":[],"shape":{"type":"Record","attributes":{"session_id":{"type":"String","required":true},"workflow_id":{"type":"String","required":true}}}},"Resource":{"memberOfTypes":[],"shape":{"type":"Record","attributes":{"tool_name":{"type":"String","required":true}}}}},"actions":{"call_tool":{"appliesTo":{"principalTypes":["cMCP::Principal"],"resourceTypes":["cMCP::Resource"],"context":{"type":"Record","attributes":{"compliance_domain":{"type":"String","required":true},"session_max_sensitivity":{"type":"String","required":true},"workflow_id":{"type":"String","required":true}}}}}}}}
 EOF</pre>
         </div>
         <div class="code">
-          <div class="code-head"><span class="code-label">3 · Creates <span class="file">catalog.json</span> — the approved tool <span class="c">(hash pre-computed for you)</span></span><button class="copy" onclick="cp(this)">COPY</button></div>
+          <div class="code-head"><span class="code-label">3 · Creates <span class="file">catalog.json</span> — the approved tool, tagged <span class="green">compliance_domain: "pii"</span> <span class="c">(hash pre-computed)</span></span><button class="copy" onclick="cp(this)">COPY</button></div>
 <pre>cat &gt; catalog.json &lt;&lt; 'EOF'
 [
   {
@@ -322,8 +352,7 @@ EOF</pre>
       "display_name": "Salesforce Contacts MCP Server (mock)",
       "url": "http://localhost:9001/mcp",
       "tls_fingerprint": "SHA256:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
-      "transport": "http-sse",
-      "rotation_mode": "key-pinned"
+      "transport": "http-sse"
     },
     "approved_definition": {
       "description": "Query Salesforce contacts by account name or contact ID.",
@@ -354,7 +383,7 @@ EOF</pre>
           <div class="code-head"><span class="code-label">4 · Sanity check — confirm the config parses</span><button class="copy" onclick="cp(this)">COPY</button></div>
 <pre>cmcp validate-config --config cmcp-config.yaml</pre>
         </div>
-        <p class="hint" style="margin-top:8px;">Expect <span class="green">✓ Config valid: cmcp-config.yaml</span>. If you see an error instead, a block didn't paste cleanly — re-run that one.</p>
+        <p class="hint" style="margin-top:8px;">Expect <span class="green">✓ Config valid: cmcp-config.yaml</span>. This checks the YAML only; the policy bundle and catalog are loaded when the runtime starts in Step 3. If you see an error instead, a block didn't paste cleanly — re-run that one.</p>
       </div>
     </div>
 
@@ -376,23 +405,25 @@ EOF</pre>
       <div class="qs-num">4</div>
       <div class="qs-body">
         <h3>Fire a bad action — watch it get blocked</h3>
-        <p class="hint">In a <b>second terminal</b>, run <span class="green">cd cmcp-quickstart &amp;&amp; source venv/bin/activate</span> first (so <span class="green">cmcp</span> is available here too), then paste this. It's your support agent trying to pull a customer's Salesforce record after the session already handled PII — exactly what your rule forbids. Watch your runtime return a <b>403</b> before it ever reaches Salesforce. Not blocked? You're likely in advisory mode — check the config says <span class="green">enforcing</span>.</p>
+        <p class="hint">In a <b>second terminal</b>, run <span class="green">cd cmcp-quickstart &amp;&amp; source venv/bin/activate</span> first (so <span class="green">cmcp</span> is available here too), then paste this. It's your support agent trying to pull a customer's Salesforce record. The runtime looks the tool up in your catalog, sees <span class="green">compliance_domain: "pii"</span>, and your Rule 2 forbids it. Watch it return a <b>403</b> before it ever reaches Salesforce. Not blocked? You're likely in advisory mode — check the config says <span class="green">enforcing</span>.</p>
         <div class="code">
           <div class="code-head"><span class="code-label">Terminal 2 — you, playing the agent</span><button class="copy" onclick="cp(this)">COPY</button></div>
-<pre>curl -X POST http://localhost:8443/mcp \
+<pre>curl -i -X POST http://localhost:8443/mcp \
   -H "Content-Type: application/json" \
   -d '{
     "jsonrpc": "2.0", "id": 2, "method": "tools/call",
     "params": {
       "name": "salesforce.contacts",
       "arguments": { "query": "Acme Corp" },
-      "_cmcp": { "session_id": "demo-session-001", "workflow_id": "demo-agent", <span class="s">"session_max_sensitivity": "pii"</span> }
+      "_cmcp": { "session_id": "demo-session-001", <span class="s">"workflow_id": "demo-agent"</span> }
     }
   }'</pre>
         </div>
+        <p class="hint" style="margin-top:8px;"><span class="green">workflow_id</span> is the only field the runtime reads out of <span class="green">_cmcp</span>. The session id is a label for your own logs: the runtime mints its own session id, which is why Step 5 looks it up instead of assuming it.</p>
         <div class="verdict" style="margin-top:16px;">
           <div class="flag"><span class="check">✓</span> WHAT YOU'LL SEE — 403 FORBIDDEN</div>
           <p>Your policy stops a PII record from leaving on a tool call — <strong>before it reaches Salesforce</strong>, decided by the rule you wrote, enforced where the agent can't tamper with it. That's the barrier most teams can't cross today: shipping an agent you can actually <strong>prove</strong> is governed.</p>
+          <p style="margin-top:12px; font-family:'Roboto Mono',monospace; font-size:13px; color:var(--neutral);">HTTP/1.1 403 Forbidden &middot; "message": "Request denied by policy" &middot; "error_code": "POLICY_DENY"</p>
         </div>
       </div>
     </div>
@@ -410,21 +441,34 @@ EOF</pre>
 curl -s -X POST "http://localhost:8443/sessions/$SID/close" | python3 -m json.tool &gt; claim.json
 cmcp verify claim.json</pre>
         </div>
-        <div class="checks" style="margin-top:14px;">
+        <p class="hint" style="margin-top:14px; margin-bottom:0;">Expected output in dev mode:</p>
+        <div class="checks" style="margin-top:10px;">
           <div class="chk"><span>schema</span><span class="pass">PASS ✓</span></div>
           <div class="chk"><span>signature</span><span class="pass">PASS ✓</span></div>
-          <div class="chk"><span>policy_bundle.hash</span><span class="pass">PASS ✓</span></div>
-          <div class="chk"><span>tool_catalog.hash</span><span class="pass">PASS ✓</span></div>
+          <div class="chk"><span>policy_bundle.hash</span><span class="pass">PASS ✓ <span class="note">(not pinned)</span></span></div>
+          <div class="chk"><span>tool_catalog.hash</span><span class="pass">PASS ✓ <span class="note">(not pinned)</span></span></div>
           <div class="chk"><span>attestation_freshness</span><span class="pass">PASS ✓</span></div>
           <div class="chk"><span>audit_chain</span><span class="pass">PASS ✓</span></div>
-          <div class="chk"><span>hardware_attestation</span><span class="warn">FAIL — software-only (expected in dev)</span></div>
-          <div class="chk result" style="background:rgba(237,174,90,.10);"><span>RESULT</span><span class="warn" style="font-weight:700;">partially_verified</span></div>
+          <div class="chk"><span>hardware_attestation</span><span class="warn">FAIL — software-only mode, not hardware-backed</span></div>
+          <div class="chk result" style="background:rgba(237,174,90,.10);"><span>RESULT</span><span class="warn" style="font-weight:700;">FAIL (partially_verified)</span></div>
         </div>
-        <p style="margin-top:18px; font-size:15px; color:#c9ccd0; border-left:2px solid var(--green); padding-left:16px;">Every cryptographic check passes — the one <span class="warn">FAIL</span> is hardware attestation, which dev mode can't provide. Run it on <span class="green">a hardware TEE</span> — and that check passes too: the result flips to <b>verified</b>, the version you hand a regulator.</p>
+        <p style="margin-top:18px; font-size:15px; color:#c9ccd0; border-left:2px solid var(--green); padding-left:16px;">Every cryptographic check passes. The one <span class="warn">FAIL</span> is hardware attestation, which dev mode can't provide, and <b>that is the honest answer</b>: overall verification only reports <span class="green">verified</span> when the claim is hardware-backed, so the CLI prints <span class="warn">FAIL (partially_verified)</span> and exits 1 here. Run the same runtime on <span class="green">a hardware TEE</span> and that last check passes, the result becomes <b>verified</b>, and that is the version you hand a regulator.</p>
       </div>
     </div>
 
   </div>
+
+  <div class="verdict" style="margin-top:34px; border-color:var(--line); background:transparent;">
+    <div class="flag" style="color:var(--sand);">GO FURTHER — STATEFUL ESCALATION</div>
+    <p>The rule you just wrote is stateless: the tool is tagged PII, so it is always forbidden for this workflow. cMCP also tracks sensitivity <em>across</em> a session. Once a response has been inspected and found to contain PII, the session's <span class="green">session_max_sensitivity</span> rises, and a rule like this starts to bite:</p>
+    <div class="code" style="margin-top:14px;">
+      <div class="code-head"><span class="code-label">The stateful version of Rule 2</span><button class="copy" onclick="cp(this)">COPY</button></div>
+<pre>forbid ( principal, action == cMCP::Action::"call_tool", resource )
+when { context.session_max_sensitivity == <span class="s">"pii"</span> };</pre>
+    </div>
+    <p style="margin-top:14px;">That one needs a session with history: sensitivity starts at <span class="green">public</span> and only rises after the runtime inspects a real response, so you need an upstream tool server and at least one allowed call before it fires. The reference quickstart sets that up with a mock upstream: <a href="https://cmcp.agentrust-io.com/quickstart/" target="_blank" rel="noopener">cMCP reference quickstart →</a></p>
+  </div>
+
   <p class="qs-help"><b>Stuck?</b> Every block above is copy-paste — the file blocks write themselves via <span class="green">cat &gt; … EOF</span>, the rest are commands. Keep your first terminal (the runtime) running while you work in the second. Full walkthrough &amp; troubleshooting: <a href="https://cmcp.agentrust-io.com/quickstart/" target="_blank" rel="noopener">cMCP quickstart</a> · <a href="https://cmcp.agentrust-io.com/tutorials/advisory-mode-debugging/" target="_blank" rel="noopener">debugging guide</a>.</p>
 </div></section>
 
@@ -442,6 +486,8 @@ cmcp verify claim.json</pre>
   </div>
 </div></section>
 
+</main>
+
 <!-- FOOTER -->
 <footer><div class="wrap">
   <div class="foot-in">
@@ -449,25 +495,17 @@ cmcp verify claim.json</pre>
       <span class="atwordmark">AgenTrust</span>
       <div class="tag">Open standards for AI agent governance</div>
     </div>
-    <div class="credit"><a href="https://github.com/agentrust-io/cmcp" target="_blank" rel="noopener"><b>cMCP</b></a> — Confidential MCP — is an open standard from the <b>AgenTrust</b> coalition: the confidential, security-hardened way to run the Model Context Protocol, MIT-licensed. It evaluates tool calls against policy inside a Trusted Execution Environment and emits a signed <b>TRACE</b> receipt for every call. Software-rooted in dev mode; hardware-attested when the runtime runs in a TEE. Part of the AgenTrust family alongside TRACE, Agent Manifest, and cA2A — <a href="https://agentrust-io.com" target="_blank" rel="noopener">agentrust-io.com</a>.</div>
+    <div class="credit"><a href="https://github.com/agentrust-io/cmcp" target="_blank" rel="noopener"><b>cMCP</b></a> — Confidential MCP — is an open standard from <b>AgenTrust</b>: the confidential, security-hardened way to run the Model Context Protocol, MIT-licensed. It evaluates tool calls against policy inside a Trusted Execution Environment and emits a signed <b>TRACE</b> receipt for every call. Software-rooted in dev mode; hardware-attested when the runtime runs in a TEE. Part of the AgenTrust family alongside TRACE, Agent Manifest, and cA2A — <a href="https://agentrust-io.com" target="_blank" rel="noopener">agentrust-io.com</a>.</div>
   </div>
   <div class="foot-legal">© 2026 AgenTrust Contributors · cMCP is open source (MIT) · agentrust-io.com</div>
 </div></footer>
 
+<script src="/supernav.js"></script>
 <script>
   function cp(btn){
     const pre = btn.closest('.code').querySelector('pre');
-    const text = pre.innerText;
-    navigator.clipboard && navigator.clipboard.writeText(text);
-    const old = btn.innerText; btn.innerText='COPIED ✓'; btn.style.color='#7c3aed'; btn.style.borderColor='#7c3aed';
-    setTimeout(()=>{btn.innerText=old; btn.style.color=''; btn.style.borderColor='';},1400);
-  }
-  // The real, runnable command — what the COPY COMMAND button gives them (full header + params),
-  // while the on-screen terminal stays prettified for effect.
-  const REAL_CMD = `curl -X POST http://localhost:8443/mcp -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"salesforce.contacts","arguments":{"query":"Acme Corp","max_records":10},"_cmcp":{"session_id":"demo-session-002","workflow_id":"demo-agent","session_max_sensitivity":"pii"}}}'`;
-  function copyCmd(btn){
-    navigator.clipboard && navigator.clipboard.writeText(REAL_CMD);
-    const old = btn.innerText; btn.innerText='COPIED ✓'; btn.style.color='#7c3aed'; btn.style.borderColor='#7c3aed';
+    navigator.clipboard && navigator.clipboard.writeText(pre.innerText);
+    const old = btn.innerText; btn.innerText='COPIED ✓'; btn.style.color='var(--green)'; btn.style.borderColor='var(--green)';
     setTimeout(()=>{btn.innerText=old; btn.style.color=''; btn.style.borderColor='';},1400);
   }
   function runPreview(){
