@@ -301,6 +301,47 @@
       padding: 4rem 2rem 3.5rem;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
+    .hero-promo {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.875rem;
+      margin: 0 0 1.375rem;
+      padding: 0.75rem 1.125rem;
+      border: 1px solid rgba(185,28,28,0.55);
+      border-radius: 10px;
+      background: rgba(185,28,28,0.12);
+    }
+    .hero-promo-tag {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #FCA5A5;
+      background: rgba(185,28,28,0.28);
+      padding: 0.3125rem 0.5625rem;
+      border-radius: 5px;
+      white-space: nowrap;
+    }
+    .hero-promo-text {
+      flex: 1;
+      min-width: 220px;
+      font-size: 0.9375rem;
+      line-height: 1.45;
+      color: rgba(255,255,255,0.92);
+    }
+    .hero-promo-text b { font-weight: 500; }
+    .hero-promo-link {
+      white-space: nowrap;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #fff;
+      background: var(--red);
+      padding: 0.6875rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+    .hero-promo-link:hover { background: #A01818; }
     .hero-inner {
       max-width: 1100px;
       margin: 0 auto;
@@ -664,6 +705,11 @@
   <div class="hero-inner">
     <p class="hero-eyebrow">Open Standards &amp; Tools</p>
     <h1>Govern AI Agents<br>at the Hardware Boundary</h1>
+    <div class="hero-promo">
+      <span class="hero-promo-tag">New &middot; Hands-on</span>
+      <span class="hero-promo-text">Don't just read the spec: <b>run cMCP yourself.</b> Write a policy, watch it block a data leak, verify a signed receipt.</span>
+      <a class="hero-promo-link" href="/quickstart/">Try cMCP in under 10 minutes &rarr;</a>
+    </div>
     <p>AgenTrust provides open specifications, test infrastructure, and attestation tooling for organizations deploying AI agents in production, with cryptographic proof of identity, intent, and behavior. It is home to the confidential, security-hardened way to run MCP (cMCP) and the secure profile for agent-to-agent delegation on A2A (cA2A).</p>
     <div class="hero-actions">
       <a href="https://trace.agentrust-io.com" class="btn btn-primary">Explore TRACE Spec →</a>

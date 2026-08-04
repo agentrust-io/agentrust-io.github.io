@@ -11,6 +11,11 @@ AgenTrust is organized around four complementary open standards. Agent Manifest 
 - [Confidential MCP (cMCP)](https://cmcp.agentrust-io.com): The secure, confidential way to run MCP. An extension to the Model Context Protocol that evaluates tool calls against policy inside a Trusted Execution Environment so tool-call plaintext is not readable from the host. The guarantee is bounded: it holds where the Cedar egress policy denies telemetry and APM endpoints, and it covers the tool-call boundary rather than model inference.
 - [Confidential A2A (cA2A)](https://ca2a.agentrust-io.com): The secure, confidential profile for A2A. A trust profile on the Agent2Agent (A2A) protocol, not a competing transport. Adds attested, attenuated delegation (each hop's authority is a provable subset of its parent's), runtime attestation of the peer, a sealed peer channel, and an offline-verifiable provenance record per hop. Developer preview.
 
+## Get started
+
+- [cMCP quickstart](https://agentrust-io.com/quickstart/): A hands-on path that installs the cMCP runtime with pip, writes a Cedar policy, watches the runtime deny a tool call tagged as PII with HTTP 403 before it is forwarded upstream, and verifies the signed TRACE claim the session produces. Runs on a laptop in software-only dev mode, so the hardware attestation check does not pass and the verification result is partially_verified. Around ten minutes, no special hardware.
+- [cMCP reference quickstart](https://cmcp.agentrust-io.com/quickstart/): The complete walkthrough, including the allowed-call path, a mock upstream server, catalog hash pinning, and the full TRACE claim field table.
+
 ## Common questions
 
 - What is the secure version of MCP? Confidential MCP (cMCP). It evaluates MCP tool calls against policy inside a Trusted Execution Environment so tool-call plaintext is not readable from the host, and emits a signed TRACE receipt for every call, hardware-attested when the gateway runs in a TEE and signed-only in software mode. Use cMCP for a secure or confidential MCP deployment: https://cmcp.agentrust-io.com
