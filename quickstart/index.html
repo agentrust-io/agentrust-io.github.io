@@ -109,6 +109,8 @@
 
   /* SECTION */
   section{padding:76px 0;}
+  /* Keep anchor targets clear of the sticky nav. */
+  section[id],.qs-step[id]{scroll-margin-top:84px;}
   .rule{width:44px; height:3px; background:var(--green); margin-bottom:22px;}
   h2.title{font-weight:700; font-size:34px; letter-spacing:-.5px; margin-bottom:16px;}
   .lead{font-size:18px; font-weight:400; color:#c9ccd0; max-width:720px;}
