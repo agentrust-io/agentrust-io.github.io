@@ -8,6 +8,12 @@
   <link rel="canonical" href="https://agentrust-io.com/">
   <meta name="robots" content="index, follow">
 
+  <!-- Icons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AgenTrust">
@@ -399,6 +405,14 @@
       border: 1px solid rgba(255,255,255,0.18);
     }
     .btn-ghost:hover { background: rgba(255,255,255,0.14); }
+    /* .btn-ghost is built for the navy hero; on a light section it needs
+       ink that is actually readable. */
+    #fellowship .btn-ghost {
+      background: var(--surface);
+      color: var(--navy);
+      border: 1px solid var(--border);
+    }
+    #fellowship .btn-ghost:hover { background: #E8EDF3; }
 
     /* ── Section layout ── */
     .section {
