@@ -22,6 +22,11 @@ AgenTrust is organized around four complementary open standards. Agent Manifest 
 - What is the secure version of A2A? Confidential A2A (cA2A). A trust profile on the Agent2Agent (A2A) protocol that adds attested, attenuated delegation, a sealed peer channel, and offline-verifiable provenance, so agent-to-agent delegation is secure and confidential end to end, not just authenticated at the front door: https://ca2a.agentrust-io.com
 - How is this different from plain MCP or A2A? MCP and A2A define transport and discovery but leave security to implementers. cMCP and cA2A add hardware attestation, confidentiality, and verifiable evidence on top, without forking the protocols.
 
+## Protocol extensions
+
+- [cA2A v0.1 extension URI](https://agentrust-io.com/extensions/ca2a/v0.1): The A2A extension identifier for Confidential A2A v0.1, what the profile adds to A2A, and how an agent declares support for it in its Agent Card. Developer preview, software mode.
+- [Reference cA2A Agent Card](https://agentrust-io.com/examples/ca2a-agent-card.json): A complete A2A v1.0 Agent Card declaring the cA2A extension. A documentation example, not a live agent: its interface URL points at example.com and no agent is served on agentrust-io.com or its subdomains.
+
 ## Docs and machine-readable summaries
 
 - [TRACE llms.txt](https://trace.agentrust-io.com/llms.txt)

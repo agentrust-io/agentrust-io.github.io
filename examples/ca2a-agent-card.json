@@ -1,0 +1,53 @@
+{
+  "$comment": "REFERENCE EXAMPLE, NOT A LIVE AGENT. This file documents how an A2A agent declares support for the Confidential A2A (cA2A) v0.1 profile. The interface URL below points at example.com on purpose: no agent is served at agentrust-io.com or any of its subdomains, and this card is not signed. See https://ca2a.agentrust-io.com/docs/spec/transport/ for the normative binding.",
+  "name": "Example cA2A Peer",
+  "description": "A reference A2A agent that accepts delegated tasks under the Confidential A2A (cA2A) v0.1 trust profile. Provided as documentation for implementers; this is not a deployed agent.",
+  "supportedInterfaces": [
+    {
+      "url": "https://agent.example.com/a2a/v1",
+      "protocolBinding": "JSONRPC",
+      "protocolVersion": "1.0"
+    }
+  ],
+  "provider": {
+    "organization": "AgenTrust Contributors",
+    "url": "https://agentrust-io.com"
+  },
+  "version": "0.1.0",
+  "documentationUrl": "https://ca2a.agentrust-io.com/docs/spec/profile/",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "extensions": [
+      {
+        "uri": "https://agentrust-io.com/extensions/ca2a/v0.1",
+        "description": "Confidential A2A v0.1. Adds attenuated delegation, peer attestation, a sealed peer channel, and a per-hop provenance record around a delegated A2A task. Carried entirely in A2A extension metadata: removing every cA2A key leaves a valid A2A task.",
+        "required": false,
+        "params": {
+          "profileVersion": "0.1",
+          "status": "developer-preview",
+          "maxDelegationDepth": 4,
+          "assurance": "none",
+          "assuranceNote": "assurance=none means software mode. The delegation chain is verified and the payload is sealed, but the seal is not yet bound to a hardware-verified peer measurement. See https://ca2a.agentrust-io.com/docs/spec/transport/ for what ships today versus what does not.",
+          "metadataKeys": "Namespaced under the extension URI. Enumerated normatively in https://ca2a.agentrust-io.com/docs/spec/transport/ rather than duplicated here."
+        }
+      }
+    ]
+  },
+  "defaultInputModes": ["application/json"],
+  "defaultOutputModes": ["application/json"],
+  "skills": [
+    {
+      "id": "accept-delegated-task",
+      "name": "Accept a delegated task",
+      "description": "Accepts an A2A task carrying a cA2A delegation chain, verifies each credential's signature, parent link, and the attenuation rule that a child's scope is a subset of its parent's, computes the effective scope as the leaf's delegated scope intersected with local policy, and refuses anything outside that intersection. Verification is offline; no call to the issuer is made.",
+      "tags": ["delegation", "attestation", "policy", "ca2a"],
+      "examples": [
+        "Run the requested capability under a chain delegated from an upstream orchestrator.",
+        "Reject a chain whose leaf requests a capability its parent never delegated."
+      ],
+      "inputModes": ["application/json"],
+      "outputModes": ["application/json"]
+    }
+  ]
+}
