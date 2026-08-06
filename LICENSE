@@ -1,0 +1,34 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 AgenTrust Contributors
+
+This licence covers the contents of this repository, which is the source of
+the website at https://agentrust-io.com: its pages, copy, images, and the
+small amount of markup, styling, and script that renders them.
+
+You are free to share and adapt this material for any purpose, including
+commercially, provided you give appropriate credit, link to the licence, and
+indicate if changes were made.
+
+  Full licence text: https://creativecommons.org/licenses/by/4.0/legalcode
+  Human-readable summary: https://creativecommons.org/licenses/by/4.0/
+
+Suggested attribution:
+
+  "AgenTrust" by AgenTrust Contributors, https://agentrust-io.com,
+  licensed under CC BY 4.0.
+
+
+Licences elsewhere in AgenTrust
+-------------------------------
+
+The AgenTrust specifications and software are not in this repository and
+carry their own licences. Do not assume this one applies to them.
+
+  Agent Manifest              Apache 2.0
+  TRACE conformance suite     Apache 2.0
+  TRACE specification text    CC BY 4.0, reference code Apache 2.0
+  cMCP                        MIT
+  cA2A                        MIT
+
+Each project states its own terms at https://github.com/agentrust-io.
