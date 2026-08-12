@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Model Weight Protection and Agent Governance Demos | AgenTrust</title>
-<meta name="description" content="Nine runnable demos for securing AI model weights and governing agents. Attestation-gated key release, tamper refusal before load, derivative lineage for fine-tunes, and 2-of-3 sovereign threshold custody. Run them on your laptop in ten minutes, no confidential-computing hardware required.">
+<meta name="description" content="Ten runnable demos for securing AI model weights and governing agent tool and model calls. Run them on your laptop in about twelve minutes, no confidential-computing hardware required.">
 <link rel="canonical" href="https://agentrust-io.com/demos/">
 <meta name="robots" content="index, follow">
 
@@ -12,7 +12,7 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="AgenTrust">
 <meta property="og:title" content="Model Weight Protection and Agent Governance Demos">
-<meta property="og:description" content="Nine runnable demos: attestation-gated key release for model weights, tamper refusal before load, derivative lineage for fine-tunes, 2-of-3 sovereign threshold custody. Ten minutes on your laptop, no special hardware.">
+<meta property="og:description" content="Ten runnable demos for model-weight custody and governed agent tool and model calls. About twelve minutes on your laptop, no special hardware.">
 <meta property="og:url" content="https://agentrust-io.com/demos/">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://agentrust-io.com/og.png">
@@ -23,7 +23,7 @@
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Model Weight Protection and Agent Governance Demos">
-<meta name="twitter:description" content="Attestation-gated key release, tamper refusal before load, derivative lineage, 2-of-3 sovereign threshold. Nine runnable demos, ten minutes, no special hardware.">
+<meta name="twitter:description" content="Model-weight custody plus governed agent tool and model calls. Ten runnable demos, about twelve minutes, no special hardware.">
 <meta name="twitter:image" content="https://agentrust-io.com/og.png">
 
 <!-- Icons -->
@@ -165,7 +165,7 @@
   <div class="hero-inner">
     <p class="eyebrow">Runnable Demos</p>
     <h1>Don't take the spec on trust.<br>Run it.</h1>
-    <p>Nine demos, about ten minutes end to end. Four cover custody of model weights: binding a checkpoint's hash, gating the decryption key behind attestation, tracking a fine-tune's lineage, and splitting the key so no single party can release it. Five cover governing what an agent does at the tool boundary.</p>
+    <p>Ten demos, about twelve minutes end to end. Four cover custody of model weights. Five govern what an agent does at the tool boundary. One governs model calls through an OpenAI-compatible endpoint.</p>
     <p>Everything runs in software mode with <code>CMCP_DEV_MODE=1</code>. No confidential-computing hardware, no cloud account, no signup.</p>
   </div>
 </div>
@@ -174,12 +174,12 @@
 
   <div class="quickstart">
     <h3>Quick start</h3>
-    <pre><code>pip install cmcp-runtime weight-custody-manifest
-git clone https://github.com/agentrust-io/demos &amp;&amp; cd demos
-export CMCP_BEARER_TOKEN=demo-token
-python demo.py            # all nine, pausing before each
-python demo.py 6          # just demo 6</code></pre>
-    <p style="font-size:0.875rem;color:var(--muted);margin:0.875rem 0 0;">Demos 1 to 5 are driven by <code>cmcp-runtime</code>. Demos 6 to 9 need only <code>weight-custody-manifest</code>, with no server and no gateway. Source: <a href="https://github.com/agentrust-io/demos">github.com/agentrust-io/demos</a>.</p>
+    <pre><code>git clone https://github.com/agentrust-io/demos &amp;&amp; cd demos
+ pip install -r requirements.txt
+ export CMCP_BEARER_TOKEN=demo-token
+ python demo.py            # all ten, pausing before each
+ python demo.py 6          # just demo 6</code></pre>
+    <p style="font-size:0.875rem;color:var(--muted);margin:0.875rem 0 0;">The requirements install cMCP for demos 1 to 5, Weight Custody Manifest for demos 6 to 9, and the OpenAI client for demo 10. Source: <a href="https://github.com/agentrust-io/demos">github.com/agentrust-io/demos</a>.</p>
   </div>
 
   <p class="section-label">Model Weights</p>
@@ -302,6 +302,18 @@ python demo.py 6          # just demo 6</code></pre>
       <li>one rule covers every non-covered tool in the catalog, present and future</li>
     </ul>
     <pre><code>python demo-05-compliance-domain/run.py</code></pre>
+  </div>
+
+  <div class="demo">
+    <div class="demo-head"><span class="demo-num">Demo 10</span><strong>Governed model calls</strong><span class="demo-time">~90 seconds</span></div>
+    <p>Put policy in front of an OpenAI-compatible model endpoint and route each request according to its data class.</p>
+    <ul>
+      <li>public prompts can use the shared model route</li>
+      <li>PII leaves only after identifiers are stripped</li>
+      <li>confidential and PHI prompts stay on approved regional infrastructure</li>
+      <li>the same governance boundary applies to model calls, not only MCP tools</li>
+    </ul>
+    <pre><code>python demo-10-model-gateway/run.py</code></pre>
   </div>
 
   <hr class="divider">
