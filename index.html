@@ -437,6 +437,33 @@
       color: var(--navy);
       letter-spacing: -0.02em;
     }
+    .trust-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--border);
+    }
+    .trust-step { position: relative; padding: 1.5rem; background: white; }
+    .trust-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -0.7rem;
+      top: 50%;
+      z-index: 1;
+      width: 1.4rem;
+      height: 1.4rem;
+      border-radius: 50%;
+      background: var(--navy);
+      color: white;
+      text-align: center;
+      line-height: 1.3rem;
+    }
+    .trust-step strong { display: block; margin: 0.3rem 0 0.5rem; }
+    .trust-step p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+    .trust-number { color: var(--red); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; }
 
     /* ── Product grid ── */
     .product-grid {
@@ -651,6 +678,8 @@
       .spec-row { grid-template-columns: 1fr 1fr; }
       .hero { padding: 2.5rem 1.25rem 2rem; }
       .section { padding: 2rem 1.25rem; }
+      .trust-flow { grid-template-columns: 1fr; }
+      .trust-step:not(:last-child)::after { content: "↓"; right: 1rem; top: auto; bottom: -0.7rem; }
       .header-nav { display: none; }
     }
   </style>
@@ -726,11 +755,27 @@
     </div>
     <p>AgenTrust provides open specifications, test infrastructure, and attestation tooling for organizations deploying AI agents in production, with cryptographic proof of identity, intent, and behavior. It is home to the confidential, security-hardened way to run MCP (cMCP) and the secure profile for agent-to-agent delegation on A2A (cA2A).</p>
     <div class="hero-actions">
-      <a href="https://trace.agentrust-io.com" class="btn btn-primary">Explore TRACE Spec →</a>
-      <a href="https://github.com/agentrust-io" class="btn btn-ghost">View on GitHub</a>
+      <a href="/quickstart/" class="btn btn-primary">Run the 10-minute demo →</a>
+      <a href="#trust-stack" class="btn btn-ghost">Understand the trust stack</a>
+      <a href="#standards" class="btn btn-ghost">Browse specifications</a>
     </div>
   </div>
 </div>
+
+<section class="section" id="trust-stack">
+  <div class="section-header">
+    <div class="section-label">How it fits together</div>
+    <div class="section-title">One verifiable trust chain</div>
+  </div>
+  <div class="trust-flow">
+    <div class="trust-step"><span class="trust-number">01 · DECLARE</span><strong>Agent Manifest</strong><p>Binds the deployment configuration and authority approved before the agent runs.</p></div>
+    <div class="trust-step"><span class="trust-number">02 · ENFORCE</span><strong>cMCP + cA2A</strong><p>Enforces tool policy and carries attenuated authority across delegated agent hops.</p></div>
+    <div class="trust-step"><span class="trust-number">03 · RECORD</span><strong>TRACE</strong><p>Produces signed runtime evidence for what the deployed agent actually did.</p></div>
+    <div class="trust-step"><span class="trust-number">04 · VERIFY</span><strong>Independent verifier</strong><p>Checks configuration, policy, delegation, and action evidence without trusting the operator.</p></div>
+  </div>
+</section>
+
+<hr class="divider">
 
 <!-- Products -->
 <section class="section" id="standards">
