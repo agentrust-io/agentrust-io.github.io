@@ -464,6 +464,29 @@
     .trust-step strong { display: block; margin: 0.3rem 0 0.5rem; }
     .trust-step p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
     .trust-number { color: var(--red); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; }
+    .trust-home {
+      display: block;
+      margin-top: 0.9rem;
+      padding-top: 0.7rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.75rem;
+      line-height: 1.45;
+    }
+    .trust-base {
+      display: flex;
+      align-items: baseline;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin-top: 0.75rem;
+      padding: 0.9rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+    }
+    .trust-base-label { color: var(--blue); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; }
+    .trust-base-text { color: var(--body); font-size: 0.9rem; }
+    .trust-note { margin: 0.9rem 0 0; color: var(--muted); font-size: 0.85rem; }
 
     /* ── Product grid ── */
     .product-grid {
@@ -768,11 +791,13 @@
     <div class="section-title">One verifiable trust chain</div>
   </div>
   <div class="trust-flow">
-    <div class="trust-step"><span class="trust-number">01 · DECLARE</span><strong>Agent Manifest</strong><p>Binds the deployment configuration and authority approved before the agent runs.</p></div>
-    <div class="trust-step"><span class="trust-number">02 · ENFORCE</span><strong>cMCP + cA2A</strong><p>Enforces tool policy and carries attenuated authority across delegated agent hops.</p></div>
-    <div class="trust-step"><span class="trust-number">03 · RECORD</span><strong>TRACE</strong><p>Produces signed runtime evidence for what the deployed agent actually did.</p></div>
-    <div class="trust-step"><span class="trust-number">04 · VERIFY</span><strong>Independent verifier</strong><p>Checks configuration, policy, delegation, and action evidence without trusting the operator.</p></div>
+    <div class="trust-step"><span class="trust-number">01 · DECLARE</span><strong>Agent Manifest</strong><p>Binds identity, code, model, tools, policy, and provenance before the agent runs.</p><span class="trust-home">CoSAI WS4 &rarr; OASIS Open · Phase 1 review open</span></div>
+    <div class="trust-step"><span class="trust-number">02 · ENFORCE</span><strong>cMCP</strong><p>Attests the runtime and evaluates every MCP tool call against policy inside a TEE.</p><span class="trust-home">Proposed &rarr; AAIF · contribution path</span></div>
+    <div class="trust-step"><span class="trust-number">03 · DELEGATE</span><strong>cA2A</strong><p>Carries attenuated authority and attested provenance across every agent-to-agent hop.</p><span class="trust-home">Proposed &rarr; AAIF · contribution path</span></div>
+    <div class="trust-step"><span class="trust-number">04 · PROVE</span><strong>TRACE</strong><p>Emits portable signed evidence that anyone can verify without trusting the operator.</p><span class="trust-home">Linux Foundation series · formation in progress</span></div>
   </div>
+  <div class="trust-base"><span class="trust-base-label">AGT FOUNDATION</span><span class="trust-base-text">A common runtime policy substrate: open, portable, and framework-neutral.</span></div>
+  <p class="trust-note">One architecture, neutral standards homes, interoperable by design.</p>
 </section>
 
 <hr class="divider">
@@ -1026,7 +1051,7 @@
     <div class="section-title">What is AgenTrust?</div>
   </div>
   <p class="lead-copy">AgenTrust is a set of open standards, tools, and specifications for governing AI agents at runtime. It gives operators cryptographic proof of an agent's identity, intent, and behavior, so that an agent running in production can be verified independently of the party that deployed it.</p>
-  <p class="lead-copy">Three specifications work together. <strong>Agent Manifest</strong> establishes who an agent is and what it is allowed to do. <strong>Confidential MCP (cMCP)</strong> evaluates tool calls against policy inside a Trusted Execution Environment, so tool-call plaintext is not readable from the host. <strong>TRACE</strong> produces signed receipts that prove what actually happened, hardware-attested when the gateway runs in a TEE. All three are open source, under Apache 2.0 for Agent Manifest, MIT for cMCP, and CC BY 4.0 plus Apache 2.0 for TRACE.</p>
+  <p class="lead-copy">Four specifications work together, in the order an agent actually runs. <strong>Agent Manifest</strong> declares who an agent is and what it is allowed to do. <strong>Confidential MCP (cMCP)</strong> enforces that by evaluating tool calls against policy inside a Trusted Execution Environment, so tool-call plaintext is not readable from the host. <strong>Confidential A2A (cA2A)</strong> carries attenuated authority and attested provenance when work is delegated to another agent. <strong>TRACE</strong> proves what actually happened with signed receipts, hardware-attested when the gateway runs in a TEE. All four are open source, under Apache 2.0 for Agent Manifest, MIT for cMCP and cA2A, and CC BY 4.0 plus Apache 2.0 for TRACE.</p>
 </section>
 
 <hr class="divider">
