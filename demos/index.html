@@ -32,7 +32,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-<link rel="stylesheet" href="/design-system.css?v=6">
+<link rel="stylesheet" href="/design-system.css?v=7">
 </head>
 <body class="at-page">
 
@@ -60,7 +60,7 @@
   <h2>Clone it and run all ten</h2>
   <p>No confidential-computing hardware, no cloud account, no signup. Everything runs in software mode.</p>
   <div class="code">
-    <div class="code-head"><span class="code-label">Terminal</span></div>
+    <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
 <pre>git clone https://github.com/agentrust-io/demos &amp;&amp; cd demos
 pip install -r requirements.txt
 export CMCP_BEARER_TOKEN=demo-token
@@ -245,5 +245,6 @@ python demo.py 6          <span class="c"># just demo 6</span></pre>
 </div></footer>
 
 <script src="/supernav.js"></script>
+<script src="/page.js"></script>
 </body>
 </html>

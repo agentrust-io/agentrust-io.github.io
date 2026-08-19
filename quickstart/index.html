@@ -56,7 +56,7 @@
 }
 </script>
 
-<link rel="stylesheet" href="/design-system.css?v=6">
+<link rel="stylesheet" href="/design-system.css?v=7">
 </head>
 <body class="at-page">
 
@@ -145,7 +145,7 @@
         <h3>Install the runtime</h3>
         <p class="hint">Creates a project folder, an isolated Python environment, and installs the <code>cmcp</code> runtime, the enforcement engine. (The venv is why <code>pip install</code> won't get blocked on recent macOS.) No tool server needed: in step 4 your policy blocks the call <b>before it forwards</b>, so <code>salesforce.contacts</code> is a placeholder for your real MCP server. Open source (MIT): <a href="https://github.com/agentrust-io/cmcp" target="_blank" rel="noopener">github.com/agentrust-io/cmcp</a></p>
         <div class="code">
-          <div class="code-head"><span class="code-label">Terminal 1</span><button class="copy" onclick="cp(this)">COPY</button></div>
+          <div class="code-head"><span class="code-label">Terminal 1</span><button class="copy">COPY</button></div>
 <pre>mkdir -p cmcp-quickstart &amp;&amp; cd cmcp-quickstart
 python3 -m venv venv &amp;&amp; source venv/bin/activate
 pip install cmcp-runtime</pre>
@@ -159,7 +159,7 @@ pip install cmcp-runtime</pre>
         <h3>Drop in the config and your policy</h3>
         <p class="hint"><b>Paste each block into the same Terminal 1, top to bottom.</b> You're already inside <code>cmcp-quickstart</code> from step 1. The <code>cat &gt; … EOF</code> wrapper writes each file for you, no editor needed. Your policy (block 2) is what decides what's allowed. Any <code>*.cedar</code> filename works; <code>manifest.json</code> and <code>schema.cedarschema</code> are the two names the runtime requires.</p>
         <div class="code">
-          <div class="code-head"><span class="code-label">1 · Creates <span class="file">cmcp-config.yaml</span></span><button class="copy" onclick="cp(this)">COPY</button></div>
+          <div class="code-head"><span class="code-label">1 · Creates <span class="file">cmcp-config.yaml</span></span><button class="copy">COPY</button></div>
 <pre>mkdir -p policies
 cat &gt; cmcp-config.yaml &lt;&lt; 'EOF'
 attestation:
@@ -171,7 +171,7 @@ catalog_path: ./catalog.json
 EOF</pre>
         </div>
         <div class="code">
-          <div class="code-head"><span class="code-label">2 · Creates your policy bundle, <span class="file">your rules</span></span><button class="copy" onclick="cp(this)">COPY</button></div>
+          <div class="code-head"><span class="code-label">2 · Creates your policy bundle, <span class="file">your rules</span></span><button class="copy">COPY</button></div>
 <pre>cat &gt; policies/manifest.json &lt;&lt; 'EOF'
 { "version": "0.1.0", "authored_at": "2026-06-05T00:00:00Z",
   "author_identity": "you@example.com", "commit_sha": "quickstart-demo" }
@@ -196,7 +196,7 @@ cat &gt; policies/schema.cedarschema &lt;&lt; 'EOF'
 EOF</pre>
         </div>
         <div class="code">
-          <div class="code-head"><span class="code-label">3 · Creates <span class="file">catalog.json</span>, the approved tool tagged compliance_domain: "pii" (hash pre-computed)</span><button class="copy" onclick="cp(this)">COPY</button></div>
+          <div class="code-head"><span class="code-label">3 · Creates <span class="file">catalog.json</span>, the approved tool tagged compliance_domain: "pii" (hash pre-computed)</span><button class="copy">COPY</button></div>
 <pre>cat &gt; catalog.json &lt;&lt; 'EOF'
 [
   {
@@ -233,7 +233,7 @@ EOF</pre>
 EOF</pre>
         </div>
         <div class="code">
-          <div class="code-head"><span class="code-label">4 · Sanity check, confirm the config parses</span><button class="copy" onclick="cp(this)">COPY</button></div>
+          <div class="code-head"><span class="code-label">4 · Sanity check, confirm the config parses</span><button class="copy">COPY</button></div>
 <pre>cmcp validate-config --config cmcp-config.yaml</pre>
         </div>
         <p class="hint">Expect <code>✓ Config valid: cmcp-config.yaml</code>. This checks the YAML only; the policy bundle and catalog are loaded when the runtime starts in step 3. If you see an error instead, a block didn't paste cleanly, so re-run that one.</p>
@@ -246,7 +246,7 @@ EOF</pre>
         <h3>Start the runtime</h3>
         <p class="hint">Run this in the <b>same terminal where you just created the files</b> (you're inside <code>cmcp-quickstart</code>). It keeps running and won't return a prompt, which is normal, and the startup notices are expected, not errors. <b>Leave it open</b> and open a second terminal for the next step.</p>
         <div class="code">
-          <div class="code-head"><span class="code-label">Terminal 1 — leave running</span><button class="copy" onclick="cp(this)">COPY</button></div>
+          <div class="code-head"><span class="code-label">Terminal 1 — leave running</span><button class="copy">COPY</button></div>
 <pre>CMCP_DEV_MODE=1 cmcp start --config cmcp-config.yaml</pre>
         </div>
       </div>
@@ -258,7 +258,7 @@ EOF</pre>
         <h3>Fire a bad action, watch it get blocked</h3>
         <p class="hint">In a <b>second terminal</b>, run <code>cd cmcp-quickstart &amp;&amp; source venv/bin/activate</code> first (so <code>cmcp</code> is available here too), then paste this. It's your support agent trying to pull a customer's Salesforce record. The runtime looks the tool up in your catalog, sees <code>compliance_domain: "pii"</code>, and your rule 2 forbids it. Watch it return a <b>403</b> before it ever reaches Salesforce. Not blocked? You're likely in advisory mode, so check the config says <code>enforcing</code>.</p>
         <div class="code">
-          <div class="code-head"><span class="code-label">Terminal 2 — you, playing the agent</span><button class="copy" onclick="cp(this)">COPY</button></div>
+          <div class="code-head"><span class="code-label">Terminal 2 — you, playing the agent</span><button class="copy">COPY</button></div>
 <pre>curl -i -X POST http://localhost:8443/mcp \
   -H "Content-Type: application/json" \
   -d '{
@@ -285,7 +285,7 @@ EOF</pre>
         <h3>Walk away with proof</h3>
         <p class="hint">Closing the session mints a signed <code>TRACE claim</code>, a tamper-evident record of which tools ran and which policy decided each call. Verify it yourself; you don't have to trust us. See the <a href="https://cmcp.agentrust-io.com/SPEC/#5-trace-claim-schema" target="_blank" rel="noopener">full TRACE claim schema</a>.</p>
         <div class="code">
-          <div class="code-head"><span class="code-label">Terminal 2 — finalize the session, then verify</span><button class="copy" onclick="cp(this)">COPY</button></div>
+          <div class="code-head"><span class="code-label">Terminal 2 — finalize the session, then verify</span><button class="copy">COPY</button></div>
 <pre>SID=$(curl -s "http://localhost:8443/audit/export?session_id=demo-session-001" \
   | python3 -c "import sys,json; print(json.load(sys.stdin)['entries'][0]['session_id'])")
 curl -s -X POST "http://localhost:8443/sessions/$SID/close" | python3 -m json.tool &gt; claim.json
@@ -312,7 +312,7 @@ cmcp verify claim.json</pre>
     <div class="flag">Go further — stateful escalation</div>
     <p>The rule you just wrote is stateless: the tool is tagged PII, so it is always forbidden for this workflow. cMCP also tracks sensitivity <em>across</em> a session. Once a response has been inspected and found to contain PII, the session's <code>session_max_sensitivity</code> rises, and a rule like this starts to bite:</p>
     <div class="code">
-      <div class="code-head"><span class="code-label">The stateful version of rule 2</span><button class="copy" onclick="cp(this)">COPY</button></div>
+      <div class="code-head"><span class="code-label">The stateful version of rule 2</span><button class="copy">COPY</button></div>
 <pre>forbid ( principal, action == cMCP::Action::"call_tool", resource )
 when { context.session_max_sensitivity == <span class="s">"pii"</span> };</pre>
     </div>
@@ -347,15 +347,8 @@ when { context.session_max_sensitivity == <span class="s">"pii"</span> };</pre>
 </div></footer>
 
 <script src="/supernav.js"></script>
+<script src="/page.js"></script>
 <script>
-  function cp(btn){
-    var pre = btn.closest('.code').querySelector('pre');
-    if (navigator.clipboard) navigator.clipboard.writeText(pre.innerText);
-    var old = btn.innerText;
-    btn.innerText = 'COPIED ✓';
-    btn.classList.add('copied');
-    setTimeout(function(){ btn.innerText = old; btn.classList.remove('copied'); }, 1400);
-  }
   function runPreview(){
     var r = document.getElementById('preview-response'); if (r) r.hidden = false;
     var b = document.getElementById('previewBtn'); if (b) b.hidden = true;

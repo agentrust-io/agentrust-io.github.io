@@ -838,6 +838,7 @@ body,
 }
 .at-page .copy:hover,
 .at-page .copy.copied { border-color: var(--at-code-accent); color: var(--at-code-accent); }
+.at-page .copy.failed { border-color: var(--at-code-alert); color: var(--at-code-alert); }
 
 /* Syntax accents inside dark code */
 .at-page pre .c { color: var(--at-code-dim); }
