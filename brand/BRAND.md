@@ -14,29 +14,79 @@ which is the handle rather than the wordmark. Prose uses AgenTrust.
 
 ## Palette
 
-These are the only approved brand colours. They are the tokens already defined
-in `index.html` and used across the site, the demos, and the extension pages.
+There are two layers, and they answer different questions. **Surface colours**
+say what the page is made of. **Mark and accent colours** say what carries the
+AgenTrust name. A mark never uses a surface colour and a surface never uses a
+mark colour, so the two lists cannot drift into each other again.
+
+The single source of truth is `design-system.css`, which every property loads
+from `agentrust-io.com`, including the four MkDocs subdomains. Change a value
+there and the whole family moves together. Do not redeclare these in a page.
+
+### Surfaces
+
+The site reads as printed matter: warm parchment, near-black ink, hairline
+rules. This is what ships on the hub, quickstart, demos, telemetry, the
+extension pages, and the docs sites.
 
 | Token | Hex | Use |
 |---|---|---|
-| `--navy` | `#15294B` | Primary. Mark background, headings, shield stroke. |
-| `--blue` | `#1B5EA0` | Gradient partner to navy, secondary accents. |
-| `--red` | `#B91C1C` | Accent only. The bar in the mark, and the single point of emphasis in a product glyph. |
-| `--body` | `#2E4057` | Body copy. |
-| `--muted` | `#6B7F94` | Secondary copy, captions. |
-| `--border` | `#D0D9E3` | Rules, card borders. |
-| `--bg` | `#F2F4F7` | Page background, light-variant mark background. |
-| `--surface` | `#FFFFFF` | Cards, light-variant mark highlight. |
+| `--at-paper` | `#F3F0E8` | Page background. |
+| `--at-paper-2` | `#E9E4D8` | Table headers, hover fills, secondary bands. |
+| `--at-white` | `#FFFEFA` | Cards, callouts, raised surfaces. |
+| `--at-ink` | `#171714` | Body copy, headings, footer background, code background. |
+| `--at-muted` | `#66645D` | Secondary copy, captions, inactive nav. |
+| `--at-line` | `rgba(23,23,20,.18)` | Rules, card borders, dividers. |
 
-Semantic colours (`--green #1B7A4A`, `--amber #C17817`, `--orange #EA580C`,
-`--purple #6D28D9`) are for status and diagram meaning only. They are never
-brand colours and never appear in a mark.
+The dark variant is defined once, under `[data-md-color-scheme="slate"]`, and
+inverts these same six tokens. Nothing else needs a dark rule.
+
+### Marks and accents
+
+| Token | Hex | Use |
+|---|---|---|
+| `--at-navy` | `#15294B` | Mark background, shield stroke, structural emphasis. |
+| `--blue` | `#1B5EA0` | Gradient partner to navy, links, secondary accents. |
+| `--at-red` | `#B91C1C` | Accent only. The bar in the mark, the single point of emphasis in a product glyph, section labels, active nav. |
+
+`--at-red` and the red in the mark files are the same hex on purpose. One red
+across the icons and the site, never two that are close enough to look like a
+mistake.
+
+### Semantic
+
+`--green #1B7A4A`, `--amber #C17817`, `--orange #EA580C`, `--purple #6D28D9`.
+Status and diagram meaning only: badges, product-card category accents, pass
+and fail states. They are never brand colours and never appear in a mark.
 
 **Do not use the MkDocs Material default purple.** The theme ships
 `#7c3aed`, `#0ea5e9`, `#5BD2BE`, `#8251EE`, and `#C661F7`. Four product icons
 were previously drawn in those colours, which is how the family drifted into
 two unrelated palettes that matched neither each other nor the site. If a hex
-is not in the table above, it does not belong in a mark.
+is not on this page, it does not belong in a mark.
+
+### Two exceptions
+
+`design-system.css` contains hexes that are not on this page, and both kinds
+are deliberate.
+
+**Derived tones.** The dark scheme and the code surfaces are derived from the
+six surface tokens: inverted paper and ink, plus the muted greens, sands, and
+reds that stay legible on a near-black code block. They are shades of the
+palette, not additions to it, and they live in one file. Do not hand-pick a new
+one in a page.
+
+**Third-party logos.** An adopter or partner card renders that organisation's
+own mark in that organisation's own colour. Those are their brand values, not
+ours, and they appear nowhere else. Never sample one into AgenTrust surfaces.
+
+### The older token names
+
+The hub still carries an inline stylesheet written against an earlier set of
+names: `--bg`, `--surface`, `--border`, `--body`, `--muted`, `--navy`, `--red`.
+`design-system.css` remaps those onto the tokens above in one block rather than
+rewriting five hundred lines of page CSS, so they resolve to the values here.
+Treat them as legacy aliases. New work uses the `--at-*` names.
 
 ## The mark system
 

@@ -10,7 +10,7 @@
   --at-muted: #66645d;
   --at-line: rgba(23, 23, 20, 0.18);
   --at-navy: #15294b;
-  --at-red: #c52233;
+  --at-red: #b91c1c;
   --at-white: #fffefa;
   --at-radius: 18px;
   --at-shadow: 0 18px 45px rgba(23, 23, 20, 0.08);
@@ -24,7 +24,7 @@
   --md-primary-fg-color: var(--at-paper);
   --md-primary-bg-color: var(--at-ink);
   --md-accent-fg-color: var(--at-red);
-  --md-typeset-a-color: #244f83;
+  --md-typeset-a-color: #1b5ea0;
   --md-default-bg-color: var(--at-paper);
   --md-default-fg-color: var(--at-ink);
   --md-default-fg-color--light: var(--at-muted);
@@ -222,9 +222,9 @@ body,
  * The hub still ships the older inline palette. Rather than rewrite 500 lines
  * of page CSS, remap those variables onto the editorial tokens once, here.
  * Every remaining var(--navy)/var(--blue)/... on the page resolves through it,
- * so the hub has one palette, not two. The five accents stay distinguishable
- * because the product cards use them to tell categories apart; they are just
- * retuned to print-ink values that sit on parchment.
+ * so the hub has one palette, not two. The semantic accents keep the exact
+ * hexes brand/BRAND.md documents: the product cards use them to tell
+ * categories apart, and they are status colours, not surface colours.
  */
 .agentrust-hub {
   --bg: var(--at-paper);
@@ -234,11 +234,11 @@ body,
   --muted: var(--at-muted);
   --navy: var(--at-navy);
   --red: var(--at-red);
-  --blue: #244f83;
-  --green: #1e6b4a;
-  --amber: var(--at-warn);
-  --purple: #5b3f7a;
-  --orange: #b05c1f;
+  --blue: #1b5ea0;
+  --green: #1b7a4a;
+  --amber: #c17817;
+  --purple: #6d28d9;
+  --orange: #ea580c;
 }
 
 /* Status badges: one parchment chip, the accent carried by the text alone */
@@ -316,7 +316,7 @@ body,
 }
 
 .agentrust-hub .hero-promo-text { color: var(--at-ink); }
-.agentrust-hub .hero-promo-tag { color: var(--at-red); background: rgba(197, 34, 51, 0.08); }
+.agentrust-hub .hero-promo-tag { color: var(--at-red); background: rgba(185, 28, 28, 0.08); }
 .agentrust-hub .hero-promo-link { border-radius: 999px; background: var(--at-ink); color: var(--at-paper); }
 
 .agentrust-hub .btn { border-radius: 999px; padding: 0.75rem 1.2rem; }
@@ -443,7 +443,7 @@ body,
 
 :root {
   --at-pass: #1b7a4a;
-  --at-warn: #a9691b;
+  --at-warn: #c17817;
   --at-code-bg: #171714;
   --at-code-fg: #e4e0d6;
   --at-code-dim: #9d998e;

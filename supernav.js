@@ -77,7 +77,7 @@
     '#' + NAV_ID + ' a.active{',
     '  color:var(--at-ink,#171714);',
     '  font-weight:750;',
-    '  border-bottom-color:var(--at-red,#c52233);',
+    '  border-bottom-color:var(--at-red,#b91c1c);',
     '}',
     '#' + NAV_ID + ' .sep{',
     '  width:1px;',
