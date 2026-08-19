@@ -337,8 +337,10 @@ body,
 .agentrust-hub .adopter-mark { min-height: 42px; color: var(--at-ink); font-size: 1.35rem; font-weight: 750; letter-spacing: -0.045em; }
 .agentrust-hub .servicenow-mark { color: #16825d; }
 .agentrust-hub .uae-mark { max-width: 13ch; font-family: var(--at-serif); font-size: 1.1rem; font-weight: 600; line-height: 1.05; }
-.agentrust-hub .accenture-mark { color: #9b2cff; font-size: 1.55rem; }
 .agentrust-hub .microsoft-mark { color: #505050; }
+.agentrust-hub .amd-mark { color: #111; letter-spacing: -.07em; }
+.agentrust-hub .intel-mark { color: #0068b5; font-weight: 650; }
+.agentrust-hub .atf-mark { max-width: 16ch; font-size: 1.05rem; line-height: 1.1; }
 .agentrust-hub .adopter-stage,
 .agentrust-hub .governance-role,
 .agentrust-hub .partner-kicker {
@@ -352,6 +354,8 @@ body,
 .agentrust-hub .adoption-card p,
 .agentrust-hub .governance-card p,
 .agentrust-hub .partner-card p { margin: 0; color: var(--at-muted); font-size: .9rem; line-height: 1.6; }
+.agentrust-hub .evidence-link { display: inline-block; margin-top: 1.15rem; color: var(--at-ink); font-size: .72rem; font-weight: 700; text-decoration: underline; text-decoration-color: var(--at-line); text-underline-offset: .2em; }
+.agentrust-hub .evidence-link:hover { color: var(--at-red); }
 .agentrust-hub .partner-card { display: grid; grid-template-columns: minmax(220px, .75fr) 1.25fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; margin-top: 1rem; padding: clamp(1.8rem, 4vw, 3rem); }
 .agentrust-hub .partner-logo-wrap { padding: 1.25rem; border-radius: 12px; background: var(--at-paper); }
 .agentrust-hub .partner-logo-wrap img { display: block; width: 100%; height: auto; }
