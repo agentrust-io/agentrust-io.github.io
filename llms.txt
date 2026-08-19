@@ -1,10 +1,16 @@
 # AgenTrust
 
-> Open standards, tools, and specifications for governing AI agents at runtime. AgenTrust gives operators cryptographic proof of an agent's identity, intent, and behavior, so an agent running in production can be verified independently of the party that deployed it.
+> An open ecosystem where developers, researchers, operators, and enterprises build, test, adopt, and sustain verifiable governance for AI agents.
 
-AgenTrust is organized around four complementary open standards, one per step of a single trust chain: declare, enforce, delegate, prove. Agent Manifest declares agent identity and permissions, Confidential MCP enforces policy on tool calls inside a Trusted Execution Environment, Confidential A2A delegates attenuated authority and attested provenance across the Agent2Agent protocol, and TRACE proves what happened with hardware-signed receipts that anyone can verify without trusting the operator. The Agent Governance Toolkit (AGT) is the common runtime policy substrate underneath all four.
+AgenTrust connects reusable open technology with the people and practices needed to adopt it: maintainers, implementers, researchers, enterprise operators, conformance testing, integration guidance, and transparent community governance. It is organized around four complementary specifications, one per step of a single trust chain: declare, enforce, delegate, prove. Agent Manifest declares agent identity and permissions, Confidential MCP enforces policy on tool calls inside a Trusted Execution Environment, Confidential A2A delegates attenuated authority and attested provenance across the Agent2Agent protocol, and TRACE proves what happened with hardware-signed receipts that anyone can verify without trusting the operator. The Agent Governance Toolkit (AGT) is the common runtime policy substrate underneath all four.
 
-## Standards
+## Ecosystem and adoption
+
+The ecosystem is focused on implementation, interoperability, maintainer development, community adoption, and long-term sustainability—not standards development as an end in itself. Its adoption pathway is: explore a runnable demo; test against open conformance suites; pilot one trust boundary; contribute results, integrations, and deployment evidence; then help govern and maintain the shared infrastructure.
+
+Work happens in public through open repositories, reviewable proposals, implementation evidence, and conformance testing. Neutral standards homes are interoperability pathways; implementations, integrations, testing, documentation, training, adoption support, and maintainer succession make the technology useful and durable.
+
+## Open technology
 
 - [TRACE](https://trace.agentrust-io.com): Trust, Runtime Attestation, and Compliance Evidence. Hardware-rooted cryptographic receipts for every agent action, signed by the TEE and verifiable by anyone.
 - [Agent Manifest](https://manifest.agentrust-io.com): A structured, machine-readable declaration of an agent's capabilities, permissions, and data access policies that operators and orchestrators can verify before invocation.
@@ -51,7 +57,7 @@ AgenTrust is organized around four complementary open standards, one per step of
 
 ## Fellowship
 
-The AgenTrust Fellowship 2026 is a six-month paid, part-time programme (20 hours per week) for three to five fellows working on open infrastructure for verifiable AI systems. It is aimed at security engineers, distributed systems researchers, AI governance and compliance professionals, and Ph.D. students. Fellows contribute code and specifications across the AgenTrust projects and complete a public technical artifact such as a paper or conference talk. Mentored by Imran Siddique, Chief Platform Officer at OPAQUE and creator of the Agent Governance Toolkit.
+The AgenTrust Fellowship 2026 is a six-month paid, part-time programme (20 hours per week) for three to five emerging maintainers of open infrastructure for verifiable AI systems. It is aimed at security engineers, distributed systems researchers, AI governance and compliance professionals, and Ph.D. students. Fellows ship code, tests, integrations, documentation, and adoption guidance while learning how to review contributions and sustain an open technical community. Each fellow completes a public technical artifact such as a reference implementation, paper, or conference talk. Mentored by Imran Siddique, Chief Platform Officer at OPAQUE and creator of the Agent Governance Toolkit.
 
 Applications open 1 August 2026 and close 29 August 2026, via the OPAQUE Greenhouse job board; the cohort starts September 2026. Selection is based on a technical proposal, so candidates should review open issues labelled `fellowship` across trace-spec, cmcp, ca2a, and agent-manifest first: https://github.com/search?q=org%3Aagentrust-io+is%3Aissue+is%3Aopen+label%3Afellowship&type=issues
 
@@ -59,6 +65,6 @@ Applications open 1 August 2026 and close 29 August 2026, via the OPAQUE Greenho
 
 ## About
 
-AgenTrust standards launched June 23, 2026. Agent Manifest is proposed through [CoSAI WS4 RFC #149](https://github.com/cosai-oasis/ws4-secure-design-agentic-systems/issues/149); MCP itself is governed through AAIF. Hardware validation evidence for cMCP is public at https://github.com/agentrust-io/cmcp/blob/main/docs/testing/hardware-validation.md. Current releases: TRACE spec v0.2 (reference SDK agentrust-trace 0.5.1), Agent Manifest spec v0.1 (SDK agent-manifest 0.7.0), and cMCP 0.3.0; Confidential A2A (cA2A) 0.1.0a1 is in developer preview. Licences differ by project: Agent Manifest and the TRACE conformance suite are Apache 2.0, cMCP and cA2A are MIT, and the TRACE specification text is CC BY 4.0 with its reference code under Apache 2.0.
+The AgenTrust ecosystem launched June 23, 2026. Agent Manifest is proposed through [CoSAI WS4 RFC #149](https://github.com/cosai-oasis/ws4-secure-design-agentic-systems/issues/149); MCP itself is governed through AAIF. Hardware validation evidence for cMCP is public at https://github.com/agentrust-io/cmcp/blob/main/docs/testing/hardware-validation.md. Current releases: TRACE spec v0.2 (reference SDK agentrust-trace 0.5.1), Agent Manifest spec v0.1 (SDK agent-manifest 0.7.0), and cMCP 0.3.0; Confidential A2A (cA2A) 0.1.0a1 is in developer preview. Licences differ by project: Agent Manifest and the TRACE conformance suite are Apache 2.0, cMCP and cA2A are MIT, and the TRACE specification text is CC BY 4.0 with its reference code under Apache 2.0.
 
 TRACE v0.2 changed the EAT profile URI to tag:agentrust-io.com,2026:trace-v0.2. The v0.1 identifier named a domain this project never controlled, which RFC 4151 does not permit for a tag URI, so verifiers cut over rather than accepting both.

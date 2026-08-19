@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AgenTrust — Open Standards for AI Agent Governance</title>
-  <meta name="description" content="AgenTrust: open standards for governing AI agents at runtime. Home of cMCP, the confidential and secure way to run MCP, and cA2A, the secure profile for agent-to-agent (A2A) delegation, plus TRACE attestation and Agent Manifest identity.">
+  <title>AgenTrust — An Open Ecosystem for Verifiable AI Agents</title>
+  <meta name="description" content="AgenTrust is an open ecosystem where developers, researchers, operators, and enterprises build, test, adopt, and sustain verifiable governance for AI agents.">
   <link rel="canonical" href="https://agentrust-io.com/">
   <meta name="robots" content="index, follow">
 
@@ -17,19 +17,19 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AgenTrust">
-  <meta property="og:title" content="AgenTrust: Open Standards for AI Agent Governance">
-  <meta property="og:description" content="Open standards for governing AI agents at runtime. Home of cMCP, the confidential and secure way to run MCP, and cA2A, the secure profile for agent-to-agent (A2A) delegation, plus TRACE attestation and Agent Manifest identity.">
+  <meta property="og:title" content="AgenTrust: An Open Ecosystem for Verifiable AI Agents">
+  <meta property="og:description" content="Build, test, adopt, and sustain open technology for verifiable AI agent governance.">
   <meta property="og:url" content="https://agentrust-io.com/">
   <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://agentrust-io.com/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="AgenTrust: open standards for AI agent governance">
+  <meta property="og:image:alt" content="AgenTrust: an open ecosystem for verifiable AI agents">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="AgenTrust: Open Standards for AI Agent Governance">
-  <meta name="twitter:description" content="Open standards for governing AI agents at runtime. cMCP is the secure, confidential way to run MCP; cA2A is the secure profile for agent-to-agent (A2A) delegation. Plus TRACE and Agent Manifest.">
+  <meta name="twitter:title" content="AgenTrust: An Open Ecosystem for Verifiable AI Agents">
+  <meta name="twitter:description" content="Build, test, adopt, and sustain open technology for verifiable AI agent governance.">
   <meta name="twitter:image" content="https://agentrust-io.com/og.png">
 
   <!-- Structured data: Organization + WebSite -->
@@ -42,7 +42,7 @@
         "@id": "https://agentrust-io.com/#organization",
         "name": "AgenTrust",
         "url": "https://agentrust-io.com/",
-        "description": "Open standards, tools, and specifications for governing AI agents at runtime: attestation, identity, and trust verification.",
+        "description": "An open ecosystem where developers, researchers, operators, and enterprises build, test, adopt, and sustain verifiable governance for AI agents.",
         "sameAs": [
           "https://github.com/agentrust-io",
           "https://trace.agentrust-io.com",
@@ -123,7 +123,7 @@
         "name": "What is AgenTrust?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "AgenTrust is a set of open standards, tools, and specifications for governing AI agents at runtime. It provides cryptographic proof of an agent's identity, intent, and behavior through the TRACE attestation standard, the Agent Manifest identity standard, and the Confidential MCP protocol extension. All specifications are open source. Licences differ by project: Agent Manifest is Apache 2.0, cMCP and cA2A are MIT, and TRACE is dual licensed, CC BY 4.0 for the specification text and Apache 2.0 for the reference code."
+          "text": "AgenTrust is an open ecosystem for verifiable AI agent governance. Developers, researchers, operators, and enterprises can use its open specifications, implementations, test suites, and adoption guidance; contribute improvements; and help maintain the shared infrastructure over time."
         }
       },
       {
@@ -681,6 +681,11 @@
       line-height: 1.7;
     }
     .lead-copy + .lead-copy { margin-top: 1rem; }
+    .ecosystem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .ecosystem-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.4rem; }
+    .ecosystem-card h3 { color: var(--navy); font-size: 1rem; margin-bottom: 0.5rem; }
+    .ecosystem-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+    .pathway { margin-top: 1rem; padding: 1.25rem 1.4rem; border-left: 4px solid var(--green); background: #fff; color: var(--body); }
     .qa { max-width: 760px; }
     .qa-item { padding: 1.125rem 0; border-bottom: 1px solid var(--border); }
     .qa-item:first-child { border-top: 1px solid var(--border); }
@@ -704,6 +709,7 @@
       .trust-flow { grid-template-columns: 1fr; }
       .trust-step:not(:last-child)::after { content: "↓"; right: 1rem; top: auto; bottom: -0.7rem; }
       .header-nav { display: none; }
+      .ecosystem-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -715,7 +721,8 @@
     <a href="/" class="logo">agentrust<span class="logo-dot">.</span>io</a>
     <nav>
       <ul class="header-nav">
-        <li><a href="#standards">Standards</a></li>
+        <li><a href="#ecosystem">Ecosystem</a></li>
+        <li><a href="#standards">Technology</a></li>
         <li><a href="#tools">Tools</a></li>
         <li><a href="#fellowship">Fellowship</a></li>
         <li><a href="https://github.com/agentrust-io">GitHub</a></li>
@@ -762,25 +769,25 @@
 <div class="fellowship" data-fellowship-banner data-closes="2026-08-30T00:00:00-07:00">
   <div class="fellowship-inner">
     <span class="fellowship-tag">Now hiring</span>
-    <span class="fellowship-text"><strong>AgenTrust Fellowship 2026.</strong> A six-month paid, part-time programme for three to five fellows working on verifiable AI agent infrastructure. Applications open 1 August and close 29 August 2026; the cohort starts in September.</span>
+    <span class="fellowship-text"><strong>AgenTrust Fellowship 2026.</strong> A six-month paid, part-time programme that develops maintainers for the verifiable AI ecosystem. Applications open 1 August and close 29 August 2026; the cohort starts in September.</span>
     <a class="fellowship-link" href="https://www.opaque.co/resources/articles/opaque-announces-applications-for-agentrust-fellowship-to-advance-open-standards-for-verifiable-ai-agents">Read the announcement &rarr;</a>
   </div>
 </div>
 
 <div class="hero">
   <div class="hero-inner">
-    <p class="hero-eyebrow">Open Standards &amp; Tools</p>
-    <h1>Govern AI Agents<br>at the Hardware Boundary</h1>
+    <p class="hero-eyebrow">Open Technology · Shared Stewardship · Real Adoption</p>
+    <h1>Build the ecosystem for<br>verifiable AI agents</h1>
     <div class="hero-promo">
       <span class="hero-promo-tag">New &middot; Hands-on</span>
       <span class="hero-promo-text">Don't just read the spec: <b>run cMCP yourself.</b> Write a policy, watch it block a data leak, verify a signed receipt.</span>
       <a class="hero-promo-link" href="/quickstart/">Try cMCP in under 10 minutes &rarr;</a>
     </div>
-    <p>AgenTrust provides open specifications, test infrastructure, and attestation tooling for organizations deploying AI agents in production, with cryptographic proof of identity, intent, and behavior. It is home to the confidential, security-hardened way to run MCP (cMCP) and the secure profile for agent-to-agent delegation on A2A (cA2A).</p>
+    <p>AgenTrust brings developers, researchers, operators, and enterprises together to turn open governance technology into infrastructure people can adopt and sustain. Build with the specifications, prove interoperability with the test suites, contribute deployment experience, and help maintain the ecosystem.</p>
     <div class="hero-actions">
       <a href="/quickstart/" class="btn btn-primary">Run the 10-minute demo →</a>
       <a href="#trust-stack" class="btn btn-ghost">Understand the trust stack</a>
-      <a href="#standards" class="btn btn-ghost">Browse specifications</a>
+      <a href="#ecosystem" class="btn btn-ghost">Find your adoption path</a>
     </div>
   </div>
 </div>
@@ -802,11 +809,37 @@
 
 <hr class="divider">
 
+<section class="section" id="ecosystem">
+  <div class="section-header">
+    <div class="section-label">From open technology to durable infrastructure</div>
+    <div class="section-title">An ecosystem built around adoption</div>
+  </div>
+  <div class="ecosystem-grid">
+    <article class="ecosystem-card"><h3>Use it</h3><p>Start with runnable demos, reference implementations, schemas, and conformance tests. Move from evaluation to a production pilot without waiting for a proprietary platform.</p></article>
+    <article class="ecosystem-card"><h3>Improve it</h3><p>Bring implementation feedback, integrations, threat models, deployment evidence, and research. Public repositories and issue trackers make the contribution path visible.</p></article>
+    <article class="ecosystem-card"><h3>Sustain it</h3><p>Grow maintainers, review contributions, document adoption patterns, and share stewardship across organizations so critical governance infrastructure outlives any one team.</p></article>
+  </div>
+  <div class="pathway"><strong>Adoption pathway:</strong> explore a ten-minute demo → test against the open suites → pilot one trust boundary → contribute results and integrations → help govern and maintain the shared infrastructure.</div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="community">
+  <div class="section-header">
+    <div class="section-label">Community governance</div>
+    <div class="section-title">Open work, visible decisions, more maintainers</div>
+  </div>
+  <p class="lead-copy">AgenTrust develops in public through open repositories, reviewable proposals, implementation evidence, and conformance testing. The goal is not simply to publish specifications: it is to create a contributor community capable of operating, improving, and stewarding the technology.</p>
+  <p class="lead-copy">Neutral standards homes remain important interoperability pathways. The ecosystem work around them—implementations, integrations, testing, documentation, training, adoption support, and maintainer succession—is what makes the technology useful and durable.</p>
+</section>
+
+<hr class="divider">
+
 <!-- Products -->
 <section class="section" id="standards">
   <div class="section-header">
-    <div class="section-label">Open Specifications</div>
-    <div class="section-title">Standards &amp; Protocols</div>
+    <div class="section-label">Open Technology</div>
+    <div class="section-title">Specifications, protocols, and shared building blocks</div>
   </div>
 
   <div class="product-grid">
@@ -1037,7 +1070,7 @@
     <div class="section-label">Get Involved</div>
     <h2>AgenTrust Fellowship 2026</h2>
   </div>
-  <p class="lead-copy">A six-month paid, part-time fellowship (20 hours per week) for three to five fellows working on open infrastructure for verifiable AI systems. It is aimed at security engineers, distributed systems researchers, AI governance and compliance professionals, and Ph.D. students. Fellows contribute code and specifications across the AgenTrust projects and complete a public technical artifact, such as a paper or a conference talk. Mentored by Imran Siddique, Chief Platform Officer at OPAQUE and creator of the Agent Governance Toolkit.</p>
+  <p class="lead-copy">A six-month paid, part-time fellowship (20 hours per week) for three to five emerging maintainers of open infrastructure for verifiable AI systems. It is aimed at security engineers, distributed systems researchers, AI governance and compliance professionals, and Ph.D. students. Fellows ship code, tests, integrations, documentation, and adoption guidance across AgenTrust projects while learning how to review contributions and sustain an open technical community. Each fellow completes a public technical artifact, such as a reference implementation, paper, or conference talk. Mentored by Imran Siddique, Chief Platform Officer at OPAQUE and creator of the Agent Governance Toolkit.</p>
   <p class="lead-copy" data-fellowship-status><strong>Applications are open through 29 August 2026</strong>, with the cohort starting in September. Selection is based on a technical proposal describing what you plan to contribute, so it is worth looking at the work before you apply: issues labelled <a href="https://github.com/search?q=org%3Aagentrust-io+is%3Aissue+is%3Aopen+label%3Afellowship&amp;type=issues"><code>fellowship</code></a> across trace-spec, cmcp, cA2A, and agent-manifest are real, currently-open work rather than exercises.</p>
   <div class="hero-actions">
     <a href="https://www.opaque.co/resources/articles/opaque-announces-applications-for-agentrust-fellowship-to-advance-open-standards-for-verifiable-ai-agents" class="btn btn-primary">Read the announcement &rarr;</a>
@@ -1050,7 +1083,7 @@
     <div class="section-label">Overview</div>
     <div class="section-title">What is AgenTrust?</div>
   </div>
-  <p class="lead-copy">AgenTrust is a set of open standards, tools, and specifications for governing AI agents at runtime. It gives operators cryptographic proof of an agent's identity, intent, and behavior, so that an agent running in production can be verified independently of the party that deployed it.</p>
+  <p class="lead-copy">AgenTrust is an open ecosystem for verifiable AI agent governance. It connects reusable technology with the people and practices needed to adopt it: maintainers, implementers, researchers, enterprise operators, conformance testing, integration guidance, and transparent community governance.</p>
   <p class="lead-copy">Four specifications work together, in the order an agent actually runs. <strong>Agent Manifest</strong> declares who an agent is and what it is allowed to do. <strong>Confidential MCP (cMCP)</strong> enforces that by evaluating tool calls against policy inside a Trusted Execution Environment, so tool-call plaintext is not readable from the host. <strong>Confidential A2A (cA2A)</strong> carries attenuated authority and attested provenance when work is delegated to another agent. <strong>TRACE</strong> proves what actually happened with signed receipts, hardware-attested when the gateway runs in a TEE. All four are open source, under Apache 2.0 for Agent Manifest, MIT for cMCP and cA2A, and CC BY 4.0 plus Apache 2.0 for TRACE.</p>
 </section>
 
@@ -1063,6 +1096,10 @@
     <div class="section-title">Frequently Asked Questions</div>
   </div>
   <div class="qa">
+    <div class="qa-item">
+      <div class="qa-q">Is AgenTrust a standards-development programme?</div>
+      <div class="qa-a">No. AgenTrust is an open-source ecosystem focused on adoption, implementation, interoperability, maintainer development, and long-term sustainability. Its open specifications are shared technical building blocks; community implementations, test infrastructure, integrations, documentation, and deployment evidence make those building blocks useful in practice.</div>
+    </div>
     <div class="qa-item">
       <div class="qa-q">What is TRACE?</div>
       <div class="qa-a">TRACE stands for Trust, Runtime Attestation, and Compliance Evidence. It defines hardware-rooted cryptographic receipts for every agent action, signed by the Trusted Execution Environment and verifiable by anyone.</div>
