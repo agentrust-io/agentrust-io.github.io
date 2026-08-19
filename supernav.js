@@ -5,6 +5,7 @@
   var SITES = [
     { id: 'home',     label: 'agentrust-io',  url: 'https://agentrust-io.com',                                   dot: '#B91C1C', ext: false },
     { id: 'demos',    label: 'Demos',          url: 'https://agentrust-io.com/demos/',                            dot: '#1B7A4A', ext: false },
+    { id: 'telemetry',label: 'Telemetry',      url: 'https://agentrust-io.com/telemetry/',                        dot: '#EA580C', ext: false },
     { id: 'trace',    label: 'TRACE',          url: 'https://trace.agentrust-io.com',                             dot: '#1B5EA0', ext: false },
     { id: 'manifest', label: 'Manifest',       url: 'https://manifest.agentrust-io.com',                          dot: '#1B7A4A', ext: false },
     { id: 'cmcp',       label: 'cMCP',        url: 'https://cmcp.agentrust-io.com',                            dot: '#6D28D9', ext: false },
@@ -19,6 +20,7 @@
   // Demos lives under the apex host, so the active item cannot be resolved from
   // the hostname alone the way every other entry can.
   var CURRENT_ID = (HOST === 'agentrust-io.com' && PATH.indexOf('/demos') === 0) ? 'demos'
+    : (HOST === 'agentrust-io.com' && PATH.indexOf('/telemetry') === 0) ? 'telemetry'
     : HOST === 'agentrust-io.com' ? 'home'
     : HOST.indexOf('trace.') === 0    ? 'trace'
     : HOST.indexOf('manifest.') === 0 ? 'manifest'

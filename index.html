@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AgenTrust — Open Standards for AI Agent Governance</title>
-  <meta name="description" content="AgenTrust: open standards for governing AI agents at runtime. Home of cMCP, the confidential and secure way to run MCP, and cA2A, the secure profile for agent-to-agent (A2A) delegation, plus TRACE attestation and Agent Manifest identity.">
+  <meta name="description" content="AgenTrust: open standards and portable governance telemetry for AI agents at runtime. Agent Manifest declares, cMCP enforces, cA2A delegates, TRACE proves, and AgentTrust Telemetry correlates the evidence.">
   <link rel="canonical" href="https://agentrust-io.com/">
   <meta name="robots" content="index, follow">
 
@@ -47,7 +47,8 @@
           "https://github.com/agentrust-io",
           "https://trace.agentrust-io.com",
           "https://manifest.agentrust-io.com",
-          "https://cmcp.agentrust-io.com"
+          "https://cmcp.agentrust-io.com",
+          "https://github.com/agentrust-io/agentrust-telemetry"
         ]
       },
       {
@@ -484,6 +485,8 @@
       border-radius: 10px;
       background: var(--surface);
     }
+    .trust-observe { border-left: 4px solid var(--orange); }
+    .trust-observe .trust-base-label { color: var(--orange); }
     .trust-base-label { color: var(--blue); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; }
     .trust-base-text { color: var(--body); font-size: 0.9rem; }
     .trust-note { margin: 0.9rem 0 0; color: var(--muted); font-size: 0.85rem; }
@@ -731,6 +734,10 @@
       <span class="nav-dot" style="background:#B91C1C;"></span>
       agentrust-io.com
     </a>
+    <a href="/telemetry/">
+      <span class="nav-dot" style="background:#EA580C;"></span>
+      telemetry
+    </a>
     <a href="https://trace.agentrust-io.com">
       <span class="nav-dot" style="background:#1B5EA0;"></span>
       trace
@@ -776,7 +783,7 @@
       <span class="hero-promo-text">Don't just read the spec: <b>run cMCP yourself.</b> Write a policy, watch it block a data leak, verify a signed receipt.</span>
       <a class="hero-promo-link" href="/quickstart/">Try cMCP in under 10 minutes &rarr;</a>
     </div>
-    <p>AgenTrust provides open specifications, test infrastructure, and attestation tooling for organizations deploying AI agents in production, with cryptographic proof of identity, intent, and behavior. It is home to the confidential, security-hardened way to run MCP (cMCP) and the secure profile for agent-to-agent delegation on A2A (cA2A).</p>
+    <p>AgenTrust provides open specifications, portable governance telemetry, test infrastructure, and attestation tooling for organizations deploying AI agents in production, with independently verifiable evidence of identity, intent, and behavior.</p>
     <div class="hero-actions">
       <a href="/quickstart/" class="btn btn-primary">Run the 10-minute demo →</a>
       <a href="#trust-stack" class="btn btn-ghost">Understand the trust stack</a>
@@ -796,6 +803,7 @@
     <div class="trust-step"><span class="trust-number">03 · DELEGATE</span><strong>cA2A</strong><p>Carries attenuated authority and attested provenance across every agent-to-agent hop.</p><span class="trust-home">Proposed &rarr; AAIF · contribution path</span></div>
     <div class="trust-step"><span class="trust-number">04 · PROVE</span><strong>TRACE</strong><p>Emits portable signed evidence that anyone can verify without trusting the operator.</p><span class="trust-home">Linux Foundation series · formation in progress</span></div>
   </div>
+  <div class="trust-base trust-observe"><span class="trust-base-label">OBSERVE &amp; CORRELATE</span><span class="trust-base-text"><a href="/telemetry/"><strong>AgentTrust Telemetry</strong></a> normalizes policy, approval, action, data-flow, usage, and evidence events and correlates them with the application's OpenTelemetry traces.</span></div>
   <div class="trust-base"><span class="trust-base-label">AGT FOUNDATION</span><span class="trust-base-text">A common runtime policy substrate: open, portable, and framework-neutral.</span></div>
   <p class="trust-note">One architecture, neutral standards homes, interoperable by design.</p>
 </section>
@@ -909,6 +917,23 @@
   </div>
 
   <div class="product-grid">
+
+    <!-- AgentTrust Telemetry -->
+    <a href="/telemetry/" class="product-card">
+      <div class="card-accent" style="background: var(--orange);"></div>
+      <div class="card-body">
+        <div class="card-tag" style="color: var(--orange);">Governance Telemetry · Alpha</div>
+        <div class="card-name">AgentTrust Telemetry</div>
+        <div class="card-desc">A backend-neutral event contract and reference SDKs for policy decisions, approvals, actions, classified data flow, usage and cost, and evidence lifecycle—correlated with OpenTelemetry and able to finalize complete evidence into TRACE.</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-url">agentrust-io.com/telemetry</span>
+        <div style="display:flex;gap:0.5rem;align-items:center;">
+          <span class="card-badge badge-oss">OSS</span>
+          <svg class="card-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
 
     <!-- Demos -->
     <a href="/demos/" class="product-card">
@@ -1052,6 +1077,7 @@
   </div>
   <p class="lead-copy">AgenTrust is a set of open standards, tools, and specifications for governing AI agents at runtime. It gives operators cryptographic proof of an agent's identity, intent, and behavior, so that an agent running in production can be verified independently of the party that deployed it.</p>
   <p class="lead-copy">Four specifications work together, in the order an agent actually runs. <strong>Agent Manifest</strong> declares who an agent is and what it is allowed to do. <strong>Confidential MCP (cMCP)</strong> enforces that by evaluating tool calls against policy inside a Trusted Execution Environment, so tool-call plaintext is not readable from the host. <strong>Confidential A2A (cA2A)</strong> carries attenuated authority and attested provenance when work is delegated to another agent. <strong>TRACE</strong> proves what actually happened with signed receipts, hardware-attested when the gateway runs in a TEE. All four are open source, under Apache 2.0 for Agent Manifest, MIT for cMCP and cA2A, and CC BY 4.0 plus Apache 2.0 for TRACE.</p>
+  <p class="lead-copy"><strong>AgentTrust Telemetry</strong> is the integration layer across that chain. It gives runtimes a common, metadata-only contract for governance facts, projects those facts into caller-owned OpenTelemetry, and can turn a complete durable evidence set into TRACE. It does not replace a policy engine, collector, observability backend, or dashboard.</p>
 </section>
 
 <hr class="divider">
