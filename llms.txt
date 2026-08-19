@@ -2,7 +2,12 @@
 
 > Open standards, tools, and specifications for governing AI agents at runtime. AgenTrust gives operators cryptographic proof of an agent's identity, intent, and behavior, so an agent running in production can be verified independently of the party that deployed it.
 
-AgenTrust is organized around four complementary open standards, one per step of a single trust chain: declare, enforce, delegate, prove. Agent Manifest declares agent identity and permissions, Confidential MCP enforces policy on tool calls inside a Trusted Execution Environment, Confidential A2A delegates attenuated authority and attested provenance across the Agent2Agent protocol, and TRACE proves what happened with hardware-signed receipts that anyone can verify without trusting the operator. The Agent Governance Toolkit (AGT) is the common runtime policy substrate underneath all four.
+AgenTrust is organized around four complementary open standards, one per step of a single trust chain: declare, enforce, delegate, prove. Agent Manifest declares agent identity and permissions, Confidential MCP enforces policy on tool calls inside a Trusted Execution Environment, Confidential A2A delegates attenuated authority and attested provenance across the Agent2Agent protocol, and TRACE proves what happened with hardware-signed receipts that anyone can verify without trusting the operator. AgentTrust Telemetry is the portable correlation layer across the chain, and the Agent Governance Toolkit (AGT) is the common runtime policy substrate underneath it.
+
+## Integration layer
+
+- [AgentTrust Telemetry](https://agentrust-io.com/telemetry/): A backend-neutral, metadata-only contract and Python and TypeScript reference SDKs for policy decisions, approval lifecycles, action execution, classified data flow, usage and cost, and evidence lifecycle. It composes with caller-owned OpenTelemetry and can finalize complete durable evidence into TRACE. Alpha `0.1.0-alpha.1`; packages are not yet published.
+- [Source](https://github.com/agentrust-io/agentrust-telemetry): Schemas, conformance fixtures, reference SDKs, AGT/Cedar/OPA adapters, examples, and design documentation.
 
 ## Standards
 
