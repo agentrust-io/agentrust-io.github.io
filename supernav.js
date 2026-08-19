@@ -1,26 +1,35 @@
-/* AgenTrust super-navigation — injected into all agentrust-io.com properties */
+/* AgenTrust super-navigation — injected into all agentrust-io.com properties
+ *
+ * Colours come from design-system.css custom properties, which every property
+ * loads, so the bar follows the editorial theme (and the MkDocs light/dark
+ * scheme) without carrying a palette of its own. The literals are fallbacks
+ * for any page that somehow renders without the stylesheet.
+ */
 (function () {
   'use strict';
 
   var SITES = [
-    { id: 'home',     label: 'agentrust-io',  url: 'https://agentrust-io.com',                                   dot: '#B91C1C', ext: false },
-    { id: 'demos',    label: 'Demos',          url: 'https://agentrust-io.com/demos/',                            dot: '#1B7A4A', ext: false },
-    { id: 'telemetry',label: 'Telemetry',      url: 'https://agentrust-io.com/telemetry/',                        dot: '#EA580C', ext: false },
-    { id: 'trace',    label: 'TRACE',          url: 'https://trace.agentrust-io.com',                             dot: '#1B5EA0', ext: false },
-    { id: 'manifest', label: 'Manifest',       url: 'https://manifest.agentrust-io.com',                          dot: '#1B7A4A', ext: false },
-    { id: 'cmcp',       label: 'cMCP',        url: 'https://cmcp.agentrust-io.com',                            dot: '#6D28D9', ext: false },
-    { id: 'ca2a',       label: 'cA2A',           url: 'https://ca2a.agentrust-io.com',                            dot: '#0D9488', ext: false },
-    { id: 'governance', label: 'Governance',  url: 'https://governance.agentrust-io.com',                       dot: '#EA580C', ext: false },
-    { id: 'agt',        label: 'AGT',         url: 'https://github.com/microsoft/agent-governance-toolkit',    dot: '#6B7F94', ext: true  },
-    { id: 'github',   label: 'GitHub',         url: 'https://github.com/agentrust-io',                           dot: '#8B949E', ext: true  }
+    { id: 'home',       label: 'agentrust-io', url: 'https://agentrust-io.com',                                ext: false },
+    { id: 'quickstart', label: 'Quickstart',   url: 'https://agentrust-io.com/quickstart/',                    ext: false },
+    { id: 'demos',      label: 'Demos',        url: 'https://agentrust-io.com/demos/',                         ext: false },
+    { id: 'telemetry',  label: 'Telemetry',    url: 'https://agentrust-io.com/telemetry/',                     ext: false },
+    { id: 'trace',      label: 'TRACE',        url: 'https://trace.agentrust-io.com',                          ext: false },
+    { id: 'manifest',   label: 'Manifest',     url: 'https://manifest.agentrust-io.com',                       ext: false },
+    { id: 'cmcp',       label: 'cMCP',         url: 'https://cmcp.agentrust-io.com',                           ext: false },
+    { id: 'ca2a',       label: 'cA2A',         url: 'https://ca2a.agentrust-io.com',                           ext: false },
+    { id: 'governance', label: 'Governance',   url: 'https://governance.agentrust-io.com',                     ext: false },
+    { id: 'agt',        label: 'AGT',          url: 'https://github.com/microsoft/agent-governance-toolkit',   ext: true  },
+    { id: 'github',     label: 'GitHub',       url: 'https://github.com/agentrust-io',                         ext: true  }
   ];
 
   var HOST = location.hostname;
   var PATH = location.pathname;
-  // Demos lives under the apex host, so the active item cannot be resolved from
-  // the hostname alone the way every other entry can.
-  var CURRENT_ID = (HOST === 'agentrust-io.com' && PATH.indexOf('/demos') === 0) ? 'demos'
+  // Quickstart, demos, and telemetry live under the apex host, so the active
+  // item cannot be resolved from the hostname alone the way every other entry can.
+  var CURRENT_ID = (HOST === 'agentrust-io.com' && PATH.indexOf('/quickstart') === 0) ? 'quickstart'
+    : (HOST === 'agentrust-io.com' && PATH.indexOf('/demos') === 0) ? 'demos'
     : (HOST === 'agentrust-io.com' && PATH.indexOf('/telemetry') === 0) ? 'telemetry'
+    : (HOST === 'agentrust-io.com' && PATH.indexOf('/extensions/ca2a') === 0) ? 'ca2a'
     : HOST === 'agentrust-io.com' ? 'home'
     : HOST.indexOf('trace.') === 0    ? 'trace'
     : HOST.indexOf('manifest.') === 0 ? 'manifest'
@@ -35,47 +44,52 @@
 
   var CSS = [
     '#' + NAV_ID + '{',
-    '  background:#15294B;',
-    '  border-bottom:2px solid #B91C1C;',
-    '  height:36px;',
+    '  background:var(--at-paper,#f3f0e8);',
+    '  border-bottom:1px solid var(--at-line,rgba(23,23,20,.18));',
+    '  height:34px;',
     '  display:flex;',
-    '  align-items:center;',
-    '  padding:0 12px;',
+    '  align-items:stretch;',
+    '  padding:0 clamp(.5rem,2vw,1.25rem);',
     '  overflow-x:auto;',
     '  overflow-y:hidden;',
     '  white-space:nowrap;',
     '  position:relative;',
     '  z-index:10000;',
-    '  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;',
-    '  font-size:11.5px;',
-    '  gap:0;',
+    '  font-family:var(--at-sans,Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif);',
+    '  font-size:11px;',
     '  scrollbar-width:none;',
     '}',
     '#' + NAV_ID + '::-webkit-scrollbar{display:none}',
     '#' + NAV_ID + ' a{',
     '  display:inline-flex;',
     '  align-items:center;',
-    '  gap:5px;',
-    '  padding:0 11px;',
-    '  height:36px;',
-    '  color:rgba(255,255,255,0.58);',
+    '  padding:0 10px;',
+    '  color:var(--at-muted,#66645d);',
     '  text-decoration:none;',
-    '  font-weight:400;',
-    '  letter-spacing:0.01em;',
+    '  font-weight:650;',
+    '  letter-spacing:.07em;',
+    '  text-transform:uppercase;',
     '  border-bottom:2px solid transparent;',
     '  transition:color .12s,border-color .12s;',
     '  flex-shrink:0;',
     '}',
-    '#' + NAV_ID + ' a:hover{color:#fff}',
-    '#' + NAV_ID + ' a.active{color:#fff;font-weight:600;border-bottom-color:#B91C1C}',
-    '#' + NAV_ID + ' .dot{',
-    '  width:6px;height:6px;border-radius:50%;flex-shrink:0;display:inline-block;',
+    '#' + NAV_ID + ' a:hover{color:var(--at-ink,#171714)}',
+    '#' + NAV_ID + ' a.active{',
+    '  color:var(--at-ink,#171714);',
+    '  font-weight:750;',
+    '  border-bottom-color:var(--at-red,#c52233);',
     '}',
     '#' + NAV_ID + ' .sep{',
-    '  width:1px;height:16px;background:rgba(255,255,255,0.1);flex-shrink:0;',
+    '  width:1px;',
+    '  margin:9px 8px;',
+    '  background:var(--at-line,rgba(23,23,20,.18));',
+    '  flex-shrink:0;',
     '}',
     '#' + NAV_ID + ' .ext-icon{',
-    '  opacity:.45;font-size:9px;line-height:1;',
+    '  margin-left:4px;opacity:.5;font-size:9px;line-height:1;',
+    '}',
+    '@media (prefers-reduced-motion:reduce){',
+    '  #' + NAV_ID + ' a{transition:none}',
     '}'
   ].join('\n');
 
@@ -92,7 +106,6 @@
       var target = s.ext ? ' target="_blank" rel="noopener noreferrer"' : '';
       var extIcon = s.ext ? '<span class="ext-icon">&#8599;</span>' : '';
       html += '<a href="' + s.url + '"' + active + target + '>'
-            + '<span class="dot" style="background:' + s.dot + '"></span>'
             + s.label
             + extIcon
             + '</a>';

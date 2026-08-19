@@ -7,62 +7,118 @@
 <meta name="description" content="AgentTrust Telemetry is a backend-neutral event contract and reference SDK for AI-agent policy, approvals, actions, classified data flow, usage, cost, and verifiable evidence.">
 <link rel="canonical" href="https://agentrust-io.com/telemetry/">
 <meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AgenTrust">
 <meta property="og:title" content="AgentTrust Telemetry">
 <meta property="og:description" content="Portable governance telemetry and verifiable evidence for AI-agent runtimes.">
 <meta property="og:url" content="https://agentrust-io.com/telemetry/">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://agentrust-io.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AgenTrust: open standards for AI agent governance">
+
+<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AgentTrust Telemetry">
 <meta name="twitter:description" content="Portable governance telemetry and verifiable evidence for AI-agent runtimes.">
 <meta name="twitter:image" content="https://agentrust-io.com/og.png">
+
+<!-- Icons -->
 <link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="stylesheet" href="/design-system.css">
-<style>
-*{box-sizing:border-box}body{margin:0;background:var(--at-paper);color:var(--at-ink);font-family:var(--at-sans);line-height:1.65}a{color:inherit}header{position:sticky;top:0;z-index:10;padding:1rem clamp(1.25rem,4vw,3rem);background:rgba(243,240,232,.94);border-bottom:1px solid var(--at-line);backdrop-filter:blur(14px)}header a{text-decoration:none;font-size:.92rem;font-weight:750;letter-spacing:-.02em}.hero{padding:clamp(6rem,12vw,10rem) clamp(1.25rem,4vw,3rem) clamp(5rem,9vw,8rem);border-bottom:1px solid var(--at-line)}.inner,main{max-width:1120px;margin:0 auto}.eyebrow,.label{color:var(--at-red);font-size:.7rem;font-weight:750;letter-spacing:.12em;text-transform:uppercase}.hero h1{max-width:12ch;margin:.8rem 0 1.8rem;font-size:clamp(3.6rem,8vw,7rem);font-weight:650;line-height:.93;letter-spacing:-.065em}.hero p{max-width:690px;margin:0;color:var(--at-muted);font-family:var(--at-serif);font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.47}.status{display:inline-flex;margin-top:2rem;padding:.48rem .75rem;border:1px solid var(--at-line);border-radius:999px;background:var(--at-white);font-size:.72rem;font-weight:700;letter-spacing:.03em}main{padding:0 clamp(1.25rem,4vw,3rem)}section{padding:clamp(4.5rem,8vw,7.5rem) 0;border-bottom:1px solid var(--at-line)}section:last-child{border-bottom:0}h2{max-width:15ch;margin:.45rem 0 1.4rem;font-family:var(--at-serif);font-size:clamp(2.25rem,4.6vw,4.35rem);font-weight:500;line-height:1.03;letter-spacing:-.045em}h3{margin:.1rem 0 .5rem;font-size:1.1rem;letter-spacing:-.025em}section>p{max-width:760px;color:var(--at-muted);font-size:1.02rem}.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:2.25rem;overflow:hidden;border:1px solid var(--at-line);border-radius:var(--at-radius);background:var(--at-line)}.flow div{min-height:150px;padding:1.35rem;background:var(--at-white)}.flow strong{display:block;margin-bottom:.35rem;font-size:.94rem}.flow span{color:var(--at-muted);font-size:.84rem}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:2.25rem}.card{min-height:190px;padding:1.5rem;border:1px solid var(--at-line);border-radius:var(--at-radius);background:var(--at-white);transition:transform .2s ease,box-shadow .2s ease}.card:hover{transform:translateY(-3px);box-shadow:var(--at-shadow)}.card:before{content:"";display:block;width:28px;height:3px;margin-bottom:1.5rem;background:var(--at-red)}.card p{margin:.35rem 0 0;color:var(--at-muted);font-size:.92rem}.callout{max-width:820px;margin:2rem 0;padding:1.2rem 1.35rem;border:1px solid var(--at-line);border-left:4px solid var(--at-navy);border-radius:0 14px 14px 0;background:var(--at-white)}.actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:2rem}.button{display:inline-flex;min-height:46px;align-items:center;padding:.65rem 1.1rem;border:1px solid var(--at-ink);border-radius:999px;background:var(--at-ink);color:var(--at-paper);font-size:.78rem;font-weight:750;text-decoration:none}.button:hover{background:var(--at-red);border-color:var(--at-red);color:#fff}.button.secondary{background:transparent;color:var(--at-ink);border-color:var(--at-line)}.button.secondary:hover{background:var(--at-ink);color:var(--at-paper)}pre{max-width:820px;overflow:auto;padding:1.25rem;border:1px solid var(--at-line);border-radius:14px;background:var(--at-ink);color:var(--at-paper)}code{font-family:var(--at-mono)}footer{padding:2.25rem 1.5rem;background:var(--at-ink);color:var(--at-paper);text-align:center;font-size:.82rem}footer a{text-underline-offset:.18em}@media(max-width:700px){.flow,.grid{grid-template-columns:1fr}.hero{padding-top:4.5rem}.hero h1{font-size:clamp(3rem,15vw,4.4rem)}.hero h1 br{display:none}.flow div{min-height:auto}.card{min-height:auto}section{padding:4rem 0}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
-</style>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<link rel="stylesheet" href="/design-system.css?v=6">
 </head>
-<body class="telemetry-page">
-<header><a href="/">agentrust.io</a></header>
-<div class="hero"><div class="inner">
-  <div class="eyebrow">Observe · Correlate · Prove</div>
+<body class="at-page">
+
+<header class="site-header">
+  <a class="wordmark" href="/">agentrust<span>.io</span></a>
+  <nav>
+    <a href="#fit">Where it fits</a>
+    <a href="#contract">Contract</a>
+    <a href="#adopt">Adopt it</a>
+    <a class="cta" href="https://github.com/agentrust-io/agentrust-telemetry">Repository</a>
+  </nav>
+</header>
+
+<div class="hero"><div class="wrap">
+  <span class="eyebrow">Observe · Correlate · Prove</span>
   <h1>Portable governance telemetry<br>for AI-agent runtimes</h1>
-  <p>Normalize the governance facts around an agent run—policy decisions, approvals, actions, classified data flow, usage, cost, and evidence—without replacing your OpenTelemetry stack, policy engine, framework, or UI.</p>
-  <span class="status">Alpha contract 0.1.0-alpha.1 · MIT licensed</span>
+  <p class="sub">Normalize the governance facts around an agent run: policy decisions, approvals, actions, classified data flow, usage, cost, and evidence, without replacing your OpenTelemetry stack, policy engine, framework, or UI.</p>
+  <div><span class="status">Alpha contract 0.1.0-alpha.1 · MIT licensed</span></div>
 </div></div>
+
 <main>
-<section>
-  <div class="label">Where it fits</div><h2>One correlation layer across the trust chain</h2>
+
+<section id="fit">
+  <span class="label">Where it fits</span>
+  <h2>One correlation layer across the trust chain</h2>
   <p>AgentTrust Telemetry sits across the four AgenTrust standards. It records runtime facts in a backend-neutral contract, correlates them with the application's existing OpenTelemetry context, and can finalize a complete durable evidence set into a TRACE record.</p>
-  <div class="flow"><div><strong>Manifest</strong><span>Declared identity and authority</span></div><div><strong>cMCP / cA2A</strong><span>Policy and delegated actions</span></div><div><strong>Telemetry</strong><span>Correlated governance facts</span></div><div><strong>TRACE</strong><span>Verifiable evidence</span></div></div>
-</section>
-<section>
-  <div class="label">Contract</div><h2>The events an enterprise integration needs</h2>
-  <div class="grid">
-    <div class="card"><h3>Policy and approval</h3><p>Allow, deny, challenge, error, enforcement mode, policy identity, human approval requests, resolutions, and execution outcome.</p></div>
-    <div class="card"><h3>Actions and data flow</h3><p>Resolved tool, MCP, A2A, file, HTTP, and database attempts plus metadata-only source-to-destination classification.</p></div>
-    <div class="card"><h3>Usage and cost</h3><p>Per-call facts and conservative per-agent or per-workflow rollups, with explicit cost provenance and no invented prices.</p></div>
-    <div class="card"><h3>Evidence lifecycle</h3><p>Run checkpoints and completeness state kept separate from lossy operational telemetry, with optional TRACE finalization.</p></div>
+  <div class="flow">
+    <div><span class="n">01</span><strong>Manifest</strong><span>Declared identity and authority</span></div>
+    <div><span class="n">02</span><strong>cMCP / cA2A</strong><span>Policy and delegated actions</span></div>
+    <div class="marked"><span class="n">03</span><strong>Telemetry</strong><span>Correlated governance facts</span></div>
+    <div><span class="n">04</span><strong>TRACE</strong><span>Verifiable evidence</span></div>
   </div>
 </section>
-<section>
-  <div class="label">Adopt it</div><h2>Keep the stack you already operate</h2>
+
+<section id="contract">
+  <span class="label">Contract</span>
+  <h2>The events an enterprise integration needs</h2>
+  <div class="grid">
+    <div class="card ruled"><h3>Policy and approval</h3><p>Allow, deny, challenge, error, enforcement mode, policy identity, human approval requests, resolutions, and execution outcome.</p></div>
+    <div class="card ruled"><h3>Actions and data flow</h3><p>Resolved tool, MCP, A2A, file, HTTP, and database attempts plus metadata-only source-to-destination classification.</p></div>
+    <div class="card ruled"><h3>Usage and cost</h3><p>Per-call facts and conservative per-agent or per-workflow rollups, with explicit cost provenance and no invented prices.</p></div>
+    <div class="card ruled"><h3>Evidence lifecycle</h3><p>Run checkpoints and completeness state kept separate from lossy operational telemetry, with optional TRACE finalization.</p></div>
+  </div>
+</section>
+
+<section id="adopt">
+  <span class="label">Adopt it</span>
+  <h2>Keep the stack you already operate</h2>
   <p>The reference SDK uses the caller's current OpenTelemetry span. It does not install a provider, processor, exporter, collector, or global propagator. W3C trace context and durable run, workflow, and agent identifiers preserve relationships across process boundaries.</p>
-  <div class="callout"><strong>Privacy boundary:</strong> the metadata-only profile prohibits raw prompts, outputs, source code, tool arguments or results, credentials, and authorization tokens. Propagated identifiers are correlation data, not proof of identity or authorization.</div>
+  <div class="callout"><p><strong>Privacy boundary:</strong> the metadata-only profile prohibits raw prompts, outputs, source code, tool arguments or results, credentials, and authorization tokens. Propagated identifiers are correlation data, not proof of identity or authorization.</p></div>
   <p>Until the first registry release, install the Python SDK from a checkout:</p>
   <pre><code>git clone https://github.com/agentrust-io/agentrust-telemetry
 cd agentrust-telemetry
 python -m pip install -e ".[otel]"</code></pre>
-  <p>The TypeScript reference SDK is in <code>packages/typescript</code>. PyPI and npm package publication is being prepared; this page will switch to registry install commands after the first release.</p>
+  <p style="margin-top:1.25rem;">The TypeScript reference SDK is in <code>packages/typescript</code>. PyPI and npm package publication is being prepared; this page will switch to registry install commands after the first release.</p>
 </section>
-<section>
-  <div class="label">Boundaries</div><h2>What it deliberately does not become</h2>
+
+<section id="boundaries">
+  <span class="label">Boundaries</span>
+  <h2>What it deliberately does not become</h2>
   <p>It is not a tracing backend, dashboard, policy engine, approval workflow, agent framework, model-price catalog, or duplicate implementation of OpenTelemetry GenAI instrumentation. Operational spans may be sampled or dropped; complete audit evidence must be accumulated durably before any TRACE claim is made.</p>
-  <div class="actions"><a class="button" href="https://github.com/agentrust-io/agentrust-telemetry">Read the repository</a><a class="button secondary" href="https://github.com/agentrust-io/agentrust-telemetry/blob/main/docs/architecture.md">Architecture</a><a class="button secondary" href="https://github.com/agentrust-io/agentrust-telemetry/issues">Integration questions</a></div>
+  <div class="actions">
+    <a class="button" href="https://github.com/agentrust-io/agentrust-telemetry">Read the repository</a>
+    <a class="button secondary" href="https://github.com/agentrust-io/agentrust-telemetry/blob/main/docs/architecture.md">Architecture</a>
+    <a class="button secondary" href="https://github.com/agentrust-io/agentrust-telemetry/issues">Integration questions</a>
+  </div>
 </section>
+
 </main>
-<footer><a href="/">AgenTrust</a> · <a href="/demos/">Demos</a> · <a href="https://github.com/agentrust-io">GitHub</a></footer>
+
+<footer class="site-footer"><div class="wrap">
+  <div class="foot-in">
+    <div class="foot-brand">
+      <a class="wordmark" href="/">AgenTrust</a>
+      <div class="tagline">Open standards for AI agent governance</div>
+    </div>
+    <div class="foot-links">
+      <a href="/">Home</a>
+      <a href="/quickstart/">Quickstart</a>
+      <a href="/demos/">Demos</a>
+      <a href="https://github.com/agentrust-io">GitHub</a>
+    </div>
+  </div>
+  <div class="foot-legal">© 2026 AgenTrust Contributors · MIT licensed · agentrust-io.com</div>
+</div></footer>
+
 <script src="/supernav.js"></script>
 </body>
 </html>

@@ -32,166 +32,56 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-<style>
-  :root {
-    --bg:       #F2F4F7;
-    --surface:  #FFFFFF;
-    --border:   #D0D9E3;
-    --navy:     #15294B;
-    --body:     #2E4057;
-    --muted:    #6B7F94;
-    --red:      #B91C1C;
-    --blue:     #1B5EA0;
-    --green:    #1B7A4A;
-    --amber:    #C17817;
-    --purple:   #6D28D9;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--body);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
-  header.top {
-    background: var(--navy);
-    border-bottom: 3px solid var(--red);
-    padding: 1rem 2rem;
-  }
-  header.top a.wordmark {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-  }
-  header.top a.wordmark span { color: rgba(255,255,255,0.5); font-weight: 400; }
-
-  .hero { background: var(--navy); color: #fff; padding: 3.25rem 2rem 3rem; }
-  .hero-inner { max-width: 900px; margin: 0 auto; }
-  .eyebrow {
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; color: rgba(255,255,255,0.55); margin: 0 0 0.6rem;
-  }
-  .hero h1 {
-    font-size: 2.125rem; line-height: 1.2; letter-spacing: -0.025em;
-    margin: 0 0 1rem; color: #fff;
-  }
-  .hero p { color: rgba(255,255,255,0.85); margin: 0 0 1rem; max-width: 700px; }
-  .hero code {
-    background: rgba(255,255,255,0.12); color: #fff;
-    padding: 0.1em 0.35em; border-radius: 3px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em;
-  }
-
-  main { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 4rem; }
-  .section-label {
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--muted); margin: 0 0 0.4rem;
-  }
-  h2 { color: var(--navy); font-size: 1.5rem; letter-spacing: -0.02em; margin: 0 0 0.75rem; }
-  h3 { color: var(--navy); font-size: 1.0625rem; margin: 0 0 0.4rem; letter-spacing: -0.01em; }
-  p { margin: 0 0 1rem; }
-  a { color: var(--red); }
-  .lead { max-width: 720px; }
-
-  .demo {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.25rem 1.375rem;
-    margin: 0 0 1rem;
-  }
-  .demo-head {
-    display: flex; flex-wrap: wrap; align-items: baseline;
-    gap: 0.5rem 0.75rem; margin-bottom: 0.5rem;
-  }
-  .demo-num {
-    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em;
-    text-transform: uppercase; color: #fff; background: var(--navy);
-    padding: 0.15rem 0.45rem; border-radius: 3px; white-space: nowrap;
-  }
-  .demo-time { font-size: 0.8rem; color: var(--muted); }
-  .demo p { font-size: 0.9375rem; margin: 0 0 0.75rem; }
-  .demo ul { font-size: 0.9375rem; margin: 0 0 0.875rem; padding-left: 1.25rem; }
-  .demo li { margin-bottom: 0.3rem; }
-  .demo pre {
-    background: var(--navy); color: #E6EDF6; margin: 0;
-    padding: 0.7rem 0.9rem; border-radius: 6px; overflow-x: auto;
-    font-size: 0.85rem; line-height: 1.5;
-  }
-  pre { overflow-x: auto; }
-  code {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 0.9em; background: #E3E9F0; padding: 0.1em 0.35em; border-radius: 3px;
-  }
-  pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
-
-  .callout {
-    background: var(--surface); border: 1px solid var(--border);
-    border-left: 3px solid var(--amber); border-radius: 6px;
-    padding: 1rem 1.125rem; font-size: 0.9375rem; margin: 0 0 2rem;
-  }
-  .callout strong { color: var(--navy); }
-  .quickstart {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 8px; padding: 1.25rem 1.375rem; margin: 0 0 2.5rem;
-  }
-  .quickstart pre { background: var(--navy); color: #E6EDF6; padding: 0.85rem 1rem; border-radius: 6px; font-size: 0.85rem; }
-  hr.divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
-
-  footer {
-    border-top: 1px solid var(--border); padding: 1.5rem 2rem;
-    font-size: 0.875rem; color: var(--muted); text-align: center;
-  }
-  footer a { color: var(--body); }
-
-  @media (max-width: 640px) {
-    .hero { padding: 2.25rem 1.25rem 2rem; }
-    .hero h1 { font-size: 1.625rem; }
-    main { padding: 2rem 1.25rem 3rem; }
-    header.top { padding: 0.875rem 1.25rem; }
-  }
-</style>
+<link rel="stylesheet" href="/design-system.css?v=6">
 </head>
-<body>
+<body class="at-page">
 
-<header class="top">
+<header class="site-header">
   <a class="wordmark" href="/">agentrust<span>.io</span></a>
+  <nav>
+    <a href="#weights">Model weights</a>
+    <a href="#governance">Agent governance</a>
+    <a href="/quickstart/">Quickstart</a>
+    <a class="cta" href="https://github.com/agentrust-io/demos">Get the demos</a>
+  </nav>
 </header>
 
-<div class="hero">
-  <div class="hero-inner">
-    <p class="eyebrow">Runnable Demos</p>
-    <h1>Don't take the spec on trust.<br>Run it.</h1>
-    <p>Ten demos, about twelve minutes end to end. Four cover custody of model weights. Five govern what an agent does at the tool boundary. One governs model calls through an OpenAI-compatible endpoint.</p>
-    <p>Everything runs in software mode with <code>CMCP_DEV_MODE=1</code>. No confidential-computing hardware, no cloud account, no signup.</p>
-  </div>
-</div>
+<div class="hero"><div class="wrap">
+  <span class="eyebrow">Runnable demos</span>
+  <h1>Don't take the spec<br>on trust. <em>Run it.</em></h1>
+  <p class="sub">Ten demos, about twelve minutes end to end. Four cover custody of model weights. Five govern what an agent does at the tool boundary. One governs model calls through an OpenAI-compatible endpoint.</p>
+  <div><span class="status">Software mode · <code>CMCP_DEV_MODE=1</code> · no special hardware</span></div>
+</div></div>
 
 <main>
 
-  <div class="quickstart">
-    <h3>Quick start</h3>
-    <pre><code>git clone https://github.com/agentrust-io/demos &amp;&amp; cd demos
+<section id="start">
+  <span class="label">Quick start</span>
+  <h2>Clone it and run all ten</h2>
+  <p>No confidential-computing hardware, no cloud account, no signup. Everything runs in software mode.</p>
+  <div class="code">
+    <div class="code-head"><span class="code-label">Terminal</span></div>
+<pre>git clone https://github.com/agentrust-io/demos &amp;&amp; cd demos
 pip install -r requirements.txt
 export CMCP_BEARER_TOKEN=demo-token
-python demo.py            # all ten, pausing before each
-python demo.py 6          # just demo 6</code></pre>
-    <p style="font-size:0.875rem;color:var(--muted);margin:0.875rem 0 0;">The requirements install cMCP for demos 1 to 5, Weight Custody Manifest for demos 6 to 9, and the OpenAI client for demo 10. Source: <a href="https://github.com/agentrust-io/demos">github.com/agentrust-io/demos</a>.</p>
+python demo.py            <span class="c"># all ten, pausing before each</span>
+python demo.py 6          <span class="c"># just demo 6</span></pre>
   </div>
+  <p>The requirements install cMCP for demos 1 to 5, Weight Custody Manifest for demos 6 to 9, and the OpenAI client for demo 10. Source: <a href="https://github.com/agentrust-io/demos">github.com/agentrust-io/demos</a>.</p>
+</section>
 
-  <p class="section-label">Model Weights</p>
+<section id="weights">
+  <span class="label">Model weights</span>
   <h2>Securing model weights</h2>
-  <p class="lead">A fine-tune trained on your own data is IP that never existed publicly, and the weights are where it lives. These four demos treat the weights as the asset: bind the exact checkpoint, release the decryption key only into a serving stack that proves what it is, and keep the lineage of every derivative verifiable back to its base.</p>
+  <p class="lead-serif">A fine-tune trained on your own data is IP that never existed publicly, and the weights are where it lives. These four demos treat the weights as the asset: bind the exact checkpoint, release the decryption key only into a serving stack that proves what it is, and keep the lineage of every derivative verifiable back to its base.</p>
 
-  <div class="callout">
-    <strong>The honest limit, stated up front.</strong> Against an adversary who physically owns the silicon, no current confidential-computing platform is custody-grade. <a href="https://tee.fail/">TEE.fail</a> and BadRAM are the reason. What these demos give you is accountability-grade custody under an operator-trust model, plus a threshold scheme (demo 9) for when one operator's word is not enough. Anyone selling you weight protection "without operator trust assumptions" is overstating what the hardware does.
+  <div class="callout caution">
+    <p><strong>The honest limit, stated up front.</strong> Against an adversary who physically owns the silicon, no current confidential-computing platform is custody-grade. <a href="https://tee.fail/">TEE.fail</a> and BadRAM are the reason. What these demos give you is accountability-grade custody under an operator-trust model, plus a threshold scheme (demo 9) for when one operator's word is not enough. Anyone selling you weight protection "without operator trust assumptions" is overstating what the hardware does.</p>
   </div>
 
-  <div class="demo">
-    <div class="demo-head"><span class="demo-num">Demo 6</span><strong>Weight custody</strong><span class="demo-time">~60 seconds</span></div>
+  <div class="stack">
+  <div class="card static">
+    <div class="card-head"><span class="tag">Demo 6</span> <strong>Weight custody</strong> <span class="meta">~60 seconds</span></div>
     <p>A Weight Custody Manifest binds the checkpoint's exact <code>weights_hash</code>, gates the decryption key behind attestation, and carries the fine-tune's lineage.</p>
     <ul>
       <li>a manifest jointly signed by builder and custodian binds the exact <code>weights_hash</code>, and the signature verifies</li>
@@ -202,8 +92,8 @@ python demo.py 6          # just demo 6</code></pre>
     <pre><code>python demo-06-weight-custody/run.py</code></pre>
   </div>
 
-  <div class="demo">
-    <div class="demo-head"><span class="demo-num">Demo 7</span><strong>Closed-weight custody</strong><span class="demo-time">~60 seconds</span></div>
+  <div class="card static">
+    <div class="card-head"><span class="tag">Demo 7</span> <strong>Closed-weight custody</strong> <span class="meta">~60 seconds</span></div>
     <p>The mirror of demo 6. Here the base model is closed, a frontier lab shipping weights into a customer's or a sovereign's own enclave, so the weights themselves are the secret and the job is keeping the key off the operator.</p>
     <ul>
       <li>a manifest with <code>base_confidentiality: confidential</code>, jointly signed by lab and customer</li>
@@ -214,8 +104,8 @@ python demo.py 6          # just demo 6</code></pre>
     <pre><code>python demo-07-closed-weight/run.py</code></pre>
   </div>
 
-  <div class="demo">
-    <div class="demo-head"><span class="demo-num">Demo 8</span><strong>Derivative lineage</strong><span class="demo-time">~60 seconds</span></div>
+  <div class="card static">
+    <div class="card-head"><span class="tag">Demo 8</span> <strong>Derivative lineage</strong> <span class="meta">~60 seconds</span></div>
     <p>Fine-tune inside the enclave on private data and the result is novel IP. It gets its own signed manifest with a <code>derived_from</code> pointer and a <code>rights_holder</code> split.</p>
     <ul>
       <li>a base permitting <code>fine-tune-only</code>, and a derivative permitting <code>none</code></li>
@@ -226,8 +116,8 @@ python demo.py 6          # just demo 6</code></pre>
     <pre><code>python demo-08-derivative-lineage/run.py</code></pre>
   </div>
 
-  <div class="demo">
-    <div class="demo-head"><span class="demo-num">Demo 9</span><strong>Sovereign threshold</strong><span class="demo-time">~90 seconds</span></div>
+  <div class="card static">
+    <div class="card-head"><span class="tag">Demo 9</span> <strong>Sovereign threshold</strong> <span class="meta">~90 seconds</span></div>
     <p>This is the answer to the limit in the callout above. If a hardware owner who forges one attestation could release a key, then never let one release be enough.</p>
     <ul>
       <li>the model key is split <strong>2-of-3</strong> across the lab, the sovereign authority, and the customer</li>
@@ -237,15 +127,17 @@ python demo.py 6          # just demo 6</code></pre>
     </ul>
     <pre><code>python demo-09-sovereign-threshold/run.py</code></pre>
   </div>
+  </div>
+</section>
 
-  <hr class="divider">
-
-  <p class="section-label">Agent Governance</p>
+<section id="governance">
+  <span class="label">Agent governance</span>
   <h2>Governing what an agent does</h2>
-  <p class="lead">Demos 6 to 9 protect the weights. These five govern the tool boundary: what the agent is allowed to call, under which workflow, with what compliance attributes, and what evidence survives afterwards. Cedar policy is enforced on every call and each session closes with a signed TRACE claim.</p>
+  <p class="lead-serif">Demos 6 to 9 protect the weights. These five govern the tool boundary: what the agent is allowed to call, under which workflow, with what compliance attributes, and what evidence survives afterwards. Cedar policy is enforced on every call and each session closes with a signed TRACE claim.</p>
 
-  <div class="demo">
-    <div class="demo-head"><span class="demo-num">Demo 1</span><strong>cMCP in action</strong><span class="demo-time">~90 seconds</span></div>
+  <div class="stack">
+  <div class="card static">
+    <div class="card-head"><span class="tag">Demo 1</span> <strong>cMCP in action</strong> <span class="meta">~90 seconds</span></div>
     <p>An agent calls three tools through the cMCP gateway. Cedar is enforced on every call, and the session closes with a signed TRACE claim carrying the policy bundle hash.</p>
     <ul>
       <li><code>write_file</code> and <code>read_file</code> allowed, real files written to <code>workspace/</code></li>
@@ -256,8 +148,8 @@ python demo.py 6          # just demo 6</code></pre>
     <pre><code>python demo-01-cmcp-in-action/run.py</code></pre>
   </div>
 
-  <div class="demo">
-    <div class="demo-head"><span class="demo-num">Demo 2</span><strong>Policy swap is an attestation failure</strong><span class="demo-time">~90 seconds</span></div>
+  <div class="card static">
+    <div class="card-head"><span class="tag">Demo 2</span> <strong>Policy swap is an attestation failure</strong> <span class="meta">~90 seconds</span></div>
     <p>The operator quietly loads a different policy bundle. The claim's hash changes, and a verifier pinned to the old hash rejects it.</p>
     <ul>
       <li>v1 and v2 bundle hashes printed, visibly different</li>
@@ -268,8 +160,8 @@ python demo.py 6          # just demo 6</code></pre>
     <pre><code>python demo-02-policy-swap/run.py</code></pre>
   </div>
 
-  <div class="demo">
-    <div class="demo-head"><span class="demo-num">Demo 3</span><strong>Offline TRACE verification</strong><span class="demo-time">~60 seconds</span></div>
+  <div class="card static">
+    <div class="card-head"><span class="tag">Demo 3</span> <strong>Offline TRACE verification</strong> <span class="meta">~60 seconds</span></div>
     <p>Verify the signed claim with no gateway, no server, and no network call at all.</p>
     <ul>
       <li>schema, signature, policy hash, catalog hash and audit chain all check out</li>
@@ -280,8 +172,8 @@ python demo.py 6          # just demo 6</code></pre>
     <pre><code>python demo-03-offline-trace/run.py</code></pre>
   </div>
 
-  <div class="demo">
-    <div class="demo-head"><span class="demo-num">Demo 4</span><strong>Context-aware enforcement</strong><span class="demo-time">~90 seconds</span></div>
+  <div class="card static">
+    <div class="card-head"><span class="tag">Demo 4</span> <strong>Context-aware enforcement</strong> <span class="meta">~90 seconds</span></div>
     <p>The same tool, the same arguments, allowed in one workflow and denied in another. Authorization tracks the declared call context, not the tool's name and not the model's stated intent.</p>
     <ul>
       <li><code>write_file</code> under <code>workflow_id="invoice-run"</code>: allowed</li>
@@ -292,8 +184,8 @@ python demo.py 6          # just demo 6</code></pre>
     <pre><code>python demo-04-context-enforcement/run.py</code></pre>
   </div>
 
-  <div class="demo">
-    <div class="demo-head"><span class="demo-num">Demo 5</span><strong>Attribute-based enforcement</strong><span class="demo-time">~90 seconds</span></div>
+  <div class="card static">
+    <div class="card-head"><span class="tag">Demo 5</span> <strong>Attribute-based enforcement</strong> <span class="meta">~90 seconds</span></div>
     <p>Deny on the tool's compliance attributes rather than its name. A tool that is not BAA-covered is refused by one guardrail rule, whatever it is called.</p>
     <ul>
       <li>tools tagged <code>compliance_domain=clinical</code>, <code>baa_covered=true</code>: allowed</li>
@@ -304,8 +196,8 @@ python demo.py 6          # just demo 6</code></pre>
     <pre><code>python demo-05-compliance-domain/run.py</code></pre>
   </div>
 
-  <div class="demo">
-    <div class="demo-head"><span class="demo-num">Demo 10</span><strong>Governed model calls</strong><span class="demo-time">~90 seconds</span></div>
+  <div class="card static">
+    <div class="card-head"><span class="tag">Demo 10</span> <strong>Governed model calls</strong> <span class="meta">~90 seconds</span></div>
     <p>Put policy in front of an OpenAI-compatible model endpoint and route each request according to its data class.</p>
     <ul>
       <li>public prompts can use the shared model route</li>
@@ -315,9 +207,11 @@ python demo.py 6          # just demo 6</code></pre>
     </ul>
     <pre><code>python demo-10-model-gateway/run.py</code></pre>
   </div>
+  </div>
+</section>
 
-  <hr class="divider">
-
+<section id="next">
+  <span class="label">Keep going</span>
   <h2>Where to go next</h2>
   <ul>
     <li><a href="https://github.com/agentrust-io/demos">Demo source on GitHub</a>, including a web console and a plain JSON-RPC test server</li>
@@ -326,12 +220,30 @@ python demo.py 6          # just demo 6</code></pre>
     <li><a href="https://cmcp.agentrust-io.com">cMCP</a> and <a href="https://trace.agentrust-io.com">TRACE</a> specifications</li>
     <li><a href="/quickstart/">The ten-minute cMCP quickstart</a> if you would rather write the policy yourself</li>
   </ul>
+  <div class="actions">
+    <a class="button" href="https://github.com/agentrust-io/demos">Clone the demos</a>
+    <a class="button secondary" href="/quickstart/">Write the policy yourself</a>
+  </div>
+</section>
 
 </main>
 
-<footer>
-  <a href="/">AgenTrust</a> &middot; <a href="/quickstart/">Quickstart</a> &middot; <a href="https://github.com/agentrust-io">GitHub</a>
-</footer>
+<footer class="site-footer"><div class="wrap">
+  <div class="foot-in">
+    <div class="foot-brand">
+      <a class="wordmark" href="/">AgenTrust</a>
+      <div class="tagline">Open standards for AI agent governance</div>
+    </div>
+    <div class="foot-links">
+      <a href="/">Home</a>
+      <a href="/quickstart/">Quickstart</a>
+      <a href="/telemetry/">Telemetry</a>
+      <a href="https://github.com/agentrust-io">GitHub</a>
+    </div>
+  </div>
+  <div class="foot-legal">© 2026 AgenTrust Contributors · MIT licensed · agentrust-io.com</div>
+</div></footer>
 
+<script src="/supernav.js"></script>
 </body>
 </html>
