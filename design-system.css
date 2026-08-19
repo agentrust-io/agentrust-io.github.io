@@ -318,10 +318,68 @@ body,
 .agentrust-hub .trust-note { color: var(--at-muted); }
 .agentrust-hub footer { background: var(--at-ink); border-top: 0; }
 
+/* Adoption, partnership, governance, and compliance evidence */
+.agentrust-hub .adoption-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.agentrust-hub .adoption-card,
+.agentrust-hub .governance-card,
+.agentrust-hub .playbook-card,
+.agentrust-hub .partner-card {
+  border: 1px solid var(--at-line);
+  border-radius: var(--at-radius);
+  background: var(--at-white);
+}
+.agentrust-hub .adoption-card { min-height: 220px; padding: 1.6rem; }
+.agentrust-hub .adopter-mark { min-height: 42px; color: var(--at-ink); font-size: 1.35rem; font-weight: 750; letter-spacing: -0.045em; }
+.agentrust-hub .servicenow-mark { color: #16825d; }
+.agentrust-hub .uae-mark { max-width: 13ch; font-family: var(--at-serif); font-size: 1.1rem; font-weight: 600; line-height: 1.05; }
+.agentrust-hub .accenture-mark { color: #9b2cff; font-size: 1.55rem; }
+.agentrust-hub .microsoft-mark { color: #505050; }
+.agentrust-hub .adopter-stage,
+.agentrust-hub .governance-role,
+.agentrust-hub .partner-kicker {
+  margin: 1.6rem 0 .55rem;
+  color: var(--at-red);
+  font-size: .66rem;
+  font-weight: 750;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.agentrust-hub .adoption-card p,
+.agentrust-hub .governance-card p,
+.agentrust-hub .partner-card p { margin: 0; color: var(--at-muted); font-size: .9rem; line-height: 1.6; }
+.agentrust-hub .partner-card { display: grid; grid-template-columns: minmax(220px, .75fr) 1.25fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; margin-top: 1rem; padding: clamp(1.8rem, 4vw, 3rem); }
+.agentrust-hub .partner-logo-wrap { padding: 1.25rem; border-radius: 12px; background: var(--at-paper); }
+.agentrust-hub .partner-logo-wrap img { display: block; width: 100%; height: auto; }
+.agentrust-hub .partner-kicker { margin-top: 0; }
+.agentrust-hub .partner-card h3 { margin: 0 0 .7rem; color: var(--at-ink); font-family: var(--at-serif); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 500; line-height: 1.05; }
+.agentrust-hub .governance-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
+.agentrust-hub .governance-card { min-height: 240px; padding: 1.5rem; }
+.agentrust-hub .governance-card h3 { margin: 0 0 .6rem; color: var(--at-ink); font-size: 1.1rem; }
+.agentrust-hub .open-seat { border-style: dashed; background: transparent; }
+.agentrust-hub .governance-actions { margin-top: 1.5rem; border-top: 1px solid var(--at-line); }
+.agentrust-hub .path-link { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--at-line); color: var(--at-ink); font-size: .86rem; font-weight: 650; text-decoration: none; }
+.agentrust-hub .path-link:hover { color: var(--at-red); }
+.agentrust-hub .playbook-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; margin-top: 2.5rem; overflow: hidden; border: 1px solid var(--at-line); border-radius: var(--at-radius); background: var(--at-line); }
+.agentrust-hub .playbook-card { display: flex; min-height: 180px; flex-direction: column; padding: 1.25rem; border: 0; border-radius: 0; color: var(--at-ink); text-decoration: none; }
+.agentrust-hub .playbook-card span { color: var(--at-red); font-size: .64rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+.agentrust-hub .playbook-card strong { margin: .7rem 0 auto; font-family: var(--at-serif); font-size: 1.15rem; font-weight: 600; line-height: 1.1; }
+.agentrust-hub .playbook-card small { color: var(--at-muted); font-size: .7rem; }
+.agentrust-hub .playbook-card:hover { background: var(--at-paper-2); }
+
 @media (max-width: 700px) {
   .agentrust-hub .hero h1 { font-size: clamp(2.7rem, 13vw, 4rem); }
   .agentrust-hub .hero-promo { border-radius: 14px; }
   .md-typeset h1 { font-size: clamp(2.35rem, 13vw, 3.6rem); }
+  .agentrust-hub .adoption-grid,
+  .agentrust-hub .governance-grid,
+  .agentrust-hub .partner-card { grid-template-columns: 1fr; }
+  .agentrust-hub .playbook-grid { grid-template-columns: 1fr; }
+  .agentrust-hub .playbook-card { min-height: 130px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
