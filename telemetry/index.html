@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portable Governance Telemetry for AI Agents | AgenTrust</title>
+<meta name="description" content="AgentTrust Telemetry is a backend-neutral event contract and reference SDK for AI-agent policy, approvals, actions, classified data flow, usage, cost, and verifiable evidence.">
+<link rel="canonical" href="https://agentrust-io.com/telemetry/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AgenTrust">
+<meta property="og:title" content="AgentTrust Telemetry">
+<meta property="og:description" content="Portable governance telemetry and verifiable evidence for AI-agent runtimes.">
+<meta property="og:url" content="https://agentrust-io.com/telemetry/">
+<meta property="og:image" content="https://agentrust-io.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AgentTrust Telemetry">
+<meta name="twitter:description" content="Portable governance telemetry and verifiable evidence for AI-agent runtimes.">
+<meta name="twitter:image" content="https://agentrust-io.com/og.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<style>
+:root{--bg:#F2F4F7;--surface:#fff;--border:#D0D9E3;--navy:#15294B;--body:#2E4057;--muted:#6B7F94;--red:#B91C1C;--orange:#EA580C;--green:#1B7A4A;--blue:#1B5EA0}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--body);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.65}header{background:var(--navy);border-bottom:3px solid var(--red);padding:1rem 2rem}header a{color:#fff;text-decoration:none;font-weight:700}.hero{background:var(--navy);color:#fff;padding:3.5rem 2rem}.inner,main{max-width:960px;margin:0 auto}.eyebrow,.label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.eyebrow{color:#FDBA74}.hero h1{font-size:2.5rem;line-height:1.15;letter-spacing:-.03em;margin:.5rem 0 1rem}.hero p{max-width:750px;color:rgba(255,255,255,.82);font-size:1.05rem}.status{display:inline-block;margin-top:.5rem;padding:.25rem .55rem;border:1px solid rgba(255,255,255,.25);border-radius:4px;font-size:.78rem}main{padding:3rem 2rem 4rem}section{margin-bottom:3rem}h2{color:var(--navy);letter-spacing:-.02em;margin:.25rem 0 .8rem}h3{color:var(--navy);margin:.1rem 0 .4rem}a{color:var(--red)}.label{color:var(--orange)}.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:9px;overflow:hidden}.flow div{background:var(--surface);padding:1.1rem}.flow strong{display:block;color:var(--navy)}.flow span{font-size:.85rem;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}.card{background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--orange);border-radius:8px;padding:1.15rem}.card p{margin:.35rem 0 0;font-size:.92rem;color:var(--muted)}.callout{background:#FFF7ED;border:1px solid #FED7AA;border-left:4px solid var(--orange);padding:1rem 1.15rem;border-radius:7px}.actions{display:flex;gap:.75rem;flex-wrap:wrap}.button{display:inline-block;text-decoration:none;font-weight:700;padding:.65rem 1rem;border-radius:6px;background:var(--red);color:#fff}.button.secondary{background:var(--surface);color:var(--navy);border:1px solid var(--border)}pre{background:var(--navy);color:#E6EDF6;padding:1rem;border-radius:7px;overflow:auto}code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}footer{text-align:center;border-top:1px solid var(--border);padding:1.5rem;font-size:.88rem;color:var(--muted)}@media(max-width:700px){.flow,.grid{grid-template-columns:1fr}.hero{padding:2.5rem 1.25rem}.hero h1{font-size:1.9rem}main{padding:2rem 1.25rem}header{padding:.9rem 1.25rem}}
+</style>
+</head>
+<body>
+<header><a href="/">agentrust.io</a></header>
+<div class="hero"><div class="inner">
+  <div class="eyebrow">Observe · Correlate · Prove</div>
+  <h1>Portable governance telemetry<br>for AI-agent runtimes</h1>
+  <p>Normalize the governance facts around an agent run—policy decisions, approvals, actions, classified data flow, usage, cost, and evidence—without replacing your OpenTelemetry stack, policy engine, framework, or UI.</p>
+  <span class="status">Alpha contract 0.1.0-alpha.1 · MIT licensed</span>
+</div></div>
+<main>
+<section>
+  <div class="label">Where it fits</div><h2>One correlation layer across the trust chain</h2>
+  <p>AgentTrust Telemetry sits across the four AgenTrust standards. It records runtime facts in a backend-neutral contract, correlates them with the application's existing OpenTelemetry context, and can finalize a complete durable evidence set into a TRACE record.</p>
+  <div class="flow"><div><strong>Manifest</strong><span>Declared identity and authority</span></div><div><strong>cMCP / cA2A</strong><span>Policy and delegated actions</span></div><div><strong>Telemetry</strong><span>Correlated governance facts</span></div><div><strong>TRACE</strong><span>Verifiable evidence</span></div></div>
+</section>
+<section>
+  <div class="label">Contract</div><h2>The events an enterprise integration needs</h2>
+  <div class="grid">
+    <div class="card"><h3>Policy and approval</h3><p>Allow, deny, challenge, error, enforcement mode, policy identity, human approval requests, resolutions, and execution outcome.</p></div>
+    <div class="card"><h3>Actions and data flow</h3><p>Resolved tool, MCP, A2A, file, HTTP, and database attempts plus metadata-only source-to-destination classification.</p></div>
+    <div class="card"><h3>Usage and cost</h3><p>Per-call facts and conservative per-agent or per-workflow rollups, with explicit cost provenance and no invented prices.</p></div>
+    <div class="card"><h3>Evidence lifecycle</h3><p>Run checkpoints and completeness state kept separate from lossy operational telemetry, with optional TRACE finalization.</p></div>
+  </div>
+</section>
+<section>
+  <div class="label">Adopt it</div><h2>Keep the stack you already operate</h2>
+  <p>The reference SDK uses the caller's current OpenTelemetry span. It does not install a provider, processor, exporter, collector, or global propagator. W3C trace context and durable run, workflow, and agent identifiers preserve relationships across process boundaries.</p>
+  <div class="callout"><strong>Privacy boundary:</strong> the metadata-only profile prohibits raw prompts, outputs, source code, tool arguments or results, credentials, and authorization tokens. Propagated identifiers are correlation data, not proof of identity or authorization.</div>
+  <p>Until the first registry release, install the Python SDK from a checkout:</p>
+  <pre><code>git clone https://github.com/agentrust-io/agentrust-telemetry
+cd agentrust-telemetry
+python -m pip install -e ".[otel]"</code></pre>
+  <p>The TypeScript reference SDK is in <code>packages/typescript</code>. PyPI and npm package publication is being prepared; this page will switch to registry install commands after the first release.</p>
+</section>
+<section>
+  <div class="label">Boundaries</div><h2>What it deliberately does not become</h2>
+  <p>It is not a tracing backend, dashboard, policy engine, approval workflow, agent framework, model-price catalog, or duplicate implementation of OpenTelemetry GenAI instrumentation. Operational spans may be sampled or dropped; complete audit evidence must be accumulated durably before any TRACE claim is made.</p>
+  <div class="actions"><a class="button" href="https://github.com/agentrust-io/agentrust-telemetry">Read the repository</a><a class="button secondary" href="https://github.com/agentrust-io/agentrust-telemetry/blob/main/docs/architecture.md">Architecture</a><a class="button secondary" href="https://github.com/agentrust-io/agentrust-telemetry/issues">Integration questions</a></div>
+</section>
+</main>
+<footer><a href="/">AgenTrust</a> · <a href="/demos/">Demos</a> · <a href="https://github.com/agentrust-io">GitHub</a></footer>
+<script src="/supernav.js"></script>
+</body>
+</html>

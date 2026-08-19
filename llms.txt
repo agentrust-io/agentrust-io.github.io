@@ -2,7 +2,7 @@
 
 > An open ecosystem where developers, researchers, operators, and enterprises build, test, adopt, and sustain verifiable governance for AI agents.
 
-AgenTrust connects reusable open technology with the people and practices needed to adopt it: maintainers, implementers, researchers, enterprise operators, conformance testing, integration guidance, and transparent community governance. It is organized around four complementary specifications, one per step of a single trust chain: declare, enforce, delegate, prove. Agent Manifest declares agent identity and permissions, Confidential MCP enforces policy on tool calls inside a Trusted Execution Environment, Confidential A2A delegates attenuated authority and attested provenance across the Agent2Agent protocol, and TRACE proves what happened with hardware-signed receipts that anyone can verify without trusting the operator. The Agent Governance Toolkit (AGT) is the common runtime policy substrate underneath all four.
+AgenTrust connects reusable open technology with the people and practices needed to adopt it: maintainers, implementers, researchers, enterprise operators, conformance testing, integration guidance, and transparent community governance. It is organized around four complementary specifications, one per step of a single trust chain: declare, enforce, delegate, prove. Agent Manifest declares agent identity and permissions, Confidential MCP enforces policy on tool calls inside a Trusted Execution Environment, Confidential A2A delegates attenuated authority and attested provenance across the Agent2Agent protocol, and TRACE proves what happened with hardware-signed receipts that anyone can verify without trusting the operator. AgentTrust Telemetry is the portable correlation layer across the chain, and the Agent Governance Toolkit (AGT) is the common runtime policy substrate underneath it.
 
 ## Ecosystem and adoption
 
@@ -11,6 +11,9 @@ The ecosystem is focused on implementation, interoperability, maintainer develop
 Work happens in public through open repositories, reviewable proposals, implementation evidence, and conformance testing. Neutral standards homes are interoperability pathways; implementations, integrations, testing, documentation, training, adoption support, and maintainer succession make the technology useful and durable.
 
 ## Open technology
+
+- [AgentTrust Telemetry](https://agentrust-io.com/telemetry/): A backend-neutral, metadata-only contract and Python and TypeScript reference SDKs for policy decisions, approval lifecycles, action execution, classified data flow, usage and cost, and evidence lifecycle. It composes with caller-owned OpenTelemetry and can finalize complete durable evidence into TRACE. Alpha `0.1.0-alpha.1`; packages are not yet published.
+- [Source](https://github.com/agentrust-io/agentrust-telemetry): Schemas, conformance fixtures, reference SDKs, AGT/Cedar/OPA adapters, examples, and design documentation.
 
 - [TRACE](https://trace.agentrust-io.com): Trust, Runtime Attestation, and Compliance Evidence. Hardware-rooted cryptographic receipts for every agent action, signed by the TEE and verifiable by anyone.
 - [Agent Manifest](https://manifest.agentrust-io.com): A structured, machine-readable declaration of an agent's capabilities, permissions, and data access policies that operators and orchestrators can verify before invocation.
