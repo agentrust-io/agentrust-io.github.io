@@ -563,6 +563,8 @@ body,
 .agentrust-hub .evidence-link:hover { color: var(--at-red); }
 .agentrust-hub .partner-card { display: grid; grid-template-columns: minmax(220px, .75fr) 1.25fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; margin-top: 1rem; padding: clamp(1.8rem, 4vw, 3rem); }
 .agentrust-hub .partner-logo-wrap { padding: 1.25rem; border-radius: 12px; background: var(--at-paper); }
+.agentrust-hub .lf-card { margin-top: 2.5rem; }
+.agentrust-hub .lf-card .partner-logo-wrap { padding: 1.6rem 1.4rem; }
 .agentrust-hub .partner-logo-wrap img { display: block; width: 100%; height: auto; }
 .agentrust-hub .partner-kicker { margin-top: 0; }
 .agentrust-hub .partner-card h3 { margin: 0 0 .7rem; color: var(--at-ink); font-family: var(--at-serif); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 500; line-height: 1.05; }
