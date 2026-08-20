@@ -1,0 +1,83 @@
+name: Schema parity
+
+# The files under schema/ are published at the $id every TRACE record points at,
+# so an implementation fetching that URL is validated against whatever this repo
+# serves. The normative copies live in agentrust-io/trace-spec. Nothing linked
+# the two, and they drifted: the published v0.2 schema lost an allOf constraint
+# and an origin property, and required `transparency` where the spec did not, so
+# a validator using the canonical URL rejected records the spec allows.
+#
+# trace-spec already guards its packaged SDK copy against its normative copy
+# (agentrust-io/trace-spec#136). This is the same check for the published copy.
+
+on:
+  push:
+    branches: [main]
+    paths: ['schema/**']
+  pull_request:
+    paths: ['schema/**']
+  schedule:
+    # Upstream can change without anything happening here, so also check daily.
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compare each published schema with its normative source
+        run: |
+          set -euo pipefail
+          raw=https://raw.githubusercontent.com/agentrust-io/trace-spec/main/schema
+          fail=0
+
+          # published file -> normative file in trace-spec
+          check() {
+            local published="$1" source="$2"
+            if [ ! -f "$published" ]; then
+              echo "::error::$published is missing"
+              fail=1
+              return
+            fi
+            if ! curl -fsSL "$raw/$source" -o /tmp/upstream.json; then
+              echo "::error::could not fetch $raw/$source"
+              fail=1
+              return
+            fi
+            if diff -q \
+              <(jq -S . "$published") \
+              <(jq -S . /tmp/upstream.json) >/dev/null; then
+              echo "ok  $published"
+            else
+              echo "::error::$published has drifted from trace-spec/schema/$source"
+              diff <(jq -S . "$published") <(jq -S . /tmp/upstream.json) || true
+              fail=1
+            fi
+          }
+
+          check schema/trace-v0.2.json                trace-claim.json
+          check schema/trace-revocation-v1.json       trace-revocation.json
+          check schema/trace-revocation-bundle-v1.json trace-revocation-bundle.json
+
+          exit $fail
+
+      - name: Every published schema declares the $id it is served at
+        run: |
+          set -euo pipefail
+          fail=0
+          for f in schema/*.json; do
+            want="https://agentrust-io.com/$f"
+            got=$(jq -r '."$id" // empty' "$f")
+            if [ "$got" != "$want" ]; then
+              echo "::error::$f declares \$id '$got' but is served at '$want'"
+              fail=1
+            else
+              echo "ok  $f"
+            fi
+          done
+          exit $fail
