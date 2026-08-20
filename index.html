@@ -673,9 +673,9 @@
       .ecosystem-grid { grid-template-columns: 1fr; }
     }
 </style>
-<link rel="stylesheet" href="/design-system.css?v=7">
+<link rel="stylesheet" href="/design-system.css?v=8">
 </head>
-<body class="agentrust-hub">
+<body class="agentrust-hub" id="top">
 
 <!-- Header -->
 <header>
@@ -692,6 +692,24 @@
     </nav>
   </div>
 </header>
+
+<!-- Section rail: jump list for a long page. Ticks only until hovered or focused. -->
+<nav class="railnav" aria-label="Sections on this page">
+  <ul>
+    <li><a href="#top"><span class="railnav-tick"></span><span class="railnav-label">Top</span></a></li>
+    <li><a href="#trust-stack"><span class="railnav-tick"></span><span class="railnav-label">Trust chain</span></a></li>
+    <li><a href="#ecosystem"><span class="railnav-tick"></span><span class="railnav-label">Ecosystem</span></a></li>
+    <li><a href="#adoption"><span class="railnav-tick"></span><span class="railnav-label">Who's involved</span></a></li>
+    <li><a href="#community"><span class="railnav-tick"></span><span class="railnav-label">Governance</span></a></li>
+    <li><a href="#playbooks"><span class="railnav-tick"></span><span class="railnav-label">Compliance</span></a></li>
+    <li><a href="#standards"><span class="railnav-tick"></span><span class="railnav-label">Technology</span></a></li>
+    <li><a href="#tools"><span class="railnav-tick"></span><span class="railnav-label">Tools</span></a></li>
+    <li><a href="#status"><span class="railnav-tick"></span><span class="railnav-label">What's launched</span></a></li>
+    <li><a href="#fellowship"><span class="railnav-tick"></span><span class="railnav-label">Fellowship</span></a></li>
+    <li><a href="#about"><span class="railnav-tick"></span><span class="railnav-label">About</span></a></li>
+    <li><a href="#faq"><span class="railnav-tick"></span><span class="railnav-label">FAQ</span></a></li>
+  </ul>
+</nav>
 
 <!-- Hero -->
 <div class="fellowship" data-fellowship-banner data-closes="2026-08-30T00:00:00-07:00">
@@ -1045,7 +1063,7 @@
 <hr class="divider">
 
 <!-- Quick stats -->
-<section class="section">
+<section class="section" id="status">
   <div class="section-header">
     <div class="section-label">At a Glance</div>
     <div class="section-title">What's Launched</div>
@@ -1183,6 +1201,50 @@
 
 
 <script src="/supernav.js"></script>
+<script>
+  // Mark the rail entry for whichever section is in the reading band. Falls
+  // back to no highlight at all if IntersectionObserver is missing: the rail
+  // still works as a plain jump list.
+  (() => {
+    const rail = document.querySelector('.railnav');
+    if (!rail || !('IntersectionObserver' in window)) return;
+
+    const topLink = rail.querySelector('a[href="#top"]');
+    const targets = new Map();
+    rail.querySelectorAll('a[href^="#"]:not([href="#top"])').forEach(link => {
+      const section = document.getElementById(link.getAttribute('href').slice(1));
+      if (section) targets.set(section, link);
+    });
+
+    let current = null;
+    const setCurrent = (link) => {
+      if (link === current) return;
+      if (current) current.removeAttribute('aria-current');
+      current = link || null;
+      if (current) current.setAttribute('aria-current', 'true');
+    };
+
+    const inBand = new Set();
+    const resolve = () => {
+      // Topmost section in the band wins, so the rail follows reading order
+      // rather than whichever observer entry fired last.
+      const first = [...inBand].sort((a, b) => a.offsetTop - b.offsetTop)[0];
+      if (first) setCurrent(targets.get(first));
+      else if (window.scrollY < 240) setCurrent(topLink);
+      // Otherwise keep the last section marked: the gaps between sections
+      // should not blank the rail out.
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => e.isIntersecting ? inBand.add(e.target) : inBand.delete(e.target));
+      resolve();
+    }, { rootMargin: '-15% 0px -55% 0px' });
+
+    targets.forEach((_, section) => observer.observe(section));
+    addEventListener('scroll', () => { if (window.scrollY < 240) resolve(); }, { passive: true });
+    resolve();
+  })();
+</script>
 <script>
   (() => {
     const section = document.querySelector('[data-fellowship-section]');

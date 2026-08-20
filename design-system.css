@@ -523,6 +523,79 @@ body,
 .agentrust-hub .trust-note { color: var(--at-muted); }
 .agentrust-hub footer { background: var(--at-ink); border-top: 0; }
 
+/* Section rail
+ *
+ * The homepage runs to a dozen sections, so it carries a fixed jump list in
+ * the left gutter. It shows ticks until pointed at or tabbed into, then
+ * expands to labels, which keeps it out of the way of a 1100px content
+ * column. Below the width where the gutter can hold it, the header nav is
+ * the only navigation and the rail is hidden.
+ */
+.agentrust-hub .railnav {
+  position: fixed;
+  top: 50%;
+  left: 1rem;
+  z-index: 90;
+  padding: .5rem .45rem;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  /* Matches the page ground, so the rail is invisible over it. It only shows
+   * as a pill over the dark footer, which is what keeps the ticks legible
+   * there instead of dark-on-dark. */
+  background: rgba(243, 240, 232, 0.92);
+  transform: translateY(-50%);
+  transition: background .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.agentrust-hub .railnav:hover,
+.agentrust-hub .railnav:focus-within {
+  border-color: var(--at-line);
+  background: rgba(243, 240, 232, 0.97);
+  box-shadow: var(--at-shadow);
+  backdrop-filter: blur(14px);
+}
+.agentrust-hub .railnav ul { display: grid; gap: .05rem; margin: 0; padding: 0; list-style: none; }
+.agentrust-hub .railnav a {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .3rem .35rem;
+  border-radius: 8px;
+  color: var(--at-muted);
+  text-decoration: none;
+}
+.agentrust-hub .railnav-tick {
+  width: 14px;
+  height: 2px;
+  flex: none;
+  border-radius: 2px;
+  background: var(--at-line);
+  transition: width .18s ease, background .18s ease;
+}
+.agentrust-hub .railnav-label {
+  max-width: 0;
+  overflow: hidden;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transition: max-width .18s ease, opacity .18s ease;
+}
+.agentrust-hub .railnav:hover .railnav-label,
+.agentrust-hub .railnav:focus-within .railnav-label { max-width: 11rem; opacity: 1; }
+.agentrust-hub .railnav a:hover,
+.agentrust-hub .railnav a:focus-visible { color: var(--at-ink); }
+.agentrust-hub .railnav a:hover .railnav-tick { background: var(--at-muted); }
+.agentrust-hub .railnav a[aria-current="true"] { color: var(--at-red); }
+.agentrust-hub .railnav a[aria-current="true"] .railnav-tick { width: 26px; background: var(--at-red); }
+/* Below this the 1100px column leaves no gutter wide enough for the rail
+ * to sit clear of the text, so the header nav is the only navigation. */
+@media (max-width: 1279px) {
+  .agentrust-hub .railnav { display: none; }
+}
+
 /* Adoption, partnership, governance, and compliance evidence */
 .agentrust-hub .adoption-grid {
   display: grid;
