@@ -28,7 +28,6 @@
   --md-default-bg-color: var(--at-paper);
   --md-default-fg-color: var(--at-ink);
   --md-default-fg-color--light: var(--at-muted);
-  --md-code-bg-color: var(--at-white);
 }
 
 [data-md-color-scheme="slate"] {
@@ -156,13 +155,7 @@ body,
   color: var(--at-paper);
 }
 
-.md-typeset pre > code,
-.md-typeset .highlight pre {
-  border: 1px solid var(--at-line);
-  border-radius: 14px;
-  background: var(--at-white);
-  box-shadow: none;
-}
+
 
 .md-typeset code,
 .md-typeset pre,
@@ -255,6 +248,60 @@ body,
   --md-footer-bg-color: #0f0f0d;
   --md-footer-bg-color--dark: #0f0f0d;
 }
+
+/* Code blocks read the same on a docs page and on a site page.
+   Inline code stays a light chip; only the block surface goes to ink. */
+[data-md-color-scheme="default"] {
+  --md-code-bg-color: var(--at-code-bg);
+  --md-code-fg-color: var(--at-code-fg);
+  --md-code-hl-color: rgba(226, 201, 158, 0.16);
+  --md-code-hl-comment-color: var(--at-code-dim);
+  --md-code-hl-generic-color: var(--at-code-dim);
+  --md-code-hl-operator-color: var(--at-code-dim);
+  --md-code-hl-punctuation-color: var(--at-code-dim);
+  --md-code-hl-keyword-color: var(--at-code-accent);
+  --md-code-hl-string-color: var(--at-code-string);
+  --md-code-hl-number-color: var(--at-code-string);
+  --md-code-hl-special-color: var(--at-code-alert);
+  --md-code-hl-function-color: #9fc3ee;
+  --md-code-hl-constant-color: #9fc3ee;
+  --md-code-hl-name-color: var(--at-code-fg);
+  --md-code-hl-variable-color: var(--at-code-fg);
+}
+
+.md-typeset pre > code,
+.md-typeset .highlight pre,
+.md-typeset .highlighttable .linenodiv pre {
+  border: 0;
+  border-radius: 14px;
+  background: var(--at-code-bg);
+  color: var(--at-code-fg);
+  box-shadow: none;
+}
+.md-typeset .highlighttable { border: 0; border-radius: 14px; background: var(--at-code-bg); }
+.md-typeset .highlighttable .linenos { background: transparent; color: var(--at-code-dim); }
+.md-typeset .highlight [data-linenos]::before { background: transparent; color: var(--at-code-dim); }
+
+/* Controls sitting on the ink surface need to be legible against it.
+   Material renames this button across versions, so cover both. */
+.md-typeset .md-clipboard,
+.md-typeset .md-code__button { color: var(--at-code-dim); opacity: 1; }
+.md-typeset .md-clipboard:hover,
+.md-typeset .md-clipboard:focus,
+.md-typeset .md-code__button:hover,
+.md-typeset .md-code__button:focus { color: var(--at-code-accent); }
+.md-typeset .md-code__button--active { color: var(--at-code-accent); }
+.md-typeset .highlight span.filename {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--at-code-dim);
+  font-family: var(--at-mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+}
+
+/* Code inside a tabbed block keeps the same surface. */
+.md-typeset .tabbed-block > .highlight:only-child pre { border-radius: 14px; }
 
 /* Table body cells. The shared rules above style the table and its header;
    without these the cells keep Material's default rhythm. */
