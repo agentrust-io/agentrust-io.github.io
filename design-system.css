@@ -218,6 +218,123 @@ body,
   color: var(--at-paper);
 }
 
+
+/* ============================================================
+   MkDocs: the complete token set
+   ------------------------------------------------------------
+   Every docs site loads this file, so none of them needs a
+   stylesheet of its own. The four projects each shipped a local
+   extra.css declaring the Material default violet (#7c3aed) and
+   a dark gradient header, which is exactly the drift brand/BRAND.md
+   forbids. Completing the token set here is what lets those files
+   be deleted rather than corrected four times.
+   ============================================================ */
+
+:root {
+  --at-blue: #1b5ea0;
+}
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color--light: var(--at-white);
+  --md-primary-fg-color--dark: var(--at-paper-2);
+  --md-accent-fg-color--transparent: rgba(185, 28, 28, 0.08);
+  --md-default-bg-color--light: var(--at-paper-2);
+  --md-default-bg-color--lighter: var(--at-white);
+  --md-code-fg-color: var(--at-ink);
+  --md-footer-bg-color: var(--at-ink);
+  --md-footer-bg-color--dark: var(--at-ink);
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color--light: #22221e;
+  --md-primary-fg-color--dark: #0f0f0d;
+  --md-accent-fg-color--transparent: rgba(239, 102, 114, 0.12);
+  --md-default-bg-color--light: #22221e;
+  --md-default-bg-color--lighter: #22221e;
+  --md-code-fg-color: var(--at-paper);
+  --md-footer-bg-color: #0f0f0d;
+  --md-footer-bg-color--dark: #0f0f0d;
+}
+
+/* Table body cells. The shared rules above style the table and its header;
+   without these the cells keep Material's default rhythm. */
+.md-typeset table:not([class]) td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--at-line);
+  vertical-align: top;
+}
+.md-typeset table:not([class]) tr:last-child td { border-bottom: 0; }
+
+/* Admonitions keep one shape and say what kind they are through the rule
+   colour, using the documented semantic palette rather than Material's. */
+.md-typeset .admonition.note,
+.md-typeset details.note { border-left-color: var(--at-navy) !important; }
+.md-typeset .admonition.info,
+.md-typeset details.info,
+.md-typeset .admonition.abstract,
+.md-typeset details.abstract { border-left-color: var(--at-blue) !important; }
+.md-typeset .admonition.tip,
+.md-typeset details.tip,
+.md-typeset .admonition.success,
+.md-typeset details.success { border-left-color: var(--at-pass) !important; }
+.md-typeset .admonition.warning,
+.md-typeset details.warning,
+.md-typeset .admonition.caution,
+.md-typeset details.caution { border-left-color: var(--at-warn) !important; }
+.md-typeset .admonition.danger,
+.md-typeset details.danger,
+.md-typeset .admonition.failure,
+.md-typeset details.failure,
+.md-typeset .admonition.bug,
+.md-typeset details.bug { border-left-color: var(--at-red) !important; }
+
+.md-typeset .admonition-title,
+.md-typeset summary {
+  background: transparent !important;
+  color: var(--at-ink);
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.md-typeset .admonition-title::before,
+.md-typeset summary::before { background-color: currentcolor; }
+
+/* Material's card grid, matched to the editorial card. */
+.md-typeset .grid.cards > :is(ul, ol) > li,
+.md-typeset .grid > .card {
+  padding: 1.35rem;
+  border: 1px solid var(--at-line);
+  border-radius: var(--at-radius);
+  background: var(--at-white);
+  box-shadow: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.md-typeset .grid.cards > :is(ul, ol) > li:hover,
+.md-typeset .grid > .card:hover {
+  border-color: var(--at-line);
+  box-shadow: var(--at-shadow);
+  transform: translateY(-3px);
+}
+.md-typeset .grid.cards > :is(ul, ol) > li > hr {
+  margin: 0.7rem 0;
+  border-color: var(--at-line);
+}
+
+/* Footer: the ink band already set above, plus legible links inside it. */
+.md-footer a,
+.md-footer-meta a { color: var(--at-paper); }
+.md-footer a:hover,
+.md-footer-meta a:hover { color: #fff; }
+.md-footer__title { font-weight: 650; }
+.md-copyright { color: rgba(255, 255, 255, 0.55); }
+
+/* Search and the version chip inherit paper rather than the old violet. */
+.md-search__form { background: var(--at-white); }
+.md-search__form:hover { background: var(--at-paper-2); }
+[data-md-color-scheme="slate"] .md-search__form { background: var(--at-paper-2); }
+.md-search__input::placeholder { color: var(--at-muted); }
+
 /* Main ecosystem hub
  * The hub still ships the older inline palette. Rather than rewrite 500 lines
  * of page CSS, remap those variables onto the editorial tokens once, here.
@@ -234,7 +351,7 @@ body,
   --muted: var(--at-muted);
   --navy: var(--at-navy);
   --red: var(--at-red);
-  --blue: #1b5ea0;
+  --blue: var(--at-blue);
   --green: #1b7a4a;
   --amber: #c17817;
   --purple: #6d28d9;
