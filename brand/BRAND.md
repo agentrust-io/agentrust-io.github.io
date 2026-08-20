@@ -101,6 +101,8 @@ Only the glyph changes. The shield, the palette, and the red accent stay fixed.
 | cA2A | Two nodes, arc, red arrowhead | A delegation hop. Authority narrows in the direction of travel. |
 | Agent Manifest | Three bound nodes, red apex | Separate artifacts bound into one record. |
 | TRACE | Eye, red pupil | Evidence that can be inspected by a third party. |
+| TRACE Tests | Seal, red check | The suite either passes an implementation or it does not. |
+| Awesome AI Governance | Curated list, red mark | Entries reviewed and kept, not everything that exists. |
 
 Each product glyph gets exactly one red element. Red marks the point that
 matters in the glyph, so the family reads as one system at a glance and the
@@ -115,6 +117,11 @@ products still separate at 32px.
 | `brand/agentrust-avatar-500.png` | 500px raster for GitHub organisation avatar and profile uploads. |
 | `apple-touch-icon.png`, `favicon-32x32.png`, `favicon-16x16.png`, `favicon.ico` | Site icons, generated from the solid mark. |
 | `<repo>/docs/assets/icon.svg` | Per-product mark. One per project repository. |
+
+Every property that renders a logo needs one. `tests.agentrust-io.com` and
+`governance.agentrust-io.com` shipped with no mark at all and fell back to the
+Material default, and trace-tests' README pointed at an `icon.svg` that did not
+exist, so its logo was a broken image on GitHub and on the site.
 
 Each project repository holds its own mark at `docs/assets/icon.svg` and points
 `mkdocs.yml` `theme.logo` and `theme.favicon` at it. Replacing that one file
