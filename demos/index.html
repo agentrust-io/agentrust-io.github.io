@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Model Weight Protection and Agent Governance Demos | AgenTrust</title>
-<meta name="description" content="Ten runnable demos for securing AI model weights and governing agent tool and model calls. Run them on your laptop in about twelve minutes, no confidential-computing hardware required.">
+<meta name="description" content="Ten runnable demos for securing AI model weights and governing agent tool and model calls. Run them on your laptop in about thirteen minutes, no confidential-computing hardware required.">
 <link rel="canonical" href="https://agentrust-io.com/demos/">
 <meta name="robots" content="index, follow">
 
@@ -12,7 +12,7 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="AgenTrust">
 <meta property="og:title" content="Model Weight Protection and Agent Governance Demos">
-<meta property="og:description" content="Ten runnable demos for model-weight custody and governed agent tool and model calls. About twelve minutes on your laptop, no special hardware.">
+<meta property="og:description" content="Ten runnable demos for model-weight custody and governed agent tool and model calls. About thirteen minutes on your laptop, no special hardware.">
 <meta property="og:url" content="https://agentrust-io.com/demos/">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://agentrust-io.com/og.png">
@@ -23,7 +23,7 @@
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Model Weight Protection and Agent Governance Demos">
-<meta name="twitter:description" content="Model-weight custody plus governed agent tool and model calls. Ten runnable demos, about twelve minutes, no special hardware.">
+<meta name="twitter:description" content="Model-weight custody plus governed agent tool and model calls. Ten runnable demos, about thirteen minutes, no special hardware.">
 <meta name="twitter:image" content="https://agentrust-io.com/og.png">
 
 <!-- Icons -->
@@ -49,7 +49,7 @@
 <div class="hero"><div class="wrap">
   <span class="eyebrow">Runnable demos</span>
   <h1>Don't take the spec<br>on trust. <em>Run it.</em></h1>
-  <p class="sub">Ten demos, about twelve minutes end to end. Four cover custody of model weights. Five govern what an agent does at the tool boundary. One governs model calls through an OpenAI-compatible endpoint.</p>
+  <p class="sub">Ten demos, about thirteen minutes end to end. Four cover custody of model weights. Five govern what an agent does at the tool boundary. One governs model calls through an OpenAI-compatible endpoint.</p>
   <div><span class="status">Software mode · <code>CMCP_DEV_MODE=1</code> · no special hardware</span></div>
 </div></div>
 
@@ -63,11 +63,32 @@
     <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
 <pre>git clone https://github.com/agentrust-io/demos &amp;&amp; cd demos
 pip install -r requirements.txt
-export CMCP_BEARER_TOKEN=demo-token
 python demo.py            <span class="c"># all ten, pausing before each</span>
+python demo.py --no-pause <span class="c"># straight through, no prompts</span>
 python demo.py 6          <span class="c"># just demo 6</span></pre>
   </div>
-  <p>The requirements install cMCP for demos 1 to 5, Weight Custody Manifest for demos 6 to 9, and the OpenAI client for demo 10. Source: <a href="https://github.com/agentrust-io/demos">github.com/agentrust-io/demos</a>.</p>
+  <p>The requirements install cMCP for demos 1 to 5, Weight Custody Manifest for demos 6 to 9, and the OpenAI client for demo 10. <code>demo.py</code> sets dev mode and the bearer token for you, so there is nothing to export. Source: <a href="https://github.com/agentrust-io/demos">github.com/agentrust-io/demos</a>.</p>
+
+  <p class="meta" style="margin-top:2.25rem;">What demo 6 actually prints, verbatim from a run on <code>weight-custody-manifest 0.25.0</code></p>
+  <div class="term">
+    <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="term-title">python demo-06-weight-custody/run.py</span></div>
+    <div class="term-body">
+<div class="dim">Weight Custody Manifest: possession is not provenance.<br>Real WCM code with a software (mock) attestation provider, no hardware.</div>
+<div style="margin-top:0.9rem;">1. The builder signs a manifest binding the exact weight hash</div>
+<div class="dim">weights_hash bound : sha256:99b3e4e724d0aa75528b5b2214…</div>
+<div>manifest signature : <span class="ok">True</span> (jointly signed builder + custodian)</div>
+<div style="margin-top:0.9rem;">2. Attestation gate: the key releases only into the certified stack</div>
+<div>gate released key&nbsp;&nbsp;: <span class="ok">True</span></div>
+<div style="margin-top:0.9rem;">3. A tampered checkpoint fails before it ever loads</div>
+<div class="dim">certified hash&nbsp;&nbsp;&nbsp;&nbsp; : sha256:99b3e4e724d0aa75528b5b2214…<br>downloaded hash&nbsp;&nbsp;&nbsp;&nbsp;: sha256:b3a36b547da3babd1dc9f2b900…</div>
+<div>matches manifest&nbsp;&nbsp; : <span class="alert">False -&gt; REFUSE to load</span></div>
+<div class="dim">no human reads 2.8T parameters; the hash does the reading.</div>
+<div style="margin-top:0.9rem;">4. The fine-tune is the real IP: lineage back to the signed base</div>
+<div>lineage verified&nbsp;&nbsp; : <span class="ok">True</span>&nbsp; depth 1&nbsp; root is a base: <span class="ok">True</span></div>
+<div class="dim" style="margin-top:0.9rem;">honest scope&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : accountability-grade against an operator who physically<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; owns the silicon (see TEE.fail), not silicon-proof custody.</div>
+    </div>
+  </div>
+  <p class="meta">Hashes are truncated here for width; the run prints them in full. Every demo ends with a scope statement like that last one.</p>
 </section>
 
 <section id="weights">
@@ -133,7 +154,7 @@ python demo.py 6          <span class="c"># just demo 6</span></pre>
 <section id="governance">
   <span class="label">Agent governance</span>
   <h2>Governing what an agent does</h2>
-  <p class="lead-serif">Demos 6 to 9 protect the weights. These five govern the tool boundary: what the agent is allowed to call, under which workflow, with what compliance attributes, and what evidence survives afterwards. Cedar policy is enforced on every call and each session closes with a signed TRACE claim.</p>
+  <p class="lead-serif">Demos 6 to 9 protect the weights. These six put the policy at the boundary the agent has to cross: five at the tool call, and demo 10 at the model call. What is it allowed to invoke, under which workflow, with what compliance attributes, and what evidence survives afterwards. Cedar is enforced on every call and each session closes with a signed TRACE claim.</p>
 
   <div class="stack">
   <div class="card static">
