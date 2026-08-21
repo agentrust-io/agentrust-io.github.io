@@ -135,6 +135,7 @@
 
   <div class="callout">
     <p><strong>Before you start.</strong> Python 3.11+ · pip · macOS or Linux · two terminal windows · about ten minutes · no special hardware.</p>
+    <p style="margin-top:0.6rem;">Every command and every output on this page was last run end to end against <code>cmcp-runtime 0.4.0</code> on 20 August 2026. If a step does not do what it says here, that is a bug and worth <a href="https://github.com/agentrust-io/cmcp/issues" target="_blank" rel="noopener">reporting</a>.</p>
   </div>
 
   <div class="steps">
@@ -271,10 +272,17 @@ EOF</pre>
   }'</pre>
         </div>
         <p class="hint"><code>workflow_id</code> is the only field the runtime reads out of <code>_cmcp</code>. The session id is a label for your own logs: the runtime mints its own session id, which is why step 5 looks it up instead of assuming it.</p>
+        <div class="term" style="margin-top:1.15rem;">
+          <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="term-title">what the runtime returns</span></div>
+          <div class="term-body">
+<div class="dim">HTTP/1.1 <span class="alert">403 Forbidden</span><br>content-type: application/json</div>
+<div style="margin-top:0.7rem;">{"jsonrpc":"2.0","error":{"code":-32000,<br>&nbsp;&nbsp;"message":"Request denied by policy",<br>&nbsp;&nbsp;"data":{"error_code":<span class="alert">"POLICY_DENY"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;"call_id":"51da9a46-149f-40c4-b83f-82d48fd654bd"}},"id":2}</div>
+          </div>
+        </div>
         <div class="verdict">
-          <div class="flag"><span class="check">✓</span> What you'll see — 403 Forbidden</div>
-          <p>Your policy stops a PII record from leaving on a tool call, <strong>before it reaches Salesforce</strong>, decided by the rule you wrote, enforced where the agent can't tamper with it. That's the barrier most teams can't cross today: shipping an agent you can actually <strong>prove</strong> is governed.</p>
-          <p style="font-family:var(--at-mono);font-size:0.8rem;">HTTP/1.1 403 Forbidden · "message": "Request denied by policy" · "error_code": "POLICY_DENY"</p>
+          <div class="flag"><span class="check">✓</span> What just happened</div>
+          <p>Your policy stopped a PII record from leaving on a tool call, <strong>before it reached Salesforce</strong>, decided by the rule you wrote, enforced where the agent can't tamper with it. That's the barrier most teams can't cross today: shipping an agent you can actually <strong>prove</strong> is governed.</p>
+          <p>Keep an eye on that <code>call_id</code>. The same id lands in the audit chain, so the deny you just watched is the deny you can hand to someone else in step 5. A refusal nobody can check afterwards is just a log line.</p>
         </div>
       </div>
     </div>
@@ -291,7 +299,11 @@ EOF</pre>
 curl -s -X POST "http://localhost:8443/sessions/$SID/close" | python3 -m json.tool &gt; claim.json
 cmcp verify claim.json</pre>
         </div>
-        <p class="hint">Expected output in dev mode:</p>
+        <p class="hint">Expected output in dev mode. The <code>CRYPTO-001</code> line comes first and is an advisory, not a failure: it is the CLI saying up front that a software-mode key binding proves nothing about hardware.</p>
+        <div class="term" style="margin-bottom:1.15rem;">
+          <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="term-title">cmcp verify claim.json</span></div>
+          <div class="term-body"><div class="dim">CRYPTO-001: software-only (dev) mode -- TEE key binding cannot be<br>verified; this claim provides no hardware provenance guarantee</div></div>
+        </div>
         <div class="checks">
           <div class="chk"><span>schema</span><span class="pass">PASS ✓</span></div>
           <div class="chk"><span>signature</span><span class="pass">PASS ✓</span></div>
