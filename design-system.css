@@ -17,6 +17,10 @@
   --at-sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --at-serif: Iowan Old Style, Charter, "Bitstream Charter", "Sitka Text", Georgia, serif;
   --at-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  /* Card accents on the hub. No editorial equivalent, so they are named here
+     rather than left as a second palette inside one page. */
+  --at-purple: #6d28d9;
+  --at-orange: #ea580c;
 }
 
 /* Shared MkDocs surfaces */
@@ -381,6 +385,478 @@ body,
 .md-search__form:hover { background: var(--at-paper-2); }
 [data-md-color-scheme="slate"] .md-search__form { background: var(--at-paper-2); }
 .md-search__input::placeholder { color: var(--at-muted); }
+
+/* ============================================================
+   Ecosystem hub layout
+   ------------------------------------------------------------
+   The homepage layout used to live in a <style> block inside
+   index.html, on a second set of tokens, which the rules in the
+   next section then repainted. It is here now, on the shared
+   tokens, so the whole estate is one stylesheet and one palette.
+   The rules below it still win on source order where they
+   deliberately restate a value.
+   ============================================================ */
+
+html:has(body.agentrust-hub) { scroll-behavior: smooth; }
+
+.agentrust-hub, .agentrust-hub *,
+.agentrust-hub *::before,
+.agentrust-hub *::after {
+  box-sizing: border-box; margin: 0; padding: 0;
+}
+.agentrust-hub {
+  min-height: 100vh;
+  line-height: 1.6;
+}
+/* ── Header ── */
+.agentrust-hub header {
+  padding: 0 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.agentrust-hub .header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+.agentrust-hub .logo {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.agentrust-hub .header-nav {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+.agentrust-hub .header-nav a {
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.15s;
+}
+.agentrust-hub .header-nav a:hover {
+  color: #fff;
+}
+/* ── Hero ── */
+.agentrust-hub .fellowship {
+  padding: 0.85rem 2rem;
+  font-size: 0.9rem;
+}
+.agentrust-hub .fellowship-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 0.9rem;
+}
+.agentrust-hub .fellowship-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  white-space: nowrap;
+}
+.agentrust-hub .fellowship-inner a.fellowship-link {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+}
+@media (max-width: 700px) {
+  .agentrust-hub .fellowship {
+    padding: 0.75rem 1.25rem; font-size: 0.85rem;
+  }
+}
+.agentrust-hub .hero {
+  padding: 4rem 2rem 3.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.agentrust-hub .hero-promo {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.875rem;
+  margin: 0 0 1.375rem;
+  padding: 0.75rem 1.125rem;
+}
+.agentrust-hub .hero-promo-tag {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 0.3125rem 0.5625rem;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+.agentrust-hub .hero-promo-text {
+  flex: 1;
+  min-width: 220px;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+.agentrust-hub .hero-promo-text b {
+  font-weight: 500;
+}
+.agentrust-hub .hero-promo-link {
+  white-space: nowrap;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.6875rem 1rem;
+  text-decoration: none;
+}
+.agentrust-hub .hero-promo-link:hover {
+  background: #A01818;
+}
+.agentrust-hub .hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.agentrust-hub .hero-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.agentrust-hub .hero h1 {
+  margin-bottom: 1.25rem;
+}
+.agentrust-hub .hero p {
+  font-size: 1.0625rem;
+  max-width: 580px;
+  line-height: 1.65;
+  margin-bottom: 2rem;
+}
+.agentrust-hub .hero-actions {
+  display: flex;
+  gap: 0.875rem;
+  flex-wrap: wrap;
+}
+.agentrust-hub .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.15s;
+  cursor: pointer;
+  border: none;
+}
+.agentrust-hub .btn-primary:hover {
+  background: #991B1B;
+}
+.agentrust-hub .btn-ghost {
+  border: 1px solid rgba(255,255,255,0.18);
+}
+.agentrust-hub .btn-ghost:hover {
+  background: rgba(255,255,255,0.14);
+}
+/* .btn-ghost is built for the navy hero; on a light section it needs
+       ink that is actually readable. */
+.agentrust-hub #fellowship .btn-ghost {
+  background: var(--at-white);
+  color: var(--at-navy);
+  border: 1px solid var(--at-line);
+}
+.agentrust-hub #fellowship .btn-ghost:hover {
+  background: #E8EDF3;
+}
+/* ── Section layout ── */
+.agentrust-hub .section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+.agentrust-hub .section-header {
+  margin-bottom: 1.75rem;
+}
+.agentrust-hub .section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+.agentrust-hub .trust-flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--at-line);
+}
+.agentrust-hub .trust-step {
+  position: relative; padding: 1.5rem; background: white;
+}
+.agentrust-hub .trust-step:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  right: -0.7rem;
+  top: 50%;
+  z-index: 1;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  background: var(--at-navy);
+  color: white;
+  text-align: center;
+  line-height: 1.3rem;
+}
+.agentrust-hub .trust-step strong {
+  display: block; margin: 0.3rem 0 0.5rem;
+}
+.agentrust-hub .trust-step p {
+  margin: 0; color: var(--at-muted); font-size: 0.9rem; line-height: 1.5;
+}
+.agentrust-hub .trust-number {
+  color: var(--at-red); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
+}
+.agentrust-hub .trust-home {
+  display: block;
+  margin-top: 0.9rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--at-line);
+  color: var(--at-muted);
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+.agentrust-hub .trust-base {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+  padding: 0.9rem 1.5rem;
+  border: 1px solid var(--at-line);
+  border-radius: 10px;
+}
+.agentrust-hub .trust-observe {
+  border-left: 4px solid var(--at-orange);
+}
+.agentrust-hub .trust-observe .trust-base-label {
+  color: var(--at-orange);
+}
+.agentrust-hub .trust-base-label {
+  color: var(--at-blue); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
+}
+.agentrust-hub .trust-base-text {
+  color: var(--at-ink); font-size: 0.9rem;
+}
+.agentrust-hub .trust-note {
+  margin: 0.9rem 0 0; color: var(--at-muted); font-size: 0.85rem;
+}
+/* ── Product grid ── */
+.agentrust-hub .product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+.agentrust-hub .product-card {
+  border: 1px solid var(--at-line);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.agentrust-hub .card-accent {
+  height: 4px;
+}
+.agentrust-hub .card-body {
+  padding: 1.375rem 1.375rem 1rem;
+  flex: 1;
+}
+.agentrust-hub .card-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.agentrust-hub .card-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+.agentrust-hub .card-desc {
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+.agentrust-hub .card-footer {
+  padding: 0.875rem 1.375rem;
+  border-top: 1px solid var(--at-line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.agentrust-hub .card-url {
+  font-size: 0.8rem;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+.agentrust-hub .card-arrow {
+  width: 20px;
+  height: 20px;
+  color: var(--at-muted);
+  flex-shrink: 0;
+}
+.agentrust-hub .card-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.agentrust-hub .badge-live {
+  background: #DCFCE7; color: var(--at-pass);
+}
+.agentrust-hub .badge-oss {
+  background: #EFF6FF; color: var(--at-blue);
+}
+.agentrust-hub .badge-ext {
+  background: #F3F4F6; color: var(--at-muted);
+}
+.agentrust-hub .badge-preview {
+  background: #FEF3C7; color: #92400E;
+}
+/* ── Divider ── */
+.agentrust-hub .divider {
+  border: none;
+  border-top: 1px solid var(--at-line);
+}
+/* ── Specs table ── */
+.agentrust-hub .spec-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.agentrust-hub .spec-card {
+  border: 1px solid var(--at-line);
+  padding: 1.125rem 1.25rem;
+}
+.agentrust-hub .spec-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--at-muted);
+  margin-bottom: 0.3rem;
+}
+.agentrust-hub .spec-value {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+/* ── Footer ── */
+.agentrust-hub footer {
+  color: rgba(255,255,255,0.55);
+  padding: 2rem;
+  margin-top: 3rem;
+}
+.agentrust-hub .footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.agentrust-hub .footer-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.agentrust-hub .footer-links a {
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.12s;
+}
+.agentrust-hub .footer-links a:hover {
+  color: #fff;
+}
+.agentrust-hub .footer-copy {
+  font-size: 0.8rem;
+}
+/* ── Prose + FAQ ── */
+.agentrust-hub .lead-copy {
+  max-width: 760px;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+.agentrust-hub .lead-copy + .lead-copy {
+  margin-top: 1rem;
+}
+.agentrust-hub .ecosystem-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+}
+.agentrust-hub .ecosystem-card {
+  background: var(--at-white); border: 1px solid var(--at-line); border-radius: 8px; padding: 1.4rem;
+}
+.agentrust-hub .ecosystem-card h3 {
+  color: var(--at-navy); font-size: 1rem; margin-bottom: 0.5rem;
+}
+.agentrust-hub .ecosystem-card p {
+  color: var(--at-muted); font-size: 0.9rem; line-height: 1.6;
+}
+.agentrust-hub .pathway {
+  margin-top: 1rem; padding: 1.25rem 1.4rem; border-left: 4px solid var(--at-pass); background: #fff; color: var(--at-ink);
+}
+.agentrust-hub .qa {
+  max-width: 760px;
+}
+.agentrust-hub .qa-item {
+  padding: 1.125rem 0; border-bottom: 1px solid var(--at-line);
+}
+.agentrust-hub .qa-item:first-child {
+  border-top: 1px solid var(--at-line);
+}
+.agentrust-hub .qa-q {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.45rem;
+}
+.agentrust-hub .qa-a {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+@media (max-width: 640px) {
+  .agentrust-hub .spec-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  .agentrust-hub .hero {
+    padding: 2.5rem 1.25rem 2rem;
+  }
+  .agentrust-hub .section {
+    padding: 2rem 1.25rem;
+  }
+  .agentrust-hub .trust-flow {
+    grid-template-columns: 1fr;
+  }
+  .agentrust-hub .trust-step:not(:last-child)::after {
+    content: "↓"; right: 1rem; top: auto; bottom: -0.7rem;
+  }
+  .agentrust-hub .header-nav {
+    display: none;
+  }
+  .agentrust-hub .ecosystem-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* Main ecosystem hub
  * The hub still ships the older inline palette. Rather than rewrite 500 lines
