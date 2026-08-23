@@ -17,6 +17,7 @@
     { id: 'manifest',   label: 'Manifest',     url: 'https://manifest.agentrust-io.com',                       ext: false },
     { id: 'cmcp',       label: 'cMCP',         url: 'https://cmcp.agentrust-io.com',                           ext: false },
     { id: 'ca2a',       label: 'cA2A',         url: 'https://ca2a.agentrust-io.com',                           ext: false },
+    { id: 'wcm',        label: 'WCM',          url: 'https://wcm.agentrust-io.com',                            ext: false },
     { id: 'governance', label: 'Governance',   url: 'https://governance.agentrust-io.com',                     ext: false },
     { id: 'agt',        label: 'AGT',          url: 'https://github.com/microsoft/agent-governance-toolkit',   ext: true  },
     { id: 'github',     label: 'GitHub',       url: 'https://github.com/agentrust-io',                         ext: true  }
