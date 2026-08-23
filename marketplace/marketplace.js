@@ -1,12 +1,14 @@
 (async function () {
   'use strict';
+  function escape(value) { return String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character])); }
+  function safeUrl(value) { try { const parsed = new URL(String(value)); return parsed.protocol === 'https:' ? parsed.href : '#'; } catch (_) { return '#'; } }
+  if (typeof module !== 'undefined' && module.exports) { module.exports = { escape, safeUrl }; return; }
   const AGENTRUST_CATALOG = 'https://raw.githubusercontent.com/agentrust-io/integrations/main/marketplace/catalog.json';
   const AGT_CATALOG = 'https://raw.githubusercontent.com/agentrust-io/integrations/main/marketplace/agt-catalog.json';
   let items = [];
   const state = { query: '', stacks: new Set(), types: new Set(), sort: 'featured' };
   const search = document.getElementById('market-search'), grid = document.getElementById('market-grid'), empty = document.getElementById('market-empty'), status = document.getElementById('catalog-status');
   const slug = (value) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-  function escape(value) { const node = document.createElement('span'); node.textContent = value; return node.innerHTML; }
   async function fetchJson(url) { const controller = new AbortController(), timeout = setTimeout(() => controller.abort(), 8000); try { const response = await fetch(url, { headers: { Accept: 'application/json' }, signal: controller.signal }); if (!response.ok) throw new Error(`${url} returned ${response.status}`); return await response.json(); } finally { clearTimeout(timeout); } }
   function normalizeAgenTrust(catalog) {
     if (catalog.catalog_version !== 1 || !Array.isArray(catalog.integrations) || catalog.count !== catalog.integrations.length) throw new Error('unsupported AgenTrust catalog');
@@ -19,7 +21,7 @@
   function card(item, compact) {
     const tags = item.stack.map((tag) => `<span>${escape(tag)}</span>`).join('');
     const tier = item.source === 'AGT' ? 'AGT project' : `${item.tier[0].toUpperCase()}${item.tier.slice(1)}`;
-    return `<article class="market-card${compact ? ' market-card-featured' : ''}"><div class="market-card-top"><span class="market-mark mark-${slug(item.type)}">${escape(item.mark)}</span><span class="market-tier tier-${item.sourceClass}"><i></i> ${escape(tier)}</span></div><div><p class="market-vendor">By ${escape(item.vendor)}</p><h3>${escape(item.name)}</h3><p class="market-description">${escape(item.description)}</p></div><div class="market-card-foot"><div class="market-tags">${tags}</div><a href="${escape(item.url)}" aria-label="View ${escape(item.name)} integration">View integration <span>↗</span></a></div></article>`;
+    return `<article class="market-card${compact ? ' market-card-featured' : ''}"><div class="market-card-top"><span class="market-mark mark-${slug(item.type)}">${escape(item.mark)}</span><span class="market-tier tier-${item.sourceClass}"><i></i> ${escape(tier)}</span></div><div><p class="market-vendor">By ${escape(item.vendor)}</p><h3>${escape(item.name)}</h3><p class="market-description">${escape(item.description)}</p></div><div class="market-card-foot"><div class="market-tags">${tags}</div><a href="${escape(safeUrl(item.url))}" aria-label="View ${escape(item.name)} integration">View integration <span>↗</span></a></div></article>`;
   }
   function addFilters(target, values, key) {
     document.getElementById(target).innerHTML = values.map((value) => { const count = items.filter((item) => key === 'stacks' ? item.stack.includes(value) : item.type === value).length, id = `${key}-${slug(value)}`; return `<label for="${id}"><input type="checkbox" id="${id}" value="${escape(value)}" data-filter="${key}"><span>${escape(value)}</span><b>${count}</b></label>`; }).join('');
