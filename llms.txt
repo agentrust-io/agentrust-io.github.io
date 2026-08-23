@@ -12,6 +12,10 @@ The ecosystem is focused on implementation, interoperability, maintainer develop
 
 Work happens in public through open repositories, reviewable proposals, implementation evidence, and conformance testing. Neutral standards homes are interoperability pathways; implementations, integrations, testing, documentation, training, adoption support, and maintainer succession make the technology useful and durable.
 
+## Sponsorship and governance
+
+OPAQUE Systems is a founding engineering and infrastructure sponsor of AgenTrust and an active contributor. It provides funding, engineering time, infrastructure, and confidential-computing contributions. Sponsorship does not confer ownership of AgenTrust projects or governance authority over technical decisions. Each project's licence, charter, maintainer list, and published governance process define its legal and technical stewardship. Sponsorship, partnership, contribution, and adoption are distinct relationships.
+
 ## Open technology
 
 - [AgenTrust Telemetry](https://agentrust-io.com/telemetry/): A backend-neutral, metadata-only contract and Python and TypeScript reference SDKs for policy decisions, approval lifecycles, action execution, classified data flow, usage and cost, and evidence lifecycle. It composes with caller-owned OpenTelemetry and can finalize complete durable evidence into TRACE. Alpha `0.1.0-alpha.1`; packages are not yet published.
