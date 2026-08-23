@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weight Custody Manifest | AgenTrust</title>
+<meta name="description" content="An open protocol for protecting model weights deployed into a customer's own or sovereign infrastructure. Signed manifest, attestation-gated key release, renewable lease with wipe on lapse, and derivative lineage. Reference SDK available on PyPI while the specification is in development.">
+<link rel="canonical" href="https://agentrust-io.com/wcm/">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AgenTrust">
+<meta property="og:title" content="Weight Custody Manifest">
+<meta property="og:description" content="When you ship a model into infrastructure you do not control, the party at risk flips. WCM is the open protocol for that direction.">
+<meta property="og:url" content="https://agentrust-io.com/wcm/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://agentrust-io.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AgenTrust: open standards for AI agent governance">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Weight Custody Manifest">
+<meta name="twitter:description" content="An open protocol for releasing model weights into infrastructure you do not control, with evidence of what happened.">
+<meta name="twitter:image" content="https://agentrust-io.com/og.png">
+
+<!-- Icons -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "Weight Custody Manifest",
+  "description": "An open specification and reference SDK for protecting model weights deployed into customer-controlled or sovereign infrastructure: signed manifest, attestation-gated key release, runtime custody with wipe on lapse, derivative lineage, and portable conformance vectors.",
+  "url": "https://agentrust-io.com/wcm/",
+  "programmingLanguage": ["Python"],
+  "publisher": { "@id": "https://agentrust-io.com/#organization" }
+}
+</script>
+
+<link rel="stylesheet" href="/design-system.css?v=10">
+</head>
+<body class="at-page">
+
+<header class="site-header">
+  <a class="wordmark" href="/">agentrust<span>.io</span></a>
+  <nav>
+    <a href="#flip">The flip</a>
+    <a href="#protocol">Protocol</a>
+    <a href="#try">Try it</a>
+    <a href="#limits">Limits</a>
+    <a class="cta" href="https://pypi.org/project/weight-custody-manifest/">Reference SDK</a>
+  </nav>
+</header>
+
+<div class="hero"><div class="wrap">
+  <span class="eyebrow">Release · Attest · Revoke</span>
+  <h1>Weight custody for models you deploy<br>into infrastructure you do not control</h1>
+  <p class="sub">Every model-weight protection tool protects the customer from the model. None protect the builder from the customer. WCM is the open protocol for that direction: a signed manifest, attestation-gated key release, a renewable lease that wipes on lapse, and a chain of custody for derivatives.</p>
+  <div><span class="status">Specification in active development · Reference SDK on PyPI · Open source soon</span></div>
+</div></div>
+
+<main>
+
+<section id="flip">
+  <span class="label">The problem</span>
+  <h2>The threat model flips when the model leaves your data center</h2>
+  <p>Weight-protection tooling assumes the builder is trusted and the customer is the party at risk. Deploy a frontier model into a customer's own infrastructure, a sovereign cloud, or an air-gapped facility and that reverses. Now it is the builder whose weights sit on hardware someone else owns and someone else operates.</p>
+  <p>WCM answers one question: <strong>can a model builder release encrypted weights only to an approved workload, keep that approval short-lived, and retain evidence of what happened?</strong> The answer is yes for the reference protocol and the software checks, with one boundary stated plainly rather than buried, which you will find further down this page.</p>
+</section>
+
+<section id="protocol">
+  <span class="label">How it works</span>
+  <h2>Six steps, no plaintext key on the wire</h2>
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>The builder signs a manifest</h3>
+        <p>Encrypted weights, plus a signed manifest naming the exact weight and approved-workload measurements.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>The workload asks for a challenge</h3>
+        <p>A protected workload requests a fresh, single-use challenge from the key broker.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Attestation binds the request</h3>
+        <p>CPU attestation, and GPU attestation where required, binds that challenge, the workload measurement, and an ephemeral transport key to the current launch.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h3>The broker checks independently</h3>
+        <p>Manifest policy, certificate chain, signatures, revocation state, measurements, freshness, and channel binding. Every check, every time.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h3>The key is sealed, not sent</h3>
+        <p>Only if every required check passes, the broker seals the model key to the attested transport key. It never transmits plaintext key material.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <h3>Authorization expires</h3>
+        <p>The runtime periodically renews. A lapse means stop serving and wipe the in-memory key. Resuming requires a new successful attestation and release.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="try">
+  <span class="label">Try it</span>
+  <h2>The reference SDK is already installable</h2>
+  <p>The specification is still in development, but the Python reference implementation is published and you can exercise the whole protocol locally against synthetic evidence today. We would rather have your feedback now, while the design can still change, than after it is frozen.</p>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Install from PyPI</h3>
+        <div class="code">
+          <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
+<pre>python -m pip install weight-custody-manifest</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Run the portable conformance suite</h3>
+        <p class="hint">Language-neutral vectors across four conformance levels, exercising every reportable error code. The runner prints its own remaining limits on every run, so a pass is never read as more than it is.</p>
+        <div class="code">
+          <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
+<pre>wcm conformance</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Walk through the runnable demos</h3>
+        <p class="hint">The public demos repository covers weight custody, closed-weight release, derivative lineage, and sovereign threshold release. No special hardware required; they run in software-only development mode.</p>
+        <div class="code">
+          <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
+<pre>git clone https://github.com/agentrust-io/demos
+cd demos
+pip install -r requirements.txt
+python demo.py 6</pre>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:2.25rem;">
+    <a class="button" href="https://pypi.org/project/weight-custody-manifest/">Reference SDK on PyPI</a>
+    <a class="button secondary" href="https://github.com/agentrust-io/demos">Runnable demos</a>
+    <a class="button secondary" href="https://github.com/agentrust-io/examples">Integration examples</a>
+  </div>
+</section>
+
+<section id="limits">
+  <span class="label">Honest scope</span>
+  <h2>Two guarantees, never blended</h2>
+  <p>The dishonest version of this page would say the weights are physically impossible to extract. They are not, and the specification says so. WCM names two separate guarantees and does not let them run together.</p>
+
+  <table style="margin-top:2.25rem;">
+    <tr><th>Against</th><th>What you get</th></tr>
+    <tr><td><strong>Software and remote adversaries</strong><br>Host OS, remote attacker, an operator with software access</td><td><strong>Cryptographic custody.</strong> One caveat: a malicious hypervisor can extract keys through ciphertext side channels unless AMD SEV-SNP ciphertext hiding is enabled, so that is required for the claim to hold against a hypervisor-privileged operator.</td></tr>
+    <tr><td><strong>An operator who physically owns the hardware</strong></td><td><strong>Accountability grade, not cryptographic custody.</strong> Current confidential-computing silicon is defeated by cheap, published memory-bus attacks that extract keys and forge attestation. What WCM offers at this tier is cost, detection, containment, legal recourse, and a mandatory physical-hardening tier.</td></tr>
+  </table>
+
+  <div class="callout"><p><strong>Placed the way a frontier lab grades it:</strong> WCM implements the confidential-computing measure that RAND recommends in <em>Securing AI Model Weights</em>. It holds across the OC1 to OC3 attacker range and, by its own concession, not against an OC4 or OC5 actor who owns the hardware. It is not a security level. A security level is a whole-organization posture, and assigning one to a single control misuses the unit.</p></div>
+
+  <p style="margin-top:2rem;">Verification paths have been exercised against real silicon across AMD SEV-SNP, Intel TDX, and NVIDIA H100 in confidential computing mode. Two areas are deliberately not claimed yet, because they need evidence from the real protected runtime rather than a more persuasive simulation: protected-boundary hardware evidence for the memory fingerprint sweep, and production zeroization from the actual controller rather than unit tests. Both are tracked in the open.</p>
+</section>
+
+<section id="status">
+  <span class="label">Status</span>
+  <h2>What is available now, and what is coming</h2>
+  <p>The repository is in active development and will be open sourced soon. When it opens it publishes the full specification, the threat model, the limitations document, the manifest JSON Schema, the Python reference SDK, the portable conformance vectors, and a reproducibly built reference key-release-service image.</p>
+  <p>The reference SDK is already on PyPI, and the demos and integration examples above are public today, so you can evaluate the protocol before the specification lands. This is deliberate: the design decisions we most want argued with are cheaper to change now.</p>
+  <div class="callout"><p><strong>Open core.</strong> What opens is the protocol layer: the specification, the threat model, and the reference key-release service. The operated custody service and the enclave implementation are separate and are not part of it.</p></div>
+  <div style="margin-top:2.25rem;">
+    <a class="button" href="https://pypi.org/project/weight-custody-manifest/">Install the SDK</a>
+    <a class="button secondary" href="https://github.com/agentrust-io">Follow the org on GitHub</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer"><div class="wrap">
+  <div class="foot-in">
+    <div class="foot-brand">
+      <a class="wordmark" href="/">AgenTrust</a>
+      <div class="tagline">Open standards for AI agent governance</div>
+    </div>
+    <div class="foot-links">
+      <a href="/">Home</a>
+      <a href="/quickstart/">Quickstart</a>
+      <a href="/demos/">Demos</a>
+      <a href="https://github.com/agentrust-io">GitHub</a>
+    </div>
+  </div>
+  <div class="foot-legal">© 2026 AgenTrust Contributors · agentrust-io.com</div>
+</div></footer>
+
+<script src="/supernav.js"></script>
+<script src="/page.js"></script>
+</body>
+</html>
