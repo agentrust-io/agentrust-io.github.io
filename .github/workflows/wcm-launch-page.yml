@@ -1,0 +1,27 @@
+name: WCM launch page
+
+on:
+  pull_request:
+    paths:
+      - "wcm/**"
+      - ".github/workflows/wcm-launch-page.yml"
+  push:
+    branches: [main]
+    paths:
+      - "wcm/**"
+      - ".github/workflows/wcm-launch-page.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node wcm/launch-page.test.js
