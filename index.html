@@ -194,7 +194,7 @@
     ]
   }
   </script>
-<link rel="stylesheet" href="/design-system.css?v=12">
+<link rel="stylesheet" href="/design-system.css?v=13">
 </head>
 <body class="agentrust-hub" id="top">
 
@@ -300,13 +300,14 @@
     <div class="section-title">Relationships the public record supports</div>
   </div>
   <p class="lead-copy">Every organization named here has a traceable relationship through a public announcement, open-source repository, or explicit AgenTrust partner statement. The label on each card states that relationship precisely; sponsorship, partnership, contribution, and adoption are distinct relationships, and none implies blanket endorsement of the full stack.</p>
-  <aside class="partner-card lf-card">
-    <div class="partner-logo-wrap"><img src="/assets/lf-logo-stacked-color.svg" alt="The Linux Foundation" loading="lazy"></div>
-    <div><div class="partner-kicker">Neutral host</div><h3>TRACE Specification is an LF Project</h3><p>TRACE is hosted at the Linux Foundation as its own series, <strong>TRACE Specification, a Series of LF Projects, LLC</strong>. The specification, its IP, its trademark, and the conformance mark sit with the series under the Community Specification License and <a href="https://lfprojects.org/policies/">LF Projects policies</a>, so no single vendor decides what conformance means.</p><a class="evidence-link" href="https://github.com/agentrust-io/trace-spec/blob/main/GOVERNANCE.md">Read the project governance ↗</a></div>
-  </aside>
+  <!-- adoption:generated:start -->
+    <article class="partner-card lf-card">
+      <div class="partner-logo-wrap"><img src="/assets/lf-logo-stacked-color.svg" alt="The Linux Foundation" loading="lazy"></div>
+      <div><div class="partner-kicker">Neutral host</div><h3>TRACE Specification is an LF Project</h3><p>TRACE is hosted at the Linux Foundation as its own series. Its specification, IP, trademark, and conformance mark sit with the series under the Community Specification License and LF Projects policies, so no single vendor decides what conformance means.</p><a class="evidence-link" href="https://github.com/agentrust-io/trace-spec/blob/main/GOVERNANCE.md">Read the project governance ↗</a></div>
+    </article>
   <div class="adoption-grid">
     <article class="adoption-card">
-      <div class="adopter-mark">OPAQUE Systems</div>
+      <div class="adopter-mark ">OPAQUE Systems</div>
       <div class="adopter-stage">Founding engineering and infrastructure sponsor</div>
       <p>OPAQUE provides funding, engineering time, infrastructure, and confidential-computing contributions. Sponsorship does not confer ownership of AgenTrust projects or governance authority over their technical decisions.</p>
       <a class="evidence-link" href="https://github.com/agentrust-io">Review the public project record ↗</a>
@@ -326,7 +327,7 @@
     <article class="adoption-card">
       <div class="adopter-mark amd-mark">AMD</div>
       <div class="adopter-stage">Founding member and hardware partner</div>
-      <p>AMD is a founding partner of AgenTrust. AMD and OPAQUE published a joint implementation blueprint for hardware-backed Confidential AI, and the implementation verifies SEV-SNP report signatures to the AMD root (VCEK then ASK then ARK).</p>
+      <p>AMD is a founding partner of AgenTrust. AMD and OPAQUE published a joint implementation blueprint for hardware-backed Confidential AI, and the implementation verifies SEV-SNP report signatures to the AMD root.</p>
       <a class="evidence-link" href="https://www.opaque.co/resources/downloadables/from-risk-to-resilience-confidential-computing-with-amd-and-opaque">Read the joint white paper ↗</a>
     </article>
     <article class="adoption-card">
@@ -348,10 +349,17 @@
       <a class="evidence-link" href="https://github.com/microsoft/agent-governance-toolkit/discussions/301">Read the public collaboration thread ↗</a>
     </article>
   </div>
-  <aside class="partner-card">
-    <div class="partner-logo-wrap"><img src="/assets/xrsi-logo-black.png" alt="XRSI — Human Intelligence In The Loop" loading="lazy"></div>
-    <div><div class="partner-kicker">Ecosystem partner</div><h3>Governance and Ecosystem Sustainability Partner</h3><p>XRSI brings governance, community-building, and long-term ecosystem sustainability expertise to the AgenTrust adoption programme.</p></div>
-  </aside>
+  <div class="partner-grid">
+    <article class="partner-card">
+      <div class="partner-logo-wrap"><img src="/assets/xrsi-logo-black.png" alt="XRSI — Human Intelligence In The Loop" loading="lazy"></div>
+      <div><div class="partner-kicker">Ecosystem partner</div><h3>Governance and Ecosystem Sustainability Partner</h3><p>XRSI brings governance, community-building, and long-term ecosystem sustainability expertise to the AgenTrust adoption programme.</p></div>
+    </article>
+    <article class="partner-card">
+      <div class="partner-logo-wrap"><img src="/assets/action-state-group-logo.png" alt="Action State Group" loading="lazy"></div>
+      <div><div class="partner-kicker">Technical collaborator</div><h3>Trust Registry and Verifiable Record Collaboration</h3><p>Action State Group is collaborating with AgenTrust on an open contribution path for the TRACE Trust Registry, connecting TRACE runtime evidence with neutral, independently verifiable record and witness infrastructure.</p><a class="evidence-link" href="https://www.actionstate.ai/">Visit Action State Group ↗</a></div>
+    </article>
+  </div>
+  <!-- adoption:generated:end -->
 </section>
 
 <hr class="divider">

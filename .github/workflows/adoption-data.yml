@@ -1,0 +1,28 @@
+name: Adoption data
+
+on:
+  pull_request:
+    paths:
+      - data/adoption.json
+      - scripts/render-adoption.mjs
+      - index.html
+      - .github/workflows/adoption-data.yml
+  push:
+    branches: [main]
+    paths:
+      - data/adoption.json
+      - scripts/render-adoption.mjs
+      - index.html
+
+permissions:
+  contents: read
+
+jobs:
+  generated-section:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/render-adoption.mjs --check
