@@ -63,7 +63,7 @@ const generated = [
   end
 ].join('\n');
 
-const page = await readFile(pageUrl, 'utf8');
+const page = (await readFile(pageUrl, 'utf8')).replaceAll('\r\n', '\n');
 const startAt = page.indexOf(start);
 const endAt = page.indexOf(end);
 if (startAt < 0 || endAt < startAt) throw new Error('Generated adoption markers are missing or out of order');
@@ -76,6 +76,6 @@ if (process.argv.includes('--check')) {
   }
   console.log(`PASS ${relationships.length} adoption relationships are in sync`);
 } else {
-  await writeFile(pageUrl, next);
+  await writeFile(pageUrl, next, 'utf8');
   console.log(`Rendered ${relationships.length} adoption relationships`);
 }
