@@ -1,0 +1,94 @@
+{
+  "relationships": [
+    {
+      "kind": "host",
+      "name": "The Linux Foundation",
+      "logo": "/assets/lf-logo-stacked-color.svg",
+      "label": "Neutral host",
+      "title": "TRACE Specification is an LF Project",
+      "description": "TRACE is hosted at the Linux Foundation as its own series. Its specification, IP, trademark, and conformance mark sit with the series under the Community Specification License and LF Projects policies, so no single vendor decides what conformance means.",
+      "evidenceUrl": "https://github.com/agentrust-io/trace-spec/blob/main/GOVERNANCE.md",
+      "evidenceLabel": "Read the project governance"
+    },
+    {
+      "kind": "evidence",
+      "name": "OPAQUE Systems",
+      "label": "Founding engineering and infrastructure sponsor",
+      "description": "OPAQUE provides funding, engineering time, infrastructure, and confidential-computing contributions. Sponsorship does not confer ownership of AgenTrust projects or governance authority over their technical decisions.",
+      "evidenceUrl": "https://github.com/agentrust-io",
+      "evidenceLabel": "Review the public project record"
+    },
+    {
+      "kind": "evidence",
+      "name": "Microsoft",
+      "markClass": "microsoft-mark",
+      "label": "Open-source project home",
+      "description": "Microsoft hosts the Agent Governance Toolkit, the open runtime-governance foundation that the AgenTrust trust chain builds on.",
+      "evidenceUrl": "https://github.com/microsoft/agent-governance-toolkit",
+      "evidenceLabel": "View the repository"
+    },
+    {
+      "kind": "evidence",
+      "name": "Technology Innovation Institute",
+      "markClass": "uae-mark",
+      "label": "Confirmed founding partner",
+      "description": "TII is the confirmed AgenTrust founding partner anchoring the work in sovereign-AI deployment requirements.",
+      "evidenceUrl": "https://www.opaque.co/resources/articles/opaque-extends-the-agent-governance-toolkit-with-verifiable-identity-and-first-ever-verifiably-governed-and-secure-mcp",
+      "evidenceLabel": "Read the OPAQUE announcement"
+    },
+    {
+      "kind": "evidence",
+      "name": "AMD",
+      "markClass": "amd-mark",
+      "label": "Founding member and hardware partner",
+      "description": "AMD is a founding partner of AgenTrust. AMD and OPAQUE published a joint implementation blueprint for hardware-backed Confidential AI, and the implementation verifies SEV-SNP report signatures to the AMD root.",
+      "evidenceUrl": "https://www.opaque.co/resources/downloadables/from-risk-to-resilience-confidential-computing-with-amd-and-opaque",
+      "evidenceLabel": "Read the joint white paper"
+    },
+    {
+      "kind": "evidence",
+      "name": "Intel",
+      "markClass": "intel-mark",
+      "label": "Founding member and hardware partner",
+      "description": "Intel is a founding partner of AgenTrust. The implementation verifies Intel TDX DCAP v4 quotes to the pinned Intel SGX Root CA, hardware-validated on GCP C3.",
+      "evidenceUrl": "https://github.com/agentrust-io",
+      "evidenceLabel": "Review the public implementation record"
+    },
+    {
+      "kind": "evidence",
+      "name": "ServiceNow",
+      "markClass": "servicenow-mark",
+      "label": "OPAQUE customer implementation",
+      "description": "OPAQUE publicly documents how ServiceNow used its Confidential AI Platform to reduce commission-inquiry workflows from days to seconds.",
+      "evidenceUrl": "https://www.opaque.co/resources",
+      "evidenceLabel": "View the OPAQUE customer story"
+    },
+    {
+      "kind": "evidence",
+      "name": "CSA Agentic Trust Framework",
+      "markClass": "atf-mark",
+      "label": "Public framework collaboration",
+      "description": "ATF's author publicly supports positioning AGT as a reference implementation and invited implementation input into the conformance specification.",
+      "evidenceUrl": "https://github.com/microsoft/agent-governance-toolkit/discussions/301",
+      "evidenceLabel": "Read the public collaboration thread"
+    },
+    {
+      "kind": "partner",
+      "name": "XRSI — Human Intelligence In The Loop",
+      "logo": "/assets/xrsi-logo-black.png",
+      "label": "Ecosystem partner",
+      "title": "Governance and Ecosystem Sustainability Partner",
+      "description": "XRSI brings governance, community-building, and long-term ecosystem sustainability expertise to the AgenTrust adoption programme."
+    },
+    {
+      "kind": "partner",
+      "name": "Action State Group",
+      "logo": "/assets/action-state-group-logo.png",
+      "label": "Technical collaborator",
+      "title": "Trust Registry and Verifiable Record Collaboration",
+      "description": "Action State Group is collaborating with AgenTrust on an open contribution path for the TRACE Trust Registry, connecting TRACE runtime evidence with neutral, independently verifiable record and witness infrastructure.",
+      "evidenceUrl": "https://www.actionstate.ai/",
+      "evidenceLabel": "Visit Action State Group"
+    }
+  ]
+}
