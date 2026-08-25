@@ -25,6 +25,7 @@ OPAQUE Systems is a founding engineering and infrastructure sponsor of AgenTrust
 - [Agent Manifest](https://manifest.agentrust-io.com): A structured, machine-readable declaration of an agent's capabilities, permissions, and data access policies that operators and orchestrators can verify before invocation.
 - [Confidential MCP (cMCP)](https://cmcp.agentrust-io.com): The secure, confidential way to run MCP. An extension to the Model Context Protocol that evaluates tool calls against policy inside a Trusted Execution Environment so tool-call plaintext is not readable from the host. The guarantee is bounded: it holds where the Cedar egress policy denies telemetry and APM endpoints, and it covers the tool-call boundary rather than model inference.
 - [Confidential A2A (cA2A)](https://ca2a.agentrust-io.com): The secure, confidential profile for A2A. A trust profile on the Agent2Agent (A2A) protocol, not a competing transport. Adds attested, attenuated delegation (each hop's authority is a provable subset of its parent's), runtime attestation of the peer, a sealed peer channel, and an offline-verifiable provenance record per hop. Developer preview.
+- [AgenTrust Agentic Controls](https://agentrust-io.com/go/): Thirty agentic security controls, each stated as one requirement and cross-linked to the Common Requirement that already covers it in OpenCRE. Every control carries a stable permalink at `/go/<slug>/` so an external standard can cite it without the link rotting. It is a mapping, not a conformance claim.
 
 ## Get started
 

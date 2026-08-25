@@ -1,0 +1,708 @@
+{
+  "standard": "AgenTrust Agentic Controls",
+  "version": "0.1.0-draft",
+  "updated": "2026-08-25",
+  "source": "OpenCRE graph crawled via opencre.org/rest/v1 on 2026-08-24",
+  "note": "Source of truth for /go/. Every opencre id was checked against that crawl. This is a mapping, not a conformance claim.",
+  "controls": [
+    {
+      "id": "AT-01",
+      "family": "E1",
+      "family_name": "Identity and authority",
+      "slug": "agent-identity-credential",
+      "name": "Agent identity credential",
+      "enforcement_points": [
+        "agent_startup"
+      ],
+      "requirement": "The agent presents a credential bound to its own identity, distinct from the identity of the user who invoked it, before any authorization decision is made on its behalf.",
+      "permalink": "https://agentrust-io.com/go/agent-identity-credential/",
+      "opencre": [
+        {
+          "id": "633-428",
+          "name": "Authentication",
+          "url": "https://www.opencre.org/cre/633-428"
+        },
+        {
+          "id": "270-568",
+          "name": "Authentication mechanism",
+          "url": "https://www.opencre.org/cre/270-568"
+        }
+      ]
+    },
+    {
+      "id": "AT-02",
+      "family": "E1",
+      "family_name": "Identity and authority",
+      "slug": "agent-key-binding",
+      "name": "Agent key binding and custody",
+      "enforcement_points": [],
+      "requirement": "The agent's signing key is bound to its declared identity and held so that possession of the key cannot be separated from the identity it asserts.",
+      "permalink": "https://agentrust-io.com/go/agent-key-binding/",
+      "opencre": [
+        {
+          "id": "223-780",
+          "name": "Secret storage",
+          "url": "https://www.opencre.org/cre/223-780"
+        },
+        {
+          "id": "813-610",
+          "name": "Do not use static secrets",
+          "url": "https://www.opencre.org/cre/813-610"
+        }
+      ]
+    },
+    {
+      "id": "AT-03",
+      "family": "E1",
+      "family_name": "Identity and authority",
+      "slug": "capability-attenuation",
+      "name": "Capability attenuation across the delegation chain",
+      "enforcement_points": [
+        "pre_tool_call"
+      ],
+      "requirement": "A grant passed to a sub-agent is a subset of the grant it derives from. Delegation depth is bounded and no hop may widen scope.",
+      "permalink": "https://agentrust-io.com/go/capability-attenuation/",
+      "opencre": [
+        {
+          "id": "123-124",
+          "name": "Minimize permissions",
+          "url": "https://www.opencre.org/cre/123-124"
+        },
+        {
+          "id": "220-442",
+          "name": "Model action privilege minimization",
+          "url": "https://www.opencre.org/cre/220-442"
+        }
+      ]
+    },
+    {
+      "id": "AT-04",
+      "family": "E1",
+      "family_name": "Identity and authority",
+      "slug": "agent-purpose-declaration",
+      "name": "Declared agent purpose and scope",
+      "enforcement_points": [],
+      "requirement": "The agent declares its purpose and the boundary of its task in a form a policy engine can read, not only a form a person can read.",
+      "permalink": "https://agentrust-io.com/go/agent-purpose-declaration/",
+      "opencre": [
+        {
+          "id": "162-655",
+          "name": "Documentation of all components' business or security function",
+          "url": "https://www.opencre.org/cre/162-655"
+        },
+        {
+          "id": "810-884",
+          "name": "AI user transparency",
+          "url": "https://www.opencre.org/cre/810-884"
+        }
+      ]
+    },
+    {
+      "id": "AT-05",
+      "family": "E1",
+      "family_name": "Identity and authority",
+      "slug": "capability-manifest",
+      "name": "Declared capability manifest",
+      "enforcement_points": [
+        "agent_startup"
+      ],
+      "requirement": "The agent declares the tools and scopes it may use before it runs, and that declaration is the upper bound on what it can be granted.",
+      "permalink": "https://agentrust-io.com/go/capability-manifest/",
+      "opencre": [
+        {
+          "id": "220-442",
+          "name": "Model action privilege minimization",
+          "url": "https://www.opencre.org/cre/220-442"
+        },
+        {
+          "id": "863-521",
+          "name": "Maintain/manage inventory of third party components",
+          "url": "https://www.opencre.org/cre/863-521"
+        }
+      ]
+    },
+    {
+      "id": "AT-06",
+      "family": "E2",
+      "family_name": "Behaviour and accountability",
+      "slug": "structured-action-logging",
+      "name": "Structured action logging",
+      "enforcement_points": [],
+      "requirement": "Every action an agent takes is recorded in a structured form carrying the actor, the action, the target, and the decision that permitted it.",
+      "permalink": "https://agentrust-io.com/go/structured-action-logging/",
+      "opencre": [
+        {
+          "id": "402-706",
+          "name": "Log relevant",
+          "url": "https://www.opencre.org/cre/402-706"
+        }
+      ]
+    },
+    {
+      "id": "AT-07",
+      "family": "E2",
+      "family_name": "Behaviour and accountability",
+      "slug": "verifiable-evidence-record",
+      "name": "Signed, third-party-verifiable evidence record",
+      "enforcement_points": [],
+      "requirement": "The action record is signed so that a party who does not trust the operator of the log can still verify who acted and what was decided.",
+      "permalink": "https://agentrust-io.com/go/verifiable-evidence-record/",
+      "opencre": [
+        {
+          "id": "148-420",
+          "name": "Log integrity",
+          "url": "https://www.opencre.org/cre/148-420"
+        },
+        {
+          "id": "217-168",
+          "name": "Audit & accountability",
+          "url": "https://www.opencre.org/cre/217-168"
+        }
+      ]
+    },
+    {
+      "id": "AT-08",
+      "family": "E2",
+      "family_name": "Behaviour and accountability",
+      "slug": "behavioural-baseline",
+      "name": "Behavioural baseline for an agent",
+      "enforcement_points": [],
+      "requirement": "Normal behaviour for an agent is characterised before it is trusted with unattended work, so departure from it can be recognised.",
+      "permalink": "https://agentrust-io.com/go/behavioural-baseline/",
+      "opencre": [
+        {
+          "id": "552-588",
+          "name": "Detect and prevent unusual activity",
+          "url": "https://www.opencre.org/cre/552-588"
+        },
+        {
+          "id": "058-083",
+          "name": "Monitoring",
+          "url": "https://www.opencre.org/cre/058-083"
+        }
+      ]
+    },
+    {
+      "id": "AT-09",
+      "family": "E2",
+      "family_name": "Behaviour and accountability",
+      "slug": "agent-anomaly-detection",
+      "name": "Anomaly detection on agent behaviour",
+      "enforcement_points": [],
+      "requirement": "Departure from the established baseline is detected during the run rather than reconstructed after it.",
+      "permalink": "https://agentrust-io.com/go/agent-anomaly-detection/",
+      "opencre": [
+        {
+          "id": "703-813",
+          "name": "Monitor inference",
+          "url": "https://www.opencre.org/cre/703-813"
+        },
+        {
+          "id": "342-641",
+          "name": "Anomalous AI input handling",
+          "url": "https://www.opencre.org/cre/342-641"
+        }
+      ]
+    },
+    {
+      "id": "AT-10",
+      "family": "E2",
+      "family_name": "Behaviour and accountability",
+      "slug": "policy-verdict-rationale",
+      "name": "Policy verdict rationale",
+      "enforcement_points": [
+        "post_model_call"
+      ],
+      "requirement": "Each policy decision carries the rule that produced it and the inputs it read, so a verdict can be explained without re-running the agent.",
+      "permalink": "https://agentrust-io.com/go/policy-verdict-rationale/",
+      "opencre": [
+        {
+          "id": "810-884",
+          "name": "AI user transparency",
+          "url": "https://www.opencre.org/cre/810-884"
+        },
+        {
+          "id": "205-522",
+          "name": "Automated AI oversight",
+          "url": "https://www.opencre.org/cre/205-522"
+        }
+      ]
+    },
+    {
+      "id": "AT-11",
+      "family": "E3",
+      "family_name": "Data and content",
+      "slug": "input-schema-validation",
+      "name": "Schema validation of agent input",
+      "enforcement_points": [
+        "input"
+      ],
+      "requirement": "Input reaching the agent is validated against a declared schema before it is used.",
+      "permalink": "https://agentrust-io.com/go/input-schema-validation/",
+      "opencre": [
+        {
+          "id": "010-308",
+          "name": "Input validation",
+          "url": "https://www.opencre.org/cre/010-308"
+        }
+      ]
+    },
+    {
+      "id": "AT-12",
+      "family": "E3",
+      "family_name": "Data and content",
+      "slug": "prompt-injection-prevention",
+      "name": "Prompt injection prevention",
+      "enforcement_points": [
+        "input",
+        "post_model_call"
+      ],
+      "requirement": "Instructions arriving inside data are treated as data. Content fetched or returned during a run cannot alter the agent's instructions.",
+      "permalink": "https://agentrust-io.com/go/prompt-injection-prevention/",
+      "opencre": [
+        {
+          "id": "686-110",
+          "name": "Direct prompt injection",
+          "url": "https://www.opencre.org/cre/686-110"
+        },
+        {
+          "id": "012-625",
+          "name": "Indirect prompt injection",
+          "url": "https://www.opencre.org/cre/012-625"
+        },
+        {
+          "id": "843-475",
+          "name": "Prompt injection I/O handling",
+          "url": "https://www.opencre.org/cre/843-475"
+        },
+        {
+          "id": "106-447",
+          "name": "Prompt input segregation",
+          "url": "https://www.opencre.org/cre/106-447"
+        }
+      ]
+    },
+    {
+      "id": "AT-13",
+      "family": "E3",
+      "family_name": "Data and content",
+      "slug": "output-personal-data",
+      "name": "Personal data protection in agent output",
+      "enforcement_points": [
+        "output"
+      ],
+      "requirement": "Personal data in the agent's context and output is identified and handled according to its classification rather than passed through.",
+      "permalink": "https://agentrust-io.com/go/output-personal-data/",
+      "opencre": [
+        {
+          "id": "362-550",
+          "name": "Personal data handling",
+          "url": "https://www.opencre.org/cre/362-550"
+        },
+        {
+          "id": "204-272",
+          "name": "Sensitive AI output handling",
+          "url": "https://www.opencre.org/cre/204-272"
+        },
+        {
+          "id": "044-202",
+          "name": "Data disclosure in model output",
+          "url": "https://www.opencre.org/cre/044-202"
+        }
+      ]
+    },
+    {
+      "id": "AT-14",
+      "family": "E3",
+      "family_name": "Data and content",
+      "slug": "output-encoding",
+      "name": "Encoding and injection prevention",
+      "enforcement_points": [
+        "output"
+      ],
+      "requirement": "Model output is encoded for the interpreter that receives it, so output cannot become an injection in a downstream system.",
+      "permalink": "https://agentrust-io.com/go/output-encoding/",
+      "opencre": [
+        {
+          "id": "161-451",
+          "name": "Output encoding and injection prevention",
+          "url": "https://www.opencre.org/cre/161-451"
+        },
+        {
+          "id": "430-722",
+          "name": "Encode model output",
+          "url": "https://www.opencre.org/cre/430-722"
+        },
+        {
+          "id": "780-757",
+          "name": "Model output contains conventional injection",
+          "url": "https://www.opencre.org/cre/780-757"
+        }
+      ]
+    },
+    {
+      "id": "AT-15",
+      "family": "E3",
+      "family_name": "Data and content",
+      "slug": "context-provenance",
+      "name": "Context provenance for agent working memory",
+      "enforcement_points": [],
+      "requirement": "What entered the agent's working memory, and from where, is recorded, so a poisoned context can be traced to its source.",
+      "permalink": "https://agentrust-io.com/go/context-provenance/",
+      "opencre": [
+        {
+          "id": "088-316",
+          "name": "Augmentation data integrity controls",
+          "url": "https://www.opencre.org/cre/088-316"
+        },
+        {
+          "id": "423-055",
+          "name": "Data supply chain management",
+          "url": "https://www.opencre.org/cre/423-055"
+        }
+      ]
+    },
+    {
+      "id": "AT-16",
+      "family": "E4",
+      "family_name": "Scope and resources",
+      "slug": "resource-allowlist",
+      "name": "Resource allowlist",
+      "enforcement_points": [
+        "pre_tool_call"
+      ],
+      "requirement": "The data sources and sinks an agent may reach are declared in advance and enforced at the call boundary.",
+      "permalink": "https://agentrust-io.com/go/resource-allowlist/",
+      "opencre": [
+        {
+          "id": "814-322",
+          "name": "Whitelist data sources and sinks",
+          "url": "https://www.opencre.org/cre/814-322"
+        }
+      ]
+    },
+    {
+      "id": "AT-17",
+      "family": "E4",
+      "family_name": "Scope and resources",
+      "slug": "tool-authorization",
+      "name": "Tool authorization decision",
+      "enforcement_points": [
+        "pre_tool_call"
+      ],
+      "requirement": "Every tool call is an authorization decision made outside the model against the agent's granted scope, not a decision the model makes about itself.",
+      "permalink": "https://agentrust-io.com/go/tool-authorization/",
+      "opencre": [
+        {
+          "id": "220-442",
+          "name": "Model action privilege minimization",
+          "url": "https://www.opencre.org/cre/220-442"
+        },
+        {
+          "id": "128-128",
+          "name": "Strong authorization checking",
+          "url": "https://www.opencre.org/cre/128-128"
+        },
+        {
+          "id": "764-765",
+          "name": "Sanitization and sandboxing",
+          "url": "https://www.opencre.org/cre/764-765"
+        }
+      ]
+    },
+    {
+      "id": "AT-18",
+      "family": "E4",
+      "family_name": "Scope and resources",
+      "slug": "agent-rate-limiting",
+      "name": "Rate limiting on agent actions",
+      "enforcement_points": [],
+      "requirement": "The rate at which an agent may act is bounded independently of the rate at which it may infer.",
+      "permalink": "https://agentrust-io.com/go/agent-rate-limiting/",
+      "opencre": [
+        {
+          "id": "187-083",
+          "name": "Rate limiting against AI input attacks",
+          "url": "https://www.opencre.org/cre/187-083"
+        },
+        {
+          "id": "886-662",
+          "name": "Limit inference resources",
+          "url": "https://www.opencre.org/cre/886-662"
+        },
+        {
+          "id": "623-550",
+          "name": "Denial Of Service protection",
+          "url": "https://www.opencre.org/cre/623-550"
+        }
+      ]
+    },
+    {
+      "id": "AT-19",
+      "family": "E4",
+      "family_name": "Scope and resources",
+      "slug": "transaction-limits",
+      "name": "Transaction and spend limits",
+      "enforcement_points": [
+        "pre_tool_call"
+      ],
+      "requirement": "Transaction value and cumulative spend are bounded per run and per agent, and enforced before the call rather than reconciled after it.",
+      "permalink": "https://agentrust-io.com/go/transaction-limits/",
+      "opencre": [
+        {
+          "id": "333-480",
+          "name": "Impact limitation of unwanted model behaviour",
+          "url": "https://www.opencre.org/cre/333-480"
+        },
+        {
+          "id": "284-521",
+          "name": "Enforce additional authorization and segregation of duties",
+          "url": "https://www.opencre.org/cre/284-521"
+        }
+      ]
+    },
+    {
+      "id": "AT-20",
+      "family": "E4",
+      "family_name": "Scope and resources",
+      "slug": "blast-radius-containment",
+      "name": "Blast radius containment for agent execution",
+      "enforcement_points": [],
+      "requirement": "An agent executes inside a boundary that limits what a compromised or mistaken run can reach.",
+      "permalink": "https://agentrust-io.com/go/blast-radius-containment/",
+      "opencre": [
+        {
+          "id": "515-021",
+          "name": "Sandbox, containerize and/or isolate applications at the network level",
+          "url": "https://www.opencre.org/cre/515-021"
+        },
+        {
+          "id": "333-480",
+          "name": "Impact limitation of unwanted model behaviour",
+          "url": "https://www.opencre.org/cre/333-480"
+        }
+      ]
+    },
+    {
+      "id": "AT-21",
+      "family": "E5",
+      "family_name": "Response and recovery",
+      "slug": "agent-circuit-breaker",
+      "name": "Circuit breaker on agent loops",
+      "enforcement_points": [
+        "post_tool_call"
+      ],
+      "requirement": "Repeating or non-terminating agent loops are broken automatically, and a broken loop does not cascade into the agents depending on it.",
+      "permalink": "https://agentrust-io.com/go/agent-circuit-breaker/",
+      "opencre": [
+        {
+          "id": "333-480",
+          "name": "Impact limitation of unwanted model behaviour",
+          "url": "https://www.opencre.org/cre/333-480"
+        },
+        {
+          "id": "141-555",
+          "name": "Fail securely",
+          "url": "https://www.opencre.org/cre/141-555"
+        }
+      ]
+    },
+    {
+      "id": "AT-22",
+      "family": "E5",
+      "family_name": "Response and recovery",
+      "slug": "agent-termination",
+      "name": "Terminate a running agent",
+      "enforcement_points": [
+        "agent_shutdown"
+      ],
+      "requirement": "A running agent can be stopped by an operator, and the stop takes effect on work already in flight.",
+      "permalink": "https://agentrust-io.com/go/agent-termination/",
+      "opencre": [
+        {
+          "id": "202-604",
+          "name": "Human AI oversight",
+          "url": "https://www.opencre.org/cre/202-604"
+        },
+        {
+          "id": "463-577",
+          "name": "Incident response",
+          "url": "https://www.opencre.org/cre/463-577"
+        }
+      ]
+    },
+    {
+      "id": "AT-23",
+      "family": "E5",
+      "family_name": "Response and recovery",
+      "slug": "agent-session-revocation",
+      "name": "Agent session revocation",
+      "enforcement_points": [],
+      "requirement": "An agent's session and the authority attached to it can be revoked without waiting for expiry.",
+      "permalink": "https://agentrust-io.com/go/agent-session-revocation/",
+      "opencre": [
+        {
+          "id": "470-731",
+          "name": "Minimize session life",
+          "url": "https://www.opencre.org/cre/470-731"
+        },
+        {
+          "id": "673-736",
+          "name": "Enable option to log out from all active session",
+          "url": "https://www.opencre.org/cre/673-736"
+        }
+      ]
+    },
+    {
+      "id": "AT-24",
+      "family": "E5",
+      "family_name": "Response and recovery",
+      "slug": "agent-state-rollback",
+      "name": "State rollback after an agent action",
+      "enforcement_points": [],
+      "requirement": "State an agent changed can be identified and reversed, distinctly from restoring a backup of the whole system.",
+      "permalink": "https://agentrust-io.com/go/agent-state-rollback/",
+      "opencre": [
+        {
+          "id": "163-776",
+          "name": "Backup",
+          "url": "https://www.opencre.org/cre/163-776"
+        },
+        {
+          "id": "112-648",
+          "name": "Change management",
+          "url": "https://www.opencre.org/cre/112-648"
+        }
+      ]
+    },
+    {
+      "id": "AT-25",
+      "family": "E5",
+      "family_name": "Response and recovery",
+      "slug": "graceful-degradation",
+      "name": "Graceful degradation on policy engine failure",
+      "enforcement_points": [],
+      "requirement": "When the policy engine is unavailable the agent degrades to a defined and safe behaviour rather than to an unenforced one.",
+      "permalink": "https://agentrust-io.com/go/graceful-degradation/",
+      "opencre": [
+        {
+          "id": "141-555",
+          "name": "Fail securely",
+          "url": "https://www.opencre.org/cre/141-555"
+        }
+      ]
+    },
+    {
+      "id": "AT-26",
+      "family": "A",
+      "family_name": "Attested primitives",
+      "slug": "runtime-attestation-evidence",
+      "name": "Runtime attestation evidence",
+      "enforcement_points": [
+        "agent_startup"
+      ],
+      "requirement": "Evidence of what is actually executing is produced by the platform at startup and appraised by a relying party that does not control that platform.",
+      "permalink": "https://agentrust-io.com/go/runtime-attestation-evidence/",
+      "opencre": [
+        {
+          "id": "307-507",
+          "name": "Allow only trusted sources both build time and runtime; therefore perform integrity checks on all resources and code",
+          "url": "https://www.opencre.org/cre/307-507"
+        },
+        {
+          "id": "276-748",
+          "name": "Runtime model integrity controls",
+          "url": "https://www.opencre.org/cre/276-748"
+        }
+      ]
+    },
+    {
+      "id": "AT-27",
+      "family": "A",
+      "family_name": "Attested primitives",
+      "slug": "evidence-transparency-anchoring",
+      "name": "Transparency-log anchoring of evidence",
+      "enforcement_points": [],
+      "requirement": "Evidence records are anchored in an append-only log so a record cannot be rewritten after the fact without detection.",
+      "permalink": "https://agentrust-io.com/go/evidence-transparency-anchoring/",
+      "opencre": [
+        {
+          "id": "148-420",
+          "name": "Log integrity",
+          "url": "https://www.opencre.org/cre/148-420"
+        }
+      ]
+    },
+    {
+      "id": "AT-28",
+      "family": "A",
+      "family_name": "Attested primitives",
+      "slug": "attested-a2a-channel",
+      "name": "Attested agent-to-agent channel",
+      "enforcement_points": [],
+      "requirement": "An agent-to-agent channel establishes what the peer is, not only that the channel is encrypted, before scope is passed across it.",
+      "permalink": "https://agentrust-io.com/go/attested-a2a-channel/",
+      "opencre": [
+        {
+          "id": "634-733",
+          "name": "Communication authentication",
+          "url": "https://www.opencre.org/cre/634-733"
+        },
+        {
+          "id": "530-671",
+          "name": "Mutually authenticate application components",
+          "url": "https://www.opencre.org/cre/530-671"
+        }
+      ]
+    },
+    {
+      "id": "AT-29",
+      "family": "A",
+      "family_name": "Attested primitives",
+      "slug": "continuous-usage-control",
+      "name": "Continuous usage control after grant",
+      "enforcement_points": [],
+      "requirement": "Authorization is re-evaluated for the life of a grant, and obligations attached to a grant survive the moment it was issued.",
+      "permalink": "https://agentrust-io.com/go/continuous-usage-control/",
+      "opencre": [
+        {
+          "id": "128-128",
+          "name": "Strong authorization checking",
+          "url": "https://www.opencre.org/cre/128-128"
+        },
+        {
+          "id": "470-731",
+          "name": "Minimize session life",
+          "url": "https://www.opencre.org/cre/470-731"
+        }
+      ]
+    },
+    {
+      "id": "AT-30",
+      "family": "A",
+      "family_name": "Attested primitives",
+      "slug": "model-weight-custody",
+      "name": "Model weight custody against the hosting operator",
+      "enforcement_points": [],
+      "requirement": "Model weights released into infrastructure the model owner does not control remain under the owner's custody, including against the infrastructure operator.",
+      "permalink": "https://agentrust-io.com/go/model-weight-custody/",
+      "opencre": [
+        {
+          "id": "805-126",
+          "name": "Runtime model confidentiality controls",
+          "url": "https://www.opencre.org/cre/805-126"
+        },
+        {
+          "id": "883-173",
+          "name": "Model hosting supply chain mannagement",
+          "url": "https://www.opencre.org/cre/883-173"
+        },
+        {
+          "id": "852-770",
+          "name": "AI model supply chain management",
+          "url": "https://www.opencre.org/cre/852-770"
+        }
+      ]
+    }
+  ]
+}
