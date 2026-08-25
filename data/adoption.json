@@ -89,6 +89,28 @@
       "description": "Action State Group is collaborating with AgenTrust on an open contribution path for the TRACE Trust Registry, connecting TRACE runtime evidence with neutral, independently verifiable record and witness infrastructure.",
       "evidenceUrl": "https://www.actionstate.ai/",
       "evidenceLabel": "Visit Action State Group"
+    },
+    {
+      "kind": "partner",
+      "name": "Odystra AI",
+      "logo": "/assets/odystra-icon.png",
+      "compact": true,
+      "label": "Startup supporter",
+      "title": "Odystra AI",
+      "description": "Odystra builds an agentic governance, risk, and compliance platform for regulated enterprises.",
+      "evidenceUrl": "https://odystra.com/",
+      "evidenceLabel": "Visit Odystra"
+    },
+    {
+      "kind": "partner",
+      "name": "O(1) Labs",
+      "logo": "/assets/o1labs-icon.ico",
+      "compact": true,
+      "label": "Startup supporter",
+      "title": "O(1) Labs",
+      "description": "O(1) Labs develops applications and infrastructure powered by zero-knowledge cryptography.",
+      "evidenceUrl": "https://www.o1labs.org/",
+      "evidenceLabel": "Visit O(1) Labs"
     }
   ]
 }

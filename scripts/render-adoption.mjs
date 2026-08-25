@@ -23,7 +23,7 @@ const renderEvidence = item => `    <article class="adoption-card">
       ${evidence(item)}
     </article>`;
 
-const renderPartner = (item, featured = false) => `    <article class="partner-card${featured ? ' lf-card' : ''}">
+const renderPartner = (item, featured = false) => `    <article class="partner-card${featured ? ' lf-card' : ''}${item.compact ? ' startup-card' : ''}">
       <div class="partner-logo-wrap"><img src="${escapeText(item.logo)}" alt="${escapeText(item.name)}" loading="lazy"></div>
       <div><div class="partner-kicker">${escapeText(item.label)}</div><h3>${escapeText(item.title)}</h3><p>${escapeText(item.description)}</p>${evidence(item)}</div>
     </article>`;
@@ -39,6 +39,7 @@ for (const item of relationships) {
     throw new Error(`Logo and title are required for ${item.name}`);
   }
   if (item.evidenceUrl && !item.evidenceLabel) throw new Error(`Evidence label is required for ${item.name}`);
+  if (item.compact !== undefined && typeof item.compact !== 'boolean') throw new Error(`compact must be boolean for ${item.name}`);
   if (item.evidenceUrl && new URL(item.evidenceUrl).protocol !== 'https:') throw new Error(`Evidence URL must use HTTPS for ${item.name}`);
   if (item.markClass && !/^[a-z0-9-]+$/.test(item.markClass)) throw new Error(`Invalid markClass for ${item.name}`);
   if (item.logo) {

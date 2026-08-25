@@ -1119,6 +1119,10 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
 .agentrust-hub .partner-logo-wrap img { display: block; width: 100%; height: auto; }
 .agentrust-hub .partner-kicker { margin-top: 0; }
 .agentrust-hub .partner-card h3 { margin: 0 0 .55rem; color: var(--at-ink); font-family: var(--at-serif); font-size: clamp(1.25rem, 2vw, 1.7rem); font-weight: 500; line-height: 1.08; }
+.agentrust-hub .startup-card { grid-template-columns: 76px 1fr; padding: 1rem; }
+.agentrust-hub .startup-card .partner-logo-wrap { min-height: 76px; padding: .65rem; }
+.agentrust-hub .startup-card .partner-logo-wrap img { width: 48px; max-height: 48px; margin: auto; object-fit: contain; }
+.agentrust-hub .startup-card h3 { font-family: var(--at-sans); font-size: 1.1rem; font-weight: 750; }
 .agentrust-hub .governance-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
 .agentrust-hub .governance-card { min-height: 240px; padding: 1.5rem; }
 .agentrust-hub .governance-card h3 { margin: 0 0 .6rem; color: var(--at-ink); font-size: 1.1rem; }
