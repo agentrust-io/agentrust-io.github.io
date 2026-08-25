@@ -1123,6 +1123,10 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
 .agentrust-hub .startup-card .partner-logo-wrap { min-height: 76px; padding: .65rem; }
 .agentrust-hub .startup-card .partner-logo-wrap img { width: 48px; max-height: 48px; margin: auto; object-fit: contain; }
 .agentrust-hub .startup-card h3 { font-family: var(--at-sans); font-size: 1.1rem; font-weight: 750; }
+.agentrust-hub .adoption-contact { display: flex; gap: 2rem; align-items: center; justify-content: space-between; margin-top: 1rem; padding: 1.5rem; border: 1px solid var(--at-line); border-radius: var(--at-radius); background: var(--at-paper-2); }
+.agentrust-hub .adoption-contact h3 { margin: 0 0 .4rem; color: var(--at-ink); font-family: var(--at-serif); font-size: clamp(1.35rem, 2.5vw, 1.9rem); font-weight: 500; }
+.agentrust-hub .adoption-contact p { max-width: 720px; margin: 0; color: var(--at-muted); font-size: .9rem; line-height: 1.55; }
+.agentrust-hub .adoption-contact .btn { flex: 0 0 auto; white-space: nowrap; }
 .agentrust-hub .governance-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
 .agentrust-hub .governance-card { min-height: 240px; padding: 1.5rem; }
 .agentrust-hub .governance-card h3 { margin: 0 0 .6rem; color: var(--at-ink); font-size: 1.1rem; }
@@ -1145,6 +1149,7 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
   .agentrust-hub .governance-grid,
   .agentrust-hub .partner-grid,
   .agentrust-hub .partner-card { grid-template-columns: 1fr; }
+  .agentrust-hub .adoption-contact { align-items: flex-start; flex-direction: column; }
   .agentrust-hub .playbook-grid { grid-template-columns: 1fr; }
   .agentrust-hub .playbook-card { min-height: 130px; }
 }
