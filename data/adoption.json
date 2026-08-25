@@ -103,14 +103,14 @@
     },
     {
       "kind": "partner",
-      "name": "O(1) Labs",
+      "name": "o1Labs",
       "logo": "/assets/o1labs-icon.ico",
       "compact": true,
       "label": "Startup supporter",
-      "title": "O(1) Labs",
-      "description": "O(1) Labs develops applications and infrastructure powered by zero-knowledge cryptography.",
+      "title": "o1Labs",
+      "description": "o1Labs develops applications and infrastructure powered by zero-knowledge cryptography.",
       "evidenceUrl": "https://www.o1labs.org/",
-      "evidenceLabel": "Visit O(1) Labs"
+      "evidenceLabel": "Visit o1Labs"
     }
   ]
 }
