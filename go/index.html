@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgenTrust Agentic Controls | AgenTrust</title>
+<meta name="description" content="The AgenTrust agentic control set: 30 controls for AI agents, each stated as one requirement and cross-linked to the corresponding Common Requirement in OpenCRE. Stable permalinks at /go/.">
+<link rel="canonical" href="https://agentrust-io.com/go/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AgenTrust">
+<meta property="og:title" content="AgenTrust Agentic Controls">
+<meta property="og:description" content="The AgenTrust agentic control set: 30 controls for AI agents, each stated as one requirement and cross-linked to the corresponding Common Requirement in OpenCRE. Stable permalinks at /go/.">
+<meta property="og:url" content="https://agentrust-io.com/go/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://agentrust-io.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AgenTrust: open standards for AI agent governance">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AgenTrust Agentic Controls">
+<meta name="twitter:description" content="The AgenTrust agentic control set: 30 controls for AI agents, each stated as one requirement and cross-linked to the corresponding Common Requirement in OpenCRE. Stable permalinks at /go/.">
+<meta name="twitter:image" content="https://agentrust-io.com/og.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "name": "AgenTrust Agentic Controls",
+  "description": "Thirty agentic security controls, each cross-linked to its Common Requirement in OpenCRE.",
+  "url": "https://agentrust-io.com/go/",
+  "license": "https://opensource.org/licenses/MIT",
+  "publisher": { "@id": "https://agentrust-io.com/#organization" }
+}
+</script>
+
+<link rel="stylesheet" href="/design-system.css?v=10">
+</head>
+<body class="at-page">
+
+<header class="site-header">
+  <a class="wordmark" href="/">agentrust<span>.io</span></a>
+  <nav>
+    <a href="#controls">Controls</a>
+    <a href="#opencre">OpenCRE</a>
+    <a href="#limits">Limits</a>
+    <a class="cta" href="https://github.com/agentrust-io">GitHub</a>
+  </nav>
+</header>
+
+<div class="hero"><div class="wrap">
+  <span class="eyebrow">Declare &middot; Enforce &middot; Prove</span>
+  <h1>AgenTrust<br>Agentic Controls</h1>
+  <p class="sub">Thirty controls for AI agents, each stated as one requirement and cross-linked to the
+  Common Requirement that already covers it in OpenCRE. Every control has a stable permalink so an
+  external standard can cite it without the link rotting.</p>
+  <div><span class="status">30 controls &middot; 62 OpenCRE links &middot; 53 Common Requirements</span></div>
+</div></div>
+
+<main>
+
+<section id="opencre">
+  <span class="label">How to read this</span>
+  <h2>The links point outward on purpose</h2>
+  <p>Most of what an agent needs is not new. Identity, least privilege, logging, injection handling and
+  rate limiting are decades old, and OpenCRE already organizes them across ASVS, CWE, ISO 27001,
+  NIST 800-53, SAMM and the OWASP AI Exchange. So each control below names the Common Requirement it
+  belongs to rather than restating it.</p>
+  <p>Where a control reads new, it is usually the same requirement applied to a different subject: a
+  non-human principal, a grant derived from another grant, or a platform the relying party does not
+  control. That distinction is what the OpenCRE links make visible.</p>
+  <div class="callout"><p><strong>This is a mapping, not a conformance claim.</strong> A link to a
+  Common Requirement says a control belongs to that topic. It is not evidence that anything is
+  implemented, tested, or deployed.</p></div>
+</section>
+
+<section id="controls">
+  <span class="label">The control set</span>
+  <h2>Thirty controls</h2>
+  <p>Where a control is enforced at a specific point in the agent loop, the point is named on the
+  control itself. Fourteen of the thirty have one. The rest do not have a single point and are left
+  unmarked rather than forced into one.</p>
+
+  <h3 style="margin-top:3rem;">E1 &middot; Identity and authority</h3>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="agent-identity-credential"><span class="meta">AT-01</span> Agent identity credential</h4>
+    <span class="tag">agent_startup</span> 
+    <p>The agent presents a credential bound to its own identity, distinct from the identity of the user who invoked it, before any authorization decision is made on its behalf.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/633-428">Authentication</a> <a class="tag quiet" href="https://www.opencre.org/cre/270-568">Authentication mechanism</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/agent-identity-credential/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="agent-key-binding"><span class="meta">AT-02</span> Agent key binding and custody</h4>
+    
+    <p>The agent&#x27;s signing key is bound to its declared identity and held so that possession of the key cannot be separated from the identity it asserts.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/223-780">Secret storage</a> <a class="tag quiet" href="https://www.opencre.org/cre/813-610">Do not use static secrets</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/agent-key-binding/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="capability-attenuation"><span class="meta">AT-03</span> Capability attenuation across the delegation chain</h4>
+    <span class="tag">pre_tool_call</span> 
+    <p>A grant passed to a sub-agent is a subset of the grant it derives from. Delegation depth is bounded and no hop may widen scope.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/123-124">Minimize permissions</a> <a class="tag quiet" href="https://www.opencre.org/cre/220-442">Model action privilege minimization</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/capability-attenuation/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="agent-purpose-declaration"><span class="meta">AT-04</span> Declared agent purpose and scope</h4>
+    
+    <p>The agent declares its purpose and the boundary of its task in a form a policy engine can read, not only a form a person can read.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/162-655">Documentation of all components&#x27; business or security function</a> <a class="tag quiet" href="https://www.opencre.org/cre/810-884">AI user transparency</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/agent-purpose-declaration/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="capability-manifest"><span class="meta">AT-05</span> Declared capability manifest</h4>
+    <span class="tag">agent_startup</span> 
+    <p>The agent declares the tools and scopes it may use before it runs, and that declaration is the upper bound on what it can be granted.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/220-442">Model action privilege minimization</a> <a class="tag quiet" href="https://www.opencre.org/cre/863-521">Maintain/manage inventory of third party components</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/capability-manifest/</code></p>
+  </div>
+
+  <h3 style="margin-top:3rem;">E2 &middot; Behaviour and accountability</h3>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="structured-action-logging"><span class="meta">AT-06</span> Structured action logging</h4>
+    
+    <p>Every action an agent takes is recorded in a structured form carrying the actor, the action, the target, and the decision that permitted it.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/402-706">Log relevant</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/structured-action-logging/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="verifiable-evidence-record"><span class="meta">AT-07</span> Signed, third-party-verifiable evidence record</h4>
+    
+    <p>The action record is signed so that a party who does not trust the operator of the log can still verify who acted and what was decided.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/148-420">Log integrity</a> <a class="tag quiet" href="https://www.opencre.org/cre/217-168">Audit &amp; accountability</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/verifiable-evidence-record/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="behavioural-baseline"><span class="meta">AT-08</span> Behavioural baseline for an agent</h4>
+    
+    <p>Normal behaviour for an agent is characterised before it is trusted with unattended work, so departure from it can be recognised.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/552-588">Detect and prevent unusual activity</a> <a class="tag quiet" href="https://www.opencre.org/cre/058-083">Monitoring</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/behavioural-baseline/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="agent-anomaly-detection"><span class="meta">AT-09</span> Anomaly detection on agent behaviour</h4>
+    
+    <p>Departure from the established baseline is detected during the run rather than reconstructed after it.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/703-813">Monitor inference</a> <a class="tag quiet" href="https://www.opencre.org/cre/342-641">Anomalous AI input handling</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/agent-anomaly-detection/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="policy-verdict-rationale"><span class="meta">AT-10</span> Policy verdict rationale</h4>
+    <span class="tag">post_model_call</span> 
+    <p>Each policy decision carries the rule that produced it and the inputs it read, so a verdict can be explained without re-running the agent.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/810-884">AI user transparency</a> <a class="tag quiet" href="https://www.opencre.org/cre/205-522">Automated AI oversight</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/policy-verdict-rationale/</code></p>
+  </div>
+
+  <h3 style="margin-top:3rem;">E3 &middot; Data and content</h3>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="input-schema-validation"><span class="meta">AT-11</span> Schema validation of agent input</h4>
+    <span class="tag">input</span> 
+    <p>Input reaching the agent is validated against a declared schema before it is used.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/010-308">Input validation</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/input-schema-validation/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="prompt-injection-prevention"><span class="meta">AT-12</span> Prompt injection prevention</h4>
+    <span class="tag">input</span> <span class="tag">post_model_call</span> 
+    <p>Instructions arriving inside data are treated as data. Content fetched or returned during a run cannot alter the agent&#x27;s instructions.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/686-110">Direct prompt injection</a> <a class="tag quiet" href="https://www.opencre.org/cre/012-625">Indirect prompt injection</a> <a class="tag quiet" href="https://www.opencre.org/cre/843-475">Prompt injection I/O handling</a> <a class="tag quiet" href="https://www.opencre.org/cre/106-447">Prompt input segregation</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/prompt-injection-prevention/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="output-personal-data"><span class="meta">AT-13</span> Personal data protection in agent output</h4>
+    <span class="tag">output</span> 
+    <p>Personal data in the agent&#x27;s context and output is identified and handled according to its classification rather than passed through.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/362-550">Personal data handling</a> <a class="tag quiet" href="https://www.opencre.org/cre/204-272">Sensitive AI output handling</a> <a class="tag quiet" href="https://www.opencre.org/cre/044-202">Data disclosure in model output</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/output-personal-data/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="output-encoding"><span class="meta">AT-14</span> Encoding and injection prevention</h4>
+    <span class="tag">output</span> 
+    <p>Model output is encoded for the interpreter that receives it, so output cannot become an injection in a downstream system.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/161-451">Output encoding and injection prevention</a> <a class="tag quiet" href="https://www.opencre.org/cre/430-722">Encode model output</a> <a class="tag quiet" href="https://www.opencre.org/cre/780-757">Model output contains conventional injection</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/output-encoding/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="context-provenance"><span class="meta">AT-15</span> Context provenance for agent working memory</h4>
+    
+    <p>What entered the agent&#x27;s working memory, and from where, is recorded, so a poisoned context can be traced to its source.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/088-316">Augmentation data integrity controls</a> <a class="tag quiet" href="https://www.opencre.org/cre/423-055">Data supply chain management</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/context-provenance/</code></p>
+  </div>
+
+  <h3 style="margin-top:3rem;">E4 &middot; Scope and resources</h3>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="resource-allowlist"><span class="meta">AT-16</span> Resource allowlist</h4>
+    <span class="tag">pre_tool_call</span> 
+    <p>The data sources and sinks an agent may reach are declared in advance and enforced at the call boundary.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/814-322">Whitelist data sources and sinks</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/resource-allowlist/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="tool-authorization"><span class="meta">AT-17</span> Tool authorization decision</h4>
+    <span class="tag">pre_tool_call</span> 
+    <p>Every tool call is an authorization decision made outside the model against the agent&#x27;s granted scope, not a decision the model makes about itself.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/220-442">Model action privilege minimization</a> <a class="tag quiet" href="https://www.opencre.org/cre/128-128">Strong authorization checking</a> <a class="tag quiet" href="https://www.opencre.org/cre/764-765">Sanitization and sandboxing</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/tool-authorization/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="agent-rate-limiting"><span class="meta">AT-18</span> Rate limiting on agent actions</h4>
+    
+    <p>The rate at which an agent may act is bounded independently of the rate at which it may infer.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/187-083">Rate limiting against AI input attacks</a> <a class="tag quiet" href="https://www.opencre.org/cre/886-662">Limit inference resources</a> <a class="tag quiet" href="https://www.opencre.org/cre/623-550">Denial Of Service protection</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/agent-rate-limiting/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="transaction-limits"><span class="meta">AT-19</span> Transaction and spend limits</h4>
+    <span class="tag">pre_tool_call</span> 
+    <p>Transaction value and cumulative spend are bounded per run and per agent, and enforced before the call rather than reconciled after it.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/333-480">Impact limitation of unwanted model behaviour</a> <a class="tag quiet" href="https://www.opencre.org/cre/284-521">Enforce additional authorization and segregation of duties</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/transaction-limits/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="blast-radius-containment"><span class="meta">AT-20</span> Blast radius containment for agent execution</h4>
+    
+    <p>An agent executes inside a boundary that limits what a compromised or mistaken run can reach.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/515-021">Sandbox, containerize and/or isolate applications at the network level</a> <a class="tag quiet" href="https://www.opencre.org/cre/333-480">Impact limitation of unwanted model behaviour</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/blast-radius-containment/</code></p>
+  </div>
+
+  <h3 style="margin-top:3rem;">E5 &middot; Response and recovery</h3>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="agent-circuit-breaker"><span class="meta">AT-21</span> Circuit breaker on agent loops</h4>
+    <span class="tag">post_tool_call</span> 
+    <p>Repeating or non-terminating agent loops are broken automatically, and a broken loop does not cascade into the agents depending on it.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/333-480">Impact limitation of unwanted model behaviour</a> <a class="tag quiet" href="https://www.opencre.org/cre/141-555">Fail securely</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/agent-circuit-breaker/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="agent-termination"><span class="meta">AT-22</span> Terminate a running agent</h4>
+    <span class="tag">agent_shutdown</span> 
+    <p>A running agent can be stopped by an operator, and the stop takes effect on work already in flight.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/202-604">Human AI oversight</a> <a class="tag quiet" href="https://www.opencre.org/cre/463-577">Incident response</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/agent-termination/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="agent-session-revocation"><span class="meta">AT-23</span> Agent session revocation</h4>
+    
+    <p>An agent&#x27;s session and the authority attached to it can be revoked without waiting for expiry.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/470-731">Minimize session life</a> <a class="tag quiet" href="https://www.opencre.org/cre/673-736">Enable option to log out from all active session</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/agent-session-revocation/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="agent-state-rollback"><span class="meta">AT-24</span> State rollback after an agent action</h4>
+    
+    <p>State an agent changed can be identified and reversed, distinctly from restoring a backup of the whole system.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/163-776">Backup</a> <a class="tag quiet" href="https://www.opencre.org/cre/112-648">Change management</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/agent-state-rollback/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="graceful-degradation"><span class="meta">AT-25</span> Graceful degradation on policy engine failure</h4>
+    
+    <p>When the policy engine is unavailable the agent degrades to a defined and safe behaviour rather than to an unenforced one.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/141-555">Fail securely</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/graceful-degradation/</code></p>
+  </div>
+
+  <h3 style="margin-top:3rem;">A &middot; Attested primitives</h3>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="runtime-attestation-evidence"><span class="meta">AT-26</span> Runtime attestation evidence</h4>
+    <span class="tag">agent_startup</span> 
+    <p>Evidence of what is actually executing is produced by the platform at startup and appraised by a relying party that does not control that platform.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/307-507">Allow only trusted sources both build time and runtime; therefore perform integrity checks on all resources and code</a> <a class="tag quiet" href="https://www.opencre.org/cre/276-748">Runtime model integrity controls</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/runtime-attestation-evidence/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="evidence-transparency-anchoring"><span class="meta">AT-27</span> Transparency-log anchoring of evidence</h4>
+    
+    <p>Evidence records are anchored in an append-only log so a record cannot be rewritten after the fact without detection.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/148-420">Log integrity</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/evidence-transparency-anchoring/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="attested-a2a-channel"><span class="meta">AT-28</span> Attested agent-to-agent channel</h4>
+    
+    <p>An agent-to-agent channel establishes what the peer is, not only that the channel is encrypted, before scope is passed across it.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/634-733">Communication authentication</a> <a class="tag quiet" href="https://www.opencre.org/cre/530-671">Mutually authenticate application components</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/attested-a2a-channel/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="continuous-usage-control"><span class="meta">AT-29</span> Continuous usage control after grant</h4>
+    
+    <p>Authorization is re-evaluated for the life of a grant, and obligations attached to a grant survive the moment it was issued.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/128-128">Strong authorization checking</a> <a class="tag quiet" href="https://www.opencre.org/cre/470-731">Minimize session life</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/continuous-usage-control/</code></p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h4 id="model-weight-custody"><span class="meta">AT-30</span> Model weight custody against the hosting operator</h4>
+    
+    <p>Model weights released into infrastructure the model owner does not control remain under the owner&#x27;s custody, including against the infrastructure operator.</p>
+    <p class="meta">Common Requirements: <a class="tag quiet" href="https://www.opencre.org/cre/805-126">Runtime model confidentiality controls</a> <a class="tag quiet" href="https://www.opencre.org/cre/883-173">Model hosting supply chain mannagement</a> <a class="tag quiet" href="https://www.opencre.org/cre/852-770">AI model supply chain management</a></p>
+    <p class="meta">Permalink: <code>https://agentrust-io.com/go/model-weight-custody/</code></p>
+  </div>
+
+</section>
+
+<section id="limits">
+  <span class="label">Limits</span>
+  <h2>What this page does not do</h2>
+  <ul>
+    <li>It does not claim these controls are absent from OpenCRE. Every one of the thirty maps to an
+    existing Common Requirement. None proposes a new one.</li>
+    <li>It does not rank the controls or assert a maturity model over them.</li>
+    <li>It does not assert that any AgenTrust implementation satisfies any of them. Conformance is
+    tested per specification, not asserted here.</li>
+    <li>Two of the controls, continuous usage control and model weight custody, are drawn from
+    specifications that are still in private pre-standardization. Their permalinks resolve here and
+    will point deeper once those specifications are public.</li>
+  </ul>
+  <p class="meta" style="margin-top:2rem;">This page is generated from the OpenCRE mapping sheet.
+  Edit the mapping, not this file.</p>
+</section>
+
+</main>
+
+<footer class="site-footer"><div class="wrap">
+  <div class="foot-in">
+    <div class="foot-brand">
+      <a class="wordmark" href="/">AgenTrust</a>
+      <div class="tagline">Open standards for AI agent governance</div>
+    </div>
+    <div class="foot-links">
+      <a href="/">Home</a>
+      <a href="/quickstart/">Quickstart</a>
+      <a href="/demos/">Demos</a>
+      <a href="https://github.com/agentrust-io">GitHub</a>
+    </div>
+  </div>
+  <div class="foot-legal">&copy; 2026 AgenTrust Contributors &middot; MIT licensed &middot; agentrust-io.com</div>
+</div></footer>
+
+<script src="/supernav.js"></script>
+<script src="/page.js"></script>
+</body>
+</html>
