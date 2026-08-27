@@ -234,11 +234,11 @@
 </nav>
 
 <!-- Hero -->
-<div class="fellowship" data-fellowship-banner data-closes="2026-08-30T00:00:00-07:00">
+<div class="fellowship">
   <div class="fellowship-inner">
-    <span class="fellowship-tag">Now hiring</span>
-    <span class="fellowship-text"><strong>AgenTrust Fellowship 2026.</strong> A six-month paid, part-time programme that develops maintainers for the verifiable AI ecosystem. Applications open 1 August and close 29 August 2026; the cohort starts in September.</span>
-    <a class="fellowship-link" href="https://www.opaque.co/resources/articles/opaque-announces-applications-for-agentrust-fellowship-to-advance-open-standards-for-verifiable-ai-agents">Read the announcement &rarr;</a>
+    <span class="fellowship-tag">Linux Foundation</span>
+    <span class="fellowship-text"><strong>TRACE joins the Linux Foundation.</strong> The open specification now has vendor-neutral governance for portable, verifiable runtime evidence across AI agents and confidential workloads.</span>
+    <a class="fellowship-link" href="https://www.linuxfoundation.org/press/linux-foundation-welcomes-trace-to-advance-verifiable-runtime-evidence-for-ai-workloads">Read the Linux Foundation announcement &rarr;</a>
   </div>
 </div>
 
@@ -664,13 +664,13 @@
 <hr class="divider">
 
 <!-- What is AgenTrust -->
-<section class="section" id="fellowship" data-fellowship-section data-closes="2026-08-30T00:00:00-07:00">
+<section class="section" id="fellowship">
   <div class="section-header">
     <div class="section-label">Get Involved</div>
     <h2>AgenTrust Fellowship 2026</h2>
   </div>
-  <p class="lead-copy">A six-month paid, part-time fellowship (20 hours per week) for three to five emerging maintainers of open infrastructure for verifiable AI systems. It is aimed at security engineers, distributed systems researchers, AI governance and compliance professionals, and Ph.D. students. Fellows ship code, tests, integrations, documentation, and adoption guidance across AgenTrust projects while learning how to review contributions and sustain an open technical community. Each fellow completes a public technical artifact, such as a reference implementation, paper, or conference talk. Mentored by Imran Siddique, Chief Platform Officer at OPAQUE and creator of the Agent Governance Toolkit.</p>
-  <p class="lead-copy" data-fellowship-status><strong>Applications are open through 29 August 2026</strong>, with the cohort starting in September. Selection is based on a technical proposal describing what you plan to contribute, so it is worth looking at the work before you apply: issues labelled <a href="https://github.com/search?q=org%3Aagentrust-io+is%3Aissue+is%3Aopen+label%3Afellowship&amp;type=issues"><code>fellowship</code></a> across trace-spec, cmcp, cA2A, and agent-manifest are real, currently-open work rather than exercises.</p>
+  <p class="lead-copy">The AgenTrust Fellowship supports emerging maintainers of open infrastructure for verifiable AI systems. Fellows contribute code, tests, integrations, documentation, and adoption guidance across AgenTrust projects, grounded in real issues and verifiable work.</p>
+  <p class="lead-copy"><strong>Applications closed early on 26 August 2026 due to exceptional volume.</strong> Existing applications are under review, and selected candidates will be contacted directly.</p>
   <div class="hero-actions">
     <a href="https://www.opaque.co/resources/articles/opaque-announces-applications-for-agentrust-fellowship-to-advance-open-standards-for-verifiable-ai-agents" class="btn btn-primary">Read the announcement &rarr;</a>
     <a href="https://github.com/search?q=org%3Aagentrust-io+is%3Aissue+is%3Aopen+label%3Afellowship&amp;type=issues" class="btn btn-ghost">Browse fellowship issues</a>
@@ -802,18 +802,6 @@
     resolve();
   })();
 </script>
-<script>
-  (() => {
-    const section = document.querySelector('[data-fellowship-section]');
-    if (!section) return;
-    const closes = Date.parse(section.dataset.closes);
-    if (Number.isNaN(closes) || Date.now() < closes) return;
-    document.querySelector('[data-fellowship-banner]')?.remove();
-    const status = section.querySelector('[data-fellowship-status]');
-    if (status) status.innerHTML = '<strong>Applications closed on 29 August 2026.</strong> Follow the open fellowship issues and project repositories for cohort work and future opportunities.';
-    const primary = section.querySelector('.btn-primary');
-    if (primary) primary.textContent = 'Read the 2026 announcement →';
-  })();
-</script>
+
 </body>
 </html>
