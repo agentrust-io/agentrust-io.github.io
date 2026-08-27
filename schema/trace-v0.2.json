@@ -1,8 +1,39 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://agentrust-io.com/schema/trace-v0.2.json",
+  "$defs": {
+    "canonicalizableValue": {
+      "description": "Any JSON value section 3.2.2 can canonicalize without ambiguity. RFC 7517 lets a JWK carry members this schema does not name, those members are covered by the signature, and they therefore need the constraint the named fields carry: `number` is excluded, and an integer is held to the safe-integer domain. Recursive, because such a member may itself be an array or an object.",
+      "anyOf": [
+        {
+          "type": [
+            "string",
+            "boolean",
+            "null"
+          ]
+        },
+        {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/canonicalizableValue"
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/canonicalizableValue"
+          }
+        }
+      ]
+    }
+  },
   "title": "TRACE Trust Record",
-  "description": "A TRACE v0.2 Trust Record — hardware-attested governance evidence for an AI agent execution.",
+  "description": "A TRACE v0.2 Trust Record: hardware-attested governance evidence for an AI agent execution.",
   "type": "object",
   "required": [
     "eat_profile",
@@ -25,7 +56,8 @@
     "iat": {
       "type": "integer",
       "description": "Issued-at time as Unix epoch seconds.",
-      "minimum": 1700000000
+      "minimum": 1700000000,
+      "maximum": 9007199254740991
     },
     "subject": {
       "type": "string",
@@ -172,6 +204,7 @@
         "call_count": {
           "type": "integer",
           "minimum": 0,
+          "maximum": 9007199254740991,
           "description": "Total number of tool calls in this session."
         },
         "transcript_uri": {
@@ -233,10 +266,51 @@
         "ingested_at": {
           "type": "integer",
           "minimum": 1700000000,
+          "maximum": 9007199254740991,
           "description": "Unix time at which the source evidence was ingested. Distinct from iat, which is when this record was issued."
         }
       },
       "additionalProperties": false
+    },
+    "references": {
+      "type": "array",
+      "description": "Facts outside this record that it points at. Spec section 3.1.2. An entry is a pointer, not evidence: the signature attests that this record points there, not the truth of what it points at. The block is assurance-neutral and does not affect runtime.platform. Two further rules in 3.1.2 bind verifiers rather than records, so this schema cannot express them: a verifier MUST NOT reject a record because an entry cannot be resolved, and MUST NOT treat a resolved entry as attested evidence.",
+      "items": {
+        "type": "object",
+        "required": [
+          "rel",
+          "id",
+          "resolver"
+        ],
+        "properties": {
+          "rel": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Relationship type. The registered values are a registry that grows, so this is not a closed set. authorized-intent: an authorization decided before execution, held in another system. approval-outcome: an attributable human approval attached to a step-up or defer decision. behavior-trace: a behavioural record of what the agent did, of which this record is the environment evidence."
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Identifier of the referenced fact within the resolver's system."
+          },
+          "resolver": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Identifier of the party obliged to resolve id. A producer that cannot name one omits the entry. Which identifiers are self-asserted is not decidable from the record, so this constrains the field's presence and not its value."
+          },
+          "retention": {
+            "type": "string",
+            "pattern": "^P(\\d+W|(\\d+Y(\\d+M)?(\\d+D)?|\\d+M(\\d+D)?|\\d+D)(T(\\d+H(\\d+M)?(\\d+S)?|\\d+M(\\d+S)?|\\d+S))?|T(\\d+H(\\d+M)?(\\d+S)?|\\d+M(\\d+S)?|\\d+S))$",
+            "description": "Period for which resolver undertakes to keep id resolvable, as an ISO 8601 duration. An undertaking only: nothing in this specification enforces it."
+          },
+          "digest": {
+            "type": "string",
+            "pattern": "^sha(256:[0-9a-f]{64}|384:[0-9a-f]{96})$",
+            "description": "SHA-256 or SHA-384 digest of the referenced object, when the producer holds it at issue time."
+          }
+        },
+        "additionalProperties": false
+      }
     },
     "build_provenance": {
       "type": "object",
@@ -308,6 +382,8 @@
         },
         "timestamp": {
           "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991,
           "description": "Unix epoch seconds when the appraisal was produced."
         },
         "provenance_depth_verified": {
@@ -329,7 +405,7 @@
     },
     "cnf": {
       "type": "object",
-      "description": "Confirmation key (RFC 8747) — binds the Trust Record to the TEE-held signing key.",
+      "description": "Confirmation key (RFC 8747) that binds the Trust Record to the TEE-held signing key.",
       "required": [
         "jwk"
       ],
@@ -395,7 +471,10 @@
                 ]
               }
             }
-          ]
+          ],
+          "additionalProperties": {
+            "$ref": "#/$defs/canonicalizableValue"
+          }
         }
       },
       "additionalProperties": false

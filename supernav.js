@@ -1,4 +1,4 @@
-/* AgenTrust super-navigation — injected into all agentrust-io.com properties
+/* AgenTrust super-navigation, injected into all agentrust-io.com properties
  *
  * Colours come from design-system.css custom properties, which every property
  * loads, so the bar follows the editorial theme (and the MkDocs light/dark
@@ -139,7 +139,7 @@
     injectNav();
   }
 
-  // Material for MkDocs instant navigation — document$ fires on every page swap
+  // Material for MkDocs instant navigation: document$ fires on every page swap
   // Guard: only subscribe if the observable exists (it's set synchronously in Material's bundle)
   function subscribeMaterial() {
     if (typeof window.document$ !== 'undefined' && typeof window.document$.subscribe === 'function') {
