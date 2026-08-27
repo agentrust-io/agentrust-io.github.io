@@ -8,7 +8,7 @@ AgenTrust connects reusable open technology with the people and practices needed
 
 - [AgenTrust Marketplace](https://agentrust-io.com/marketplace/): Search and filter open integrations, adapters, plugins, policy tools, and evidence exporters for TRACE, cMCP, and Agent Manifest. Listings follow public technical rules; Community tier is structure-validated and is not an endorsement.
 
-The ecosystem is focused on implementation, interoperability, maintainer development, community adoption, and long-term sustainability—not standards development as an end in itself. Its adoption pathway is: explore a runnable demo; test against open conformance suites; pilot one trust boundary; contribute results, integrations, and deployment evidence; then help govern and maintain the shared infrastructure.
+The ecosystem is focused on implementation, interoperability, maintainer development, community adoption, and long-term sustainability, not standards development as an end in itself. Its adoption pathway is: explore a runnable demo; test against open conformance suites; pilot one trust boundary; contribute results, integrations, and deployment evidence; then help govern and maintain the shared infrastructure.
 
 Work happens in public through open repositories, reviewable proposals, implementation evidence, and conformance testing. Neutral standards homes are interoperability pathways; implementations, integrations, testing, documentation, training, adoption support, and maintainer succession make the technology useful and durable.
 

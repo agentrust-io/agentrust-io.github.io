@@ -181,11 +181,11 @@ EOF
 cat &gt; policies/agent.cedar &lt;&lt; 'EOF'
 <span class="c">// Cedar is default-deny: anything these rules don't permit is denied.</span>
 
-<span class="c">// Rule 1 — let the demo-agent workflow call tools at all</span>
+<span class="c">// Rule 1: let the demo-agent workflow call tools at all</span>
 permit ( principal, action == cMCP::Action::"call_tool", resource )
 when { context.workflow_id == "demo-agent" };
 
-<span class="c">// Rule 2 — but never let it call a tool the catalog tags as PII.</span>
+<span class="c">// Rule 2: but never let it call a tool the catalog tags as PII.</span>
 <span class="c">// forbid always wins over permit in Cedar, so this is the rule</span>
 <span class="c">// that produces the 403 in step 4.</span>
 forbid ( principal, action == cMCP::Action::"call_tool", resource )
@@ -247,7 +247,7 @@ EOF</pre>
         <h3>Start the runtime</h3>
         <p class="hint">Run this in the <b>same terminal where you just created the files</b> (you're inside <code>cmcp-quickstart</code>). It keeps running and won't return a prompt, which is normal, and the startup notices are expected, not errors. <b>Leave it open</b> and open a second terminal for the next step.</p>
         <div class="code">
-          <div class="code-head"><span class="code-label">Terminal 1 — leave running</span><button class="copy">COPY</button></div>
+          <div class="code-head"><span class="code-label">Terminal 1: leave running</span><button class="copy">COPY</button></div>
 <pre>CMCP_DEV_MODE=1 cmcp start --config cmcp-config.yaml</pre>
         </div>
       </div>
@@ -259,7 +259,7 @@ EOF</pre>
         <h3>Fire a bad action, watch it get blocked</h3>
         <p class="hint">In a <b>second terminal</b>, run <code>cd cmcp-quickstart &amp;&amp; source venv/bin/activate</code> first (so <code>cmcp</code> is available here too), then paste this. It's your support agent trying to pull a customer's Salesforce record. The runtime looks the tool up in your catalog, sees <code>compliance_domain: "pii"</code>, and your rule 2 forbids it. Watch it return a <b>403</b> before it ever reaches Salesforce. Not blocked? You're likely in advisory mode, so check the config says <code>enforcing</code>.</p>
         <div class="code">
-          <div class="code-head"><span class="code-label">Terminal 2 — you, playing the agent</span><button class="copy">COPY</button></div>
+          <div class="code-head"><span class="code-label">Terminal 2: you, playing the agent</span><button class="copy">COPY</button></div>
 <pre>curl -i -X POST http://localhost:8443/mcp \
   -H "Content-Type: application/json" \
   -d '{
@@ -293,7 +293,7 @@ EOF</pre>
         <h3>Walk away with proof</h3>
         <p class="hint">Closing the session mints a signed <code>TRACE claim</code>, a tamper-evident record of which tools ran and which policy decided each call. Verify it yourself; you don't have to trust us. See the <a href="https://cmcp.agentrust-io.com/SPEC/#5-trace-claim-schema" target="_blank" rel="noopener">full TRACE claim schema</a>.</p>
         <div class="code">
-          <div class="code-head"><span class="code-label">Terminal 2 — finalize the session, then verify</span><button class="copy">COPY</button></div>
+          <div class="code-head"><span class="code-label">Terminal 2: finalize the session, then verify</span><button class="copy">COPY</button></div>
 <pre>SID=$(curl -s "http://localhost:8443/audit/export?session_id=demo-session-001" \
   | python3 -c "import sys,json; print(json.load(sys.stdin)['entries'][0]['session_id'])")
 curl -s -X POST "http://localhost:8443/sessions/$SID/close" | python3 -m json.tool &gt; claim.json
@@ -311,7 +311,7 @@ cmcp verify claim.json</pre>
           <div class="chk"><span>tool_catalog.hash</span><span class="pass">PASS ✓ <span class="note">(not pinned)</span></span></div>
           <div class="chk"><span>attestation_freshness</span><span class="pass">PASS ✓</span></div>
           <div class="chk"><span>audit_chain</span><span class="pass">PASS ✓</span></div>
-          <div class="chk"><span>hardware_attestation</span><span class="warn">FAIL — software-only mode</span></div>
+          <div class="chk"><span>hardware_attestation</span><span class="warn">FAIL: software-only mode</span></div>
           <div class="chk result"><span>Result</span><span class="warn">FAIL (partially_verified)</span></div>
         </div>
         <p class="note-rule">Every cryptographic check passes. The one <span class="warn">FAIL</span> is hardware attestation, which dev mode can't provide, and <b>that is the honest answer</b>: overall verification only reports <span class="pass">verified</span> when the claim is hardware-backed, so the CLI prints <span class="warn">FAIL (partially_verified)</span> and exits 1 here. Run the same runtime on a hardware TEE and that last check passes, the result becomes <b>verified</b>, and that is the version you hand a regulator.</p>
@@ -321,7 +321,7 @@ cmcp verify claim.json</pre>
   </div>
 
   <div class="verdict quiet" style="margin-top:2.25rem;">
-    <div class="flag">Go further — stateful escalation</div>
+    <div class="flag">Go further: stateful escalation</div>
     <p>The rule you just wrote is stateless: the tool is tagged PII, so it is always forbidden for this workflow. cMCP also tracks sensitivity <em>across</em> a session. Once a response has been inspected and found to contain PII, the session's <code>session_max_sensitivity</code> rises, and a rule like this starts to bite:</p>
     <div class="code">
       <div class="code-head"><span class="code-label">The stateful version of rule 2</span><button class="copy">COPY</button></div>

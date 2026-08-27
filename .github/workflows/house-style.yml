@@ -1,0 +1,36 @@
+name: House style
+
+# Two checks that had no CI at all.
+#
+# The dash check exists because the no-em-dash rule had been stated and the site
+# still carried twenty-six of them, in a page title, a chart alt attribute, a
+# JSON data file and two source comments. None of those are places prose review
+# looks, and a grep run once does not stop the next one arriving.
+#
+# marketplace.test.js covers the escaping and URL-scheme guards on catalog
+# rendering, added in #31 after the catalog was found to be rendered from
+# remote JSON without them. It was never wired to a workflow, so it has been
+# passing or failing unobserved since.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  style:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: No em dashes, en dashes or horizontal bars
+        run: node tools/check-dashes.js
+      - name: Marketplace rendering guards
+        run: node marketplace/marketplace.test.js
