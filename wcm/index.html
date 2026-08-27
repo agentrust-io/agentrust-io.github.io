@@ -75,12 +75,12 @@
 
 <section id="proof" class="proof-section" aria-label="Release evidence">
   <div class="proof-grid">
-    <a href="https://pypi.org/project/weight-custody-manifest/"><strong>0.26.0</strong><span>Python SDK</span></a>
-    <a href="https://github.com/agentrust-io/weight-custody-manifest/tree/main/conformance/vectors"><strong>91</strong><span>Conformance vectors</span></a>
-    <a href="https://github.com/agentrust-io/weight-custody-manifest/actions"><strong>574</strong><span>Tests passing</span></a>
+    <a href="https://pypi.org/project/weight-custody-manifest/"><strong>0.27.0</strong><span>Python SDK</span></a>
+    <a href="https://pypi.org/project/weight-custody-manifest/" title="The vectors ship in the package; run them with `wcm conformance`."><strong>91</strong><span>Conformance vectors</span></a>
+    <a href="https://pypi.org/project/weight-custody-manifest/" title="The sdist ships the test suite; download it and run pytest to check this number."><strong>599</strong><span>Tests passing</span></a>
     <a href="#hardware"><strong>3</strong><span>Hardware families exercised</span></a>
   </div>
-  <p class="proof-note">Release evidence captured against WCM commit <code>4af6836</code>. Claims link to their supporting artifact.</p>
+  <p class="proof-note">Release evidence captured against WCM commit <code>a952cb6</code>. Each claim is checkable from the published package: <code>pip download --no-binary :all: weight-custody-manifest</code> ships the tests and the conformance vectors.</p>
 </section>
 
 <section id="flip">
@@ -251,8 +251,8 @@ python demo.py 6</pre>
 
   <div class="callout"><p><strong>Placed the way a frontier lab grades it:</strong> WCM implements the confidential-computing measure that RAND recommends in <em>Securing AI Model Weights</em>. It holds across the OC1 to OC3 attacker range and, by its own concession, not against an OC4 or OC5 actor who owns the hardware. It is not a security level. A security level is a whole-organization posture, and assigning one to a single control misuses the unit.</p></div>
 
-  <p id="hardware" style="margin-top:2rem;">Verification paths have been exercised against real silicon across AMD SEV-SNP, Intel TDX, and NVIDIA H100 in confidential computing mode. Two areas are deliberately not claimed yet, because they need evidence from the real protected runtime rather than a more persuasive simulation: <a href="https://github.com/agentrust-io/weight-custody-manifest/issues/79">protected-boundary hardware evidence for the memory fingerprint sweep</a>, and <a href="https://github.com/agentrust-io/weight-custody-manifest/issues/78">production zeroization from the actual controller</a> rather than unit tests.</p>
-  <p class="source-links"><a href="https://www.rand.org/pubs/research_reports/RRA2849-1.html">RAND weight-security report ↗</a><a href="https://tee.fail/">TEE.fail research ↗</a><a href="https://badram.eu/">BadRAM research ↗</a><a href="https://github.com/agentrust-io/weight-custody-manifest/blob/main/THREAT-MODEL.md">Full threat model ↗</a></p>
+  <p id="hardware" style="margin-top:2rem;">Verification paths have been exercised against real silicon across AMD SEV-SNP, Intel TDX, and NVIDIA H100 in confidential computing mode. Two areas are deliberately not claimed yet, because they need evidence from the real protected runtime rather than a more persuasive simulation: protected-boundary hardware evidence for the memory fingerprint sweep, and production zeroization from the actual controller rather than unit tests.</p>
+  <p class="source-links"><a href="https://www.rand.org/pubs/research_reports/RRA2849-1.html">RAND weight-security report ↗</a><a href="https://tee.fail/">TEE.fail research ↗</a><a href="https://badram.eu/">BadRAM research ↗</a><a href="#limits">Guarantee scope and limits ↓</a></p>
 </section>
 
 <section id="participate">
@@ -261,7 +261,7 @@ python demo.py 6</pre>
   <div class="grid-3 wcm-personas">
     <article class="card"><h3>Model owners</h3><p>Evaluate a closed-weight deployment and pressure-test the release policy against your actual threat model.</p><a href="mailto:imransiddique@live.com?subject=WCM%20model-owner%20evaluation">Evaluate a deployment →</a></article>
     <article class="card"><h3>Runtime and cloud teams</h3><p>Add or review an attestation profile and prove what your protected boundary can support.</p><a href="https://github.com/agentrust-io">Follow the release →</a></article>
-    <article class="card"><h3>Security researchers</h3><p>Challenge the threat model, fixtures, hardware assumptions, and explicit non-goals.</p><a href="https://github.com/agentrust-io/weight-custody-manifest/issues">Review open questions →</a></article>
+    <article class="card"><h3>Security researchers</h3><p>Challenge the threat model, fixtures, hardware assumptions, and explicit non-goals.</p><a href="mailto:imransiddique@live.com?subject=WCM%20threat%20model%20review">Challenge the threat model →</a></article>
     <article class="card"><h3>Standards contributors</h3><p>Review the manifest, portable evidence, conformance levels, and interoperability boundaries.</p><a href="mailto:imransiddique@live.com?subject=WCM%20specification%20review">Join the review →</a></article>
   </div>
 </section>
