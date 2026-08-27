@@ -1,9 +1,9 @@
 {
-  "captured_at": "2026-08-23",
-  "wcm_commit": "4af6836ca11b0742f03d1ca421bec47d34d8fa32",
-  "sdk_version": "0.26.0",
+  "captured_at": "2026-08-27",
+  "wcm_commit": "a952cb6cfa40f483774738ef71df80f73317a737",
+  "sdk_version": "0.27.0",
   "conformance_vectors": 91,
-  "tests_passed": 574,
+  "tests_passed": 599,
   "hardware_families": [
     "AMD SEV-SNP",
     "Intel TDX",

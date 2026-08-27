@@ -21,7 +21,32 @@ for (const platform of proof.hardware_families) {
 assert.ok(!html.includes('None protect the builder'), 'avoid an unsupported novelty absolute');
 assert.ok(!html.includes('<strong>Open core.</strong>'), 'launch copy must describe the open surface precisely');
 assert.ok(html.includes('Sponsorship does not confer ownership or governance authority'));
-assert.ok(html.includes('issues/78') && html.includes('issues/79'));
+// The two open limitations must stay disclosed. This used to assert the issue
+// links were present, which is how six dead links survived on a public page: the
+// tracker is private, so every one of them 404s for the readers this page is
+// for. The disclosure is what matters, not the hyperlink, so assert the prose.
+assert.ok(
+  html.includes('protected-boundary hardware evidence for the memory fingerprint sweep'),
+  'the memory-sweep limitation must stay disclosed'
+);
+assert.ok(
+  html.includes('production zeroization from the actual controller'),
+  'the zeroization limitation must stay disclosed'
+);
+
+// Nothing on a public page may link into the WCM repository while it is private.
+// Every such link 404s for an anonymous reader, which is precisely the audience
+// a launch page has. The same rule is enforced for integration READMEs in
+// agentrust-io/integrations CONTRIBUTING.md; this is the check for the site.
+// When the repository goes public (weight-custody-manifest#40), delete this.
+const privateRepoLinks = [...html.matchAll(
+  /https:\/\/github\.com\/agentrust-io\/weight-custody-manifest[^"'\s]*/g
+)].map((match) => match[0]);
+assert.deepEqual(
+  privateRepoLinks,
+  [],
+  `these 404 for anonymous readers while the repo is private: ${privateRepoLinks.join(', ')}`
+);
 assert.ok(html.includes('/wcm/og-launch.png'));
 const socialCard = fs.readFileSync(path.join(here, 'og-launch.png'));
 assert.ok(socialCard.length > 100_000);
