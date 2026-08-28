@@ -17,7 +17,7 @@ const evidence = item => item.evidenceUrl
   : '';
 
 const renderEvidence = item => `    <article class="adoption-card">
-      <div class="adopter-mark ${escapeText(item.markClass || '')}">${escapeText(item.name)}</div>
+      <div class="adopter-mark ${escapeText(item.markClass || '')}">${item.logo ? `<img src="${escapeText(item.logo)}" alt="${escapeText(item.name)}" loading="lazy">` : escapeText(item.name)}</div>
       <div class="adopter-stage">${escapeText(item.label)}</div>
       <p>${escapeText(item.description)}</p>
       ${evidence(item)}
