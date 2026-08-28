@@ -1089,6 +1089,16 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
 }
 .agentrust-hub .adoption-card { display: flex; min-height: 190px; flex-direction: column; padding: 1.25rem; }
 .agentrust-hub .adopter-mark { min-height: 36px; color: var(--at-ink); font-size: 1.2rem; font-weight: 750; letter-spacing: -0.045em; }
+.agentrust-hub .adopter-mark:has(img) { display: flex; align-items: center; }
+.agentrust-hub .adopter-mark img { display: block; width: auto; max-width: 150px; height: 30px; object-fit: contain; object-position: left center; }
+.agentrust-hub .opaque-mark { width: fit-content; min-width: 132px; padding: 8px 12px; border-radius: 7px; background: #111; }
+.agentrust-hub .opaque-mark img { height: 24px; }
+.agentrust-hub .uae-mark img { height: 42px; }
+.agentrust-hub .microsoft-mark img,
+.agentrust-hub .amd-mark img,
+.agentrust-hub .intel-mark img { height: 32px; }
+.agentrust-hub .atf-mark img,
+.agentrust-hub .pronative-mark img { height: 40px; }
 .agentrust-hub .servicenow-mark { color: #16825d; }
 .agentrust-hub .uae-mark { max-width: 13ch; font-family: var(--at-serif); font-size: 1.1rem; font-weight: 600; line-height: 1.05; }
 .agentrust-hub .microsoft-mark { color: #505050; }

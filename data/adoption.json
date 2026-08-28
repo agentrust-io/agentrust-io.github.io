@@ -13,6 +13,8 @@
     {
       "kind": "evidence",
       "name": "OPAQUE Systems",
+      "logo": "/assets/opaque-logo.svg",
+      "markClass": "opaque-mark",
       "label": "Founding engineering and infrastructure sponsor",
       "description": "OPAQUE provides funding, engineering time, infrastructure, and confidential-computing contributions. Sponsorship does not confer ownership of AgenTrust projects or governance authority over their technical decisions.",
       "evidenceUrl": "https://github.com/agentrust-io",
@@ -21,6 +23,7 @@
     {
       "kind": "evidence",
       "name": "Microsoft",
+      "logo": "/assets/microsoft-mark.svg",
       "markClass": "microsoft-mark",
       "label": "Open-source project home",
       "description": "Microsoft hosts the Agent Governance Toolkit, the open runtime-governance foundation that the AgenTrust trust chain builds on.",
@@ -30,6 +33,7 @@
     {
       "kind": "evidence",
       "name": "Technology Innovation Institute",
+      "logo": "/assets/tii-mark.svg",
       "markClass": "uae-mark",
       "label": "Confirmed founding partner",
       "description": "TII is the confirmed AgenTrust founding partner anchoring the work in sovereign-AI deployment requirements.",
@@ -39,6 +43,7 @@
     {
       "kind": "evidence",
       "name": "AMD",
+      "logo": "/assets/amd-mark.svg",
       "markClass": "amd-mark",
       "label": "Founding member and hardware partner",
       "description": "AMD is a founding partner of AgenTrust. AMD and OPAQUE published a joint implementation blueprint for hardware-backed Confidential AI, and the implementation verifies SEV-SNP report signatures to the AMD root.",
@@ -48,6 +53,7 @@
     {
       "kind": "evidence",
       "name": "Intel",
+      "logo": "/assets/intel-mark.svg",
       "markClass": "intel-mark",
       "label": "Founding member and hardware partner",
       "description": "Intel is a founding partner of AgenTrust. The implementation verifies Intel TDX DCAP v4 quotes to the pinned Intel SGX Root CA, hardware-validated on GCP C3.",
@@ -66,6 +72,7 @@
     {
       "kind": "evidence",
       "name": "CSA Agentic Trust Framework",
+      "logo": "/assets/atf-logo.svg",
       "markClass": "atf-mark",
       "label": "Public framework collaboration",
       "description": "ATF's author publicly supports positioning AGT as a reference implementation and invited implementation input into the conformance specification.",
@@ -75,6 +82,8 @@
     {
       "kind": "evidence",
       "name": "PRONATIVE AI",
+      "logo": "/assets/pronative-foundry-icon.webp",
+      "markClass": "pronative-mark",
       "label": "Ecosystem Training & Adoption Partner",
       "description": "PRONATIVE AI works with AgenTrust to bring verifiable agent governance into enterprise engineering education and adoption. The partnership includes joint educational programming and the planned integration of cMCP, cA2A, and TRACE into PRONATIVE AI's AI-Native Engineering Foundry curriculum. PRONATIVE AI is also adopting the Microsoft Agent Governance Toolkit within its delivery environment and will publish implementation guidance as that work becomes publicly available.",
       "evidenceUrl": "https://events.pronative.ai/featured-sessions/",
