@@ -73,6 +73,14 @@
       "evidenceLabel": "Read the public collaboration thread"
     },
     {
+      "kind": "evidence",
+      "name": "PRONATIVE AI",
+      "label": "Ecosystem Training & Adoption Partner",
+      "description": "PRONATIVE AI works with AgenTrust to bring verifiable agent governance into enterprise engineering education and adoption. The partnership includes joint educational programming and the planned integration of cMCP, cA2A, and TRACE into PRONATIVE AI's AI-Native Engineering Foundry curriculum. PRONATIVE AI is also adopting the Microsoft Agent Governance Toolkit within its delivery environment and will publish implementation guidance as that work becomes publicly available.",
+      "evidenceUrl": "https://events.pronative.ai/featured-sessions/",
+      "evidenceLabel": "View the featured session"
+    },
+    {
       "kind": "partner",
       "name": "XRSI: Human Intelligence In The Loop",
       "logo": "/assets/xrsi-logo-black.png",
