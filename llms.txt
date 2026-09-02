@@ -4,6 +4,14 @@
 
 AgenTrust connects reusable open technology with the people and practices needed to adopt it: maintainers, implementers, researchers, enterprise operators, conformance testing, integration guidance, and transparent community governance. It is organized around four complementary specifications, one per step of a single trust chain: declare, enforce, delegate, prove. Agent Manifest declares agent identity and permissions, Confidential MCP enforces policy on tool calls inside a Trusted Execution Environment, Confidential A2A delegates attenuated authority and attested provenance across the Agent2Agent protocol, and TRACE proves what happened with hardware-signed receipts that anyone can verify without trusting the operator. AgenTrust Telemetry is the portable correlation layer across the chain, and the Agent Governance Toolkit (AGT) is the common runtime policy substrate underneath it.
 
+## New Book: Architecting at Scale
+
+AgenTrust founder Imran Siddique published Architecting at Scale with Packt on September 1, 2026. The book is a practical field guide to large-scale AI-native systems, connecting distributed-systems architecture with runtime control, governance, observability, failure, and system evolution. Its companion repository makes the examples inspectable and runnable.
+
+- Amazon: https://www.amazon.com/Architecting-Scale-Practical-Large-Scale-AI-Native/dp/1807420973
+- Packt: https://www.packtpub.com/en-in/product/architecting-at-scale-9781807420963
+- Companion code: https://github.com/imran-siddique/Architecting-at-Scale
+
 ## Ecosystem and adoption
 
 - [AgenTrust Marketplace](https://agentrust-io.com/marketplace/): Search and filter open integrations, adapters, plugins, policy tools, and evidence exporters for TRACE, cMCP, and Agent Manifest. Listings follow public technical rules; Community tier is structure-validated and is not an endorsement.
