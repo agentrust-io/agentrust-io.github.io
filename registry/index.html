@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRACE Registry | AgenTrust</title>
+<meta name="description" content="A public, append-only record of TRACE agent evidence. Signed checkpoints, published bytes, and offline verification from a raw public key. No account, no API key, no operator to trust.">
+<link rel="canonical" href="https://agentrust-io.com/registry/">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AgenTrust">
+<meta property="og:title" content="TRACE Registry">
+<meta property="og:description" content="A public record of agent evidence, built to be distrusted. Append-only log, signed checkpoints, verification that runs on your machine without us.">
+<meta property="og:url" content="https://agentrust-io.com/registry/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://agentrust-io.com/og.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TRACE Registry">
+<meta name="twitter:description" content="Append-only agent evidence with signed checkpoints. Every claim on this page is checkable from the public repository.">
+<meta name="twitter:image" content="https://agentrust-io.com/og.png">
+
+<!-- Icons -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "TRACE Registry",
+  "description": "A public, append-only registry of TRACE trust-record anchors with signed Merkle Mountain Range checkpoints, published as files in an open repository and verifiable offline from a raw Ed25519 public key.",
+  "url": "https://agentrust-io.com/registry/",
+  "codeRepository": "https://github.com/agentrust-io/trace-registry",
+  "programmingLanguage": ["Python"],
+  "license": "https://github.com/agentrust-io/trace-registry/blob/main/LICENSE",
+  "publisher": { "@id": "https://agentrust-io.com/#organization" }
+}
+</script>
+
+<link rel="stylesheet" href="/design-system.css?v=11">
+</head>
+<body class="at-page">
+
+<header class="site-header">
+  <a class="wordmark" href="/">agentrust<span>.io</span></a>
+  <nav>
+    <a href="#checkpoint">Checkpoint</a>
+    <a href="#how">How it works</a>
+    <a href="#verify">Verify it</a>
+    <a href="#limits">Limits</a>
+    <a class="cta" href="https://github.com/agentrust-io/trace-registry">Repository</a>
+  </nav>
+</header>
+
+<div class="hero"><div class="wrap">
+  <span class="eyebrow">Append-only · Signed checkpoints · Offline verification</span>
+  <h1>A public record of agent evidence,<br>built to be distrusted</h1>
+  <p class="sub">The TRACE Registry publishes anchors for signed trust records, and commits to its own history with append-only checkpoints. Every entry, every checkpoint, and every number on this page verifies on your machine from published bytes and a raw public key. There is no account to create, no API key to hold, and no operator you have to believe.</p>
+  <div class="hero-actions">
+    <a class="button" href="#verify">Verify a checkpoint yourself</a>
+    <a class="button secondary" href="#limits">Read what it does not prove</a>
+  </div>
+  <div><span class="status">Public repository · trace-verify 0.3.1 on PyPI · Checkpoint chain live since September 1, 2026</span></div>
+</div></div>
+
+<main>
+
+<section id="proof" class="proof-section" aria-label="Registry evidence">
+  <div class="proof-grid">
+    <a href="https://github.com/agentrust-io/trace-registry/tree/main/registry"><strong>2</strong><span>Published entries</span></a>
+    <a href="#checkpoint"><strong>1</strong><span>Signed checkpoint</span></a>
+    <a href="https://pypi.org/project/trace-verify/"><strong>0.3.1</strong><span>Verifier on PyPI</span></a>
+    <a href="https://github.com/agentrust-io/trace-registry"><strong>225</strong><span>Tests passing</span></a>
+  </div>
+  <p class="proof-note">Counted on <code>main</code> at commit <code>4697f2c</code>. Two entries and one checkpoint is the true size of this log today, and we would rather publish the real number than a flattering one. Clone the repository and run <code>python -m pytest</code> to check the test count for yourself.</p>
+</section>
+
+<section id="problem">
+  <span class="label">The design problem</span>
+  <h2>A registry's job is to be believed by strangers</h2>
+  <p>Signatures prove that records are authentic. They do not prove that everyone is being shown the same set of records. A log operator who can quietly serve one history to an auditor and another to everyone else has defeated the point, and no amount of signing catches it.</p>
+  <p>So "trust our database" fails in exactly the situations a registry exists for: disputes, audits, and adversaries. The requirements that fall out of that are narrow and testable. The log must be append-only with cheap proofs. It must verify offline. Nothing sensitive should leave the producer by default. And its integrity should eventually be anchored somewhere the operator does not control.</p>
+</section>
+
+<section id="checkpoint">
+  <span class="label">The live record</span>
+  <h2>Checkpoint 1, as published</h2>
+  <p>This is the first signed checkpoint of the log, taken verbatim from <code>registry/2026/09/01.ndjson</code>. The <code>key_id</code> is the raw 32-byte Ed25519 public key in hex. A verifier needs nothing else from us to check the signature.</p>
+  <div class="term" aria-label="Published TRACE Registry checkpoint 1">
+    <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="term-title">registry/2026/09/01.ndjson · mmr_checkpoint</span></div>
+    <div class="term-body">
+      <div><span class="dim">log_id</span> trace-registry/v1</div>
+      <div><span class="dim">key_id</span> bc133259c094f63694b4ec48a295d7501a9a0cd536df5631fb4663c155f7bc90</div>
+      <div><span class="dim">mmr_size</span> 1</div>
+      <div><span class="dim">root</span> 3af8ddf2c1f429bb4fc670437e48640887f60de809b18f8ccea55fefb0c6639a</div>
+      <div><span class="dim">prev_size</span> 0</div>
+      <div><span class="dim">timestamp</span> 2026-09-01T21:39:37Z</div>
+      <div><span class="dim">verify</span> <span class="ok">signature checks OFFLINE from key_id alone</span></div>
+    </div>
+  </div>
+  <p class="hint">Checkpoints carry commitments, never claim content. A checkpoint is a few hundred bytes describing the shape of the log: its size, its root, and the size and root of the checkpoint before it. Trust-record payloads stay with whoever produced them.</p>
+</section>
+
+<section id="how">
+  <span class="label">How it works</span>
+  <h2>Four moving parts, none of which require trusting the operator</h2>
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>A producer signs a trust record</h3>
+        <p>The record is signed where it is produced, under the producer's own key. The registry never sees a private key and does not sign on anyone's behalf.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Only a digest is anchored</h3>
+        <p>What lands in the registry is an anchor leaf derived from the exact signed bytes under Anchor Format v1, not the record. Recomputing the leaf from a changed record produces a different value and stops matching.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>The log appends, and never rewrites</h3>
+        <p>Entries accumulate in an append-only Merkle Mountain Range. Appending never rebalances the structure, so proofs issued earlier stay valid, and inclusion and consistency proofs stay cheap as the log grows.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h3>A signed checkpoint commits to the history</h3>
+        <p>The scheduled anchor pipeline emits a signed checkpoint carrying the log's size and root plus the previous checkpoint's size and root. That chained pair is what lets a third party check that each checkpoint extends the last rather than replaces it.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="verify">
+  <span class="label">Check our work</span>
+  <h2>The verification runs on your machine, not ours</h2>
+  <p>There is no verification endpoint to call, because a verification endpoint you have to trust is not verification. The registry is files in a public repository and the verifier is a package you install.</p>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Install the verifier</h3>
+        <div class="code">
+          <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
+<pre>python -m pip install trace-verify</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Clone the registry</h3>
+        <p class="hint">The entire published history is in the repository. There is nothing held back on a server.</p>
+        <div class="code">
+          <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
+<pre>git clone https://github.com/agentrust-io/trace-registry
+cd trace-registry</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Verify the checkpoint chain</h3>
+        <p class="hint">Checks each checkpoint's signature from its own <code>key_id</code>, then checks that each one extends the last and matches the raw entries it claims to cover.</p>
+        <div class="code">
+          <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
+<pre>python tools/verify_checkpoint_chain.py \
+  registry/2026/06/12.ndjson \
+  registry/2026/09/01.ndjson</pre>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:2.25rem;">
+    <a class="button" href="https://github.com/agentrust-io/trace-registry">Registry repository</a>
+    <a class="button secondary" href="https://pypi.org/project/trace-verify/">Verifier on PyPI</a>
+    <a class="button secondary" href="https://trace.agentrust-io.com">TRACE specification</a>
+  </div>
+</section>
+
+<section id="limits">
+  <span class="label">Honest scope</span>
+  <h2>What a registry entry is, and what it is not</h2>
+  <p>Registration attests to inclusion and time. It is not an endorsement of content, a certification of the producer, or evidence that any claim inside a record is true. Four specific limits are worth stating here rather than leaving to be discovered.</p>
+
+  <table style="margin-top:2.25rem;">
+    <tr><th>Limit</th><th>Why it stands</th></tr>
+    <tr><td><strong>Consistency, not coverage</strong></td><td>The checkpoint chain proves the consistency of what it covers. It does not prove that the registry covers everything it could have. Completeness is a property of producers keeping their own records, not something a log can assert about itself.</td></tr>
+    <tr><td><strong>The June 2026 entry is outside the chain</strong></td><td>It predates checkpointing and is deliberately not folded in retroactively, which is the same rule the chain verifier applies. Backdating an entry into a chain would make the chain say more than it checked.</td></tr>
+    <tr><td><strong>No external witness receipt yet</strong></td><td>Anchoring the registry's own history into a transparency service the registry does not operate is in progress in public, and no receipt has come back and verified offline yet. Until one has, the anti-split-view property is a roadmap item, not a feature.</td></tr>
+    <tr><td><strong>One producer key is single-use by construction</strong></td><td>The producer key behind the first anchored record verifies that record and will never sign another, because the demo that produced it generates keys per run and never persists private ones. That is a property of that entry, not a general guarantee.</td></tr>
+  </table>
+
+  <div class="callout"><p><strong>A witness attesting to more than it checked is worse than no witness.</strong> That principle is why the limits above are on this page instead of in a footnote, why the entry counts here are the real ones, and why an external receipt will be announced when it verifies rather than when it is arranged.</p></div>
+
+  <p class="source-links"><a href="https://github.com/agentrust-io/trace-registry/blob/main/LIMITATIONS.md">Full limitations ↗</a><a href="https://github.com/agentrust-io/trace-registry/blob/main/TERMS.md">Terms of use ↗</a><a href="https://github.com/agentrust-io/trace-registry/blob/main/GOVERNANCE.md">Governance ↗</a><a href="https://github.com/agentrust-io/trace-registry/blob/main/ROADMAP.md">Roadmap ↗</a></p>
+</section>
+
+<section id="participate">
+  <span class="label">Take part</span>
+  <h2>Three ways in</h2>
+  <div class="grid-3">
+    <article class="card"><h3>Register as a producer</h3><p>Publish anchors for your own signed trust records under your own key. The conventions, naming, and submission path are documented in the repository.</p><a href="https://github.com/agentrust-io/trace-registry/blob/main/CONTRIBUTING.md">Read the contributor guide →</a></article>
+    <article class="card"><h3>Run a mirror or a witness</h3><p>Single-operator dependency is a weakness we name rather than hide. Independent mirrors and independent witnesses both remove it, and both are open to anyone.</p><a href="https://github.com/agentrust-io/trace-registry/blob/main/MIRRORS.md">Mirroring guide →</a></article>
+    <article class="card"><h3>Attack the claims</h3><p>The most useful contribution is a demonstration that something on this page overstates what the code actually does. Open an issue in public.</p><a href="https://github.com/agentrust-io/trace-registry/issues">Open an issue →</a></article>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer"><div class="wrap">
+  <div class="foot-in">
+    <div class="foot-brand">
+      <a class="wordmark" href="/">AgenTrust</a>
+      <div class="tagline">Open standards for AI agent governance</div>
+    </div>
+    <div class="foot-links">
+      <a href="/">Home</a>
+      <a href="/quickstart/">Quickstart</a>
+      <a href="/demos/">Demos</a>
+      <a href="https://github.com/agentrust-io">GitHub</a>
+    </div>
+    <div class="credit"><b>Independent open-source project.</b> OPAQUE Systems provides funding, engineering time, infrastructure, and confidential-computing contributions as a founding sponsor. Sponsorship does not confer ownership or governance authority.</div>
+  </div>
+  <div class="foot-legal">© 2026 AgenTrust Contributors · agentrust-io.com</div>
+</div></footer>
+
+<script src="/supernav.js"></script>
+<script src="/page.js"></script>
+</body>
+</html>
