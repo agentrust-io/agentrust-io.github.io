@@ -13,6 +13,7 @@
     { id: 'quickstart', label: 'Quickstart',   url: 'https://agentrust-io.com/quickstart/',                    ext: false },
     { id: 'demos',      label: 'Demos',        url: 'https://agentrust-io.com/demos/',                         ext: false },
     { id: 'telemetry',  label: 'Telemetry',    url: 'https://agentrust-io.com/telemetry/',                     ext: false },
+    { id: 'registry',   label: 'Registry',     url: 'https://agentrust-io.com/registry/',                      ext: false },
     { id: 'trace',      label: 'TRACE',        url: 'https://trace.agentrust-io.com',                          ext: false },
     { id: 'manifest',   label: 'Manifest',     url: 'https://manifest.agentrust-io.com',                       ext: false },
     { id: 'cmcp',       label: 'cMCP',         url: 'https://cmcp.agentrust-io.com',                           ext: false },
@@ -30,6 +31,7 @@
   var CURRENT_ID = (HOST === 'agentrust-io.com' && PATH.indexOf('/quickstart') === 0) ? 'quickstart'
     : (HOST === 'agentrust-io.com' && PATH.indexOf('/demos') === 0) ? 'demos'
     : (HOST === 'agentrust-io.com' && PATH.indexOf('/telemetry') === 0) ? 'telemetry'
+    : (HOST === 'agentrust-io.com' && PATH.indexOf('/registry') === 0) ? 'registry'
     : (HOST === 'agentrust-io.com' && PATH.indexOf('/extensions/ca2a') === 0) ? 'ca2a'
     : HOST === 'agentrust-io.com' ? 'home'
     : HOST.indexOf('trace.') === 0    ? 'trace'
