@@ -56,7 +56,7 @@
 }
 </script>
 
-<link rel="stylesheet" href="/design-system.css?v=10">
+<link rel="stylesheet" href="/design-system.css?v=15">
 </head>
 <body class="at-page">
 
@@ -76,7 +76,7 @@
     <div>
       <span class="eyebrow">Confidential MCP · Open quickstart</span>
       <h1>Set policy on your agent. Watch it <em>block a bad action.</em></h1>
-      <p class="sub">Install the runtime, write one policy, and watch it stop a real data leak before it happens, then walk away with a signed, verifiable record of exactly what it did. Runs on your laptop. No sales call.</p>
+      <p class="sub">Deny a request to a tool tagged as personal data, then verify its signed session record. About ten minutes on your laptop, using a mock tool and software attestation.</p>
       <div class="actions"><a class="button" href="#quickstart">Start the quickstart</a><a class="button secondary" href="#loop">How it works</a></div>
     </div>
     <div>
@@ -110,7 +110,7 @@
     </div>
     <div>
       <p>An agent calls a tool. Your policy engine says <em>allow</em>. The call goes through. None of that proves the engine itself wasn't tampered with, or that your audit log reflects what actually happened.</p>
-      <p><strong>cMCP runs the policy where the agent can't reach it.</strong> Every tool call your agent routes through the runtime is checked, enforced, and signed into a tamper-evident record. This quickstart lets you feel that in about ten minutes, on your laptop.</p>
+      <p><strong>cMCP checks calls at the tool boundary.</strong> The runtime evaluates routed tool calls against policy and records its decisions. This local demo demonstrates denial and signing; isolation from the host requires a hardware TEE deployment.</p>
     </div>
   </div>
 </section>
@@ -134,13 +134,17 @@
   <p>Copy each block. Every file is filled in for you, nothing to hand-author, nothing to hash. Follow along top to bottom.</p>
 
   <div class="callout">
-    <p><strong>Before you start.</strong> Python 3.11+ · pip · macOS or Linux · two terminal windows · about ten minutes · no special hardware.</p>
-    <p style="margin-top:0.6rem;">Every command and every output on this page was last run end to end against <code>cmcp-runtime 0.4.0</code> on 20 August 2026. If a step does not do what it says here, that is a bug and worth <a href="https://github.com/agentrust-io/cmcp/issues" target="_blank" rel="noopener">reporting</a>.</p>
+    <p><strong>Before you start.</strong> Python 3.11+ · pip · curl · macOS, Linux, or Windows with WSL and Bash · two terminal windows · about ten minutes.</p>
+    <p style="margin-top:0.6rem;">The install is pinned to <code>cmcp-runtime 0.4.0</code> so the commands match this walkthrough. Report unexpected results by <a href="https://github.com/agentrust-io/cmcp/issues" target="_blank" rel="noopener">opening an issue</a> with the failing command and runtime version.</p>
   </div>
+
+  <div class="callout"><p><strong>Expected finish:</strong> the tool request returns <code>403 POLICY_DENY</code>. The verifier later reports <code>FAIL (partially_verified)</code> and exits 1 because this demo has no hardware attestation. That is the expected software-mode result.</p></div>
+
+  <nav class="tutorial-toc" aria-label="Quickstart steps"><a href="#install">1. Install</a><a href="#configure">2. Configure</a><a href="#runtime">3. Start</a><a href="#deny">4. Deny</a><a href="#proof">5. Verify</a><a href="#troubleshooting">Troubleshooting</a></nav>
 
   <div class="steps">
 
-    <div class="step">
+    <div class="step" id="install">
       <div class="step-num">1</div>
       <div class="step-body">
         <h3>Install the runtime</h3>
@@ -149,12 +153,12 @@
           <div class="code-head"><span class="code-label">Terminal 1</span><button class="copy">COPY</button></div>
 <pre>mkdir -p cmcp-quickstart &amp;&amp; cd cmcp-quickstart
 python3 -m venv venv &amp;&amp; source venv/bin/activate
-pip install cmcp-runtime</pre>
+python3 -m pip install cmcp-runtime==0.4.0</pre>
         </div>
       </div>
     </div>
 
-    <div class="step">
+    <div class="step" id="configure">
       <div class="step-num">2</div>
       <div class="step-body">
         <h3>Drop in the config and your policy</h3>
@@ -241,7 +245,7 @@ EOF</pre>
       </div>
     </div>
 
-    <div class="step">
+    <div class="step" id="runtime">
       <div class="step-num">3</div>
       <div class="step-body">
         <h3>Start the runtime</h3>
@@ -253,7 +257,7 @@ EOF</pre>
       </div>
     </div>
 
-    <div class="step">
+    <div class="step" id="deny">
       <div class="step-num">4</div>
       <div class="step-body">
         <h3>Fire a bad action, watch it get blocked</h3>
@@ -281,7 +285,7 @@ EOF</pre>
         </div>
         <div class="verdict">
           <div class="flag"><span class="check">✓</span> What just happened</div>
-          <p>Your policy stopped a PII record from leaving on a tool call, <strong>before it reached Salesforce</strong>, decided by the rule you wrote, enforced where the agent can't tamper with it. That's the barrier most teams can't cross today: shipping an agent you can actually <strong>prove</strong> is governed.</p>
+          <p>Your policy rejected a call to a tool tagged <code>pii</code> <strong>before forwarding</strong>. No Salesforce server runs in this demo, and no personal data is fetched. The decision uses the catalog tag; it does not inspect the request for personal data.</p>
           <p>Keep an eye on that <code>call_id</code>. The same id lands in the audit chain, so the deny you just watched is the deny you can hand to someone else in step 5. A refusal nobody can check afterwards is just a log line.</p>
         </div>
       </div>
@@ -314,7 +318,7 @@ cmcp verify claim.json</pre>
           <div class="chk"><span>hardware_attestation</span><span class="warn">FAIL: software-only mode</span></div>
           <div class="chk result"><span>Result</span><span class="warn">FAIL (partially_verified)</span></div>
         </div>
-        <p class="note-rule">Every cryptographic check passes. The one <span class="warn">FAIL</span> is hardware attestation, which dev mode can't provide, and <b>that is the honest answer</b>: overall verification only reports <span class="pass">verified</span> when the claim is hardware-backed, so the CLI prints <span class="warn">FAIL (partially_verified)</span> and exits 1 here. Run the same runtime on a hardware TEE and that last check passes, the result becomes <b>verified</b>, and that is the version you hand a regulator.</p>
+        <p class="note-rule">Every cryptographic check passes. The one <span class="warn">FAIL</span> is hardware attestation, which dev mode can't provide, and <b>that is the honest answer</b>: overall verification only reports <span class="pass">verified</span> when the claim is hardware-backed, so the CLI prints <span class="warn">FAIL (partially_verified)</span> and exits 1 here. A hardware deployment must also supply valid attestation, trusted keys, and the expected policy and catalog bindings. Moving the runtime to a TEE alone does not establish those checks or legal compliance.</p>
       </div>
     </div>
 
@@ -332,6 +336,18 @@ when { context.session_max_sensitivity == <span class="s">"pii"</span> };</pre>
   </div>
 
   <p class="note-rule"><b>Stuck?</b> Every block above is copy-paste: the file blocks write themselves via <code>cat &gt; … EOF</code>, the rest are commands. Keep your first terminal (the runtime) running while you work in the second. Full walkthrough and troubleshooting: <a href="https://cmcp.agentrust-io.com/quickstart/" target="_blank" rel="noopener">cMCP quickstart</a> · <a href="https://cmcp.agentrust-io.com/tutorials/advisory-mode-debugging/" target="_blank" rel="noopener">debugging guide</a>.</p>
+</section>
+
+<section id="troubleshooting">
+  <span class="label">If a step fails</span><h2>Get back to the expected result</h2>
+  <dl class="troubleshooting">
+    <dt>Connection refused</dt><dd>Keep Terminal 1 running. Confirm startup completed and the address is <code>127.0.0.1:8443</code>.</dd>
+    <dt>Command not found or missing files</dt><dd>Activate the virtual environment in both terminals. Run commands from the <code>cmcp-quickstart</code> folder.</dd>
+    <dt>The tool call is forwarded instead of denied</dt><dd>Check <code>enforcement_mode: enforcing</code>, the catalog's <code>pii</code> tag, and the forbid rule. Restart the runtime after configuration changes.</dd>
+    <dt>FAIL (partially_verified), exit 1</dt><dd>Expected only when the listed software checks pass and hardware attestation is the missing check. Other failures need investigation.</dd>
+  </dl>
+  <p><strong>Finish:</strong> stop the runtime with Ctrl+C in Terminal 1. Keep <code>claim.json</code> to inspect the record.</p>
+  <p><a href="/demos/#governance">Next: run an example with a real local tool server →</a></p>
 </section>
 
 <section id="feedback">
@@ -353,7 +369,7 @@ when { context.session_max_sensitivity == <span class="s">"pii"</span> };</pre>
       <a class="wordmark" href="/">AgenTrust</a>
       <div class="tagline">Open standards for AI agent governance</div>
     </div>
-    <div class="credit"><a href="https://github.com/agentrust-io/cmcp" target="_blank" rel="noopener"><b>cMCP</b></a>, Confidential MCP, is an open standard from <b>AgenTrust</b>: the confidential, security-hardened way to run the Model Context Protocol, MIT-licensed. It evaluates tool calls against policy inside a Trusted Execution Environment and emits a signed <b>TRACE</b> receipt for every call. Software-rooted in dev mode; hardware-attested when the runtime runs in a TEE. Part of the AgenTrust family alongside TRACE, Agent Manifest, and cA2A, at <a href="https://agentrust-io.com">agentrust-io.com</a>.</div>
+    <div class="credit"><a href="https://github.com/agentrust-io/cmcp" target="_blank" rel="noopener"><b>cMCP</b></a>, Confidential MCP, is an open standard from <b>AgenTrust</b>: the confidential, security-hardened way to run the Model Context Protocol, MIT-licensed. It evaluates routed tool calls against policy and emits a signed <b>TRACE</b> session record when the session closes. Software-rooted in dev mode; hardware-attested when the runtime runs in a TEE. Part of the AgenTrust family alongside TRACE, Agent Manifest, and cA2A, at <a href="https://agentrust-io.com">agentrust-io.com</a>.</div>
   </div>
   <div class="foot-legal">© 2026 AgenTrust Contributors · cMCP is open source (MIT) · agentrust-io.com</div>
 </div></footer>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AgenTrust: An Open Ecosystem for Verifiable AI Agents</title>
-  <meta name="description" content="AgenTrust is an open ecosystem where developers, researchers, operators, and enterprises build, test, adopt, and sustain verifiable governance for AI agents, with portable telemetry that correlates the evidence.">
+  <meta name="description" content="Open tools for governing AI agents: check tool calls against policy, record decisions, and verify signed evidence. Start with a local cMCP tutorial.">
   <link rel="canonical" href="https://agentrust-io.com/">
   <meta name="robots" content="index, follow">
 
@@ -18,7 +18,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AgenTrust">
   <meta property="og:title" content="AgenTrust: An Open Ecosystem for Verifiable AI Agents">
-  <meta property="og:description" content="Build, test, adopt, and sustain open technology for verifiable AI agent governance.">
+  <meta property="og:description" content="Open tools for governing AI agents: check tool calls against policy, record decisions, and verify signed evidence. Start with a local cMCP tutorial.">
   <meta property="og:url" content="https://agentrust-io.com/">
   <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://agentrust-io.com/og.png">
@@ -29,7 +29,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="AgenTrust: An Open Ecosystem for Verifiable AI Agents">
-  <meta name="twitter:description" content="Build, test, adopt, and sustain open technology for verifiable AI agent governance.">
+  <meta name="twitter:description" content="Open tools for governing AI agents: check tool calls against policy, record decisions, and verify signed evidence. Start with a local cMCP tutorial.">
   <meta name="twitter:image" content="https://agentrust-io.com/og.png">
 
   <!-- Structured data: Organization + WebSite -->
@@ -56,7 +56,9 @@
         "@id": "https://agentrust-io.com/#website",
         "name": "AgenTrust",
         "url": "https://agentrust-io.com/",
-        "publisher": { "@id": "https://agentrust-io.com/#organization" }
+        "publisher": {
+          "@id": "https://agentrust-io.com/#organization"
+        }
       }
     ]
   }
@@ -76,7 +78,7 @@
           "@type": "TechArticle",
           "name": "TRACE",
           "url": "https://trace.agentrust-io.com/",
-          "description": "Trust, Runtime Attestation, and Compliance Evidence. Hardware-rooted cryptographic receipts for every agent action, signed by the TEE and verifiable by anyone."
+          "description": "TRACE defines portable, signed runtime evidence. Hardware provenance requires attestation verification against a trusted root; software-mode records do not provide that guarantee."
         }
       },
       {
@@ -96,7 +98,7 @@
           "@type": "TechArticle",
           "name": "Confidential MCP (cMCP)",
           "url": "https://cmcp.agentrust-io.com/",
-          "description": "An extension to the Model Context Protocol that runs tool calls inside a Trusted Execution Environment so the host process cannot observe inputs, outputs, or intermediate state."
+          "description": "Confidential MCP (cMCP) evaluates routed MCP tool calls against policy and records the decisions. In a hardware deployment, the runtime is inside a Trusted Execution Environment (TEE); the agent and upstream tool server remain separate. Host confidentiality also depends on the egress policy. Software mode provides no hardware isolation."
         }
       },
       {
@@ -132,7 +134,7 @@
         "name": "What is TRACE?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "TRACE stands for Trust, Runtime Attestation, and Compliance Evidence. It defines hardware-rooted cryptographic receipts for every agent action, signed by the Trusted Execution Environment and verifiable by anyone."
+          "text": "TRACE defines portable, signed runtime evidence. Hardware provenance requires attestation verification against a trusted root; software-mode records do not provide that guarantee."
         }
       },
       {
@@ -148,7 +150,7 @@
         "name": "What is Confidential MCP (cMCP)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Confidential MCP is an extension to the Model Context Protocol that runs tool calls inside a Trusted Execution Environment, so the host process cannot read tool-call plaintext from enclave memory. That protection is structural only where the Cedar egress policy denies telemetry and APM endpoints, and it covers the tool-call boundary rather than model inference or the agent's context window."
+          "text": "Confidential MCP (cMCP) evaluates routed MCP tool calls against policy and records the decisions. In a hardware deployment, the runtime is inside a Trusted Execution Environment (TEE); the agent and upstream tool server remain separate. Host confidentiality also depends on the egress policy. Software mode provides no hardware isolation."
         }
       },
       {
@@ -164,7 +166,7 @@
         "name": "How do the AgenTrust standards relate to each other?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Agent Manifest establishes who an agent is and what it is allowed to do, cMCP executes tool calls confidentially inside a Trusted Execution Environment, cA2A carries that trust across agent-to-agent delegation on A2A, and TRACE produces hardware-signed receipts that prove what actually happened. Together they cover identity, intent, delegation, and behavior."
+          "text": "Agent Manifest declares identity and intended authority. cMCP governs tool calls; cA2A governs delegation to another agent. TRACE carries signed runtime evidence for verification against a trust policy. Hardware provenance depends on verified attestation. Use the components required by your trust boundary."
         }
       },
       {
@@ -180,7 +182,7 @@
         "name": "What is the secure version of MCP?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Confidential MCP (cMCP) is the security-hardened way to run the Model Context Protocol. It executes MCP tool calls inside a Trusted Execution Environment (TEE), so tool-call plaintext is not readable from the host, and it emits a signed TRACE receipt for every call that anyone can verify. Two bounds worth stating: the plaintext guarantee holds where the egress policy denies telemetry and APM endpoints, and the receipt is hardware-attested when the gateway runs in a TEE and signed-only in software mode. If you need a secure or confidential MCP deployment, cMCP is the AgenTrust profile for it."
+          "text": "Confidential MCP (cMCP) evaluates routed MCP tool calls against policy and records the decisions. In a hardware deployment, the runtime is inside a Trusted Execution Environment (TEE); the agent and upstream tool server remain separate. Host confidentiality also depends on the egress policy. Software mode provides no hardware isolation."
         }
       },
       {
@@ -194,19 +196,20 @@
     ]
   }
   </script>
-<link rel="stylesheet" href="/design-system.css?v=14">
+<link rel="stylesheet" href="/design-system.css?v=15">
 </head>
 <body class="agentrust-hub" id="top">
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Header -->
 <header>
   <div class="header-inner">
-    <a href="/" class="logo">agentrust<span class="logo-dot">.</span>io</a>
+    <a href="/" class="logo">AgenTrust</a>
     <nav>
       <ul class="header-nav">
         <li><a href="#ecosystem">Ecosystem</a></li>
         <li><a href="/marketplace/">Marketplace</a></li>
-        <li><a href="#book">Book</a></li>
+        <li><a href="/quickstart/">Start here</a></li>
         <li><a href="#standards">Technology</a></li>
         <li><a href="#tools">Tools</a></li>
         <li><a href="#fellowship">Fellowship</a></li>
@@ -220,7 +223,6 @@
 <nav class="railnav" aria-label="Sections on this page">
   <ul>
     <li><a href="#top"><span class="railnav-tick"></span><span class="railnav-label">Top</span></a></li>
-    <li><a href="#book"><span class="railnav-tick"></span><span class="railnav-label">Book</span></a></li>
     <li><a href="#trust-stack"><span class="railnav-tick"></span><span class="railnav-label">Trust chain</span></a></li>
     <li><a href="#ecosystem"><span class="railnav-tick"></span><span class="railnav-label">Ecosystem</span></a></li>
     <li><a href="#adoption"><span class="railnav-tick"></span><span class="railnav-label">Who's involved</span></a></li>
@@ -230,73 +232,59 @@
     <li><a href="#tools"><span class="railnav-tick"></span><span class="railnav-label">Tools</span></a></li>
     <li><a href="#status"><span class="railnav-tick"></span><span class="railnav-label">What's launched</span></a></li>
     <li><a href="#fellowship"><span class="railnav-tick"></span><span class="railnav-label">Fellowship</span></a></li>
+    <li><a href="#book"><span class="railnav-tick"></span><span class="railnav-label">Book</span></a></li>
     <li><a href="#about"><span class="railnav-tick"></span><span class="railnav-label">About</span></a></li>
     <li><a href="#faq"><span class="railnav-tick"></span><span class="railnav-label">FAQ</span></a></li>
   </ul>
 </nav>
 
 <!-- Hero -->
-<div class="fellowship">
-  <div class="fellowship-inner">
-    <span class="fellowship-tag">Linux Foundation</span>
-    <span class="fellowship-text"><strong>TRACE joins the Linux Foundation.</strong> The open specification now has vendor-neutral governance for portable, verifiable runtime evidence across AI agents and confidential workloads.</span>
-    <a class="fellowship-link" href="https://www.linuxfoundation.org/press/linux-foundation-welcomes-trace-to-advance-verifiable-runtime-evidence-for-ai-workloads">Read the Linux Foundation announcement &rarr;</a>
-  </div>
-</div>
-
+<main id="main">
 <div class="hero">
   <div class="hero-inner">
-    <p class="hero-eyebrow">Open Technology · Shared Stewardship · Real Adoption</p>
-    <h1>Build the ecosystem for verifiable AI agents</h1>
-    <div class="hero-promo">
-      <span class="hero-promo-tag">New &middot; Hands-on</span>
-      <span class="hero-promo-text">Don't just read the spec: <b>run cMCP yourself.</b> Write a policy, watch it block a data leak, verify a signed receipt.</span>
-      <a class="hero-promo-link" href="/quickstart/">Try cMCP in under 10 minutes &rarr;</a>
-    </div>
-    <p>AgenTrust brings developers, researchers, operators, and enterprises together to turn open governance technology into infrastructure people can adopt and sustain. Build with the specifications, correlate governance evidence with portable telemetry, prove interoperability with the test suites, and help maintain the ecosystem.</p>
+    <p class="hero-eyebrow">Open source tools for AI agent governance</p>
+    <h1>Control agent actions.<br>Verify the evidence.</h1>
+    <p>AgenTrust helps you check an AI agent's tool calls against policy and produce signed records of the decisions. Start locally, then explore hardware-backed enforcement.</p>
     <div class="hero-actions">
-      <a href="/quickstart/" class="btn btn-primary">Run the 10-minute demo →</a>
-      <a href="#trust-stack" class="btn btn-ghost">Understand the trust stack</a>
-      <a href="#ecosystem" class="btn btn-ghost">Find your adoption path</a>
+      <a href="/quickstart/" class="btn btn-primary">Block a tool call in 10 minutes →</a>
+      <a href="#trust-stack" class="btn btn-ghost">See the architecture</a>
     </div>
+    <p class="hero-scope">Python 3.11+ · No cloud account · Software demo; no hardware attestation</p>
   </div>
 </div>
-
-<section class="section" id="book">
-  <div class="section-header">
-    <div class="section-label">New field guide · Published September 2026</div>
-    <div class="section-title">Architecting at Scale</div>
+<section class="section reader-start" id="start-here" aria-labelledby="start-title">
+  <h2 id="start-title">What do you want to try?</h2>
+  <div class="ecosystem-grid">
+    <article class="ecosystem-card"><h3>Govern a tool call</h3><p>Write a policy, get a 403 denial, and inspect the signed session record.</p><a href="/quickstart/">Follow the cMCP tutorial →</a></article>
+    <article class="ecosystem-card"><h3>Evaluate the evidence</h3><p>See where enforcement runs, what a receipt binds, and what a verifier must check.</p><a href="#trust-stack">Understand the trust boundaries →</a></article>
+    <article class="ecosystem-card"><h3>Protect model weights</h3><p>Run a local example that detects a modified checkpoint before loading it.</p><a href="/demos/#weights">Explore weight-custody demos →</a></article>
   </div>
-  <p class="lead-copy">AgenTrust founder Imran Siddique has turned the lessons behind production cloud and AI systems into a practical book. It connects the architecture of distributed systems with the harder problem now in front of us: building AI-native systems that remain observable, governable, and correct when they meet production.</p>
-  <aside class="marketplace-callout">
-    <div>
-      <span>From architecture to working code</span>
-      <h3>Read the field guide. Then run the companion examples.</h3>
-      <p>The book covers state, failure, system evolution, runtime control, and scale by subtraction. The public companion repository keeps the ideas inspectable and runnable.</p>
-    </div>
-    <div class="hero-actions">
-      <a href="https://www.amazon.com/Architecting-Scale-Practical-Large-Scale-AI-Native/dp/1807420973" class="btn btn-primary">Get the book →</a>
-      <a href="https://github.com/imran-siddique/Architecting-at-Scale" class="btn btn-ghost">Run the code ↗</a>
-    </div>
-  </aside>
 </section>
-
-<hr class="divider">
 
 <section class="section" id="trust-stack">
   <div class="section-header">
     <div class="section-label">How it fits together</div>
-    <div class="section-title">One verifiable trust chain</div>
+    <h2 class="section-title">Where policy runs. Where evidence goes.</h2>
   </div>
-  <div class="trust-flow">
-    <div class="trust-step"><span class="trust-number">01 · DECLARE</span><strong>Agent Manifest</strong><p>Binds identity, code, model, tools, policy, and provenance before the agent runs.</p><span class="trust-home">CoSAI WS4 &rarr; OASIS Open · Phase 1 review open</span></div>
-    <div class="trust-step"><span class="trust-number">02 · ENFORCE</span><strong>cMCP</strong><p>Attests the runtime and evaluates every MCP tool call against policy inside a TEE.</p><span class="trust-home">Proposed &rarr; AAIF · contribution path</span></div>
-    <div class="trust-step"><span class="trust-number">03 · DELEGATE</span><strong>cA2A</strong><p>Carries attenuated authority and attested provenance across every agent-to-agent hop.</p><span class="trust-home">Proposed &rarr; AAIF · contribution path</span></div>
-    <div class="trust-step"><span class="trust-number">04 · PROVE</span><strong>TRACE</strong><p>Emits portable signed evidence that anyone can verify without trusting the operator.</p><span class="trust-home">TRACE Specification, a Series of LF Projects, LLC</span></div>
-  </div>
-  <div class="trust-base trust-observe"><span class="trust-base-label">OBSERVE &amp; CORRELATE</span><span class="trust-base-text"><a href="/telemetry/"><strong>AgenTrust Telemetry</strong></a> normalizes policy, approval, action, data-flow, usage, and evidence events and correlates them with the application's OpenTelemetry traces.</span></div>
-  <div class="trust-base"><span class="trust-base-label">AGT FOUNDATION</span><span class="trust-base-text">A common runtime policy substrate: open, portable, and framework-neutral.</span></div>
-  <p class="trust-note">One architecture, neutral standards homes, interoperable by design.</p>
+  <p class="lead-copy">Start with the boundary you need. Tool calls use cMCP; delegation to another agent uses cA2A. These are separate paths, and neither requires every component below.</p>
+  <figure class="architecture" aria-labelledby="architecture-caption">
+    <div class="architecture-input"><a href="https://manifest.agentrust-io.com"><strong>Agent Manifest</strong></a><span>Declares identity, artifacts, and intended authority. A runtime must verify and enforce those declarations.</span></div>
+    <div class="architecture-row">
+      <div class="architecture-node"><strong>Your agent</strong><span>Requests a tool action</span></div>
+      <div class="architecture-edge" aria-label="Request flows to runtime">request <span class="direction" aria-hidden="true">→</span></div>
+      <div class="architecture-node architecture-boundary"><a href="https://cmcp.agentrust-io.com"><strong>cMCP runtime</strong></a><span>Catalog lookup + policy decision</span><small>TEE boundary in hardware deployments; software process in the demo.</small></div>
+      <div class="architecture-edge" aria-label="Only allowed requests reach tool">allow <span class="direction" aria-hidden="true">→</span></div>
+      <div class="architecture-node"><strong>MCP tool server</strong><span>Runs the allowed call outside the runtime's boundary</span></div>
+    </div>
+    <div class="architecture-outcomes">
+      <div><strong>Deny → return an error</strong><p>The runtime does not forward a denied call to the tool server.</p></div>
+      <div><a href="https://trace.agentrust-io.com"><strong>Session record → TRACE verifier</strong></a><p>Check signed evidence against trusted keys, expected policy, and the required attestation level.</p></div>
+      <div><a href="https://ca2a.agentrust-io.com"><strong>Optional delegation → cA2A peer</strong></a><p>A separate agent-to-agent path narrows delegated authority and links provenance across hops.</p></div>
+    </div>
+    <figcaption id="architecture-caption">Tool-call path and evidence path. Protecting the runtime does not put the model, agent process, or upstream tool server inside its TEE.</figcaption>
+  </figure>
+  <div class="trust-base trust-observe"><span class="trust-base-label">OBSERVE &amp; CORRELATE</span><span class="trust-base-text"><a href="/telemetry/"><strong>AgenTrust Telemetry</strong></a> connects governance events with your application's OpenTelemetry traces. Telemetry records decisions; it does not enforce policy.</span></div>
+  <p class="trust-note">A signature establishes who signed a record and whether it changed. Hardware provenance additionally requires verified attestation and a trust policy. <a href="/quickstart/#proof">See the software demo's expected verification result →</a></p>
 </section>
 
 <hr class="divider">
@@ -304,7 +292,7 @@
 <section class="section" id="ecosystem">
   <div class="section-header">
     <div class="section-label">From open technology to durable infrastructure</div>
-    <div class="section-title">An ecosystem built around adoption</div>
+    <h2 class="section-title">An ecosystem built around adoption</h2>
   </div>
   <div class="ecosystem-grid">
     <article class="ecosystem-card"><h3>Use it</h3><p>Start with runnable demos, reference implementations, schemas, and conformance tests. Move from evaluation to a production pilot without waiting for a proprietary platform.</p></article>
@@ -317,10 +305,18 @@
 
 <hr class="divider">
 
+<div class="fellowship">
+  <div class="fellowship-inner">
+    <span class="fellowship-tag">Linux Foundation</span>
+    <span class="fellowship-text"><strong>TRACE joins the Linux Foundation.</strong> The open specification now has vendor-neutral governance for portable, verifiable runtime evidence across AI agents and confidential workloads.</span>
+    <a class="fellowship-link" href="https://www.linuxfoundation.org/press/linux-foundation-welcomes-trace-to-advance-verifiable-runtime-evidence-for-ai-workloads">Read the Linux Foundation announcement &rarr;</a>
+  </div>
+</div>
+
 <section class="section" id="adoption">
   <div class="section-header">
     <div class="section-label">Verified ecosystem evidence</div>
-    <div class="section-title">Relationships the public record supports</div>
+    <h2 class="section-title">Relationships the public record supports</h2>
   </div>
   <p class="lead-copy">Every organization named here has a traceable relationship through a public announcement, open-source repository, or explicit AgenTrust partner statement. The label on each card states that relationship precisely; sponsorship, partnership, contribution, and adoption are distinct relationships, and none implies blanket endorsement of the full stack.</p>
   <!-- adoption:generated:start -->
@@ -412,7 +408,7 @@
 <section class="section" id="community">
   <div class="section-header">
     <div class="section-label">Community governance</div>
-    <div class="section-title">Open work, visible decisions, more maintainers</div>
+    <h2 class="section-title">Open work, visible decisions, more maintainers</h2>
   </div>
   <p class="lead-copy">AgenTrust develops in public through open repositories, reviewable proposals, implementation evidence, and conformance testing. The goal is not simply to publish specifications: it is to create a contributor community capable of operating, improving, and stewarding the technology.</p>
   <div class="governance-grid">
@@ -432,7 +428,7 @@
 <section class="section" id="playbooks">
   <div class="section-header">
     <div class="section-label">Compliance adoption roadmap</div>
-    <div class="section-title">From runtime evidence to compliance playbooks</div>
+    <h2 class="section-title">From runtime evidence to compliance playbooks</h2>
   </div>
   <p class="lead-copy">The fellowship will turn AgenTrust implementation patterns into practical, public playbooks. Each playbook will map governance controls and TRACE evidence to an authoritative framework without claiming certification or legal compliance.</p>
   <div class="playbook-grid">
@@ -450,7 +446,7 @@
 <section class="section" id="standards">
   <div class="section-header">
     <div class="section-label">Open Technology</div>
-    <div class="section-title">Specifications, protocols, and shared building blocks</div>
+    <h2 class="section-title">Specifications, protocols, and shared building blocks</h2>
   </div>
 
   <div class="product-grid">
@@ -461,7 +457,7 @@
       <div class="card-body">
         <div class="card-tag" style="color: var(--blue);">Attestation Standard</div>
         <div class="card-name">TRACE</div>
-        <div class="card-desc">Trust, Runtime Attestation, and Compliance Evidence. Hardware-rooted cryptographic receipts for every agent action, signed by the TEE and verifiable by anyone.</div>
+        <div class="card-desc">TRACE defines portable, signed runtime evidence. Hardware provenance requires attestation verification against a trusted root; software-mode records do not provide that guarantee.</div>
       </div>
       <div class="card-footer">
         <span class="card-url">trace.agentrust-io.com</span>
@@ -549,7 +545,7 @@
 <section class="section" id="tools">
   <div class="section-header">
     <div class="section-label">Infrastructure</div>
-    <div class="section-title">Test Suite &amp; Tooling</div>
+    <h2 class="section-title">Test Suite &amp; Tooling</h2>
   </div>
 
   <div class="product-grid">
@@ -576,7 +572,7 @@
       <div class="card-accent" style="background: var(--green);"></div>
       <div class="card-body">
         <div class="card-tag" style="color: var(--green);">Runnable Demos</div>
-        <div class="card-name">Ten Demos, About Twelve Minutes</div>
+        <div class="card-name">Ten Runnable Demos</div>
         <div class="card-desc">Run the specs on your own machine, no hardware required. Block a data leak, verify a signed receipt, refuse tampered model weights, and govern OpenAI-compatible model calls.</div>
       </div>
       <div class="card-footer">
@@ -648,7 +644,7 @@
 <section class="section" id="status">
   <div class="section-header">
     <div class="section-label">At a Glance</div>
-    <div class="section-title">What's Launched</div>
+    <h2 class="section-title">What's Launched</h2>
   </div>
   <div class="spec-row">
     <div class="spec-card">
@@ -661,7 +657,7 @@
     </div>
     <div class="spec-card">
       <div class="spec-label">Protocol Extension</div>
-      <div class="spec-value">cMCP v0.3.0</div>
+      <div class="spec-value"><a href="https://github.com/agentrust-io/cmcp/releases">cMCP releases</a></div>
     </div>
     <div class="spec-card">
       <div class="spec-label">Delegation Profile</div>
@@ -706,13 +702,34 @@
   </div>
 </section>
 
+<section class="section" id="book">
+  <div class="section-header">
+    <div class="section-label">New field guide · Published September 2026</div>
+    <h2 class="section-title">Architecting at Scale</h2>
+  </div>
+  <p class="lead-copy">AgenTrust founder Imran Siddique has turned the lessons behind production cloud and AI systems into a practical book. It connects the architecture of distributed systems with the harder problem now in front of us: building AI-native systems that remain observable, governable, and correct when they meet production.</p>
+  <aside class="marketplace-callout">
+    <div>
+      <span>From architecture to working code</span>
+      <h3>Read the field guide. Then run the companion examples.</h3>
+      <p>The book covers state, failure, system evolution, runtime control, and scale by subtraction. The public companion repository keeps the ideas inspectable and runnable.</p>
+    </div>
+    <div class="hero-actions">
+      <a href="https://www.amazon.com/Architecting-Scale-Practical-Large-Scale-AI-Native/dp/1807420973" class="btn btn-primary">Get the book →</a>
+      <a href="https://github.com/imran-siddique/Architecting-at-Scale" class="btn btn-ghost">Run the code ↗</a>
+    </div>
+  </aside>
+</section>
+
+<hr class="divider">
+
 <section class="section" id="about">
   <div class="section-header">
     <div class="section-label">Overview</div>
-    <div class="section-title">What is AgenTrust?</div>
+    <h2 class="section-title">What is AgenTrust?</h2>
   </div>
   <p class="lead-copy">AgenTrust is an open ecosystem for verifiable AI agent governance. It connects reusable technology with the people and practices needed to adopt it: maintainers, implementers, researchers, enterprise operators, conformance testing, integration guidance, and transparent community governance.</p>
-  <p class="lead-copy">Four specifications work together, in the order an agent actually runs. <strong>Agent Manifest</strong> declares who an agent is and what it is allowed to do. <strong>Confidential MCP (cMCP)</strong> enforces that by evaluating tool calls against policy inside a Trusted Execution Environment, so tool-call plaintext is not readable from the host. <strong>Confidential A2A (cA2A)</strong> carries attenuated authority and attested provenance when work is delegated to another agent. <strong>TRACE</strong> proves what actually happened with signed receipts, hardware-attested when the gateway runs in a TEE. All four are open source, under Apache 2.0 for Agent Manifest, MIT for cMCP and cA2A, and CC BY 4.0 plus Apache 2.0 for TRACE.</p>
+  <p class="lead-copy">Agent Manifest declares identity and intended authority. cMCP governs tool calls; cA2A governs delegation to another agent. TRACE carries signed runtime evidence for verification against a trust policy. Hardware provenance depends on verified attestation. Use the components required by your trust boundary. Explore each project's specification, reference implementation, and license through the technology links above.</p>
   <p class="lead-copy"><strong>AgenTrust Telemetry</strong> is the integration layer across that chain. It gives runtimes a common, metadata-only contract for governance facts, projects those facts into caller-owned OpenTelemetry, and can turn a complete durable evidence set into TRACE. It does not replace a policy engine, collector, observability backend, or dashboard.</p>
 </section>
 
@@ -722,7 +739,7 @@
 <section class="section" id="faq">
   <div class="section-header">
     <div class="section-label">FAQ</div>
-    <div class="section-title">Frequently Asked Questions</div>
+    <h2 class="section-title">Frequently Asked Questions</h2>
   </div>
   <div class="qa">
     <div class="qa-item">
@@ -731,7 +748,7 @@
     </div>
     <div class="qa-item">
       <div class="qa-q">What is TRACE?</div>
-      <div class="qa-a">TRACE stands for Trust, Runtime Attestation, and Compliance Evidence. It defines hardware-rooted cryptographic receipts for every agent action, signed by the Trusted Execution Environment and verifiable by anyone.</div>
+      <div class="qa-a">TRACE defines portable, signed runtime evidence. Hardware provenance requires attestation verification against a trusted root; software-mode records do not provide that guarantee.</div>
     </div>
     <div class="qa-item">
       <div class="qa-q">What is Agent Manifest?</div>
@@ -739,7 +756,7 @@
     </div>
     <div class="qa-item">
       <div class="qa-q">What is Confidential MCP (cMCP)?</div>
-      <div class="qa-a">Confidential MCP is an extension to the Model Context Protocol that runs tool calls inside a Trusted Execution Environment, so the host process cannot read tool-call plaintext from enclave memory. That protection is structural only where the Cedar egress policy denies telemetry and APM endpoints, and it covers the tool-call boundary rather than model inference or the agent's context window.</div>
+      <div class="qa-a">Confidential MCP (cMCP) evaluates routed MCP tool calls against policy and records the decisions. In a hardware deployment, the runtime is inside a Trusted Execution Environment (TEE); the agent and upstream tool server remain separate. Host confidentiality also depends on the egress policy. Software mode provides no hardware isolation.</div>
     </div>
     <div class="qa-item">
       <div class="qa-q">What is Confidential A2A (cA2A)?</div>
@@ -747,7 +764,7 @@
     </div>
     <div class="qa-item">
       <div class="qa-q">What is the secure version of MCP?</div>
-      <div class="qa-a">Confidential MCP (cMCP) is the security-hardened way to run the Model Context Protocol. It executes MCP tool calls inside a Trusted Execution Environment (TEE), so tool-call plaintext is not readable from the host, and it emits a signed TRACE receipt for every call that anyone can verify. Two bounds worth stating: the plaintext guarantee holds where the egress policy denies telemetry and APM endpoints, and the receipt is hardware-attested when the gateway runs in a TEE and signed-only in software mode. If you need a secure or confidential MCP deployment, cMCP is the AgenTrust profile for it.</div>
+      <div class="qa-a">Confidential MCP (cMCP) evaluates routed MCP tool calls against policy and records the decisions. In a hardware deployment, the runtime is inside a Trusted Execution Environment (TEE); the agent and upstream tool server remain separate. Host confidentiality also depends on the egress policy. Software mode provides no hardware isolation.</div>
     </div>
     <div class="qa-item">
       <div class="qa-q">What is the secure version of A2A?</div>
@@ -755,7 +772,7 @@
     </div>
     <div class="qa-item">
       <div class="qa-q">How do the AgenTrust standards relate to each other?</div>
-      <div class="qa-a">Agent Manifest covers identity, cMCP covers confidential execution, and TRACE covers verifiable behavior. Manifest says who an agent is and what it may do, cMCP runs its tool calls confidentially, and TRACE produces hardware-signed receipts of what actually happened.</div>
+      <div class="qa-a">Agent Manifest declares identity and intended authority. cMCP governs tool calls; cA2A governs delegation to another agent. TRACE carries signed runtime evidence for verification against a trust policy. Hardware provenance depends on verified attestation. Use the components required by your trust boundary.</div>
     </div>
     <div class="qa-item">
       <div class="qa-q">Are the AgenTrust standards open source?</div>
@@ -767,6 +784,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- Footer -->
 <footer>

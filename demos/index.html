@@ -32,7 +32,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-<link rel="stylesheet" href="/design-system.css?v=10">
+<link rel="stylesheet" href="/design-system.css?v=15">
 </head>
 <body class="at-page">
 
@@ -48,7 +48,7 @@
 
 <div class="hero"><div class="wrap">
   <span class="eyebrow">Runnable demos</span>
-  <h1>Don't take the spec<br>on trust. <em>Run it.</em></h1>
+  <h1>Run a policy check.<br><em>Inspect the result.</em></h1>
   <p class="sub">Ten demos, about thirteen minutes end to end. Four cover custody of model weights. Five govern what an agent does at the tool boundary. One governs model calls through an OpenAI-compatible endpoint.</p>
   <div><span class="status">Software mode · <code>CMCP_DEV_MODE=1</code> · no special hardware</span></div>
 </div></div>
@@ -57,18 +57,20 @@
 
 <section id="start">
   <span class="label">Quick start</span>
-  <h2>Clone it and run all ten</h2>
-  <p>No confidential-computing hardware, no cloud account, no signup. Everything runs in software mode.</p>
+  <h2>Start with one demo</h2>
+  <p>Use Python 3.11+, Git, and Bash on macOS, Linux, or Windows with WSL for the commands below. No cloud account is needed. These demos use software attestation and do not demonstrate hardware isolation.</p>
   <div class="code">
     <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
 <pre>git clone https://github.com/agentrust-io/demos &amp;&amp; cd demos
-pip install -r requirements.txt
-python demo.py            <span class="c"># all ten, pausing before each</span>
-python demo.py --no-pause <span class="c"># straight through, no prompts</span>
-python demo.py 6          <span class="c"># just demo 6</span></pre>
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python demo.py 1          <span class="c"># start with tool-call policy enforcement</span></pre>
   </div>
   <p>The requirements install cMCP for demos 1 to 5, Weight Custody Manifest for demos 6 to 9, and the OpenAI client for demo 10. <code>demo.py</code> sets dev mode and the bearer token for you, so there is nothing to export. Source: <a href="https://github.com/agentrust-io/demos">github.com/agentrust-io/demos</a>.</p>
 
+  <p><strong>What to look for:</strong> demo 1 routes calls through the local gateway and closes the session into a signed record. Software mode does not pass hardware-attestation verification. To explore weight custody, run <code>python demo.py 6</code>; to run the full set without pauses, use <code>python demo.py --no-pause</code>.</p>
+  <p><strong>Individual commands below:</strong> run them from the <code>demos</code> folder with the environment activated. For demos that start cMCP, set <code>export CMCP_BEARER_TOKEN=demo-token</code> first. The <code>demo.py</code> launcher handles this setup for you.</p>
   <p class="meta" style="margin-top:2.25rem;">What demo 6 actually prints, verbatim from a run on <code>weight-custody-manifest 0.25.0</code></p>
   <div class="term">
     <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="term-title">python demo-06-weight-custody/run.py</span></div>

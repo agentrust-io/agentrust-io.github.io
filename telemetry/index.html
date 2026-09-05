@@ -47,7 +47,7 @@
 }
 </script>
 
-<link rel="stylesheet" href="/design-system.css?v=10">
+<link rel="stylesheet" href="/design-system.css?v=15">
 </head>
 <body class="at-page">
 
@@ -75,7 +75,7 @@
   <span class="label">Where it fits</span>
   <h2>One correlation layer across the trust chain</h2>
   <p>AgenTrust Telemetry sits across the four AgenTrust standards. It records runtime facts in a backend-neutral contract, correlates them with the application's existing OpenTelemetry context, and can finalize a complete durable evidence set into a TRACE record.</p>
-  <div class="flow">
+  <div class="flow" role="group" aria-label="Evidence integration stages, not network or security boundaries">
     <div><span class="n">01</span><strong>Manifest</strong><span>Declared identity and authority</span></div>
     <div><span class="n">02</span><strong>cMCP / cA2A</strong><span>Policy and delegated actions</span></div>
     <div class="marked"><span class="n">03</span><strong>Telemetry</strong><span>Correlated governance facts</span></div>
@@ -105,17 +105,21 @@
   <h2>Keep the stack you already operate</h2>
   <p>The reference SDK uses the caller's current OpenTelemetry span. It does not install a provider, processor, exporter, collector, or global propagator. Standard OpenTelemetry fields take precedence over AgenTrust extensions.</p>
 
+  <div class="callout"><p><strong>Before you start:</strong> Python 3.11+, Git, and Bash on macOS, Linux, or Windows with WSL. Commands run from the repository root. No telemetry backend is needed for the first example.</p></div>
+
   <div class="steps">
 
     <div class="step">
       <div class="step-num">1</div>
       <div class="step-body">
         <h3>Install the Python SDK</h3>
-        <p class="hint">Registry publication is being prepared, so install from a checkout while the project is pre-release. This page switches to a <code>pip install</code> after the first release.</p>
+        <p class="hint">Install from the source checkout so the SDK and runnable examples use the same revision.</p>
         <div class="code">
           <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
 <pre>git clone https://github.com/agentrust-io/agentrust-telemetry
 cd agentrust-telemetry
+python3 -m venv .venv
+source .venv/bin/activate
 python -m pip install -e ".[otel]"</pre>
         </div>
       </div>
@@ -124,14 +128,11 @@ python -m pip install -e ".[otel]"</pre>
     <div class="step">
       <div class="step-num">2</div>
       <div class="step-body">
-        <h3>Emit a normalized event</h3>
-        <p class="hint">The client validates against the bundled schemas and the privacy profile before anything leaves your process. A caller may additionally supply a structured-log emitter.</p>
+        <h3>Run a complete event example</h3>
+        <p class="hint">Run the included synthetic policy event. It defines every required field, validates the event, and prints it through a local log emitter.</p>
         <div class="code">
-          <div class="code-head"><span class="code-label">Python</span><button class="copy">COPY</button></div>
-<pre><span class="k">from</span> agentrust_telemetry <span class="k">import</span> SchemaValidator, TelemetryClient
-
-client = TelemetryClient(SchemaValidator.bundled())
-result = client.emit(normalized_event)</pre>
+          <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
+<pre>python examples/manual_governance.py</pre>
         </div>
       </div>
     </div>
@@ -140,6 +141,7 @@ result = client.emit(normalized_event)</pre>
       <div class="step-num">3</div>
       <div class="step-body">
         <h3>Carry correlation across process boundaries</h3>
+        <p class="hint"><strong>Integration sketch:</strong> this block assumes your application already defines <code>tracer</code> and <code>event</code>. For a complete runnable version, use <code>python examples/governed_workflow.py</code> after installing <code>".[test]"</code> as shown below.</p>
         <p class="hint">For synchronous cross-process agent calls, propagate the caller's W3C context and the durable AgenTrust identifiers, then use the extracted context as the receiving span's remote parent. For asynchronous queue handoffs, start a new trace with <code>links=[remote.link()]</code> instead: that preserves causality without representing queued work as a synchronous child span.</p>
         <div class="code">
           <div class="code-head"><span class="code-label">Python</span><button class="copy">COPY</button></div>
@@ -160,6 +162,7 @@ remote = extract_context(carrier)
       <div class="step-num">4</div>
       <div class="step-body">
         <h3>Or use the TypeScript SDK</h3>
+        <p class="hint">Use a separate terminal at the repository root, with Node.js and npm installed. Return to the root for the Python examples below.</p>
         <p class="hint">The pre-alpha Node package validates the same fixtures and the same privacy profile as Python, and preserves nanosecond wire timestamps as decimal strings. It installs no OTel provider, exporter, or global propagator either.</p>
         <div class="code">
           <div class="code-head"><span class="code-label">Terminal · <span class="file">packages/typescript</span></span><button class="copy">COPY</button></div>
@@ -171,6 +174,8 @@ npm run check</pre>
     </div>
 
   </div>
+
+  <p><strong>Expected first result:</strong> a printed policy event and an <code>EmitResult</code> with <code>accepted=True</code> and <code>log_emitted=True</code>. A missing span is expected without an active OpenTelemetry span. This synthetic event does not enforce a policy.</p>
 
   <h3 style="margin-top:3rem;">Two runnable examples</h3>
   <p>Both ship in the repository. The second walks the complete governance, OpenTelemetry, durable-evidence, and TRACE reference workflow.</p>
