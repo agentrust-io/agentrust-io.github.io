@@ -44,7 +44,7 @@
 }
 </script>
 
-<link rel="stylesheet" href="/design-system.css?v=11">
+<link rel="stylesheet" href="/design-system.css?v=15">
 </head>
 <body class="at-page">
 
@@ -159,9 +159,12 @@
       <div class="step-num">1</div>
       <div class="step-body">
         <h3>Install the verifier</h3>
+        <p class="hint">Use Python 3.11+, Git, and Bash on macOS, Linux, or Windows with WSL. Create an isolated environment before installing.</p>
         <div class="code">
           <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
-<pre>python -m pip install trace-verify</pre>
+<pre>python3 -m venv trace-verify-env
+source trace-verify-env/bin/activate
+python -m pip install trace-verify</pre>
         </div>
       </div>
     </div>
@@ -189,6 +192,7 @@ cd trace-registry</pre>
 <pre>python tools/verify_checkpoint_chain.py \
   registry/2026/06/12.ndjson \
   registry/2026/09/01.ndjson</pre>
+        <p class="hint"><strong>Expected:</strong> <code>OK:</code> with the verified checkpoint count, MMR size, and root, then exit 0. <code>FAIL:</code> exits 1. "No entries with mmr_checkpoint" means nothing was verified. This command checks the two named historical files, not every later registry entry.</p>
         </div>
       </div>
     </div>
