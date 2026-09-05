@@ -56,7 +56,9 @@
         "@id": "https://agentrust-io.com/#website",
         "name": "AgenTrust",
         "url": "https://agentrust-io.com/",
-        "publisher": { "@id": "https://agentrust-io.com/#organization" }
+        "publisher": {
+          "@id": "https://agentrust-io.com/#organization"
+        }
       }
     ]
   }
@@ -96,7 +98,7 @@
           "@type": "TechArticle",
           "name": "Confidential MCP (cMCP)",
           "url": "https://cmcp.agentrust-io.com/",
-          "description": "An extension to the Model Context Protocol that runs tool calls inside a Trusted Execution Environment so the host process cannot observe inputs, outputs, or intermediate state."
+          "description": "Confidential MCP (cMCP) evaluates routed MCP tool calls against policy and records the decisions. In a hardware deployment, the runtime is inside a Trusted Execution Environment (TEE); the agent and upstream tool server remain separate. Host confidentiality also depends on the egress policy. Software mode provides no hardware isolation."
         }
       },
       {
@@ -148,7 +150,7 @@
         "name": "What is Confidential MCP (cMCP)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Confidential MCP is an extension to the Model Context Protocol that runs tool calls inside a Trusted Execution Environment, so the host process cannot read tool-call plaintext from enclave memory. That protection is structural only where the Cedar egress policy denies telemetry and APM endpoints, and it covers the tool-call boundary rather than model inference or the agent's context window."
+          "text": "Confidential MCP (cMCP) evaluates routed MCP tool calls against policy and records the decisions. In a hardware deployment, the runtime is inside a Trusted Execution Environment (TEE); the agent and upstream tool server remain separate. Host confidentiality also depends on the egress policy. Software mode provides no hardware isolation."
         }
       },
       {
@@ -164,7 +166,7 @@
         "name": "How do the AgenTrust standards relate to each other?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Agent Manifest establishes who an agent is and what it is allowed to do, cMCP executes tool calls confidentially inside a Trusted Execution Environment, cA2A carries that trust across agent-to-agent delegation on A2A, and TRACE produces hardware-signed receipts that prove what actually happened. Together they cover identity, intent, delegation, and behavior."
+          "text": "Agent Manifest declares identity and intended authority. cMCP governs tool calls; cA2A governs delegation to another agent. TRACE carries signed runtime evidence for verification against a trust policy. Hardware provenance depends on verified attestation. Use the components required by your trust boundary."
         }
       },
       {
@@ -180,7 +182,7 @@
         "name": "What is the secure version of MCP?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Confidential MCP (cMCP) is the security-hardened way to run the Model Context Protocol. It executes MCP tool calls inside a Trusted Execution Environment (TEE), so tool-call plaintext is not readable from the host, and it emits a signed TRACE receipt for every call that anyone can verify. Two bounds worth stating: the plaintext guarantee holds where the egress policy denies telemetry and APM endpoints, and the receipt is hardware-attested when the gateway runs in a TEE and signed-only in software mode. If you need a secure or confidential MCP deployment, cMCP is the AgenTrust profile for it."
+          "text": "Confidential MCP (cMCP) evaluates routed MCP tool calls against policy and records the decisions. In a hardware deployment, the runtime is inside a Trusted Execution Environment (TEE); the agent and upstream tool server remain separate. Host confidentiality also depends on the egress policy. Software mode provides no hardware isolation."
         }
       },
       {
@@ -269,9 +271,9 @@
     <div class="architecture-input"><a href="https://manifest.agentrust-io.com"><strong>Agent Manifest</strong></a><span>Declares identity, artifacts, and intended authority. A runtime must verify and enforce those declarations.</span></div>
     <div class="architecture-row">
       <div class="architecture-node"><strong>Your agent</strong><span>Requests a tool action</span></div>
-      <div class="architecture-edge" aria-label="Request flows to runtime">request →</div>
+      <div class="architecture-edge" aria-label="Request flows to runtime">request <span class="direction" aria-hidden="true">→</span></div>
       <div class="architecture-node architecture-boundary"><a href="https://cmcp.agentrust-io.com"><strong>cMCP runtime</strong></a><span>Catalog lookup + policy decision</span><small>TEE boundary in hardware deployments; software process in the demo.</small></div>
-      <div class="architecture-edge" aria-label="Only allowed requests reach tool">allow →</div>
+      <div class="architecture-edge" aria-label="Only allowed requests reach tool">allow <span class="direction" aria-hidden="true">→</span></div>
       <div class="architecture-node"><strong>MCP tool server</strong><span>Runs the allowed call outside the runtime's boundary</span></div>
     </div>
     <div class="architecture-outcomes">
@@ -727,7 +729,7 @@
     <h2 class="section-title">What is AgenTrust?</h2>
   </div>
   <p class="lead-copy">AgenTrust is an open ecosystem for verifiable AI agent governance. It connects reusable technology with the people and practices needed to adopt it: maintainers, implementers, researchers, enterprise operators, conformance testing, integration guidance, and transparent community governance.</p>
-  <p class="lead-copy">Four specifications cover different trust boundaries. <strong>Agent Manifest</strong> declares who an agent is and what it is allowed to do. <strong>Confidential MCP (cMCP)</strong> enforces that by evaluating tool calls against policy inside a Trusted Execution Environment, so tool-call plaintext is not readable from the host. <strong>Confidential A2A (cA2A)</strong> carries attenuated authority and attested provenance when work is delegated to another agent. <strong>TRACE</strong> proves what actually happened with signed receipts, hardware-attested when the gateway runs in a TEE. All four are open source, under Apache 2.0 for Agent Manifest, MIT for cMCP and cA2A, and CC BY 4.0 plus Apache 2.0 for TRACE.</p>
+  <p class="lead-copy">Agent Manifest declares identity and intended authority. cMCP governs tool calls; cA2A governs delegation to another agent. TRACE carries signed runtime evidence for verification against a trust policy. Hardware provenance depends on verified attestation. Use the components required by your trust boundary. Explore each project's specification, reference implementation, and license through the technology links above.</p>
   <p class="lead-copy"><strong>AgenTrust Telemetry</strong> is the integration layer across that chain. It gives runtimes a common, metadata-only contract for governance facts, projects those facts into caller-owned OpenTelemetry, and can turn a complete durable evidence set into TRACE. It does not replace a policy engine, collector, observability backend, or dashboard.</p>
 </section>
 
@@ -754,7 +756,7 @@
     </div>
     <div class="qa-item">
       <div class="qa-q">What is Confidential MCP (cMCP)?</div>
-      <div class="qa-a">Confidential MCP is an extension to the Model Context Protocol that runs tool calls inside a Trusted Execution Environment, so the host process cannot read tool-call plaintext from enclave memory. That protection is structural only where the Cedar egress policy denies telemetry and APM endpoints, and it covers the tool-call boundary rather than model inference or the agent's context window.</div>
+      <div class="qa-a">Confidential MCP (cMCP) evaluates routed MCP tool calls against policy and records the decisions. In a hardware deployment, the runtime is inside a Trusted Execution Environment (TEE); the agent and upstream tool server remain separate. Host confidentiality also depends on the egress policy. Software mode provides no hardware isolation.</div>
     </div>
     <div class="qa-item">
       <div class="qa-q">What is Confidential A2A (cA2A)?</div>
@@ -762,7 +764,7 @@
     </div>
     <div class="qa-item">
       <div class="qa-q">What is the secure version of MCP?</div>
-      <div class="qa-a">Confidential MCP (cMCP) is the security-hardened way to run the Model Context Protocol. It executes MCP tool calls inside a Trusted Execution Environment (TEE), so tool-call plaintext is not readable from the host, and it emits a signed TRACE receipt for every call that anyone can verify. Two bounds worth stating: the plaintext guarantee holds where the egress policy denies telemetry and APM endpoints, and the receipt is hardware-attested when the gateway runs in a TEE and signed-only in software mode. If you need a secure or confidential MCP deployment, cMCP is the AgenTrust profile for it.</div>
+      <div class="qa-a">Confidential MCP (cMCP) evaluates routed MCP tool calls against policy and records the decisions. In a hardware deployment, the runtime is inside a Trusted Execution Environment (TEE); the agent and upstream tool server remain separate. Host confidentiality also depends on the egress policy. Software mode provides no hardware isolation.</div>
     </div>
     <div class="qa-item">
       <div class="qa-q">What is the secure version of A2A?</div>
@@ -770,7 +772,7 @@
     </div>
     <div class="qa-item">
       <div class="qa-q">How do the AgenTrust standards relate to each other?</div>
-      <div class="qa-a">Agent Manifest covers identity, cMCP covers confidential execution, and TRACE covers verifiable behavior. Manifest says who an agent is and what it may do, cMCP runs its tool calls confidentially, and TRACE produces hardware-signed receipts of what actually happened.</div>
+      <div class="qa-a">Agent Manifest declares identity and intended authority. cMCP governs tool calls; cA2A governs delegation to another agent. TRACE carries signed runtime evidence for verification against a trust policy. Hardware provenance depends on verified attestation. Use the components required by your trust boundary.</div>
     </div>
     <div class="qa-item">
       <div class="qa-q">Are the AgenTrust standards open source?</div>

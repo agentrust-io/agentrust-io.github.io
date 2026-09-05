@@ -1985,6 +1985,7 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
   .architecture-input { flex-direction: column; align-items: start; gap: .5rem; }
   .architecture-row, .architecture-outcomes { grid-template-columns: 1fr; }
   .architecture-edge { justify-self: center; margin-block: .25rem; }
+  .architecture-edge .direction { display: inline-block; transform: rotate(90deg); }
   .architecture-outcomes > div + div { border-left: 0; border-top: 1px solid var(--at-line); }
   .agentrust-hub .hero-actions { gap: .75rem; }
   .agentrust-hub .hero-actions .btn { text-align: center; white-space: normal; }

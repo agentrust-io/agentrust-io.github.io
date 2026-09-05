@@ -42,6 +42,8 @@ if [ "$ready" != 1 ]; then cat runtime.log; exit 1; fi
 script += "\n" + deny + " >denial.txt\ncat denial.txt\ngrep -q '403' denial.txt\ngrep -q 'POLICY_DENY' denial.txt\n"
 script += "set +e\n" + verify + " >verification.txt 2>&1\nresult=$?\nset -e\ncat verification.txt\n"
 script += "test $result -eq 1\ngrep -q 'partially_verified' verification.txt\ngrep -q 'CRYPTO-001' verification.txt\n"
+for check in ("schema", "signature", "policy_bundle.hash", "tool_catalog.hash", "attestation_freshness", "audit_chain"):
+    script += f"grep -Eq '{check.replace('.', '[.]')} +PASS' verification.txt\n"
 with tempfile.TemporaryDirectory(prefix="agentrust-quickstart-") as temp:
     subprocess.run(["bash", "-c", script], cwd=temp, check=True, timeout=240)
 print("PASS published quickstart: 403 POLICY_DENY, signed session record, expected software-mode verification exit 1")
