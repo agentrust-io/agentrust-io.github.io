@@ -172,6 +172,7 @@ body,
 .md-typeset a:hover { color: var(--at-red); }
 
 .md-typeset .md-button {
+  color: var(--at-ink);
   border: 1px solid var(--at-ink);
   border-radius: 999px;
   padding: 0.65rem 1.05rem;
