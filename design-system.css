@@ -24,6 +24,32 @@
 }
 
 /* Shared MkDocs surfaces */
+/* Mermaid inherits code foregrounds by default. Our code blocks are dark in
+   both themes, so give diagrams their own theme-aware ink and surfaces. */
+.md-typeset {
+  --md-mermaid-font-family: var(--at-sans);
+  --md-mermaid-label-fg-color: var(--at-ink);
+  --md-mermaid-edge-color: var(--at-muted);
+  --md-mermaid-label-bg-color: var(--at-paper);
+  --md-mermaid-node-bg-color: var(--at-paper-2);
+  --md-mermaid-node-fg-color: var(--at-muted);
+}
+
+.md-typeset .at-diagram {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.md-typeset .at-diagram .mermaid {
+  min-width: 48rem;
+}
+
+.md-typeset .at-diagram:focus-visible {
+  outline: 2px solid var(--md-typeset-a-color);
+  outline-offset: 2px;
+}
+
 [data-md-color-scheme="default"] {
   --md-primary-fg-color: var(--at-paper);
   --md-primary-bg-color: var(--at-ink);
