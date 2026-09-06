@@ -26,12 +26,15 @@
 
   var HOST = location.hostname;
   var PATH = location.pathname;
-  // Quickstart, demos, and telemetry live under the apex host, so the active
-  // item cannot be resolved from the hostname alone the way every other entry can.
+  // Quickstart, demos, telemetry, registry, and (today) WCM live under the
+  // apex host, so the active item cannot be resolved from the hostname alone
+  // the way every other entry can.
+
   var CURRENT_ID = (HOST === 'agentrust-io.com' && PATH.indexOf('/quickstart') === 0) ? 'quickstart'
     : (HOST === 'agentrust-io.com' && PATH.indexOf('/demos') === 0) ? 'demos'
     : (HOST === 'agentrust-io.com' && PATH.indexOf('/telemetry') === 0) ? 'telemetry'
     : (HOST === 'agentrust-io.com' && PATH.indexOf('/registry') === 0) ? 'registry'
+    : (HOST === 'agentrust-io.com' && PATH.indexOf('/wcm') === 0) ? 'wcm'
     : (HOST === 'agentrust-io.com' && PATH.indexOf('/extensions/ca2a') === 0) ? 'ca2a'
     : HOST === 'agentrust-io.com' ? 'home'
     : HOST.indexOf('trace.') === 0    ? 'trace'
@@ -39,6 +42,7 @@
     : HOST.indexOf('cmcp.') === 0        ? 'cmcp'
     : HOST.indexOf('ca2a.') === 0        ? 'ca2a'
     : HOST.indexOf('governance.') === 0  ? 'governance'
+    : HOST.indexOf('wcm.') === 0         ? 'wcm'
     : HOST.indexOf('tests.') === 0       ? 'trace'
     : 'home';
 
