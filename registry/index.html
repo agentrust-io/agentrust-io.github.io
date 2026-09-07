@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TRACE Registry | AgenTrust</title>
-<meta name="description" content="A public, append-only record of TRACE agent evidence. Signed checkpoints, published bytes, and offline verification from a raw public key. No account, no API key, no operator to trust.">
+<meta name="description" content="Verify TRACE Registry checkpoint signatures and log consistency locally from published files. Learn which entries are covered and where key trust and independent witnesses are still required.">
 <link rel="canonical" href="https://agentrust-io.com/registry/">
 <meta name="robots" content="index, follow">
 
@@ -44,7 +44,7 @@
 }
 </script>
 
-<link rel="stylesheet" href="/design-system.css?v=15">
+<link rel="stylesheet" href="/design-system.css?v=17">
 </head>
 <body class="at-page">
 
@@ -61,13 +61,13 @@
 
 <div class="hero"><div class="wrap">
   <span class="eyebrow">Append-only · Signed checkpoints · Offline verification</span>
-  <h1>A public record of agent evidence,<br>built to be distrusted</h1>
-  <p class="sub">The TRACE Registry publishes anchors for signed trust records, and commits to its own history with append-only checkpoints. Every entry, every checkpoint, and every number on this page verifies on your machine from published bytes and a raw public key. There is no account to create, no API key to hold, and no operator you have to believe.</p>
+  <h1>Check the published history<br>of agent evidence</h1>
+  <p class="sub">The TRACE Registry publishes anchors for signed trust records. Download its files and check checkpoint signatures and log consistency locally, without an account or API key. Establishing who controls a signing key and detecting conflicting histories require evidence beyond the log itself.</p>
   <div class="hero-actions">
     <a class="button" href="#verify">Verify a checkpoint yourself</a>
     <a class="button secondary" href="#limits">Read what it does not prove</a>
   </div>
-  <div><span class="status">Public repository · trace-verify 0.3.1 on PyPI · Checkpoint chain live since September 1, 2026</span></div>
+  <div><span class="status">Public repository · Python verifier · First checkpoint published September 1, 2026</span></div>
 </div></div>
 
 <main>
@@ -79,7 +79,7 @@
     <a href="https://pypi.org/project/trace-verify/"><strong>0.3.1</strong><span>Verifier on PyPI</span></a>
     <a href="https://github.com/agentrust-io/trace-registry"><strong>225</strong><span>Tests passing</span></a>
   </div>
-  <p class="proof-note">Counted on <code>main</code> at commit <code>4697f2c</code>. Two entries and one checkpoint is the true size of this log today, and we would rather publish the real number than a flattering one. Clone the repository and run <code>python -m pytest</code> to check the test count for yourself.</p>
+  <p class="proof-note">Historical snapshot at <a href="https://github.com/agentrust-io/trace-registry/tree/4697f2c"><code>4697f2c</code></a>: two demonstration entries, one checkpoint, and 225 passing tests. These figures are not live counters. Check the repository for subsequent entries and test results.</p>
 </section>
 
 <section id="problem">
@@ -92,7 +92,7 @@
 <section id="checkpoint">
   <span class="label">The live record</span>
   <h2>Checkpoint 1, as published</h2>
-  <p>This is the first signed checkpoint of the log, taken verbatim from <code>registry/2026/09/01.ndjson</code>. The <code>key_id</code> is the raw 32-byte Ed25519 public key in hex. A verifier needs nothing else from us to check the signature.</p>
+  <p>These fields identify the first signed checkpoint in <code>registry/2026/09/01.ndjson</code>. The <code>key_id</code> is the raw 32-byte Ed25519 public key in hex. The command below reads the complete checkpoint, including its signature. A matching signature establishes consistency with that key; authenticate the key separately before trusting the signer.</p>
   <div class="term" aria-label="Published TRACE Registry checkpoint 1">
     <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="term-title">registry/2026/09/01.ndjson · mmr_checkpoint</span></div>
     <div class="term-body">
@@ -102,7 +102,7 @@
       <div><span class="dim">root</span> 3af8ddf2c1f429bb4fc670437e48640887f60de809b18f8ccea55fefb0c6639a</div>
       <div><span class="dim">prev_size</span> 0</div>
       <div><span class="dim">timestamp</span> 2026-09-01T21:39:37Z</div>
-      <div><span class="dim">verify</span> <span class="ok">signature checks OFFLINE from key_id alone</span></div>
+      <div><span class="dim">verify</span> <span class="ok">offline signature check against the embedded public key</span></div>
     </div>
   </div>
   <p class="hint">Checkpoints carry commitments, never claim content. A checkpoint is a few hundred bytes describing the shape of the log: its size, its root, and the size and root of the checkpoint before it. Trust-record payloads stay with whoever produced them.</p>
@@ -110,7 +110,7 @@
 
 <section id="how">
   <span class="label">How it works</span>
-  <h2>Four moving parts, none of which require trusting the operator</h2>
+  <h2>From a signed record to a checkable checkpoint</h2>
   <div class="steps">
 
     <div class="step">
@@ -132,8 +132,8 @@
     <div class="step">
       <div class="step-num">3</div>
       <div class="step-body">
-        <h3>The log appends, and never rewrites</h3>
-        <p>Entries accumulate in an append-only Merkle Mountain Range. Appending never rebalances the structure, so proofs issued earlier stay valid, and inclusion and consistency proofs stay cheap as the log grows.</p>
+        <h3>The verifier checks append-only growth</h3>
+        <p>Checkpointed entries accumulate in a Merkle Mountain Range. Inclusion proofs bind an entry to a particular root; consistency proofs connect an earlier root to a later one. Keep the checkpoint associated with each proof.</p>
       </div>
     </div>
 
@@ -151,7 +151,7 @@
 <section id="verify">
   <span class="label">Check our work</span>
   <h2>The verification runs on your machine, not ours</h2>
-  <p>There is no verification endpoint to call, because a verification endpoint you have to trust is not verification. The registry is files in a public repository and the verifier is a package you install.</p>
+  <p>Run the repository's reference verifier against the published files. It checks checkpoint signatures, consistency proofs, and roots recomputed from checkpointed entries. It does not authenticate a signer merely because the checkpoint supplies a public key.</p>
 
   <div class="steps">
 
@@ -209,7 +209,7 @@ cd trace-registry</pre>
 <section id="limits">
   <span class="label">Honest scope</span>
   <h2>What a registry entry is, and what it is not</h2>
-  <p>Registration attests to inclusion and time. It is not an endorsement of content, a certification of the producer, or evidence that any claim inside a record is true. Four specific limits are worth stating here rather than leaving to be discovered.</p>
+  <p>An inclusion proof binds an entry to a checkpoint. The checkpoint timestamp is the signer's statement, not an independently witnessed time. Neither inclusion nor a valid signature certifies the producer or establishes that a record's claims are true.</p>
 
   <table style="margin-top:2.25rem;">
     <tr><th>Limit</th><th>Why it stands</th></tr>

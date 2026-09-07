@@ -1808,10 +1808,11 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
   margin: 1.75rem 0 1rem;
 }
 .at-page .hero-actions .button.secondary {
-  border-color: rgba(255, 255, 255, 0.32);
+  border-color: var(--at-line);
   background: transparent;
-  color: var(--at-paper);
+  color: var(--at-ink);
 }
+.at-page .hero-actions .button.secondary:hover { background: var(--at-ink); color: var(--at-paper); }
 .at-page .proof-section { padding-top: 2.5rem; padding-bottom: 2.5rem; }
 .at-page .proof-grid {
   display: grid;
