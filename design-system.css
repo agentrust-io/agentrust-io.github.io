@@ -1166,6 +1166,7 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
 .agentrust-hub .adoption-contact .btn { flex: 0 0 auto; white-space: nowrap; }
 .agentrust-hub .governance-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
 .agentrust-hub .governance-card { min-height: 240px; padding: 1.5rem; }
+.agentrust-hub .funding-status { margin-top: 1rem; min-height: 0; }
 .agentrust-hub .governance-card h3 { margin: 0 0 .6rem; color: var(--at-ink); font-size: 1.1rem; }
 .agentrust-hub .open-seat { border-style: dashed; background: transparent; }
 .agentrust-hub .governance-actions { margin-top: 1.5rem; border-top: 1px solid var(--at-line); }
