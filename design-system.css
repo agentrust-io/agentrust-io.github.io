@@ -936,10 +936,27 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
 }
 
 .agentrust-hub header {
-  background: rgba(243, 240, 232, 0.94);
+  background: var(--at-paper);
   color: var(--at-ink);
   border-bottom: 1px solid var(--at-line);
-  backdrop-filter: blur(14px);
+  backdrop-filter: none;
+}
+
+.agentrust-hub .header-nav { margin: 0; padding: 0; align-items: center; }
+.agentrust-hub .nav-toggle { display: none; }
+.agentrust-hub .spec-menu { position: relative; }
+.agentrust-hub .spec-menu summary { cursor: pointer; font-size: .875rem; }
+.agentrust-hub .spec-menu ul { position: absolute; top: 2rem; right: 0; min-width: 17rem; padding: .75rem; margin: 0; list-style: none; background: var(--at-paper); border: 1px solid var(--at-line); border-radius: .5rem; box-shadow: 0 .5rem 1.5rem #0001; }
+.agentrust-hub .spec-menu li a { display: block; padding: .65rem; }
+@media (max-width: 900px) {
+  .agentrust-hub .header-inner { height: auto; min-height: 56px; flex-wrap: wrap; }
+  .agentrust-hub .header-inner nav { margin-left: auto; }
+  .agentrust-hub .nav-toggle:not([hidden]) { display: inline-flex; align-items: center; min-height: 44px; padding: .5rem .75rem; color: var(--at-ink); background: transparent; border: 1px solid var(--at-line); border-radius: .3rem; font: inherit; }
+  .agentrust-hub .header-nav { display: flex; flex-wrap: wrap; gap: .5rem 1rem; padding: .75rem 0; }
+  .hub-nav-ready .agentrust-hub .header-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; padding: .75rem 1.25rem; background: var(--at-paper); border-bottom: 1px solid var(--at-line); max-height: calc(100dvh - 56px); overflow-y: auto; }
+  .hub-nav-ready .agentrust-hub .header-nav.is-open { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+  .agentrust-hub .header-nav a, .agentrust-hub .spec-menu summary { display: block; padding: .75rem; min-height: 44px; box-sizing: border-box; }
+  .agentrust-hub .spec-menu ul { position: static; min-width: 0; box-shadow: none; margin: 0 .75rem .5rem; }
 }
 
 .agentrust-hub .logo,

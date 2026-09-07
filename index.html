@@ -179,10 +179,10 @@
       },
       {
         "@type": "Question",
-        "name": "What is the secure version of MCP?",
+        "name": "Can I try cMCP without confidential-computing hardware?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Confidential MCP (cMCP) evaluates routed MCP tool calls against policy and records the decisions. In a hardware deployment, the runtime is inside a Trusted Execution Environment (TEE); the agent and upstream tool server remain separate. Host confidentiality also depends on the egress policy. Software mode provides no hardware isolation."
+          "text": "Yes. The 10-minute quickstart runs in software mode: write a policy, observe a denied tool call, and inspect the signed session record. This demonstrates policy enforcement and record verification. It provides no hardware isolation or hardware-backed provenance."
         }
       },
       {
@@ -196,7 +196,7 @@
     ]
   }
   </script>
-<link rel="stylesheet" href="/design-system.css?v=15">
+<link rel="stylesheet" href="/design-system.css?v=16">
 </head>
 <body class="agentrust-hub" id="top">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -205,12 +205,19 @@
 <header>
   <div class="header-inner">
     <a href="/" class="logo">AgenTrust</a>
-    <nav>
-      <ul class="header-nav">
+    <nav aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-links" hidden>Menu</button>
+      <ul class="header-nav" id="primary-links">
         <li><a href="#ecosystem">Ecosystem</a></li>
         <li><a href="/marketplace/">Marketplace</a></li>
         <li><a href="/quickstart/">Start here</a></li>
-        <li><a href="#standards">Technology</a></li>
+        <li class="spec-menu"><details><summary>Specifications</summary><ul>
+          <li><a href="#standards">Technology overview</a></li>
+          <li><a href="https://trace.agentrust-io.com">Runtime evidence (TRACE)</a></li>
+          <li><a href="https://manifest.agentrust-io.com">Agent identity (Manifest)</a></li>
+          <li><a href="https://cmcp.agentrust-io.com">Tool-call governance (cMCP)</a></li>
+          <li><a href="https://ca2a.agentrust-io.com">Agent delegation (cA2A)</a></li>
+        </ul></details></li>
         <li><a href="#tools">Tools</a></li>
         <li><a href="#fellowship">Fellowship</a></li>
         <li><a href="https://github.com/agentrust-io">GitHub</a></li>
@@ -769,8 +776,8 @@
       <div class="qa-a">Confidential A2A is a trust profile on the Agent2Agent (A2A) protocol. Where A2A's Signed Agent Card verifies only the domain owner, cA2A adds attested, attenuated delegation, a sealed peer channel that binds the task payload to the peer's attested measurement, and an offline-verifiable provenance record per hop. It is a developer preview.</div>
     </div>
     <div class="qa-item">
-      <div class="qa-q">What is the secure version of MCP?</div>
-      <div class="qa-a">Confidential MCP (cMCP) evaluates routed MCP tool calls against policy and records the decisions. In a hardware deployment, the runtime is inside a Trusted Execution Environment (TEE); the agent and upstream tool server remain separate. Host confidentiality also depends on the egress policy. Software mode provides no hardware isolation.</div>
+      <div class="qa-q">Can I try cMCP without confidential-computing hardware?</div>
+      <div class="qa-a">Yes. The <a href="/quickstart/">10-minute quickstart</a> runs in software mode: write a policy, observe a denied tool call, and inspect the signed session record. This demonstrates policy enforcement and record verification. It provides no hardware isolation or hardware-backed provenance.</div>
     </div>
     <div class="qa-item">
       <div class="qa-q">What is the secure version of A2A?</div>
@@ -796,7 +803,7 @@
 <!-- Footer -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-copy">© 2026 AgenTrust Contributors. Open source; licences vary by project.</div>
+    <div class="footer-copy">© 2026 AgenTrust Contributors. Open source; licences vary by project.<br>AgenTrust is the ecosystem, hosted at agentrust-io.com. Its GitHub organization is <a href="https://github.com/agentrust-io">agentrust-io</a>.</div>
     <div class="footer-links">
       <a href="https://trace.agentrust-io.com">TRACE</a>
       <a href="https://manifest.agentrust-io.com">Manifest</a>
@@ -811,7 +818,7 @@
 </footer>
 
 
-<script src="/supernav.js"></script>
+<script src="/hub-nav.js"></script>
 <script>
   // Mark the rail entry for whichever section is in the reading band. Falls
   // back to no highlight at all if IntersectionObserver is missing: the rail
