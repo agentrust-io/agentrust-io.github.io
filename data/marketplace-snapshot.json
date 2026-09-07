@@ -1,0 +1,584 @@
+{
+  "captured": "2026-09-07",
+  "source_commit": "1e19c9d7082f803a0ee396f01f8718510f2309a8",
+  "items": [
+    {
+      "name": "Claude Code",
+      "description": "Claude Code plugin that emits a signed Agent Manifest and TRACE record per session and detects agent composition drift from an approved baseline.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/claude-code",
+      "vendor": "agentrust-io",
+      "stack": [
+        "Agent Manifest",
+        "TRACE"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "Codex",
+      "description": "Codex plugin that fingerprints agent configuration, detects workspace-scoped drift, and emits signed Agent Manifest and TRACE Level 0 records.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/plugins/agentrust-codex",
+      "vendor": "agentrust-io",
+      "stack": [
+        "Agent Manifest",
+        "TRACE"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "LangChain",
+      "description": "Emits a TRACE Trust Record from LangChain callbacks, including LangGraph tool runs, with tool identity but no payloads.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/langchain",
+      "vendor": "agentrust-io",
+      "stack": [
+        "TRACE"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "LlamaIndex",
+      "description": "Emits a TRACE Trust Record from LlamaIndex instrumentation events, reading an allow-list so payloads cannot leak.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/llamaindex",
+      "vendor": "agentrust-io",
+      "stack": [
+        "TRACE"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "OpenShell TRACE Adapter",
+      "description": "Builds a software-only TRACE record from NVIDIA OpenShell OCSF events and AGT ACS policy decisions.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/openshell",
+      "vendor": "agentrust-io",
+      "stack": [
+        "TRACE"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "OpenTelemetry GenAI",
+      "description": "Builds a TRACE Trust Record from OpenTelemetry GenAI spans, marked as an unsigned telemetry import.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/otel-genai",
+      "vendor": "agentrust-io",
+      "stack": [
+        "TRACE"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "Agent Passport System",
+      "description": "Maps one Ed25519-signed Agent Passport System policy decision onto a TRACE Trust Record, refusing decisions that fail signature or expiry verification.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/aeoess-aps",
+      "vendor": "aeoess",
+      "stack": [
+        "TRACE"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "Agent Sentinel",
+      "description": "Runtime enforcement sidecar for agent fleets: detectors for delegation escalation, tool and identity drift, and policy avoidance, emitting Ed25519-signed TRACE Level 0 records.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/sentinel",
+      "vendor": "a1k7",
+      "stack": [
+        "TRACE"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "Agentic SpendGuard",
+      "description": "Spend firewall for LLM agents that reserves budget and gates tool calls before the provider is called, with a signed, hash-chained decision record.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/spendguard",
+      "vendor": "SpendGuard",
+      "stack": [
+        "TRACE"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "Azure Secure Key Release",
+      "description": "Translates a WCM release policy into an Azure Managed HSM Secure Key Release policy, and maps verified MAA claims into WCM composite evidence.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/wcm-azure-skr",
+      "vendor": "agentrust-io",
+      "stack": [
+        "WCM"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "cA2A Cross-Operator Delegation",
+      "description": "Runnable 12-check tutorial for scoped delegation, local policy enforcement, sealed tasks, tamper detection, and offline provenance verification.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/agentrust-ca2a-cross-operator",
+      "vendor": "agentrust-io",
+      "stack": [
+        "cA2A"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "comply54",
+      "description": "Converts a comply54 ComplianceResult into a signed TRACE v0.1 JWT, mapping African regulatory policy decisions to verifiable attestation claims.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/comply54",
+      "vendor": "comply54",
+      "stack": [
+        "TRACE"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "Confidential Containers Trustee",
+      "description": "Generates a Confidential Containers Trustee Rego resource policy and key resource layout from a WCM manifest, preferring the vTPM claim path.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/wcm-coco-trustee",
+      "vendor": "agentrust-io",
+      "stack": [
+        "WCM"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "DecisionAssure",
+      "description": "Converts a DecisionAssure runtime governance trace into a TRACE v0.2 Trust Record, marked as third-party-asserted.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/decisionassure",
+      "vendor": "DecisionAssure (a1k7)",
+      "stack": [
+        "TRACE"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "EPI Recorder",
+      "description": "Seals a portable .epi evidence file and emits a TRACE v0.2 log-import Trust Record (Level 0) via epi export trace; .epi hash is the transcript.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/epilabs-epi-recorder",
+      "vendor": "EPI Labs",
+      "stack": [
+        "TRACE",
+        "WCM"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "GCP Confidential Space",
+      "description": "Generates a GCP Confidential Space workload identity attribute condition from a WCM manifest, comparing accepted measurements against the container image digest.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/wcm-gcp-confidential-space",
+      "vendor": "agentrust-io",
+      "stack": [
+        "WCM"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "Google ADK",
+      "description": "Emits a TRACE Trust Record from Google ADK callbacks using callback-visible tool and model identity without payloads.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/google-adk",
+      "vendor": "agentrust-io",
+      "stack": [
+        "TRACE"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "Hugging Face Download Gate",
+      "description": "Refuses a Hugging Face model snapshot whose bytes do not hash to the weights_hash bound by a jointly-signed WCM manifest shipped in the repository.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/wcm-huggingface",
+      "vendor": "agentrust-io",
+      "stack": [
+        "WCM"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "Nobulex",
+      "description": "Emits Ed25519-signed JCS-canonical action receipts; each carries action_ref = SHA-256(JCS({agent_id, action_type, scope, timestamp_ms})) usable as TRACE external execution evidence (trace-spec #34).",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/nobulex",
+      "vendor": "Nobulex",
+      "stack": [
+        "TRACE"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "NVIDIA GPU Attestation",
+      "description": "Adapts NVIDIA nvattest evidence and appraisal into a WCM GpuReport, refusing unless every RIM, nonce and live certificate check passed.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/wcm-nvidia-nras",
+      "vendor": "agentrust-io",
+      "stack": [
+        "WCM"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "OpenAI Agents SDK",
+      "description": "Emits a first-party TRACE Trust Record from OpenAI Agents SDK tracing, carrying tool and handoff identity with no payloads.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/openai-agents",
+      "vendor": "agentrust-io",
+      "stack": [
+        "TRACE"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "ramen-ai cMCP Adapter",
+      "description": "TRACE v0.2 exporter that verifies V5 Ed25519 receipts produced by the ramen-ai cMCP adapter and emits a natively signed software-only Trust Record.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/ramen-ai-cmcp",
+      "vendor": "ramen-ai",
+      "stack": [
+        "cMCP",
+        "TRACE"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "SAGE AgenTrust Bridge",
+      "description": "Reverse proxy that edge-verifies a TRACE record (key-equal) or cMCP RuntimeClaim (gateway-asserted) before admitting a memory submit to a stock, unmodified SAGE consensus-memory node.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/sage-agenttrust",
+      "vendor": "SAGE AgenTrust Bridge",
+      "stack": [
+        "cMCP",
+        "TRACE"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "Scheduled Agents",
+      "description": "Claude Code plugin that fingerprints scheduled-agent routine specs and auto-run hooks, warns when what runs without you watching drifts from an approved baseline, and emits a signed TRACE record.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/scheduled-agents",
+      "vendor": "agentrust-io",
+      "stack": [
+        "TRACE"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "Shadow AI Discovery",
+      "description": "Detects unregistered agents making MCP tool calls not declared in a cmcp catalog.json, emitting DiscoveryEvents that map to Agent Manifest records for remediation or quarantine.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/shadow-ai",
+      "vendor": "agentrust-io",
+      "stack": [
+        "cMCP",
+        "Agent Manifest"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "SOVP",
+      "description": "Maps a SOVP attestation result onto an Ed25519-signed AgenTrust TRACE Trust Record, signing only the fields the caller supplies and inferring no claims.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/litzki-systems-sovp",
+      "vendor": "Litzki Systems",
+      "stack": [
+        "TRACE"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "Triton Repository Staging",
+      "description": "Prepares a Triton model repository under WCM attestation, verifying decrypted bytes against the bound weights hash before Triton can load them.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/wcm-triton",
+      "vendor": "agentrust-io",
+      "stack": [
+        "WCM"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "vLLM Serving Guard",
+      "description": "Gates vLLM weight loading on WCM attestation, binds serving to a live lease, and emits a signed hash-chained runtime record of the lease lifecycle.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/wcm-vllm",
+      "vendor": "agentrust-io",
+      "stack": [
+        "WCM"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "WCM Agent Manifest Binding",
+      "description": "Binds an Agent Manifest model_identity artifact to a WCM manifest's weights hash, and reports what a matching digest does and does not establish.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/wcm-agent-manifest",
+      "vendor": "agentrust-io",
+      "stack": [
+        "WCM",
+        "Agent Manifest"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "WCM CycloneDX ML-BOM",
+      "description": "Exports a WCM manifest as a CycloneDX 1.6 machine-learning-model component so custody terms reach licence review and procurement tooling.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/wcm-cyclonedx",
+      "vendor": "agentrust-io",
+      "stack": [
+        "WCM"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "WCM in-toto Attestation",
+      "description": "Wraps a signed WCM manifest as an in-toto Statement v1 so custody terms ride existing supply-chain tooling, and verifies the subject binding on the way back.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/wcm-in-toto",
+      "vendor": "agentrust-io",
+      "stack": [
+        "WCM"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "WCM Kyverno Policy Pack",
+      "description": "Generates a Kyverno ClusterPolicy enforcing the deployment preconditions a WCM manifest implies, and states in the policy what admission cannot verify.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/wcm-kyverno",
+      "vendor": "agentrust-io",
+      "stack": [
+        "WCM"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "WCM OCI Referrer",
+      "description": "Attaches a signed WCM manifest to a model artifact as an OCI v1.1 referrer, and grades how strongly the referrer binds to the actual weight bytes.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/wcm-oci",
+      "vendor": "agentrust-io",
+      "stack": [
+        "WCM"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "WCM OpenTelemetry",
+      "description": "Emits WCM key release decisions and runtime custody state as OpenTelemetry spans and metrics under a documented wcm.* attribute set.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/wcm-opentelemetry",
+      "vendor": "agentrust-io",
+      "stack": [
+        "WCM"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "WCM to TRACE",
+      "description": "Turns a WCM Layer 2 release decision and a signed Layer 3 runtime record chain into TRACE v0.2 Trust Records, deriving assurance from what actually verified.",
+      "url": "https://github.com/agentrust-io/integrations/tree/main/integrations/wcm-trace",
+      "vendor": "agentrust-io",
+      "stack": [
+        "WCM",
+        "TRACE"
+      ],
+      "source": "AgenTrust Community"
+    },
+    {
+      "name": "A2A AgentMesh",
+      "description": "A2A protocol bridge for AgentMesh : trust-verified agent-to-agent communication via the A2A standard",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/a2a-protocol",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "ADK AgentMesh",
+      "description": "Deprecated. Previously published as adk-agentmesh. Install agent-governance-toolkit-integrations[adk] instead.",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/adk-agentmesh",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "Agent Veil Protocol Integration for AgentMesh",
+      "description": "Deprecated. Previously published as avp-agentmesh. Install agent-governance-toolkit-integrations[avp] instead.",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/agentmesh-avp",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "AgentMesh Trust Extension for Dify",
+      "description": "Cryptographic identity and trust verification for Dify agents and workflows.",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/dify",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "Audit Accountability Export",
+      "description": "Example adapter from AgentMesh AuditEntry output to an external accountability export shape",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/audit-accountability-export",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "Copilot Governance",
+      "description": "Public Preview : GitHub Copilot Extension for agent governance code review: detects missing policy checks, unguarded tool calls, and audit logging gaps",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/copilot-governance",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "CrewAI AgentMesh",
+      "description": "Deprecated. Previously published as crewai-agentmesh. Install agent-governance-toolkit-integrations[crewai] instead.",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/crewai-agentmesh",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "Flowise",
+      "description": "Deprecated. Previously published as flowise-agentmesh. Install agent-governance-toolkit-integrations[flowise] instead.",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/flowise-agentmesh",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "Haystack",
+      "description": "Deprecated. Previously published as haystack-agentmesh. Install agent-governance-toolkit-integrations[haystack] instead.",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/haystack-agentmesh",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "LangChain AgentMesh Integration",
+      "description": "Deprecated. Previously published as agentmesh-langchain. Install agent-governance-toolkit-integrations[langchain] instead.",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/langchain-agentmesh",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "Langflow",
+      "description": "Deprecated. Previously published as langflow-agentmesh. Install agent-governance-toolkit-integrations[langflow] instead.",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/langflow-agentmesh",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "Langgraph Trust",
+      "description": "Deprecated. Previously published as langgraph-agentmesh. Install agent-governance-toolkit-integrations[langgraph] instead.",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/langgraph-trust",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "LlamaIndex",
+      "description": "Deprecated. Previously published as llamaindex-agentmesh. Install agent-governance-toolkit-integrations[llamaindex] instead.",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/llamaindex-agentmesh",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "Mastra",
+      "description": "Public Preview : Governance, trust verification, and audit middleware for Mastra AI agents",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/mastra-agentmesh",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "MCP Receipt Governed",
+      "description": "MCP tool-call receipt signing : Cedar policy decisions linked to governance receipts",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/mcp-receipt-governed",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "MCP Trust Proxy",
+      "description": "MCP proxy that wraps any MCP tool with AgentMesh trust verification",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/mcp-trust-proxy",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "Nostr Web of Trust Integration for AgentMesh",
+      "description": "Deprecated. Previously published as nostr-wot-agentmesh. Install agent-governance-toolkit-integrations[nostr-wot] instead.",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/nostr-wot",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "OpenAI Agents AgentMesh",
+      "description": "Deprecated. Previously published as openai-agents-agentmesh. Install agent-governance-toolkit-integrations[openai-agents] instead.",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/openai-agents-agentmesh",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "OpenAI Agents Trust",
+      "description": "Deprecated. Previously published as agentmesh-openai-agents-trust. Install agent-governance-toolkit-integrations[openai-agents] instead.",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/openai-agents-trust",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "Openshell",
+      "description": "Deprecated. Previously published as openshell-agentmesh. Install agent-governance-toolkit-integrations[openshell] instead.",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/openshell-skill",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "Pydantic AI Governance",
+      "description": "Deprecated. Previously published as pydantic-ai-agentmesh. Install agent-governance-toolkit-integrations[pydantic-ai] instead.",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/pydantic-ai-governance",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    },
+    {
+      "name": "Structural Authorization Gates",
+      "description": "Deprecated. Previously published as structural-authz-agentmesh. Install agent-governance-toolkit-integrations[structural-authz] instead.",
+      "url": "https://github.com/microsoft/agent-governance-toolkit/tree/b5705588883fac48b88cbe6fd0bd7d48c798453e/agent-governance-python/agentmesh-integrations/structural-authz-agentmesh",
+      "vendor": "Microsoft",
+      "stack": [
+        "AGT"
+      ],
+      "source": "AGT project"
+    }
+  ]
+}

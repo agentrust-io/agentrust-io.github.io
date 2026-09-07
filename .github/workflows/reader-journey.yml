@@ -16,6 +16,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: python tools/check-site.py
+      - run: python tools/build-discovery.py --check
+      - run: python tools/check-discovery.py
   quickstart:
     runs-on: ubuntu-latest
     timeout-minutes: 8

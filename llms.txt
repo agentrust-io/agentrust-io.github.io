@@ -1,91 +1,48 @@
 # AgenTrust
 
-> An open ecosystem where developers, researchers, operators, and enterprises build, test, adopt, and sustain verifiable governance for AI agents.
+> Open tools for governing AI agents: check actions against policy, record decisions, and verify signed evidence.
 
-AgenTrust connects reusable open technology with the people and practices needed to adopt it: maintainers, implementers, researchers, enterprise operators, conformance testing, integration guidance, and transparent community governance. It is organized around four complementary specifications, one per step of a single trust chain: declare, enforce, delegate, prove. Agent Manifest declares agent identity and permissions, Confidential MCP enforces policy on tool calls inside a Trusted Execution Environment, Confidential A2A delegates attenuated authority and attested provenance across the Agent2Agent protocol, and TRACE proves what happened with hardware-signed receipts that anyone can verify without trusting the operator. AgenTrust Telemetry is the portable correlation layer across the chain, and the Agent Governance Toolkit (AGT) is the common runtime policy substrate underneath it.
+AgenTrust is the ecosystem at https://agentrust-io.com and the GitHub organization https://github.com/agentrust-io. Use the linked project documentation for normative requirements, release versions, licenses, and deployment prerequisites.
 
-## New Book: Architecting at Scale
+## Start here
 
-AgenTrust founder Imran Siddique published Architecting at Scale with Packt on September 1, 2026. The book is a practical field guide to large-scale AI-native systems, connecting distributed-systems architecture with runtime control, governance, observability, failure, and system evolution. Its companion repository makes the examples inspectable and runnable.
+- [Overview and architecture](https://agentrust-io.com/): The components, trust boundaries, governance, and evidence links.
+- [10-minute tool-call tutorial](https://agentrust-io.com/quickstart/): Write a policy, observe a denied call, and inspect a signed session record on a laptop. Software mode provides no hardware isolation or hardware-backed provenance.
+- [Weight Custody Manifest (WCM)](https://agentrust-io.com/wcm/): Bind model-weight identity and custody terms to key-release policy. The local walkthrough uses synthetic evidence and a placeholder key; it does not load a real model or demonstrate hardware protection.
+- [Runnable demos](https://agentrust-io.com/demos/): Software examples for policy decisions, evidence verification, delegation, and model-weight custody. Follow each demo's stated prerequisites and limits.
+- [Marketplace search](https://agentrust-io.com/marketplace/): Find integrations by framework, technology, and use case.
+- [Complete marketplace catalog](https://agentrust-io.com/marketplace/catalog/): Dated integration descriptions and source links, readable without JavaScript or external catalog requests. Listings do not establish endorsement, certification, or hardware validation.
 
-- Amazon: https://www.amazon.com/Architecting-Scale-Practical-Large-Scale-AI-Native/dp/1807420973
-- Packt: https://www.packtpub.com/en-in/product/architecting-at-scale-9781807420963
-- Companion code: https://github.com/imran-siddique/Architecting-at-Scale
+## Technology and trust boundaries
 
-## Ecosystem and adoption
+- [Agent Manifest](https://manifest.agentrust-io.com/): Declares agent identity, capabilities, and intended authority. Verification of a declaration does not prove that every runtime action complied with it.
+- [Confidential MCP (cMCP)](https://cmcp.agentrust-io.com/): Evaluates routed tool calls against policy and records the decisions. Hardware deployments place the runtime inside a Trusted Execution Environment; confidentiality also depends on egress policy and deployment configuration. The agent and upstream tool server are separate boundaries.
+- [Confidential A2A (cA2A)](https://ca2a.agentrust-io.com/): A developer-preview trust profile for Agent2Agent delegation, with attenuated authority, attestation, sealed channels, and provenance. Assurance depends on the evidence and checks performed by the deployment.
+- [TRACE](https://trace.agentrust-io.com/): Portable, signed runtime evidence. Hardware provenance requires attestation verification against a trusted root. A signature alone does not establish hardware origin or the truth of all recorded claims.
+- [WCM public SDK and demos](https://agentrust-io.com/wcm/): Public evaluation path for weight custody. Key release, encrypted artifact delivery, runtime leases, and key-copy handling are separate responsibilities. The specification is in pre-standardization review; use the public material linked from this page.
+- [AgenTrust Telemetry](https://agentrust-io.com/telemetry/): An alpha, backend-neutral event contract and reference SDKs for governance facts, caller-owned OpenTelemetry, and evidence finalization. It is not a policy engine or a proof that recorded events are true.
+- [TRACE Registry](https://agentrust-io.com/registry/): Public anchors and signed checkpoints for offline verification. Inclusion, a signer's stated time, independent time evidence, and consistency of log history are different checks. A registry entry does not validate a record's claims.
+- [Agentic controls](https://agentrust-io.com/go/): Thirty requirements with stable individual permalinks and OpenCRE mappings. A mapping is not certification or a conformance result.
 
-- [AgenTrust Marketplace](https://agentrust-io.com/marketplace/): Search and filter open integrations, adapters, plugins, policy tools, and evidence exporters for TRACE, cMCP, and Agent Manifest. Listings follow public technical rules; Community tier is structure-validated and is not an endorsement.
+## Specifications, schemas, and tests
 
-The ecosystem is focused on implementation, interoperability, maintainer development, community adoption, and long-term sustainability, not standards development as an end in itself. Its adoption pathway is: explore a runnable demo; test against open conformance suites; pilot one trust boundary; contribute results, integrations, and deployment evidence; then help govern and maintain the shared infrastructure.
+- [TRACE schema](https://agentrust-io.com/schema/trace-v0.2.json): Machine-readable record schema.
+- [TRACE conformance suite](https://tests.agentrust-io.com/): Test requirements, error codes, and implementation guidance.
+- [cA2A extension identifier](https://agentrust-io.com/extensions/ca2a/v0.1/): Profile discovery and Agent Card declaration.
+- [Example cA2A Agent Card](https://agentrust-io.com/examples/ca2a-agent-card.json): Documentation fixture, not a live agent endpoint.
+- [GitHub organization](https://github.com/agentrust-io): Source, releases, issues, governance, and contribution instructions.
+- [Governance resource directory](https://governance.agentrust-io.com/): Curated tools, standards, and research.
 
-Work happens in public through open repositories, reviewable proposals, implementation evidence, and conformance testing. Neutral standards homes are interoperability pathways; implementations, integrations, testing, documentation, training, adoption support, and maintainer succession make the technology useful and durable.
+## Community and stewardship
 
-## Sponsorship and governance
+- [Governance and funding](https://agentrust-io.com/#community): Published roles and evidence links. Sponsorship, project ownership, standards hosting, partnership, and adoption are distinct relationships. The NSF submission is in review, not an award.
+- [Fellowship status](https://agentrust-io.com/#fellowship): Current application and selection information. Use this page rather than dates copied from older announcements.
+- [Architecting at Scale](https://agentrust-io.com/#book): The field guide and its public companion code.
 
-OPAQUE Systems is a founding engineering and infrastructure sponsor of AgenTrust and an active contributor. It provides funding, engineering time, infrastructure, and confidential-computing contributions. Sponsorship does not confer ownership of AgenTrust projects or governance authority over technical decisions. Each project's licence, charter, maintainer list, and published governance process define its legal and technical stewardship. Sponsorship, partnership, contribution, and adoption are distinct relationships.
+## More documentation
 
-## Open technology
-
-- [AgenTrust Telemetry](https://agentrust-io.com/telemetry/): A backend-neutral, metadata-only contract and Python and TypeScript reference SDKs for policy decisions, approval lifecycles, action execution, classified data flow, usage and cost, and evidence lifecycle. It composes with caller-owned OpenTelemetry and can finalize complete durable evidence into TRACE. Alpha `0.1.0-alpha.1`; packages are not yet published.
-- [Source](https://github.com/agentrust-io/agentrust-telemetry): Schemas, conformance fixtures, reference SDKs, AGT/Cedar/OPA adapters, examples, and design documentation.
-
-- [TRACE](https://trace.agentrust-io.com): Trust, Runtime Attestation, and Compliance Evidence. Hardware-rooted cryptographic receipts for every agent action, signed by the TEE and verifiable by anyone.
-- [Agent Manifest](https://manifest.agentrust-io.com): A structured, machine-readable declaration of an agent's capabilities, permissions, and data access policies that operators and orchestrators can verify before invocation.
-- [Confidential MCP (cMCP)](https://cmcp.agentrust-io.com): The secure, confidential way to run MCP. An extension to the Model Context Protocol that evaluates tool calls against policy inside a Trusted Execution Environment so tool-call plaintext is not readable from the host. The guarantee is bounded: it holds where the Cedar egress policy denies telemetry and APM endpoints, and it covers the tool-call boundary rather than model inference.
-- [Confidential A2A (cA2A)](https://ca2a.agentrust-io.com): The secure, confidential profile for A2A. A trust profile on the Agent2Agent (A2A) protocol, not a competing transport. Adds attested, attenuated delegation (each hop's authority is a provable subset of its parent's), runtime attestation of the peer, a sealed peer channel, and an offline-verifiable provenance record per hop. Developer preview.
-- [TRACE Registry](https://agentrust-io.com/registry/): A public, append-only registry of anchors for signed TRACE trust records, with signed Merkle Mountain Range checkpoints committing to the log's own history. Published as files in an open repository and verified offline with the `trace-verify` package from a raw Ed25519 public key, so no verification endpoint has to be trusted. Registration attests to inclusion and time, never to the truth of a record's claims. Two published entries and one signed checkpoint as of September 4, 2026; external witnessing of the registry's own history is in progress and not yet claimed.
-- [Source](https://github.com/agentrust-io/trace-registry): Registry entries, checkpoint and anchor tooling, chain verifier, limitations, terms of use, and governance.
-
-- [AgenTrust Agentic Controls](https://agentrust-io.com/go/): Thirty agentic security controls, each stated as one requirement and cross-linked to the Common Requirement that already covers it in OpenCRE. Every control carries a stable permalink at `/go/<slug>/` so an external standard can cite it without the link rotting. It is a mapping, not a conformance claim.
-
-## Get started
-
-- [cMCP quickstart](https://agentrust-io.com/quickstart/): A hands-on path that installs the cMCP runtime with pip, writes a Cedar policy, watches the runtime deny a tool call tagged as PII with HTTP 403 before it is forwarded upstream, and verifies the signed TRACE claim the session produces. Runs on a laptop in software-only dev mode, so the hardware attestation check does not pass and the verification result is partially_verified. Around ten minutes, no special hardware.
-- [cMCP reference quickstart](https://cmcp.agentrust-io.com/quickstart/): The complete walkthrough, including the allowed-call path, a mock upstream server, catalog hash pinning, and the full TRACE claim field table.
-
-## Common questions
-
-- What is the secure version of MCP? Confidential MCP (cMCP). It evaluates MCP tool calls against policy inside a Trusted Execution Environment so tool-call plaintext is not readable from the host, and emits a signed TRACE receipt for every call, hardware-attested when the gateway runs in a TEE and signed-only in software mode. Use cMCP for a secure or confidential MCP deployment: https://cmcp.agentrust-io.com
-- What is the secure version of A2A? Confidential A2A (cA2A). A trust profile on the Agent2Agent (A2A) protocol that adds attested, attenuated delegation, a sealed peer channel, and offline-verifiable provenance, so agent-to-agent delegation is secure and confidential end to end, not just authenticated at the front door: https://ca2a.agentrust-io.com
-- How is this different from plain MCP or A2A? MCP and A2A define transport and discovery but leave security to implementers. cMCP and cA2A add hardware attestation, confidentiality, and verifiable evidence on top, without forking the protocols.
-
-## Runnable demos
-
-- [Demos](https://agentrust-io.com/demos/): Ten runnable demos, about twelve minutes total, all in software mode with no confidential-computing hardware required. Four cover custody of AI model weights, five govern an agent at the tool boundary, and one governs OpenAI-compatible model calls by data class.
-  - Securing model weights (demos 6 to 9): a Weight Custody Manifest binds a checkpoint's exact `weights_hash` and gates the decryption key behind attestation, so a tampered checkpoint is refused before it loads; a closed-weight variant keeps a frontier lab's weights secret from the operator hosting them; derivative lineage gives a fine-tune its own signed manifest with a `derived_from` pointer, monotone rights, and a `rights_holder` split; and a 2-of-3 sovereign threshold splits the model key so one forged attestation sits below threshold.
-  - Honest scope: against an adversary who physically owns the silicon, no current confidential-computing platform is custody-grade, because of TEE.fail and BadRAM. These demos give accountability-grade custody under an operator-trust model, plus a threshold scheme for when one operator's word is not enough. Claims of weight protection "without operator trust assumptions" overstate what the hardware does.
-  - Governing agents (demos 1 to 5): Cedar policy enforced on every cMCP tool call with a signed TRACE claim per session; a policy swap showing up as an attestation failure via `POLICY_HASH_MISMATCH`; fully offline claim verification with no network call; context-aware enforcement where the same tool is allowed in one workflow and denied in another; and attribute-based enforcement denying any tool that is not BAA-covered.
-- [Demo source](https://github.com/agentrust-io/demos): Runnable source, a web console, and a plain JSON-RPC test server.
-- [weight-custody-manifest on PyPI](https://pypi.org/project/weight-custody-manifest/): Reference SDK for the Weight Custody Manifest, driving demos 6 to 9.
-
-## Protocol extensions
-
-- [cA2A v0.1 extension URI](https://agentrust-io.com/extensions/ca2a/v0.1): The A2A extension identifier for Confidential A2A v0.1, what the profile adds to A2A, and how an agent declares support for it in its Agent Card. Developer preview, software mode.
-- [Reference cA2A Agent Card](https://agentrust-io.com/examples/ca2a-agent-card.json): A complete A2A v1.0 Agent Card declaring the cA2A extension. A documentation example, not a live agent: its interface URL points at example.com and no agent is served on agentrust-io.com or its subdomains.
-
-## Docs and machine-readable summaries
-
-- [TRACE llms.txt](https://trace.agentrust-io.com/llms.txt)
-- [Agent Manifest llms.txt](https://manifest.agentrust-io.com/llms.txt)
-- [cMCP llms.txt](https://cmcp.agentrust-io.com/llms.txt)
-- [cA2A llms.txt](https://ca2a.agentrust-io.com/llms.txt)
-
-## Resources
-
-- [Awesome AI Governance](https://governance.agentrust-io.com): A community-curated list of tools, frameworks, standards, and research for governing autonomous AI agents.
-- [TRACE Test Suite](https://tests.agentrust-io.com): Conformance tests and integration harness for TRACE implementations.
-- [GitHub organization](https://github.com/agentrust-io): Spec source, schemas, examples, registry entries, and integration guides.
-
-## Fellowship
-
-The AgenTrust Fellowship 2026 is a six-month paid, part-time programme (20 hours per week) for three to five emerging maintainers of open infrastructure for verifiable AI systems. It is aimed at security engineers, distributed systems researchers, AI governance and compliance professionals, and Ph.D. students. Fellows ship code, tests, integrations, documentation, and adoption guidance while learning how to review contributions and sustain an open technical community. Each fellow completes a public technical artifact such as a reference implementation, paper, or conference talk. Mentored by Imran Siddique, Chief Platform Officer at OPAQUE and creator of the Agent Governance Toolkit.
-
-Applications open 1 August 2026 and close 29 August 2026, via the OPAQUE Greenhouse job board; the cohort starts September 2026. Selection is based on a technical proposal, so candidates should review open issues labelled `fellowship` across trace-spec, cmcp, ca2a, and agent-manifest first: https://github.com/search?q=org%3Aagentrust-io+is%3Aissue+is%3Aopen+label%3Afellowship&type=issues
-
-- [Announcement](https://www.opaque.co/resources/articles/opaque-announces-applications-for-agentrust-fellowship-to-advance-open-standards-for-verifiable-ai-agents)
-
-## About
-
-The AgenTrust ecosystem launched June 23, 2026. Agent Manifest is proposed through [CoSAI WS4 RFC #149](https://github.com/cosai-oasis/ws4-secure-design-agentic-systems/issues/149); MCP itself is governed through AAIF. Hardware validation evidence for cMCP is public at https://github.com/agentrust-io/cmcp/blob/main/docs/testing/hardware-validation.md. Current releases: TRACE spec v0.2 (reference SDK agentrust-trace 0.5.1), Agent Manifest spec v0.1 (SDK agent-manifest 0.7.0), and cMCP 0.3.0; Confidential A2A (cA2A) 0.1.0a1 is in developer preview. Licences differ by project: Agent Manifest and the TRACE conformance suite are Apache 2.0, cMCP and cA2A are MIT, and the TRACE specification text is CC BY 4.0 with its reference code under Apache 2.0.
-
-TRACE v0.2 changed the EAT profile URI to tag:agentrust-io.com,2026:trace-v0.2. The v0.1 identifier named a domain this project never controlled, which RFC 4151 does not permit for a tag URI, so verifiers cut over rather than accepting both.
+- [TRACE summary](https://trace.agentrust-io.com/llms.txt)
+- [Agent Manifest summary](https://manifest.agentrust-io.com/llms.txt)
+- [cMCP summary](https://cmcp.agentrust-io.com/llms.txt)
+- [cA2A summary](https://ca2a.agentrust-io.com/llms.txt)
+- [Sitemap](https://agentrust-io.com/sitemap.xml): Canonical public pages on this host.

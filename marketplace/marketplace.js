@@ -47,7 +47,7 @@
     ['hero-count', 'native-count', 'agt-count', 'result-count'].forEach((id) => { document.getElementById(id).textContent = '?'; });
     grid.hidden = true;
     empty.hidden = false;
-    empty.innerHTML = '<h3>Catalog temporarily unavailable</h3><p>We could not load either source. The listings may still be available on GitHub.</p><a class="button secondary" href="/marketplace/">Try again</a> <a class="button secondary" href="https://github.com/agentrust-io/integrations">Browse repository</a>';
+    empty.innerHTML = '<h3>Catalog temporarily unavailable</h3><p>We could not load either live source. Browse the dated catalog hosted on this site, or try the live sources again.</p><a class="button secondary" href="/marketplace/catalog/">Browse saved catalog</a> <a class="button secondary" href="/marketplace/">Try again</a>';
     search.disabled = true;
     ['market-sort', 'clear-filters'].forEach((id) => { document.getElementById(id).disabled = true; });
     return;
