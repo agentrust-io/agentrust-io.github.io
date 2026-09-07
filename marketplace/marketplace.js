@@ -41,6 +41,17 @@
   if (agentrustResult.status === 'fulfilled') { try { agentrustItems = normalizeAgenTrust(agentrustResult.value); } catch (error) { warnings.push('AgenTrust catalog unavailable'); } } else warnings.push('AgenTrust catalog unavailable');
   if (agtResult.status === 'fulfilled') { try { agtItems = normalizeAgt(agtResult.value); } catch (error) { warnings.push('AGT catalog unavailable'); } } else warnings.push('AGT catalog unavailable');
   items = [...agentrustItems, ...agtItems]; document.getElementById('hero-count').textContent = items.length; document.getElementById('native-count').textContent = agentrustItems.length; document.getElementById('agt-count').textContent = agtItems.length;
+  if (warnings.length === 2) {
+    status.textContent = 'The integration catalogs could not be loaded. Reload this page to try again, or browse the source repository.';
+    status.classList.add('catalog-warning');
+    ['hero-count', 'native-count', 'agt-count', 'result-count'].forEach((id) => { document.getElementById(id).textContent = '?'; });
+    grid.hidden = true;
+    empty.hidden = false;
+    empty.innerHTML = '<h3>Catalog temporarily unavailable</h3><p>We could not load either live source. Browse the dated catalog hosted on this site, or try the live sources again.</p><a class="button secondary" href="/marketplace/catalog/">Browse saved catalog</a> <a class="button secondary" href="/marketplace/">Try again</a>';
+    search.disabled = true;
+    ['market-sort', 'clear-filters'].forEach((id) => { document.getElementById(id).disabled = true; });
+    return;
+  }
   status.textContent = warnings.length ? `${warnings.join(' · ')}. Showing the source that loaded successfully.` : 'Repository-generated inventory, including a daily commit-pinned snapshot of Microsoft AGT integrations.'; status.classList.toggle('catalog-warning', Boolean(warnings.length));
   const stacks = [...new Set(items.flatMap((item) => item.stack))].sort((a, b) => a.localeCompare(b)), types = [...new Set(items.map((item) => item.type))].sort((a, b) => a.localeCompare(b));
   addFilters('stack-filters', stacks, 'stacks'); addFilters('type-filters', types, 'types'); document.getElementById('featured-list').innerHTML = agentrustItems.filter((item) => item.featured && item.featured <= 3).map((item) => card(item, true)).join('');

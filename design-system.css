@@ -1969,7 +1969,17 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
 .marketplace-callout { display:flex;align-items:center;justify-content:space-between;gap:2rem;margin-top:1.5rem;padding:1.5rem 1.75rem;border:1px solid var(--border);border-left:4px solid var(--accent);background:var(--surface); }
 .marketplace-callout span,.marketplace-page .eyebrow { color:var(--at-red);font-size:.68rem;font-weight:750;letter-spacing:.11em;text-transform:uppercase; }
 .marketplace-callout h3 { margin:.3rem 0;font-size:1.25rem; }.marketplace-callout p { color:var(--muted);font-size:.9rem; }
-.marketplace-page { background:var(--at-paper); }.marketplace-page main { overflow:hidden; }.marketplace-page .site-header { position:relative;background:var(--at-paper); }
+.marketplace-page { background:var(--at-paper); }.marketplace-page main { overflow:hidden; }.marketplace-page .site-header { position:relative;background:var(--at-paper);backdrop-filter:none; }
+.marketplace-page .header-inner { display:flex;align-items:center;justify-content:space-between;gap:1rem; }
+.marketplace-page .nav-toggle { display:none; }
+@media (max-width:900px) {
+  .marketplace-page .header-inner { flex-wrap:wrap; }
+  .marketplace-page .nav-toggle:not([hidden]) { display:inline-flex;align-items:center;min-height:44px;padding:.5rem .75rem;color:var(--at-ink);background:transparent;border:1px solid var(--at-line);border-radius:.3rem;font:inherit; }
+  .marketplace-page .site-header nav { width:100%;flex-direction:column;align-items:stretch; }
+  .marketplace-page .site-header nav a:not(.cta), .marketplace-page .site-header nav a.cta { display:block;padding:.75rem;min-height:44px;box-sizing:border-box; }
+  .hub-nav-ready .marketplace-page .site-header nav { display:none; }
+  .hub-nav-ready .marketplace-page .site-header nav.is-open { display:flex; }
+}
 .marketplace-page .site-header [aria-current="page"] { color:var(--at-red); }.marketplace-page .button { display:inline-flex;align-items:center;justify-content:center; }
 .market-hero { position:relative;padding:clamp(3.5rem,7vw,6rem) 0;border-top:1px solid var(--at-line);border-bottom:1px solid var(--at-line);background:linear-gradient(135deg,var(--at-paper) 0%,#f4f0e8 72%,#eee8dc 100%);color:var(--at-ink); }
 .market-hero::before { position:absolute;top:0;right:10%;width:220px;height:4px;background:var(--at-red);content:""; }
