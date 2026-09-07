@@ -1,12 +1,11 @@
 {
-  "captured_at": "2026-08-27",
-  "wcm_commit": "a952cb6cfa40f483774738ef71df80f73317a737",
+  "captured_at": "2026-09-07",
   "sdk_version": "0.27.0",
+  "package_url": "https://pypi.org/project/weight-custody-manifest/0.27.0/",
   "conformance_vectors": 91,
-  "tests_passed": 599,
-  "hardware_families": [
-    "AMD SEV-SNP",
-    "Intel TDX",
-    "NVIDIA H100 confidential computing"
-  ]
+  "conformance_levels": { "L1": 32, "L2": 37, "L3": 12, "L4": 10 },
+  "demo_command": "python demo-07-closed-weight/run.py",
+  "demo_source_blob": "1c9c7424e4938f51572d739d7acaa1d3f441cf45",
+  "demo_outcomes": { "approved": true, "unapproved": false },
+  "hardware_executed": false
 }

@@ -47,7 +47,7 @@
 }
 </script>
 
-<link rel="stylesheet" href="/design-system.css?v=15">
+<link rel="stylesheet" href="/design-system.css?v=17">
 </head>
 <body class="at-page">
 
@@ -66,7 +66,11 @@
   <span class="eyebrow">Observe · Correlate · Prove</span>
   <h1>Portable governance telemetry<br>for AI-agent runtimes</h1>
   <p class="sub">Normalize the governance facts around an agent run: policy decisions, approvals, actions, classified data flow, usage, cost, and evidence, without replacing your OpenTelemetry stack, policy engine, framework, or UI.</p>
-  <div><span class="status">Alpha contract 0.1.0-alpha.1 · Python and TypeScript · MIT licensed</span></div>
+  <div class="hero-actions">
+    <a class="button" href="#use">Emit your first local event</a>
+    <a class="button secondary" href="#contract">Explore the six event families</a>
+  </div>
+  <div><span class="status">Alpha contract 0.1.0-alpha.2 · Python and TypeScript · MIT licensed</span></div>
 </div></div>
 
 <main>
@@ -239,8 +243,8 @@ python -m unittest discover -s tests -v</pre>
   <h2>What is not true yet</h2>
   <p>Stated here rather than in a footnote, because a governance evidence layer that oversells itself is worse than none.</p>
   <div class="callout caution">
-    <p><strong>The contract is alpha.</strong> Version <code>0.1.0-alpha.1</code> carries no stable SDK API and no compatibility guarantee. It may change incompatibly.</p>
-    <p><strong>The SDK validates declared metadata; it cannot prove the declaration is true.</strong> It has no way to establish that a producer's policy decision, identity, classification, token count, or cost is truthful. That is what TRACE and hardware attestation are for.</p>
+    <p><strong>The contract is alpha.</strong> Version <code>0.1.0-alpha.2</code> carries no stable SDK API and no compatibility guarantee. It may change incompatibly.</p>
+    <p><strong>The SDK validates declared metadata; it cannot prove the declaration is true.</strong> A producer can report an inaccurate policy decision, identity, classification, token count, or cost. TRACE can bind signed evidence, and verified hardware attestation can establish runtime provenance within its trust policy. Neither automatically establishes the truth of every reported fact.</p>
     <p><strong>Operational delivery is not audit evidence.</strong> OpenTelemetry spans may be sampled or dropped. Complete evidence must be accumulated durably before any TRACE claim is made, and TRACE finalization here is software-only: it requires explicitly complete evidence plus trusted caller configuration.</p>
     <p><strong>Evidence memory mode is not durable.</strong> Callback mode defines acknowledgement and retry behaviour, but the adopter owns storage, idempotency, and recovery.</p>
     <p><strong>Interoperability has been exercised locally</strong> against OpenTelemetry Python, not across collectors, backends, or languages. Action telemetry also records resolved attempts only; it does not expose in-flight lifecycle transitions.</p>

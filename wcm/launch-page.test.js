@@ -5,18 +5,23 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const here = __dirname;
-const html = fs.readFileSync(path.join(here, 'index.html'), 'utf8');
+const html = fs.readFileSync(path.join(here, 'index.html'), 'utf8').replace(/\r\n/g, '\n');
 const css = fs.readFileSync(path.join(here, '..', 'design-system.css'), 'utf8');
 const proof = JSON.parse(fs.readFileSync(path.join(here, 'proof.json'), 'utf8'));
 
 assert.match(html, new RegExp(`<strong>${proof.sdk_version.replace('.', '\\.')}</strong>`));
 assert.match(html, new RegExp(`<strong>${proof.conformance_vectors}</strong>`));
-assert.match(html, new RegExp(`<strong>${proof.tests_passed}</strong>`));
-assert.match(html, new RegExp(`<strong>${proof.hardware_families.length}</strong>`));
-assert.ok(html.includes(proof.wcm_commit.slice(0, 7)), 'proof strip must pin the WCM commit');
-for (const platform of proof.hardware_families) {
-  assert.ok(html.includes(platform.split(' confidential computing')[0]));
+assert.equal(Object.values(proof.conformance_levels).reduce((sum, count) => sum + count, 0), proof.conformance_vectors);
+for (const [level, count] of Object.entries(proof.conformance_levels)) {
+  assert.ok(html.includes(`${level} ${count}/${count}`), `${level} result must match captured output`);
 }
+assert.ok(html.includes(proof.package_url), 'evidence must link to the tested public package');
+assert.ok(html.includes(`weight-custody-manifest==${proof.sdk_version}`), 'installation must pin the tested version');
+assert.ok(html.includes(`<pre>git clone https://github.com/agentrust-io/demos\ncd demos\n${proof.demo_command}</pre>`));
+assert.equal(proof.hardware_executed, false);
+assert.ok(!html.includes('wcm release --explain'), 'do not publish a nonexistent CLI command');
+assert.ok(html.includes('placeholder key'), 'the demo must disclose its synthetic key');
+assert.ok(html.includes('self-test, not independent certification or a hardware deployment test'));
 
 assert.ok(!html.includes('None protect the builder'), 'avoid an unsupported novelty absolute');
 assert.ok(!html.includes('<strong>Open core.</strong>'), 'launch copy must describe the open surface precisely');
@@ -26,11 +31,11 @@ assert.ok(html.includes('Sponsorship does not confer ownership or governance aut
 // tracker is private, so every one of them 404s for the readers this page is
 // for. The disclosure is what matters, not the hyperlink, so assert the prose.
 assert.ok(
-  html.includes('protected-boundary hardware evidence for the memory fingerprint sweep'),
+  html.includes('Neither it nor the demo validates your hardware, protected-memory sweep, or production zeroization'),
   'the memory-sweep limitation must stay disclosed'
 );
 assert.ok(
-  html.includes('production zeroization from the actual controller'),
+  html.includes('Wiping the managed key buffer cannot erase plaintext or key copies that escaped that buffer'),
   'the zeroization limitation must stay disclosed'
 );
 
