@@ -213,6 +213,7 @@
         <li><a href="/quickstart/">Start here</a></li>
         <li class="spec-menu"><details><summary>Specifications</summary><ul>
           <li><a href="#standards">Technology overview</a></li>
+          <li><a href="/registry/">TRACE Registry</a></li>
           <li><a href="https://trace.agentrust-io.com">Runtime evidence (TRACE)</a></li>
           <li><a href="https://manifest.agentrust-io.com">Agent identity (Manifest)</a></li>
           <li><a href="https://cmcp.agentrust-io.com">Tool-call governance (cMCP)</a></li>
@@ -287,6 +288,7 @@
     <div class="architecture-outcomes">
       <div><strong>Deny → return an error</strong><p>The runtime does not forward a denied call to the tool server.</p></div>
       <div><a href="https://trace.agentrust-io.com"><strong>Session record → TRACE verifier</strong></a><p>Check signed evidence against trusted keys, expected policy, and the required attestation level.</p></div>
+      <div><a href="/registry/"><strong>Optional anchoring &rarr; TRACE Registry</strong></a><p>Publish commitments and verify inclusion under signed checkpoints. Independent witness receipts add an external observation; they do not certify the record's claims.</p></div>
       <div><a href="https://ca2a.agentrust-io.com"><strong>Optional delegation → cA2A peer</strong></a><p>A separate agent-to-agent path narrows delegated authority and links provenance across hops.</p></div>
     </div>
     <figcaption id="architecture-caption">Tool-call path and evidence path. Protecting the runtime does not put the model, agent process, or upstream tool server inside its TEE.</figcaption>
@@ -482,6 +484,17 @@
       </div>
     </a>
 
+    <!-- TRACE Registry -->
+    <a href="/registry/" class="product-card">
+      <div class="card-accent" style="background: var(--blue);"></div>
+      <div class="card-body">
+        <div class="card-tag" style="color: var(--blue);">Evidence Infrastructure</div>
+        <div class="card-name">TRACE Registry</div>
+        <div class="card-desc">A public, append-only registry of anchors, checkpointed on activity and signed by the registry key. Record holders retain their evidence; the published registry contains commitments. Offline verifier on PyPI; no hosted query endpoint. Supports independent witnesses, with one checkpoint receipt demonstrated.</div>
+      </div>
+      <div class="card-footer"><span class="card-url">agentrust-io.com/registry</span><span class="card-badge badge-live">Live</span></div>
+    </a>
+
     <!-- Agent Manifest -->
     <a href="https://manifest.agentrust-io.com" class="product-card">
       <div class="card-accent" style="background: var(--green);"></div>
@@ -661,6 +674,10 @@
     <h2 class="section-title">What's Launched</h2>
   </div>
   <div class="spec-row">
+    <div class="spec-card">
+      <div class="spec-label">Registry briefing &middot; September 9, 2026</div>
+      <div class="spec-value"><a href="/registry/">TRACE Registry + verified checkpoint receipt</a></div>
+    </div>
     <div class="spec-card">
       <div class="spec-label">Attestation Standard</div>
       <div class="spec-value">TRACE v0.2</div>

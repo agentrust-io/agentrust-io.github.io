@@ -77,9 +77,9 @@
     <a href="https://github.com/agentrust-io/trace-registry/tree/main/registry"><strong>2</strong><span>Published entries</span></a>
     <a href="#checkpoint"><strong>1</strong><span>Signed checkpoint</span></a>
     <a href="https://pypi.org/project/trace-verify/"><strong>0.3.1</strong><span>Verifier on PyPI</span></a>
-    <a href="https://github.com/agentrust-io/trace-registry"><strong>225</strong><span>Tests passing</span></a>
+    <a href="#witness"><strong>1</strong><span>External checkpoint receipt</span></a>
   </div>
-  <p class="proof-note">Historical snapshot at <a href="https://github.com/agentrust-io/trace-registry/tree/4697f2c"><code>4697f2c</code></a>: two demonstration entries, one checkpoint, and 225 passing tests. These figures are not live counters. Check the repository for subsequent entries and test results.</p>
+  <p class="proof-note">Two published entries and one checkpoint, counted at registry commit <code>6138335</code>. Neither entry is production evidence. Checkpoint 1 has a separately fetched, offline-verified external receipt. PyPI currently publishes <code>trace-verify 0.3.1</code>; the witness receipt tool and its dependency lock are in the registry repository.</p>
 </section>
 
 <section id="problem">
@@ -141,11 +141,20 @@
       <div class="step-num">4</div>
       <div class="step-body">
         <h3>A signed checkpoint commits to the history</h3>
-        <p>The scheduled anchor pipeline emits a signed checkpoint carrying the log's size and root plus the previous checkpoint's size and root. That chained pair is what lets a third party check that each checkpoint extends the last rather than replaces it.</p>
+        <p>The scheduled anchor pipeline emits a signed checkpoint carrying the log's size and root plus the previous checkpoint's size and root. A verifier checks predecessor linkage and the MMR consistency proof, then recomputes the covered entries. Equality of the previous size and root alone does not prove append-only growth.</p>
       </div>
     </div>
 
   </div>
+</section>
+
+<section id="witness">
+  <span class="label">Independent witnesses</span>
+  <h2>One checkpoint, one verified external receipt</h2>
+  <p>Checkpoint 1's signing-body digest is included under a Merkle root signed by a separately operated witness. The returned receipt and two independently fetched copies agree; verification runs offline against an explicitly pinned witness key. This was demonstrated on September 7, 2026, ahead of the September 9 briefing.</p>
+  <p>The response reports <code>countersigned-observed</code>. That grade is unsigned response metadata. The receipt has no signed witness timestamp and does not certify registry continuity. It authenticates inclusion of the signing-body digest, with the registry signature checked separately.</p>
+  <p>No recurring witness submission, reciprocal witnessing, or second witness is claimed. Parallel independent witnesses remain a deployment choice; original records stay with their holders.</p>
+  <a class="button" href="https://github.com/agentrust-io/trace-registry/tree/main/docs/evidence/witness-2026-09-07">Receipt, key provenance and offline verification</a>
 </section>
 
 <section id="verify">
@@ -215,11 +224,11 @@ cd trace-registry</pre>
     <tr><th>Limit</th><th>Why it stands</th></tr>
     <tr><td><strong>Consistency, not coverage</strong></td><td>The checkpoint chain proves the consistency of what it covers. It does not prove that the registry covers everything it could have. Completeness is a property of producers keeping their own records, not something a log can assert about itself.</td></tr>
     <tr><td><strong>The June 2026 entry is outside the chain</strong></td><td>It predates checkpointing and is deliberately not folded in retroactively, which is the same rule the chain verifier applies. Backdating an entry into a chain would make the chain say more than it checked.</td></tr>
-    <tr><td><strong>No external witness receipt yet</strong></td><td>Anchoring the registry's own history into a transparency service the registry does not operate is in progress in public, and no receipt has come back and verified offline yet. Until one has, the anti-split-view property is a roadmap item, not a feature.</td></tr>
+    <tr><td><strong>One receipt; bounded assurance</strong></td><td>The captured receipt proves inclusion of checkpoint 1's signing-body digest under the accepted witness key. It does not authenticate the response grade, establish a witness time, certify continuity, prevent split views, or cover the June entry. See the evidence packet and verifier results.</td></tr>
     <tr><td><strong>One producer key is single-use by construction</strong></td><td>The producer key behind the first anchored record verifies that record and will never sign another, because the demo that produced it generates keys per run and never persists private ones. That is a property of that entry, not a general guarantee.</td></tr>
   </table>
 
-  <div class="callout"><p><strong>A witness attesting to more than it checked is worse than no witness.</strong> That principle is why the limits above are on this page instead of in a footnote, why the entry counts here are the real ones, and why an external receipt will be announced when it verifies rather than when it is arranged.</p></div>
+  <div class="callout"><p><strong>A witness attesting to more than it checked is worse than no witness.</strong> That principle is why the limits above are on this page instead of in a footnote, why the entry counts here are the real ones, and why the receipt announcement names exactly which properties were verified.</p></div>
 
   <p class="source-links"><a href="https://github.com/agentrust-io/trace-registry/blob/main/LIMITATIONS.md">Full limitations ↗</a><a href="https://github.com/agentrust-io/trace-registry/blob/main/TERMS.md">Terms of use ↗</a><a href="https://github.com/agentrust-io/trace-registry/blob/main/GOVERNANCE.md">Governance ↗</a><a href="https://github.com/agentrust-io/trace-registry/blob/main/ROADMAP.md">Roadmap ↗</a></p>
 </section>
@@ -229,7 +238,7 @@ cd trace-registry</pre>
   <h2>Three ways in</h2>
   <div class="grid-3">
     <article class="card"><h3>Register as a producer</h3><p>Publish anchors for your own signed trust records under your own key. The conventions, naming, and submission path are documented in the repository.</p><a href="https://github.com/agentrust-io/trace-registry/blob/main/CONTRIBUTING.md">Read the contributor guide →</a></article>
-    <article class="card"><h3>Run a mirror or a witness</h3><p>Single-operator dependency is a weakness we name rather than hide. Independent mirrors and independent witnesses both remove it, and both are open to anyone.</p><a href="https://github.com/agentrust-io/trace-registry/blob/main/MIRRORS.md">Mirroring guide →</a></article>
+    <article class="card"><h3>Run a mirror or a witness</h3><p>Single-operator dependency is a weakness we name rather than hide. Independent mirrors and independent witnesses can reduce it when observers retain and compare evidence. Neither is a blanket guarantee against split views.</p><a href="https://github.com/agentrust-io/trace-registry/blob/main/MIRRORS.md">Mirroring guide →</a></article>
     <article class="card"><h3>Attack the claims</h3><p>The most useful contribution is a demonstration that something on this page overstates what the code actually does. Open an issue in public.</p><a href="https://github.com/agentrust-io/trace-registry/issues">Open an issue →</a></article>
   </div>
 </section>
