@@ -2028,9 +2028,10 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
 .architecture-node { display: flex; flex-direction: column; justify-content: center; gap: .65rem; padding: 1.25rem; border: 1px solid var(--at-line); background: var(--at-white); min-width: 0; }
 .architecture-boundary { border: 2px dashed var(--at-navy); }
 .architecture-edge { align-self: center; font-size: .8rem; font-weight: 650; white-space: nowrap; }
-.architecture-outcomes { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--at-line); background: var(--at-white); }
+.architecture-outcomes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid var(--at-line); background: var(--at-white); }
 .architecture-outcomes > div { padding: 1.25rem; }
-.architecture-outcomes > div + div { border-left: 1px solid var(--at-line); }
+.architecture-outcomes > div:nth-child(even) { border-left: 1px solid var(--at-line); }
+.architecture-outcomes > div:nth-child(n+3) { border-top: 1px solid var(--at-line); }
 .architecture span, .architecture p, .architecture small, .architecture figcaption { font-size: .9rem; line-height: 1.6; }
 .architecture p { margin-bottom: 0; }
 .architecture figcaption { margin-top: 1rem; color: var(--at-muted); }
@@ -2046,7 +2047,8 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
   .architecture-row, .architecture-outcomes { grid-template-columns: 1fr; }
   .architecture-edge { justify-self: center; margin-block: .25rem; }
   .architecture-edge .direction { display: inline-block; transform: rotate(90deg); }
-  .architecture-outcomes > div + div { border-left: 0; border-top: 1px solid var(--at-line); }
+  .architecture-outcomes > div:nth-child(even) { border-left: 0; }
+  .architecture-outcomes > div + div { border-top: 1px solid var(--at-line); }
   .agentrust-hub .hero-actions { gap: .75rem; }
   .agentrust-hub .hero-actions .btn { text-align: center; white-space: normal; }
 }
