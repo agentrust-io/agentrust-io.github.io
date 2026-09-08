@@ -39,19 +39,11 @@ assert.ok(
   'the zeroization limitation must stay disclosed'
 );
 
-// Nothing on a public page may link into the WCM repository while it is private.
-// Every such link 404s for an anonymous reader, which is precisely the audience
-// a launch page has. The same rule is enforced for integration READMEs in
-// agentrust-io/integrations CONTRIBUTING.md; this is the check for the site.
-// When the repository goes public (weight-custody-manifest#40), delete this.
-const privateRepoLinks = [...html.matchAll(
-  /https:\/\/github\.com\/agentrust-io\/weight-custody-manifest[^"'\s]*/g
-)].map((match) => match[0]);
-assert.deepEqual(
-  privateRepoLinks,
-  [],
-  `these 404 for anonymous readers while the repo is private: ${privateRepoLinks.join(', ')}`
-);
+// Public launch links must replace the pre-release availability notice.
+assert.ok(html.includes('https://github.com/agentrust-io/weight-custody-manifest'));
+assert.ok(html.includes('https://wcm.agentrust-io.com/'));
+assert.ok(!html.includes('specification repository is still private'));
+assert.ok(!html.includes('Not yet a public repository'));
 assert.ok(html.includes('/wcm/og-launch.png'));
 const socialCard = fs.readFileSync(path.join(here, 'og-launch.png'));
 assert.ok(socialCard.length > 100_000);
