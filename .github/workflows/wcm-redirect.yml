@@ -1,21 +1,21 @@
-name: WCM launch page
+name: WCM redirect
 
 on:
   pull_request:
     paths:
       - "wcm/**"
-      - ".github/workflows/wcm-launch-page.yml"
+      - ".github/workflows/wcm-redirect.yml"
   push:
     branches: [main]
     paths:
       - "wcm/**"
-      - ".github/workflows/wcm-launch-page.yml"
+      - ".github/workflows/wcm-redirect.yml"
 
 permissions:
   contents: read
 
 jobs:
-  evidence:
+  redirect:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,4 +24,4 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - run: node wcm/launch-page.test.js
+      - run: node wcm/redirect.test.js
