@@ -18,7 +18,7 @@
     { id: 'manifest',   label: 'Manifest',     url: 'https://manifest.agentrust-io.com',                       ext: false },
     { id: 'cmcp',       label: 'cMCP',         url: 'https://cmcp.agentrust-io.com',                           ext: false },
     { id: 'ca2a',       label: 'cA2A',         url: 'https://ca2a.agentrust-io.com',                           ext: false },
-    { id: 'wcm',        label: 'WCM',          url: 'https://agentrust-io.com/wcm/',                            ext: false },
+    { id: 'wcm',        label: 'WCM',          url: 'https://wcm.agentrust-io.com',                            ext: false },
     { id: 'governance', label: 'Governance',   url: 'https://governance.agentrust-io.com',                     ext: false },
     { id: 'agt',        label: 'AGT',          url: 'https://github.com/microsoft/agent-governance-toolkit',   ext: true  },
     { id: 'github',     label: 'GitHub',       url: 'https://github.com/agentrust-io',                         ext: true  }
@@ -26,9 +26,11 @@
 
   var HOST = location.hostname;
   var PATH = location.pathname;
-  // Quickstart, demos, telemetry, registry, and (today) WCM live under the
-  // apex host, so the active item cannot be resolved from the hostname alone
-  // the way every other entry can.
+  // Quickstart, demos, telemetry and registry live under the apex host, so the
+  // active item cannot be resolved from the hostname alone the way every other
+  // entry can. The /wcm branch below stays for the redirect stub still served
+  // at agentrust-io.com/wcm/: it highlights WCM for the instant before the
+  // reader is moved to wcm.agentrust-io.com.
 
   var CURRENT_ID = (HOST === 'agentrust-io.com' && PATH.indexOf('/quickstart') === 0) ? 'quickstart'
     : (HOST === 'agentrust-io.com' && PATH.indexOf('/demos') === 0) ? 'demos'
