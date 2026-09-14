@@ -1,12 +1,12 @@
 # AgenTrust
 
-> Open tools for governing AI agents: check actions against policy, record decisions, and verify signed evidence.
+> Open specifications and verifiers that bind model weights, agent identity and tool calls to hardware attestation, with evidence anyone can check offline.
 
 AgenTrust is the ecosystem at https://agentrust-io.com and the GitHub organization https://github.com/agentrust-io. Use the linked project documentation for normative requirements, release versions, licenses, and deployment prerequisites.
 
 ## Start here
 
-- [Overview and architecture](https://agentrust-io.com/): The components, trust boundaries, governance, and evidence links.
+- [Overview](https://agentrust-io.com/): The verifiable AI supply chain from model weights to agent actions, the hardware it is validated on, and what the evidence does and does not prove.
 - [Verify an Intel TDX quote](https://agentrust-io.com/verify/): Runs the four-step DCAP check on a genuine GCP confidential VM quote in the browser, ending at the pinned Intel SGX Root CA. A pass proves genuine Intel TDX silicon signed the quote. These captures do not tie a TRACE record to that machine, and the check does not appraise TCB currency or revocation.
 - [10-minute tool-call tutorial](https://agentrust-io.com/quickstart/): Write a policy, observe a denied call, and inspect a signed session record on a laptop. Software mode provides no hardware isolation or hardware-backed provenance.
 - [Weight Custody Manifest (WCM)](https://wcm.agentrust-io.com/): Bind model-weight identity and custody terms to key-release policy. The local walkthrough uses synthetic evidence and a placeholder key; it does not load a real model or demonstrate hardware protection.
@@ -36,9 +36,9 @@ AgenTrust is the ecosystem at https://agentrust-io.com and the GitHub organizati
 
 ## Community and stewardship
 
-- [Governance and funding](https://agentrust-io.com/#community): Published roles and evidence links. Sponsorship, project ownership, standards hosting, partnership, and adoption are distinct relationships. The NSF submission is in review, not an award.
-- [Fellowship status](https://agentrust-io.com/#fellowship): Current application and selection information. Use this page rather than dates copied from older announcements.
-- [Architecting at Scale](https://agentrust-io.com/#book): The field guide and its public companion code.
+- [Community, partners and sponsor](https://agentrust-io.com/community/#adoption): Published roles and partner relationships, each linked to public evidence. OPAQUE sponsors the work. The NSF submission is in review, not an award.
+- [Fellowship status](https://agentrust-io.com/community/#fellowship): Current application and selection information. Use this page rather than dates copied from older announcements.
+- [Architecting at Scale](https://agentrust-io.com/community/#book): The field guide and its public companion code.
 
 ## More documentation
 
