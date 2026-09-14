@@ -7,6 +7,7 @@ AgenTrust is the ecosystem at https://agentrust-io.com and the GitHub organizati
 ## Start here
 
 - [Overview and architecture](https://agentrust-io.com/): The components, trust boundaries, governance, and evidence links.
+- [Verify an Intel TDX quote](https://agentrust-io.com/verify/): Runs the four-step DCAP check on a genuine GCP confidential VM quote in the browser, ending at the pinned Intel SGX Root CA. A pass proves genuine Intel TDX silicon signed the quote. These captures do not tie a TRACE record to that machine, and the check does not appraise TCB currency or revocation.
 - [10-minute tool-call tutorial](https://agentrust-io.com/quickstart/): Write a policy, observe a denied call, and inspect a signed session record on a laptop. Software mode provides no hardware isolation or hardware-backed provenance.
 - [Weight Custody Manifest (WCM)](https://wcm.agentrust-io.com/): Bind model-weight identity and custody terms to key-release policy. The local walkthrough uses synthetic evidence and a placeholder key; it does not load a real model or demonstrate hardware protection.
 - [Runnable demos](https://agentrust-io.com/demos/): Software examples for policy decisions, evidence verification, delegation, and model-weight custody. Follow each demo's stated prerequisites and limits.
