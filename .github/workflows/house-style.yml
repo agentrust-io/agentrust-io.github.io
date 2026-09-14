@@ -11,6 +11,9 @@ name: House style
 # rendering, added in #31 after the catalog was found to be rendered from
 # remote JSON without them. It was never wired to a workflow, so it has been
 # passing or failing unobserved since.
+#
+# search.test.js covers the same guarantees for /search/, which renders text
+# fetched from seven other hosts.
 
 on:
   pull_request:
@@ -34,3 +37,5 @@ jobs:
         run: node tools/check-dashes.js
       - name: Marketplace rendering guards
         run: node marketplace/marketplace.test.js
+      - name: Search ranking and escaping
+        run: node search/search.test.js

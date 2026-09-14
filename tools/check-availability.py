@@ -24,7 +24,12 @@ def asset_versions(host):
     """Report which shared asset URLs a docs host's home page references, and whether they are current."""
     url = f'https://{host}agentrust-io.com/'
     try:
-        request = Request(url, headers={'User-Agent': 'AgenTrust-availability-check/1.0'})
+        # The CDN can answer the bare URL from a copy cached before the latest deploy:
+        # on 2026-09-14 trace.agentrust-io.com/ returned HTML from 21:01 (Age 426) with
+        # unversioned URLs while ?v=<time> returned v=21. A throwaway query reads the
+        # deployed page. The plain 200 probes below keep the bare URLs.
+        fresh = f'{url}?availability={int(time.time())}'
+        request = Request(fresh, headers={'User-Agent': 'AgenTrust-availability-check/1.0'})
         with urlopen(request, timeout=20) as response:
             html = response.read().decode('utf-8', 'replace')
     except Exception as exc:
