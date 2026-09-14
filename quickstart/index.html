@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://agentrust-io.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="AgenTrust: open standards for AI agent governance">
+<meta property="og:image:alt" content="AgenTrust: open specifications for verifiable AI">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
@@ -61,7 +61,7 @@
 <body class="at-page">
 
 <header class="site-header">
-  <a class="wordmark" href="/">agentrust<span>.io</span> · cMCP Quickstart</a>
+  <a class="wordmark" href="/">AgenTrust · cMCP Quickstart</a>
   <nav>
     <a href="#loop">How it works</a>
     <a href="#quickstart">Quickstart</a>
@@ -74,7 +74,7 @@
 <div class="hero"><div class="wrap">
   <div class="split">
     <div>
-      <span class="eyebrow">Confidential MCP · Open quickstart</span>
+      <span class="eyebrow"><a href="/#chain">03 · Actions</a> · cMCP software-mode quickstart</span>
       <h1>Set policy on your agent. Watch it <em>block a bad action.</em></h1>
       <p class="sub">Deny a request to a tool tagged as personal data, then verify its signed session record. About ten minutes on your laptop, using a mock tool and software attestation.</p>
       <div class="actions"><a class="button" href="#quickstart">Start the quickstart</a><a class="button secondary" href="#loop">How it works</a></div>
@@ -135,7 +135,7 @@
 
   <div class="callout">
     <p><strong>Before you start.</strong> Python 3.11+ · pip · curl · macOS, Linux, or Windows with WSL and Bash · two terminal windows · about ten minutes.</p>
-    <p style="margin-top:0.6rem;">The install is pinned to <code>cmcp-runtime 0.4.0</code> so the commands match this walkthrough. Report unexpected results by <a href="https://github.com/agentrust-io/cmcp/issues" target="_blank" rel="noopener">opening an issue</a> with the failing command and runtime version.</p>
+    <p style="margin-top:0.6rem;">The install is pinned to <code>cmcp-runtime 0.5.0</code> so the commands match this walkthrough. Report unexpected results by <a href="https://github.com/agentrust-io/cmcp/issues" target="_blank" rel="noopener">opening an issue</a> with the failing command and runtime version.</p>
   </div>
 
   <div class="callout"><p><strong>Expected finish:</strong> the tool request returns <code>403 POLICY_DENY</code>. The verifier later reports <code>FAIL (partially_verified)</code> and exits 1 because this demo has no hardware attestation. That is the expected software-mode result.</p></div>
@@ -153,7 +153,7 @@
           <div class="code-head"><span class="code-label">Terminal 1</span><button class="copy">COPY</button></div>
 <pre>mkdir -p cmcp-quickstart &amp;&amp; cd cmcp-quickstart
 python3 -m venv venv &amp;&amp; source venv/bin/activate
-python3 -m pip install cmcp-runtime==0.4.0</pre>
+python3 -m pip install cmcp-runtime==0.5.0</pre>
         </div>
       </div>
     </div>
@@ -318,7 +318,7 @@ cmcp verify claim.json</pre>
           <div class="chk"><span>hardware_attestation</span><span class="warn">FAIL: software-only mode</span></div>
           <div class="chk result"><span>Result</span><span class="warn">FAIL (partially_verified)</span></div>
         </div>
-        <p class="note-rule">Every cryptographic check passes. The one <span class="warn">FAIL</span> is hardware attestation, which dev mode can't provide, and <b>that is the honest answer</b>: overall verification only reports <span class="pass">verified</span> when the claim is hardware-backed, so the CLI prints <span class="warn">FAIL (partially_verified)</span> and exits 1 here. A hardware deployment must also supply valid attestation, trusted keys, and the expected policy and catalog bindings. Moving the runtime to a TEE alone does not establish those checks or legal compliance.</p>
+        <p class="note-rule">Every cryptographic check passes. The one <span class="warn">FAIL</span> is hardware attestation, which dev mode can't provide, and <b>that is the honest answer</b>: overall verification only reports <span class="pass">verified</span> when the claim is hardware-backed, so the CLI prints <span class="warn">FAIL (partially_verified)</span> and exits 1 here. A hardware deployment must also supply valid attestation, trusted keys, and the expected policy and catalog bindings. Moving the runtime to a TEE alone does not establish those checks or legal compliance. To see what a passing hardware check looks like, <a href="/verify/">verify a real Intel TDX quote</a> in your browser.</p>
       </div>
     </div>
 
@@ -367,9 +367,9 @@ when { context.session_max_sensitivity == <span class="s">"pii"</span> };</pre>
   <div class="foot-in">
     <div class="foot-brand">
       <a class="wordmark" href="/">AgenTrust</a>
-      <div class="tagline">Open standards for AI agent governance</div>
+      <div class="tagline">Open specifications for verifiable AI</div>
     </div>
-    <div class="credit"><a href="https://github.com/agentrust-io/cmcp" target="_blank" rel="noopener"><b>cMCP</b></a>, Confidential MCP, is an open standard from <b>AgenTrust</b>: the confidential, security-hardened way to run the Model Context Protocol, MIT-licensed. It evaluates routed tool calls against policy and emits a signed <b>TRACE</b> session record when the session closes. Software-rooted in dev mode; hardware-attested when the runtime runs in a TEE. Part of the AgenTrust family alongside TRACE, Agent Manifest, and cA2A, at <a href="https://agentrust-io.com">agentrust-io.com</a>.</div>
+    <div class="credit"><a href="https://github.com/agentrust-io/cmcp" target="_blank" rel="noopener"><b>cMCP</b></a> evaluates routed MCP tool calls against Cedar policy and emits a signed <b>TRACE</b> session record when the session closes. It is software-rooted in dev mode, and hardware-backed only when the runtime runs in a TEE with verified attestation. <b>Sponsored by OPAQUE</b>, which funds the engineering, infrastructure and confidential-computing work behind these projects.</div>
   </div>
   <div class="foot-legal">© 2026 AgenTrust Contributors · cMCP is open source (MIT) · agentrust-io.com</div>
 </div></footer>
