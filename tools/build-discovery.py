@@ -59,6 +59,8 @@ def catalog_html(snapshot):
 <title>All AgenTrust Marketplace Integrations | AgenTrust</title>
 <meta name="description" content="Browse AgenTrust and Microsoft AGT integrations with descriptions and source links. This dated catalog works without JavaScript or external catalog requests.">
 <link rel="canonical" href="https://agentrust-io.com/marketplace/catalog/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="AgenTrust"><meta property="og:title" content="All AgenTrust Marketplace Integrations"><meta property="og:description" content="Browse AgenTrust and Microsoft AGT integrations with descriptions and source links. This dated catalog works without JavaScript or external catalog requests."><meta property="og:url" content="https://agentrust-io.com/marketplace/catalog/"><meta property="og:image" content="https://agentrust-io.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="AgenTrust: open specifications for verifiable AI">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="All AgenTrust Marketplace Integrations"><meta name="twitter:description" content="Browse AgenTrust and Microsoft AGT integrations with descriptions and source links. This dated catalog works without JavaScript or external catalog requests."><meta name="twitter:image" content="https://agentrust-io.com/og.png">
 <link rel="stylesheet" href="/design-system.css?v=''' + site_header.CSS_VERSION + '''"><link rel="icon" href="/favicon.ico">
 </head><body class="at-page marketplace-page">
 ''' + site_header.render(section='Build', script=False) + '''

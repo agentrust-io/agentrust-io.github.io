@@ -16,7 +16,7 @@ node marketplace/marketplace.test.js
 node tools/check-dashes.js
 ```
 
-The generator builds `sitemap.xml` from canonical, indexable HTML. Redirect aliases, including the 30 control permalinks, and the 404 page are excluded. It omits modification dates rather than inventing freshness. CI checks titles, descriptions, main headings, canonical URLs, sitemap coverage, local AI-guide links, and access under eight search and assistant robots policies.
+The generator builds `sitemap.xml` from canonical, indexable HTML. Redirect aliases, including the 30 control permalinks, and the 404 page are excluded. It omits modification dates rather than inventing freshness. CI checks titles, descriptions, main headings, canonical URLs, sitemap coverage, local AI-guide links, and access under eight search and assistant robots policies. Titles end in " | AgenTrust" (the homepage excepted); og:title and twitter:title repeat the title without that suffix, og:description and twitter:description repeat the meta description, descriptions stay within 160 characters, and every indexable page carries JSON-LD except the script-free static catalog.
 
 To update the saved marketplace catalog when integrations change:
 
