@@ -1,0 +1,39 @@
+name: Browser TDX verifier
+
+# verify/tdx-verify.js is a port of agent_manifest._tdx_verify, published on the
+# homepage as the thing a visitor can check without trusting us. A port that
+# drifts from its original is exactly the kind of quiet failure that page is
+# about, so every change runs both verifiers over the committed captures and a
+# few thousand mutated copies and fails on the first disagreement.
+#
+# No paths filter on purpose: a filter that misses a file is a green check that
+# never ran, and this job takes under a minute.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  differential:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install the Python verifier the port is checked against
+        run: python -m pip install "agent-manifest==0.12.0"
+      - name: Record Python verdicts
+        run: python tools/tdx-differential.py --out differential.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay them through the browser port
+        run: node tools/check-tdx-verifier.mjs differential.json

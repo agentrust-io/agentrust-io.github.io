@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verify an Intel TDX Quote in Your Browser | AgenTrust</title>
+<meta name="description" content="Check a genuine Intel TDX quote from a GCP confidential VM on your own machine: four signature checks ending at the pinned Intel SGX Root CA, with nothing uploaded.">
+<link rel="canonical" href="https://agentrust-io.com/verify/">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AgenTrust">
+<meta property="og:title" content="Verify a real Intel TDX quote">
+<meta property="og:description" content="A genuine Intel TDX quote, checked in your browser against the Intel SGX Root CA. Nothing is uploaded.">
+<meta property="og:url" content="https://agentrust-io.com/verify/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://agentrust-io.com/og.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Verify a real Intel TDX quote">
+<meta name="twitter:description" content="A genuine Intel TDX quote, checked in your browser against the Intel SGX Root CA. Nothing is uploaded.">
+<meta name="twitter:image" content="https://agentrust-io.com/og.png">
+
+<!-- Icons -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "In-browser Intel TDX quote verifier",
+  "description": "A JavaScript port of the Intel TDX v4 DCAP quote verifier in the agent-manifest SDK, checked against the Python original in continuous integration.",
+  "url": "https://agentrust-io.com/verify/",
+  "codeRepository": "https://github.com/agentrust-io/agentrust-io.github.io/tree/main/verify",
+  "programmingLanguage": ["JavaScript"],
+  "publisher": { "@id": "https://agentrust-io.com/#organization" }
+}
+</script>
+
+<link rel="stylesheet" href="/design-system.css?v=19">
+</head>
+<body class="at-page">
+
+<header class="site-header">
+  <a class="wordmark" href="/">AgenTrust</a>
+  <nav>
+    <a href="#run">Run it</a>
+    <a href="#limits">What it proves</a>
+    <a href="#source">How it matches Python</a>
+    <a class="cta" href="https://github.com/agentrust-io/agentrust-io.github.io/tree/main/verify">Source</a>
+  </nav>
+</header>
+
+<div class="hero"><div class="wrap">
+  <span class="eyebrow">Offline · In your browser · Intel TDX</span>
+  <h1>Verify a real Intel TDX quote</h1>
+  <p class="sub">A genuine quote from a GCP C3 confidential VM, checked on your machine the same way our Python verifier checks it: four signatures, ending at the Intel SGX Root CA pinned in this page. Nothing is uploaded.</p>
+  <div class="hero-actions">
+    <a class="button" href="#run">See the result</a>
+    <a class="button secondary" href="#limits">What it proves, and what it does not</a>
+  </div>
+  <div><span class="status">Two captures from 21 July 2026 · Checked against the Python verifier on 3,684 inputs</span></div>
+</div></div>
+
+<main>
+
+<section id="run">
+  <span class="label">Run it</span>
+  <h2>Check a capture, or bring your own</h2>
+  <p>Both captures come from one trust domain and bind different digests in REPORTDATA. You can also load a TDX v4 quote file from your own machine. It is read locally and never sent anywhere.</p>
+
+  <noscript>
+    <div class="callout caution"><p>The check runs as JavaScript in your browser. Without it, run the Python verifier from the last section of this page instead.</p></div>
+  </noscript>
+
+  <div id="verifier" hidden>
+    <div class="hero-actions">
+      <button class="button" type="button" data-capture="plain">Capture 1: tdx_quote.bin</button>
+      <button class="button secondary" type="button" data-capture="manifest">Capture 2: tdx_quote_manifest.bin</button>
+      <button class="button secondary" type="button" id="load-file">Load a quote file</button>
+      <input type="file" id="quote-file" hidden>
+    </div>
+    <p class="hint" id="run-status" aria-live="polite"></p>
+    <div class="term">
+      <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="term-title" id="term-title">verify</span></div>
+      <div class="term-body" id="term-body"><div class="dim">Loading the capture</div></div>
+    </div>
+
+    <h3>What the quote says</h3>
+    <table>
+      <tbody id="fields"></tbody>
+    </table>
+  </div>
+</section>
+
+<section id="limits">
+  <span class="label">Scope</span>
+  <h2>What this proves, and what it does not</h2>
+  <p>A pass proves genuine Intel TDX silicon produced and signed the quote, through a certificate chain that ends at Intel's root.</p>
+  <div class="callout caution">
+    <p><strong>It does not yet tie a TRACE record to this machine.</strong> These captures bind a manifest hash in REPORTDATA, and the input to that hash was not published, so the 32 bytes verifiably came from the TEE and cannot be opened. The next capture binds the record-signing key and publishes what it hashes.</p>
+  </div>
+  <p>It checks signature chains only. It does not appraise whether the platform's TCB is current, check certificate revocation, or compare MRTD and RTMRs against expected values.</p>
+  <p>Two quotes from one trust domain share an MRTD. Matching a record's claimed measurement against a quote's MRTD binds the record to a measurement, never to a particular quote.</p>
+  <p>Certificate validity is checked against your device's clock.</p>
+</section>
+
+<section id="source">
+  <span class="label">How it matches the original</span>
+  <h2>A port, held to its original</h2>
+  <p>This page runs <a href="https://github.com/agentrust-io/agentrust-io.github.io/blob/main/verify/tdx-verify.js">verify/tdx-verify.js</a>, a port of <a href="https://github.com/agentrust-io/agent-manifest/blob/main/python/src/agent_manifest/_tdx_verify.py">agent_manifest._tdx_verify</a>: the same parse, the same checks on every length the quote declares, and the same four steps in the same order.</p>
+  <p>On every change, <a href="https://github.com/agentrust-io/agentrust-io.github.io/blob/main/.github/workflows/verifier.yml">CI</a> runs both verifiers over the two captures and 3,684 generated inputs: byte flips across every length and type field and the certificate text, a stride over everything else, and truncations at each structure edge. It fails if they disagree on a single one.</p>
+  <p>To run the original yourself:</p>
+  <div class="code">
+    <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
+<pre>python -m pip install agent-manifest
+curl -fsSLO https://agentrust-io.com/verify/fixtures/gcp-tdx-2026-07-21-tdx_quote.bin
+python -c "from agent_manifest._tdx_verify import verify_tdx_quote; print(verify_tdx_quote(open('gcp-tdx-2026-07-21-tdx_quote.bin', 'rb').read()))"</pre>
+  </div>
+  <p class="hint">A genuine quote prints <code>True</code>.</p>
+</section>
+
+</main>
+
+<footer class="site-footer"><div class="wrap">
+  <div class="foot-in">
+    <div class="foot-brand">
+      <a class="wordmark" href="/">AgenTrust</a>
+      <div class="tagline">Open specifications for verifiable AI</div>
+    </div>
+    <div class="foot-links">
+      <a href="/">Home</a>
+      <a href="/registry/">Registry</a>
+      <a href="/quickstart/">Quickstart</a>
+      <a href="https://github.com/agentrust-io">GitHub</a>
+    </div>
+    <div class="credit"><b>Sponsored by OPAQUE</b>, which funds the engineering, infrastructure and confidential-computing work behind these projects.</div>
+  </div>
+  <div class="foot-legal">© 2026 AgenTrust Contributors · agentrust-io.com</div>
+</div></footer>
+
+<script src="/supernav.js"></script>
+<script src="/page.js"></script>
+<script type="module" src="/verify/verify-page.js"></script>
+</body>
+</html>
