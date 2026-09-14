@@ -3,8 +3,14 @@
  * object and is written with textContent, never as markup.
  */
 import { verifyTdxQuote } from './tdx-verify.js';
+import { checkKeyBinding } from './key-binding.js';
 
 const CAPTURES = {
+  keybind: {
+    file: 'fixtures/gcp-tdx-2026-09-14-keybind_quote.bin',
+    label: 'keybind_quote.bin',
+    record: 'fixtures/gcp-tdx-2026-09-14-keybind_record.json',
+  },
   plain: { file: 'fixtures/gcp-tdx-2026-07-21-tdx_quote.bin', label: 'tdx_quote.bin' },
   manifest: { file: 'fixtures/gcp-tdx-2026-07-21-tdx_quote_manifest.bin', label: 'tdx_quote_manifest.bin' },
 };
@@ -37,7 +43,7 @@ function row(name, value) {
   return tr;
 }
 
-function render(result, label, size) {
+function render(result, label, size, binding) {
   $('term-title').textContent = `verify ${label}`;
   const body = $('term-body');
   body.replaceChildren(line(`quote: ${label}, ${size} bytes`, 'dim'));
@@ -47,8 +53,16 @@ function render(result, label, size) {
     if (step.detail) body.append(line(step.detail, 'dim'));
   });
   if (result.quote) body.append(line(`REPORTDATA[0:32]: ${result.quote.reportData.slice(0, 64)}`, 'dim'));
+  const bound = binding && binding.bound && binding.sameQuote && binding.sameMeasurement;
+  if (binding) {
+    body.append(line(`record key SHA-256: ${binding.keyHash}`, 'dim'));
+    const [word, kind] = WORDS[bound ? 'pass' : 'fail'];
+    body.append(line(`key binding: REPORTDATA[0:32] is the SHA-256 of the TRACE record's signing key, and the record carries this quote and its MRTD: ${word}`, kind));
+  }
   body.append(result.accepted
-    ? line('verdict: ACCEPTED. Genuine Intel TDX quote; the chain ends at the pinned Intel root.', 'ok')
+    ? line(bound
+      ? 'verdict: ACCEPTED. Genuine Intel TDX quote, and it commits to the key that signed the TRACE record published beside it.'
+      : 'verdict: ACCEPTED. Genuine Intel TDX quote; the chain ends at the pinned Intel root.', 'ok')
     : line(`verdict: REJECTED. ${result.error}`, 'alert'));
   body.append(line(`checked ${result.checkedAt} against this device's clock`, 'dim'));
 
@@ -65,17 +79,24 @@ function render(result, label, size) {
   $('run-status').textContent = result.accepted ? `${label}: accepted` : `${label}: rejected`;
 }
 
-async function run(bytes, label) {
+async function run(bytes, label, record) {
   $('run-status').textContent = `Verifying ${label}`;
-  render(await verifyTdxQuote(bytes), label, bytes.byteLength);
+  const result = await verifyTdxQuote(bytes);
+  render(result, label, bytes.byteLength, record ? await checkKeyBinding(result, record, bytes) : null);
+}
+
+async function fetchOk(file, label) {
+  const response = await fetch(new URL(file, import.meta.url));
+  if (!response.ok) throw new Error(`could not load ${label} (HTTP ${response.status})`);
+  return response;
 }
 
 async function runCapture(key) {
   const capture = CAPTURES[key];
   try {
-    const response = await fetch(new URL(capture.file, import.meta.url));
-    if (!response.ok) throw new Error(`could not load ${capture.label} (HTTP ${response.status})`);
-    await run(new Uint8Array(await response.arrayBuffer()), capture.label);
+    const quote = new Uint8Array(await (await fetchOk(capture.file, capture.label)).arrayBuffer());
+    const record = capture.record ? (await (await fetchOk(capture.record, 'the TRACE record')).json()).record : null;
+    await run(quote, capture.label, record);
   } catch (error) {
     $('term-body').replaceChildren(line(error.message, 'alert'));
   }
@@ -95,4 +116,4 @@ input.addEventListener('change', async () => {
 });
 
 $('verifier').hidden = false;
-runCapture('plain');
+runCapture('keybind');

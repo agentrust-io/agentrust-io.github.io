@@ -1,0 +1,3 @@
+# Hardware captures and their records are checked byte for byte (SHA-256 pins in
+# tools/check-tdx-verifier.mjs and tools/check-key-binding.py). Never convert them.
+verify/fixtures/** -text

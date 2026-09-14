@@ -12,6 +12,7 @@
  */
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import { checkKeyBinding } from '../verify/key-binding.js';
 import {
   verifyTdxQuote, pinnedRootFingerprint, OFF_MRTD, QUOTE_HEADER_LENGTH,
 } from '../verify/tdx-verify.js';
@@ -23,26 +24,44 @@ const WHEN = '2026-09-14T00:00:00Z';
 // swapped or re-captured fixture fails here rather than changing what
 // "a genuine quote" refers to on the public page.
 const CAPTURES = {
-  'gcp-tdx-2026-07-21-tdx_quote.bin': 'f9efbac112efe510aa8ccd20703b063591b8c2c54c474d0ff1d6500299bae0ba',
-  'gcp-tdx-2026-07-21-tdx_quote_manifest.bin': '1ae04c74b564ef8795d4c4e4ffd1835d080d9dad4f8879e5cd1e8249503828b2',
+  'gcp-tdx-2026-07-21-tdx_quote.bin': {
+    sha256: 'f9efbac112efe510aa8ccd20703b063591b8c2c54c474d0ff1d6500299bae0ba',
+    mrtd: '9bf86e6280ec4282b8b5822d8166410a456cdb720109aa799f0011fa63df1de3ee5e35e293fc410c061433163acb03a6',
+  },
+  'gcp-tdx-2026-07-21-tdx_quote_manifest.bin': {
+    sha256: '1ae04c74b564ef8795d4c4e4ffd1835d080d9dad4f8879e5cd1e8249503828b2',
+    mrtd: '9bf86e6280ec4282b8b5822d8166410a456cdb720109aa799f0011fa63df1de3ee5e35e293fc410c061433163acb03a6',
+  },
+  // A different trust domain, captured to bind a TRACE record's signing key.
+  'gcp-tdx-2026-09-14-keybind_quote.bin': {
+    sha256: '2217b3d640b2e4cdabd34604ea59df7f4ea23ed9702d3ec040689dca20ce1d61',
+    mrtd: 'c1ee9c16e3afc506cfe042c5b846a368528f3b37618eafb27469bc114cf914e9222c91618470e7f2b28ac360968270a5',
+    record: 'gcp-tdx-2026-09-14-keybind_record.json',
+  },
 };
-const MRTD = '9bf86e6280ec4282b8b5822d8166410a456cdb720109aa799f0011fa63df1de3ee5e35e293fc410c061433163acb03a6';
 
 const failures = [];
 const check = (condition, message) => { if (!condition) failures.push(message); };
 
 const load = async (name) => new Uint8Array(await readFile(new URL(`verify/fixtures/${name}`, root)));
 
-for (const [name, digest] of Object.entries(CAPTURES)) {
+for (const [name, { sha256: digest, mrtd, record }] of Object.entries(CAPTURES)) {
   const quote = await load(name);
   check(createHash('sha256').update(quote).digest('hex') === digest, `${name}: not the committed hardware capture`);
 
   const result = await verifyTdxQuote(quote, { verificationTime: WHEN });
   check(result.accepted, `${name}: genuine capture rejected (${result.error})`);
   check(result.steps.every((s) => s.status === 'pass'), `${name}: a step did not pass`);
-  check(result.quote && result.quote.mrtd === MRTD, `${name}: MRTD differs from the capture's`);
+  check(result.quote && result.quote.mrtd === mrtd, `${name}: MRTD differs from the capture's`);
   check(result.quote && result.quote.reportData.slice(64) === '0'.repeat(64), `${name}: REPORTDATA tail is not zero`);
   check(result.chain.length === 3, `${name}: expected a three-certificate PCK chain`);
+
+  // Only the key-binding capture commits to a record key; the July captures bind
+  // a manifest hash, and the check must say no for them rather than pass vacuously.
+  const fixture = JSON.parse(await readFile(new URL(`verify/fixtures/${record || CAPTURES['gcp-tdx-2026-09-14-keybind_quote.bin'].record}`, root), 'utf8'));
+  const binding = await checkKeyBinding(result, fixture.record, quote);
+  if (record) check(binding.bound && binding.sameQuote && binding.sameMeasurement, `${name}: REPORTDATA does not bind the published record key`);
+  else check(!binding.bound && !binding.sameQuote, `${name}: key binding passed for a quote that does not commit to the record key`);
 
   const tampered = quote.slice();
   tampered[QUOTE_HEADER_LENGTH + OFF_MRTD] ^= 0xff;
@@ -94,4 +113,4 @@ if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log('PASS both GCP TDX captures verify; tampered quote and expired chain are rejected at the right step');
+console.log('PASS all three GCP TDX captures verify, the key-binding capture commits to its record key; tampered quote and expired chain are rejected at the right step');
