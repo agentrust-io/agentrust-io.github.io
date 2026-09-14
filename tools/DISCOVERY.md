@@ -27,7 +27,7 @@ This fetches both catalogs at one public `agentrust-io/integrations` commit, rec
 
 ## Availability checks
 
-After merging, the Public site availability workflow runs every six hours and can be dispatched manually. It reads the deployed sitemap, checks its pages, checks the home/robots/sitemap/AI-guide endpoints of all seven public hosts, and verifies that an unknown URL returns 404. Individual probes retry once. Results are retained as a workflow artifact for 14 days. Maintainers can use GitHub Actions failure notifications to investigate.
+After merging, the Public site availability workflow runs every six hours and can be dispatched manually. It reads the deployed sitemap, checks its pages, checks the home/robots/sitemap/AI-guide endpoints of all eight public hosts, and verifies that an unknown URL returns 404. Individual probes retry once. Results are retained as a workflow artifact for 14 days. Maintainers can use GitHub Actions failure notifications to investigate.
 
 ```sh
 python tools/check-availability.py

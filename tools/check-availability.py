@@ -45,7 +45,7 @@ def main():
     urls = {node.text for node in sitemap.findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
     if not urls or any(not url.startswith(BASE + '/') for url in urls):
         raise ValueError('Unexpected live sitemap')
-    for prefix in ['', 'trace.', 'manifest.', 'cmcp.', 'ca2a.', 'governance.', 'tests.']:
+    for prefix in ['', 'trace.', 'manifest.', 'cmcp.', 'ca2a.', 'governance.', 'tests.', 'wcm.']:
         urls.update('https://' + prefix + 'agentrust-io.com' + path for path in ['/', '/robots.txt', '/sitemap.xml', '/llms.txt'])
     targets = [(url, 200) for url in sorted(urls)] + [(BASE + '/missing-availability-probe-404/', 404)]
     with ThreadPoolExecutor(max_workers=4) as pool:
