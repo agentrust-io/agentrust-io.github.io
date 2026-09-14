@@ -10,6 +10,7 @@
 
   var SITES = [
     { id: 'home',       label: 'agentrust-io', url: 'https://agentrust-io.com',                                ext: false },
+    { id: 'verify',     label: 'Verify',       url: 'https://agentrust-io.com/verify/',                        ext: false },
     { id: 'quickstart', label: 'Quickstart',   url: 'https://agentrust-io.com/quickstart/',                    ext: false },
     { id: 'demos',      label: 'Demos',        url: 'https://agentrust-io.com/demos/',                         ext: false },
     { id: 'telemetry',  label: 'Telemetry',    url: 'https://agentrust-io.com/telemetry/',                     ext: false },
@@ -32,7 +33,8 @@
   // at agentrust-io.com/wcm/: it highlights WCM for the instant before the
   // reader is moved to wcm.agentrust-io.com.
 
-  var CURRENT_ID = (HOST === 'agentrust-io.com' && PATH.indexOf('/quickstart') === 0) ? 'quickstart'
+  var CURRENT_ID = (HOST === 'agentrust-io.com' && PATH.indexOf('/verify') === 0) ? 'verify'
+    : (HOST === 'agentrust-io.com' && PATH.indexOf('/quickstart') === 0) ? 'quickstart'
     : (HOST === 'agentrust-io.com' && PATH.indexOf('/demos') === 0) ? 'demos'
     : (HOST === 'agentrust-io.com' && PATH.indexOf('/telemetry') === 0) ? 'telemetry'
     : (HOST === 'agentrust-io.com' && PATH.indexOf('/registry') === 0) ? 'registry'

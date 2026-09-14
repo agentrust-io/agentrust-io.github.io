@@ -5,14 +5,14 @@ on:
     paths:
       - data/adoption.json
       - scripts/render-adoption.mjs
-      - index.html
+      - community/index.html
       - .github/workflows/adoption-data.yml
   push:
     branches: [main]
     paths:
       - data/adoption.json
       - scripts/render-adoption.mjs
-      - index.html
+      - community/index.html
 
 permissions:
   contents: read

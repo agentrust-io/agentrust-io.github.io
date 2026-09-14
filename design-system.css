@@ -2052,3 +2052,122 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
   .agentrust-hub .hero-actions { gap: .75rem; }
   .agentrust-hub .hero-actions .btn { text-align: center; white-space: normal; }
 }
+
+/* Homepage, verifiable AI supply chain (September 2026)
+ *
+ * The hero runs the in-browser TDX verifier (verify/home-panel.js), so the
+ * panel is a terminal whose states fill in from the live result rather than
+ * a picture of one. The other blocks are the few layouts the new homepage
+ * needs that the hub vocabulary above did not already have.
+ */
+.agentrust-hub .verify-panel {
+  margin: 3.5rem 0 0;
+  overflow: hidden;
+  border-radius: var(--at-radius);
+  background: var(--at-code-bg);
+  color: var(--at-code-fg);
+  box-shadow: var(--at-shadow);
+}
+.agentrust-hub .verify-panel-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  padding: 0.85rem 1.5rem;
+  border-bottom: 1px solid rgba(243, 240, 232, 0.12);
+  color: var(--at-code-dim);
+  font-family: var(--at-mono);
+  font-size: 0.8rem;
+}
+.agentrust-hub .verify-rows {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 1.3rem 1.5rem 1.4rem;
+  list-style: none;
+  font-family: var(--at-mono);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.agentrust-hub .verify-rows li {
+  display: grid;
+  grid-template-columns: 8rem minmax(0, 1fr) 6rem;
+  gap: 1rem;
+}
+.agentrust-hub .verify-rows .key { color: var(--at-code-dim); }
+.agentrust-hub .verify-rows .state { color: var(--at-code-dim); text-align: right; }
+.agentrust-hub .verify-rows .state.pass { color: var(--at-code-accent); font-weight: 600; }
+.agentrust-hub .verify-rows .state.fail { color: var(--at-code-alert); font-weight: 600; }
+.agentrust-hub .verify-rows .state.note { color: var(--at-code-string); }
+.agentrust-hub .verify-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  margin-top: 1rem;
+  color: var(--at-muted);
+}
+.agentrust-hub .verify-foot p {
+  max-width: 46rem;
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+.agentrust-hub .verify-foot .tag {
+  margin-right: 0.5rem;
+  color: var(--at-red);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.agentrust-hub .scope-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 3rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.agentrust-hub .scope-list li {
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--at-line);
+  color: var(--at-ink);
+  line-height: 1.6;
+}
+.agentrust-hub .logo-row {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+.agentrust-hub .logo-row img {
+  display: block;
+  max-width: 120px;
+  max-height: 44px;
+  margin: auto;
+}
+.agentrust-hub .build-band {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.agentrust-hub .build-band h3 {
+  margin: 0 0 1rem;
+  color: var(--at-ink);
+  font-family: var(--at-serif);
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+@media (max-width: 700px) {
+  .agentrust-hub .verify-rows li { grid-template-columns: minmax(0, 1fr) auto; gap: 0 1rem; }
+  .agentrust-hub .verify-rows .key { grid-column: 1 / -1; }
+  .agentrust-hub .scope-list,
+  .agentrust-hub .build-band { grid-template-columns: 1fr; }
+  .agentrust-hub .logo-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .agentrust-hub .ecosystem-grid { grid-template-columns: 1fr; }
+}
