@@ -28,26 +28,6 @@
   <meta name="twitter:title" content="AgenTrust community, partners and governance">
   <meta name="twitter:description" content="Partner and sponsor relationships linked to public evidence, how the projects are governed, and how to contribute.">
   <meta name="twitter:image" content="https://agentrust-io.com/og.png">
-
-  <!-- Structured data: FAQ (mirrors the visible FAQ below) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Is AgenTrust a standards-development programme?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. AgenTrust is an open-source ecosystem focused on adoption, implementation, interoperability, maintainer development, and long-term sustainability. Its open specifications are shared technical building blocks; community implementations, test infrastructure, integrations, documentation, and deployment evidence make those building blocks useful in practice." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is OPAQUE Systems' role in AgenTrust?",
-        "acceptedAnswer": { "@type": "Answer", "text": "OPAQUE Systems sponsors AgenTrust, funding the engineering, infrastructure and confidential-computing work behind these projects, and contributes to them. Organisations that want to support open, verifiable AI infrastructure are welcome to join as sponsors." }
-      }
-    ]
-  }
-  </script>
 <link rel="stylesheet" href="/design-system.css?v=20">
 </head>
 <body class="agentrust-hub" id="top">
@@ -94,7 +74,6 @@
     <li><a href="#fellowship"><span class="railnav-tick"></span><span class="railnav-label">Fellowship</span></a></li>
     <li><a href="#book"><span class="railnav-tick"></span><span class="railnav-label">Book</span></a></li>
     <li><a href="#about"><span class="railnav-tick"></span><span class="railnav-label">About</span></a></li>
-    <li><a href="#faq"><span class="railnav-tick"></span><span class="railnav-label">FAQ</span></a></li>
   </ul>
 </nav>
 
@@ -300,25 +279,6 @@
   <p class="lead-copy">AgenTrust is an open ecosystem for verifiable AI agent governance. It connects reusable technology with the people and practices needed to adopt it: maintainers, implementers, researchers, enterprise operators, conformance testing, integration guidance, and transparent community governance.</p>
   <p class="lead-copy">Agent Manifest declares identity and intended authority. cMCP governs tool calls; cA2A governs delegation to another agent. TRACE carries signed runtime evidence for verification against a trust policy. Hardware provenance depends on verified attestation. Use the components required by your trust boundary. Explore each project's specification, reference implementation, and license through <a href="/#chain">the chain on the homepage</a>.</p>
   <p class="lead-copy"><strong>AgenTrust Telemetry</strong> is the integration layer across that chain. It gives runtimes a common, metadata-only contract for governance facts, projects those facts into caller-owned OpenTelemetry, and can turn a complete durable evidence set into TRACE. It does not replace a policy engine, collector, observability backend, or dashboard.</p>
-</section>
-
-<hr class="divider">
-
-<section class="section" id="faq">
-  <div class="section-header">
-    <div class="section-label">FAQ</div>
-    <h2 class="section-title">About the project</h2>
-  </div>
-  <div class="qa">
-    <div class="qa-item">
-      <div class="qa-q">Is AgenTrust a standards-development programme?</div>
-      <div class="qa-a">No. AgenTrust is an open-source ecosystem focused on adoption, implementation, interoperability, maintainer development, and long-term sustainability. Its open specifications are shared technical building blocks; community implementations, test infrastructure, integrations, documentation, and deployment evidence make those building blocks useful in practice.</div>
-    </div>
-    <div class="qa-item">
-      <div class="qa-q">What is OPAQUE Systems' role in AgenTrust?</div>
-      <div class="qa-a">OPAQUE Systems sponsors AgenTrust, funding the engineering, infrastructure and confidential-computing work behind these projects, and contributes to them. Organisations that want to support open, verifiable AI infrastructure are welcome to join as sponsors.</div>
-    </div>
-  </div>
 </section>
 
 </main>
