@@ -1,9 +1,9 @@
 {
   "standard": "AgenTrust Agentic Controls",
   "version": "0.1.0-draft",
-  "updated": "2026-08-25",
+  "updated": "2026-09-14",
   "source": "OpenCRE graph crawled via opencre.org/rest/v1 on 2026-08-24",
-  "note": "Source of truth for /go/. Every opencre id was checked against that crawl. This is a mapping, not a conformance claim.",
+  "note": "Source of truth for /go/, rendered by tools/build-controls.py. Every opencre id was checked against that crawl. This is a mapping, not a conformance claim.",
   "controls": [
     {
       "id": "AT-01",
@@ -675,7 +675,11 @@
           "name": "Minimize session life",
           "url": "https://www.opencre.org/cre/470-731"
         }
-      ]
+      ],
+      "spec": {
+        "status": "private",
+        "topic": "continuous usage control"
+      }
     },
     {
       "id": "AT-30",
@@ -702,7 +706,13 @@
           "name": "AI model supply chain management",
           "url": "https://www.opencre.org/cre/852-770"
         }
-      ]
+      ],
+      "spec": {
+        "status": "public",
+        "topic": "model weight custody",
+        "name": "Weight Custody Manifest",
+        "url": "https://wcm.agentrust-io.com/"
+      }
     }
   ]
 }
