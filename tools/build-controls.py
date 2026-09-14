@@ -173,7 +173,7 @@ def card(c):
     ]
     spec = c.get('spec') or {}
     if spec.get('status') == 'public':
-        lines.append(f'    <p class="meta">Specification: <a href="{e(spec["url"])}">{e(spec["name"])}</a></p>')
+        lines.append(f'    <p class="meta">Related specification: <a href="{e(spec["url"])}">{e(spec["name"])}</a></p>')
     lines += [f'    <p class="meta">Permalink: <code>{c["permalink"]}</code></p>', '  </div>']
     return lines
 

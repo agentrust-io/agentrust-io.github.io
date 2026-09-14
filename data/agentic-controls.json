@@ -73,7 +73,13 @@
           "name": "Model action privilege minimization",
           "url": "https://www.opencre.org/cre/220-442"
         }
-      ]
+      ],
+      "spec": {
+        "status": "public",
+        "name": "cA2A",
+        "topic": "capability attenuation",
+        "url": "https://ca2a.agentrust-io.com/docs/spec/delegation-chain/#ca2a-delegation-verification"
+      }
     },
     {
       "id": "AT-04",
@@ -95,7 +101,13 @@
           "name": "AI user transparency",
           "url": "https://www.opencre.org/cre/810-884"
         }
-      ]
+      ],
+      "spec": {
+        "status": "public",
+        "name": "Agent Manifest",
+        "topic": "declared intent",
+        "url": "https://manifest.agentrust-io.com/spec/agent-manifest-v0.2/#am-declared-intent"
+      }
     },
     {
       "id": "AT-05",
@@ -158,7 +170,13 @@
           "name": "Audit & accountability",
           "url": "https://www.opencre.org/cre/217-168"
         }
-      ]
+      ],
+      "spec": {
+        "status": "public",
+        "name": "TRACE",
+        "topic": "evidence record format",
+        "url": "https://trace.agentrust-io.com/docs/schema/#trace-schema"
+      }
     },
     {
       "id": "AT-08",
@@ -408,7 +426,13 @@
           "name": "Sanitization and sandboxing",
           "url": "https://www.opencre.org/cre/764-765"
         }
-      ]
+      ],
+      "spec": {
+        "status": "public",
+        "name": "cMCP",
+        "topic": "tool authorization",
+        "url": "https://cmcp.agentrust-io.com/spec/cedar-policy/#cmcp-policy-evaluation"
+      }
     },
     {
       "id": "AT-18",
@@ -614,7 +638,13 @@
           "name": "Runtime model integrity controls",
           "url": "https://www.opencre.org/cre/276-748"
         }
-      ]
+      ],
+      "spec": {
+        "status": "public",
+        "name": "TRACE",
+        "topic": "hardware evidence",
+        "url": "https://trace.agentrust-io.com/docs/trust-levels/#trace-l1"
+      }
     },
     {
       "id": "AT-27",
@@ -631,7 +661,13 @@
           "name": "Log integrity",
           "url": "https://www.opencre.org/cre/148-420"
         }
-      ]
+      ],
+      "spec": {
+        "status": "public",
+        "name": "TRACE",
+        "topic": "transparency anchoring",
+        "url": "https://trace.agentrust-io.com/docs/trust-levels/#trace-l2"
+      }
     },
     {
       "id": "AT-28",
@@ -653,7 +689,13 @@
           "name": "Mutually authenticate application components",
           "url": "https://www.opencre.org/cre/530-671"
         }
-      ]
+      ],
+      "spec": {
+        "status": "public",
+        "name": "cA2A",
+        "topic": "channel attestation and key custody",
+        "url": "https://ca2a.agentrust-io.com/docs/spec/sealed-channel/#ca2a-channel-key-custody"
+      }
     },
     {
       "id": "AT-29",
@@ -688,7 +730,7 @@
       "slug": "model-weight-custody",
       "name": "Model weight custody against the hosting operator",
       "enforcement_points": [],
-      "requirement": "Model weights released into infrastructure the model owner does not control remain under the owner's custody, including against the infrastructure operator.",
+      "requirement": "Model weights are released only to a runtime that satisfies the signed release policy. Custody claims state the required platform protections and residual operator trust; physical ownership of the hardware is outside the base custody guarantee.",
       "permalink": "https://agentrust-io.com/go/model-weight-custody/",
       "opencre": [
         {
@@ -709,9 +751,9 @@
       ],
       "spec": {
         "status": "public",
-        "topic": "model weight custody",
         "name": "Weight Custody Manifest",
-        "url": "https://wcm.agentrust-io.com/"
+        "topic": "model weight custody",
+        "url": "https://github.com/agentrust-io/weight-custody-manifest/blob/main/SPEC.md#wcm-guarantee-scope"
       }
     }
   ]
