@@ -17,6 +17,7 @@
     { id: 'ca2a',       label: 'cA2A',         url: 'https://ca2a.agentrust-io.com',       ext: false },
     { id: 'trace',      label: 'TRACE',        url: 'https://trace.agentrust-io.com',      ext: false },
     { id: 'governance', label: 'Governance',   url: 'https://governance.agentrust-io.com', ext: false },
+    { id: 'search',     label: 'Search',       url: 'https://agentrust-io.com/search/',    ext: false },
     { id: 'github',     label: 'GitHub',       url: 'https://github.com/agentrust-io',     ext: true  }
   ];
 
@@ -30,6 +31,7 @@
   // moved to wcm.agentrust-io.com. The conformance suite belongs under TRACE.
   var APEX = HOST === 'agentrust-io.com';
   var CURRENT_ID = (APEX && PATH.indexOf('/verify') === 0) ? 'verify'
+    : (APEX && PATH.indexOf('/search') === 0) ? 'search'
     : (APEX && PATH.indexOf('/wcm') === 0) ? 'wcm'
     : (APEX && PATH.indexOf('/extensions/ca2a') === 0) ? 'ca2a'
     : APEX ? 'home'
@@ -41,6 +43,13 @@
     : HOST.indexOf('tests.') === 0       ? 'trace'
     : HOST.indexOf('governance.') === 0  ? 'governance'
     : 'home';
+
+  // Search opens on agentrust-io.com. From a docs site it starts filtered to that
+  // site; tests. has its own filter even though the bar highlights TRACE there.
+  var SEARCH_SITE = APEX ? '' : HOST.split('.')[0];
+  if (['wcm', 'manifest', 'cmcp', 'ca2a', 'trace', 'tests', 'governance'].indexOf(SEARCH_SITE) < 0) {
+    SEARCH_SITE = '';
+  }
 
   var NAV_ID = 'agt-supernav';
   var STYLE_ID = 'agt-supernav-style';
@@ -107,9 +116,10 @@
         html += '<span class="sep"></span>';
       }
       var active = s.id === CURRENT_ID ? ' class="active"' : '';
+      var url = s.id === 'search' && SEARCH_SITE ? s.url + '?site=' + SEARCH_SITE : s.url;
       var target = s.ext ? ' target="_blank" rel="noopener noreferrer"' : '';
       var extIcon = s.ext ? '<span class="ext-icon">&#8599;</span>' : '';
-      html += '<a href="' + s.url + '"' + active + target + '>'
+      html += '<a href="' + url + '"' + active + target + '>'
             + s.label
             + extIcon
             + '</a>';
@@ -133,6 +143,20 @@
     var nav = buildNav();
     // Insert at very top of body, before everything
     document.body.insertBefore(nav, document.body.firstChild);
+  }
+
+  // "/" opens search on agentrust-io.com pages. The MkDocs sites already bind "/"
+  // and "s" to their own search box, so the shortcut is not added there.
+  if (APEX) {
+    document.addEventListener('keydown', function (event) {
+      var el = event.target;
+      if (event.key !== '/' || event.ctrlKey || event.metaKey || event.altKey) return;
+      if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName))) return;
+      var box = document.getElementById('search-q');
+      event.preventDefault();
+      if (box) box.focus();
+      else location.href = '/search/';
+    });
   }
 
   // Initial injection

@@ -34,6 +34,7 @@ PAGES = {
     'registry/index.html': ('/registry/', None),
     'go/index.html': (None, 'Specs'),
     'extensions/ca2a/v0.1/index.html': (None, 'Specs'),
+    'search/index.html': ('/search/', None),
     '404.html': (None, None),
 }
 

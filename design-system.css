@@ -2094,3 +2094,25 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
 .on-this-page span { color: var(--at-muted); font-size: .66rem; letter-spacing: .11em; }
 .on-this-page a { color: var(--at-ink); text-decoration: none; }
 .on-this-page a:hover { color: var(--at-red); }
+
+/* /search/: one box across every AgenTrust site. search/search.js fills it. */
+.site-search-section { padding-top: 3.5rem; }
+.site-search-lead { max-width: 46rem; color: var(--at-muted); }
+.site-search-form { display: flex; gap: .6rem; margin: 1.6rem 0 1rem; }
+.site-search-form input { flex: 1; min-width: 0; padding: .85rem 1rem; border: 1px solid var(--at-line); border-radius: 12px; background: var(--at-white); color: var(--at-ink); font: 1rem var(--at-sans); }
+.site-search-form input:focus { outline: 2px solid var(--at-red); outline-offset: 1px; }
+.site-search-filters { display: flex; flex-wrap: wrap; gap: .45rem; }
+.site-search-filters button { padding: .35rem .8rem; border: 1px solid var(--at-line); border-radius: 999px; background: transparent; color: var(--at-ink); font: 600 .78rem var(--at-sans); cursor: pointer; }
+.site-search-filters button[aria-pressed="true"] { border-color: var(--at-ink); background: var(--at-ink); color: var(--at-paper); }
+.site-search-status { margin: 1.1rem 0 0; color: var(--at-muted); font: .8rem var(--at-sans); }
+.site-search-count { margin: .2rem 0 0; font: 700 .85rem var(--at-sans); }
+.site-search-results { margin: 1rem 0 0; padding: 0; list-style: none; }
+.search-hit { padding: 1rem 0; border-top: 1px solid var(--at-line); }
+.search-site { display: inline-block; margin-bottom: .25rem; color: var(--at-red); font: 800 .66rem var(--at-sans); letter-spacing: .08em; text-transform: uppercase; }
+.search-title { display: block; color: var(--at-ink); font: 600 1.05rem var(--at-sans); text-decoration: none; }
+.search-title:hover, .search-title:focus { color: var(--at-red); text-decoration: underline; }
+.search-snippet { margin: .3rem 0; color: var(--at-muted); font-size: .92rem; line-height: 1.55; overflow-wrap: anywhere; }
+.search-url { color: var(--at-muted); font: .72rem var(--at-mono); overflow-wrap: anywhere; }
+.search-hit mark { background: rgba(185, 28, 28, .14); color: inherit; border-radius: 3px; padding: 0 .1em; }
+.site-search-empty { margin-top: 1.5rem; padding: 2rem; border: 1px dashed var(--at-line); border-radius: 16px; text-align: center; }
+@media (max-width: 560px) { .site-search-form { flex-direction: column; } }
