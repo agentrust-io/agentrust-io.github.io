@@ -71,7 +71,7 @@ python demo.py 1          <span class="c"># start with tool-call policy enforcem
 
   <p><strong>What to look for:</strong> demo 1 routes calls through the local gateway and closes the session into a signed record. Software mode does not pass hardware-attestation verification. To explore weight custody, run <code>python demo.py 6</code>; to run the full set without pauses, use <code>python demo.py --no-pause</code>.</p>
   <p><strong>Individual commands below:</strong> run them from the <code>demos</code> folder with the environment activated. For demos that start cMCP, set <code>export CMCP_BEARER_TOKEN=demo-token</code> first. The <code>demo.py</code> launcher handles this setup for you.</p>
-  <p class="meta" style="margin-top:2.25rem;">What demo 6 actually prints, verbatim from a run on <code>weight-custody-manifest 0.25.0</code></p>
+  <p class="meta" style="margin-top:2.25rem;">What demo 6 prints on <code>weight-custody-manifest 0.28.2</code></p>
   <div class="term">
     <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="term-title">python demo-06-weight-custody/run.py</span></div>
     <div class="term-body">
@@ -87,10 +87,12 @@ python demo.py 1          <span class="c"># start with tool-call policy enforcem
 <div class="dim">no human reads 2.8T parameters; the hash does the reading.</div>
 <div style="margin-top:0.9rem;">4. The fine-tune is the real IP: lineage back to the signed base</div>
 <div>lineage verified&nbsp;&nbsp; : <span class="ok">True</span>&nbsp; depth 1&nbsp; root is a base: <span class="ok">True</span></div>
-<div class="dim" style="margin-top:0.9rem;">honest scope&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : accountability-grade against an operator who physically<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; owns the silicon (see TEE.fail), not silicon-proof custody.</div>
+<div style="margin-top:0.9rem;">What this is, and is not</div>
+<div class="dim">custody active&nbsp;&nbsp;&nbsp;&nbsp; : key held under a 1h cadence, wiped on lapse (time_floor sound)</div>
+<div class="dim">honest scope&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : accountability-grade against an operator who physically<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; owns the silicon (see TEE.fail), not silicon-proof<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; custody. It IS the provenance the download never gave you.</div>
     </div>
   </div>
-  <p class="meta">Hashes are truncated here for width; the run prints them in full. Every demo ends with a scope statement like that last one.</p>
+  <p class="meta">Shortened for width: hashes are truncated, and the section rules, the gate's <code>enforced:</code> note and the derivative hash are left out. The run prints them all. Every demo ends with a scope statement like that last one.</p>
 </section>
 
 <section id="weights">

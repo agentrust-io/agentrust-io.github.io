@@ -46,4 +46,7 @@ AgenTrust is the ecosystem at https://agentrust-io.com and the GitHub organizati
 - [Agent Manifest summary](https://manifest.agentrust-io.com/llms.txt)
 - [cMCP summary](https://cmcp.agentrust-io.com/llms.txt)
 - [cA2A summary](https://ca2a.agentrust-io.com/llms.txt)
+- [Weight Custody Manifest summary](https://wcm.agentrust-io.com/llms.txt)
+- [TRACE conformance suite summary](https://tests.agentrust-io.com/llms.txt)
+- [Governance resource directory summary](https://governance.agentrust-io.com/llms.txt)
 - [Sitemap](https://agentrust-io.com/sitemap.xml): Canonical public pages on this host.
