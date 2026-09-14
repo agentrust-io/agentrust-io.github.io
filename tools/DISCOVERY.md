@@ -28,13 +28,17 @@ This fetches both catalogs at one public `agentrust-io/integrations` commit, rec
 
 ## Availability checks
 
-After merging, the Public site availability workflow runs every six hours and can be dispatched manually. It reads the deployed sitemap, checks its pages, checks the home/robots/sitemap/AI-guide endpoints of all eight public hosts, and verifies that an unknown URL returns 404. Individual probes retry once. Results are retained as a workflow artifact for 14 days. Maintainers can use GitHub Actions failure notifications to investigate.
+After merging, the Public site availability workflow runs every six hours and can be dispatched manually. It reads the deployed sitemap, checks its pages, checks the home/robots/sitemap/AI-guide endpoints of all eight public hosts, and verifies that an unknown URL returns 404. It also reads each MkDocs host's home page and fails, naming the host, if its design-system.css or supernav.js URL does not carry the current `CSS_VERSION` from tools/site_header.py. Individual probes retry once. Results are retained as a workflow artifact for 14 days. Maintainers can use GitHub Actions failure notifications to investigate.
 
 ```sh
 python tools/check-availability.py
 ```
 
 This checks public HTTP status, nonempty responses, challenge headers, and unexpected `X-Robots-Tag: noindex`. It does not measure browser rendering, all content changes, uptime percentages, real search-engine IP access, or field Core Web Vitals. Requests identify themselves as `AgenTrust-availability-check/1.0`; a generic Python user agent received HTTP 403 during the initial audit, while the declared monitor and sampled search/assistant user agents received 200. Do not treat user-agent substitution as proof of actual crawler access.
+
+## Shared asset versions
+
+agentrust-io.com serves design-system.css and supernav.js with a four-hour cache, so every site loads them with `?v=` set to `CSS_VERSION` in tools/site_header.py. To ship a change to either file, bump `CSS_VERSION`, run `python tools/build-header.py`, `python tools/build-controls.py` and `python tools/build-discovery.py`, and bump the same number in the mkdocs.yml of weight-custody-manifest, agent-manifest, cmcp, ca2a, trace-spec, trace-tests and awesome-ai-governance; the availability check names any host that still lags.
 
 ## Search-engine verification
 

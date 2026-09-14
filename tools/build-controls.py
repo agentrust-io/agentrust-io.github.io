@@ -153,7 +153,7 @@ FOOTER = '''<footer class="site-footer"><div class="wrap">
   <div class="foot-legal">&copy; 2026 AgenTrust Contributors &middot; MIT licensed &middot; agentrust-io.com</div>
 </div></footer>
 
-<script src="/supernav.js"></script>
+<script src="/supernav.js?v=''' + CSS_VERSION + '''"></script>
 <script src="/page.js"></script>
 </body>
 </html>

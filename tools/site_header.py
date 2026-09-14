@@ -6,8 +6,13 @@ hand-written pages. tools/build-controls.py (/go/) and tools/build-discovery.py
 build-header's --check agree byte for byte. CI runs all three.
 
 The header styles live in design-system.css under `.hub-header`, and hub-nav.js
-adds the mobile Menu toggle. CSS_VERSION is the design-system.css cache-bust for
-every page; bump it here when that stylesheet changes.
+adds the mobile Menu toggle.
+
+CSS_VERSION is the cache-bust for the two files every AgenTrust site loads from
+agentrust-io.com: design-system.css and supernav.js. They are served with a
+four-hour max-age, so bump it when either file changes. build-header.py stamps it
+into the hub pages; the seven MkDocs sites pin the same number in mkdocs.yml, and
+tools/check-availability.py names any of them that lags.
 """
 from html import escape
 
