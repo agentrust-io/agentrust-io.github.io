@@ -435,43 +435,6 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
   min-height: 100vh;
   line-height: 1.6;
 }
-/* ── Header ── */
-.agentrust-hub header {
-  padding: 0 2rem;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.agentrust-hub .header-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 56px;
-}
-.agentrust-hub .logo {
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.agentrust-hub .header-nav {
-  display: flex;
-  gap: 1.5rem;
-  list-style: none;
-}
-.agentrust-hub .header-nav a {
-  text-decoration: none;
-  font-size: 0.875rem;
-  transition: color 0.15s;
-}
-.agentrust-hub .header-nav a:hover {
-  color: #fff;
-}
 /* ── Hero ── */
 .agentrust-hub .fellowship {
   padding: 0.85rem 2rem;
@@ -877,9 +840,6 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
   .agentrust-hub .trust-step:not(:last-child)::after {
     content: "↓"; right: 1rem; top: auto; bottom: -0.7rem;
   }
-  .agentrust-hub .header-nav {
-    display: none;
-  }
   .agentrust-hub .ecosystem-grid {
     grid-template-columns: 1fr;
   }
@@ -935,32 +895,6 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
   font-family: var(--at-sans);
 }
 
-.agentrust-hub header {
-  background: var(--at-paper);
-  color: var(--at-ink);
-  border-bottom: 1px solid var(--at-line);
-  backdrop-filter: none;
-}
-
-.agentrust-hub .header-nav { margin: 0; padding: 0; align-items: center; }
-.agentrust-hub .nav-toggle { display: none; }
-.agentrust-hub .spec-menu { position: relative; }
-.agentrust-hub .spec-menu summary { cursor: pointer; font-size: .875rem; }
-.agentrust-hub .spec-menu ul { position: absolute; top: 2rem; right: 0; min-width: 17rem; padding: .75rem; margin: 0; list-style: none; background: var(--at-paper); border: 1px solid var(--at-line); border-radius: .5rem; box-shadow: 0 .5rem 1.5rem #0001; }
-.agentrust-hub .spec-menu li a { display: block; padding: .65rem; }
-@media (max-width: 900px) {
-  .agentrust-hub .header-inner { height: auto; min-height: 56px; flex-wrap: wrap; }
-  .agentrust-hub .header-inner nav { margin-left: auto; }
-  .agentrust-hub .nav-toggle:not([hidden]) { display: inline-flex; align-items: center; min-height: 44px; padding: .5rem .75rem; color: var(--at-ink); background: transparent; border: 1px solid var(--at-line); border-radius: .3rem; font: inherit; }
-  .agentrust-hub .header-nav { display: flex; flex-wrap: wrap; gap: .5rem 1rem; padding: .75rem 0; }
-  .hub-nav-ready .agentrust-hub .header-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; padding: .75rem 1.25rem; background: var(--at-paper); border-bottom: 1px solid var(--at-line); max-height: calc(100dvh - 56px); overflow-y: auto; }
-  .hub-nav-ready .agentrust-hub .header-nav.is-open { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
-  .agentrust-hub .header-nav a, .agentrust-hub .spec-menu summary { display: block; padding: .75rem; min-height: 44px; box-sizing: border-box; }
-  .agentrust-hub .spec-menu ul { position: static; min-width: 0; box-shadow: none; margin: 0 .75rem .5rem; }
-}
-
-.agentrust-hub .logo,
-.agentrust-hub .header-nav a { color: var(--at-ink); }
 .agentrust-hub .logo-dot { color: var(--at-red); }
 
 .agentrust-hub .fellowship,
@@ -1276,22 +1210,6 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
 .at-page > main { max-width: var(--at-wrap); margin: 0 auto; }
 .at-page > main { padding: 0 var(--at-gutter); }
 
-.at-page .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem 1.5rem;
-  /* Full-bleed background, but the row itself lines up with .wrap content */
-  padding: 0.95rem max(var(--at-gutter), calc((100% - var(--at-wrap)) / 2));
-  border-bottom: 1px solid var(--at-line);
-  background: var(--at-paper);
-  backdrop-filter: blur(14px);
-}
-
 .at-page .wordmark {
   font-size: 0.95rem;
   font-weight: 750;
@@ -1300,28 +1218,6 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
 }
 .at-page .wordmark span { color: var(--at-muted); font-weight: 500; }
 
-.at-page .site-header nav {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.35rem 1.35rem;
-}
-.at-page .site-header nav a {
-  color: var(--at-muted);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-.at-page .site-header nav a:hover { color: var(--at-ink); }
-.at-page .site-header nav a.cta {
-  padding: 0.42rem 0.85rem;
-  border-radius: 999px;
-  background: var(--at-ink);
-  color: var(--at-paper);
-}
-.at-page .site-header nav a.cta:hover { background: var(--at-red); color: #fff; }
 
 /* Hero */
 .at-page .hero {
@@ -1938,7 +1834,6 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
   .at-page .flow > * { min-height: auto; }
   .at-page .hero h1 { font-size: clamp(2.5rem, 11vw, 3.9rem); }
   .at-page .hero h1 br { display: none; }
-  .at-page .site-header nav a:not(.cta) { display: none; }
   .at-page .step { grid-template-columns: 1fr; gap: 0.9rem; }
   .at-page .split,
   .at-page .split.even { grid-template-columns: 1fr; }
@@ -1969,18 +1864,8 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
 .marketplace-callout { display:flex;align-items:center;justify-content:space-between;gap:2rem;margin-top:1.5rem;padding:1.5rem 1.75rem;border:1px solid var(--border);border-left:4px solid var(--accent);background:var(--surface); }
 .marketplace-callout span,.marketplace-page .eyebrow { color:var(--at-red);font-size:.68rem;font-weight:750;letter-spacing:.11em;text-transform:uppercase; }
 .marketplace-callout h3 { margin:.3rem 0;font-size:1.25rem; }.marketplace-callout p { color:var(--muted);font-size:.9rem; }
-.marketplace-page { background:var(--at-paper); }.marketplace-page main { overflow:hidden; }.marketplace-page .site-header { position:relative;background:var(--at-paper);backdrop-filter:none; }
-.marketplace-page .header-inner { display:flex;align-items:center;justify-content:space-between;gap:1rem; }
-.marketplace-page .nav-toggle { display:none; }
-@media (max-width:900px) {
-  .marketplace-page .header-inner { flex-wrap:wrap; }
-  .marketplace-page .nav-toggle:not([hidden]) { display:inline-flex;align-items:center;min-height:44px;padding:.5rem .75rem;color:var(--at-ink);background:transparent;border:1px solid var(--at-line);border-radius:.3rem;font:inherit; }
-  .marketplace-page .site-header nav { width:100%;flex-direction:column;align-items:stretch; }
-  .marketplace-page .site-header nav a:not(.cta), .marketplace-page .site-header nav a.cta { display:block;padding:.75rem;min-height:44px;box-sizing:border-box; }
-  .hub-nav-ready .marketplace-page .site-header nav { display:none; }
-  .hub-nav-ready .marketplace-page .site-header nav.is-open { display:flex; }
-}
-.marketplace-page .site-header [aria-current="page"] { color:var(--at-red); }.marketplace-page .button { display:inline-flex;align-items:center;justify-content:center; }
+.marketplace-page { background:var(--at-paper); }.marketplace-page main { overflow:hidden; }
+.marketplace-page .button { display:inline-flex;align-items:center;justify-content:center; }
 .market-hero { position:relative;padding:clamp(3.5rem,7vw,6rem) 0;border-top:1px solid var(--at-line);border-bottom:1px solid var(--at-line);background:linear-gradient(135deg,var(--at-paper) 0%,#f4f0e8 72%,#eee8dc 100%);color:var(--at-ink); }
 .market-hero::before { position:absolute;top:0;right:10%;width:220px;height:4px;background:var(--at-red);content:""; }
 .market-hero-grid { position:relative;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(280px,.65fr);align-items:center;gap:clamp(2.5rem,7vw,7rem); }
@@ -2171,3 +2056,41 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
 @media (max-width: 900px) {
   .agentrust-hub .ecosystem-grid { grid-template-columns: 1fr; }
 }
+
+/* Site header
+ * One header for every agentrust-io.com page. tools/build-header.py stamps the
+ * markup from tools/site_header.py, and hub-nav.js adds the mobile Menu toggle.
+ * Selectors hang off .hub-header rather than a body class, so the same block
+ * serves the hub (.agentrust-hub) and the editorial pages (.at-page). It sits
+ * last so their generic list and link rules cannot restyle it.
+ */
+.hub-header, .hub-header *, .hub-header *::before, .hub-header *::after { box-sizing: border-box; }
+.hub-header { position: sticky; top: 0; z-index: 100; padding: 0 2rem; background: var(--at-paper); color: var(--at-ink); border-bottom: 1px solid var(--at-line); font-family: var(--at-sans); font-size: 16px; line-height: 1.6; }
+.hub-header ul, .hub-header li { margin: 0; padding: 0; list-style: none; color: inherit; }
+.hub-header .header-inner { max-width: 1100px; height: 56px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+.hub-header .logo { display: flex; align-items: center; gap: .5rem; color: var(--at-ink); font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; }
+.hub-header .header-nav { display: flex; align-items: center; gap: 1.5rem; }
+.hub-header .header-nav a, .hub-header .spec-menu summary { color: var(--at-ink); font-size: .875rem; text-decoration: none; transition: color .15s; }
+.hub-header .header-nav a:hover, .hub-header .spec-menu summary:hover,
+.hub-header .header-nav [aria-current="page"], .hub-header .spec-menu.is-current > details > summary { color: var(--at-red); }
+.hub-header .nav-toggle { display: none; }
+.hub-header .spec-menu { position: relative; }
+.hub-header .spec-menu summary { cursor: pointer; }
+.hub-header .spec-menu ul { position: absolute; top: 2rem; right: 0; min-width: 17rem; padding: .75rem; background: var(--at-paper); border: 1px solid var(--at-line); border-radius: .5rem; box-shadow: 0 .5rem 1.5rem #0001; }
+.hub-header .spec-menu li a { display: block; padding: .65rem; }
+@media (max-width: 900px) {
+  .hub-header .header-inner { height: auto; min-height: 56px; flex-wrap: wrap; }
+  .hub-header .header-inner nav { margin-left: auto; }
+  .hub-header .nav-toggle:not([hidden]) { display: inline-flex; align-items: center; min-height: 44px; padding: .5rem .75rem; color: var(--at-ink); background: transparent; border: 1px solid var(--at-line); border-radius: .3rem; font: inherit; }
+  .hub-header .header-nav { flex-wrap: wrap; gap: .5rem 1rem; padding: .75rem 0; }
+  .hub-nav-ready .hub-header .header-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; padding: .75rem 1.25rem; background: var(--at-paper); border-bottom: 1px solid var(--at-line); max-height: calc(100dvh - 56px); overflow-y: auto; }
+  .hub-nav-ready .hub-header .header-nav.is-open { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+  .hub-header .header-nav a, .hub-header .spec-menu summary { display: block; padding: .75rem; min-height: 44px; }
+  .hub-header .spec-menu ul { position: static; min-width: 0; box-shadow: none; margin: 0 .75rem .5rem; }
+}
+
+/* On this page: the section links an editorial page used to carry in its header. */
+.on-this-page { display: flex; flex-wrap: wrap; align-items: baseline; gap: .35rem 1.35rem; padding: .85rem max(var(--at-gutter), calc((100% - var(--at-wrap)) / 2)); border-bottom: 1px solid var(--at-line); background: var(--at-paper); font-family: var(--at-sans); font-size: .72rem; font-weight: 700; letter-spacing: .06em; line-height: 1.6; text-transform: uppercase; }
+.on-this-page span { color: var(--at-muted); font-size: .66rem; letter-spacing: .11em; }
+.on-this-page a { color: var(--at-ink); text-decoration: none; }
+.on-this-page a:hover { color: var(--at-red); }

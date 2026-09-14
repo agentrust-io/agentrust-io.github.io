@@ -9,45 +9,37 @@
   'use strict';
 
   var SITES = [
-    { id: 'home',       label: 'agentrust-io', url: 'https://agentrust-io.com',                                ext: false },
-    { id: 'verify',     label: 'Verify',       url: 'https://agentrust-io.com/verify/',                        ext: false },
-    { id: 'quickstart', label: 'Quickstart',   url: 'https://agentrust-io.com/quickstart/',                    ext: false },
-    { id: 'demos',      label: 'Demos',        url: 'https://agentrust-io.com/demos/',                         ext: false },
-    { id: 'telemetry',  label: 'Telemetry',    url: 'https://agentrust-io.com/telemetry/',                     ext: false },
-    { id: 'registry',   label: 'Registry',     url: 'https://agentrust-io.com/registry/',                      ext: false },
-    { id: 'trace',      label: 'TRACE',        url: 'https://trace.agentrust-io.com',                          ext: false },
-    { id: 'manifest',   label: 'Manifest',     url: 'https://manifest.agentrust-io.com',                       ext: false },
-    { id: 'cmcp',       label: 'cMCP',         url: 'https://cmcp.agentrust-io.com',                           ext: false },
-    { id: 'ca2a',       label: 'cA2A',         url: 'https://ca2a.agentrust-io.com',                           ext: false },
-    { id: 'wcm',        label: 'WCM',          url: 'https://wcm.agentrust-io.com',                            ext: false },
-    { id: 'governance', label: 'Governance',   url: 'https://governance.agentrust-io.com',                     ext: false },
-    { id: 'agt',        label: 'AGT',          url: 'https://github.com/microsoft/agent-governance-toolkit',   ext: true  },
-    { id: 'github',     label: 'GitHub',       url: 'https://github.com/agentrust-io',                         ext: true  }
+    { id: 'home',       label: 'agentrust-io', url: 'https://agentrust-io.com',            ext: false },
+    { id: 'verify',     label: 'Verify',       url: 'https://agentrust-io.com/verify/',    ext: false },
+    { id: 'wcm',        label: 'WCM',          url: 'https://wcm.agentrust-io.com',        ext: false },
+    { id: 'manifest',   label: 'Manifest',     url: 'https://manifest.agentrust-io.com',   ext: false },
+    { id: 'cmcp',       label: 'cMCP',         url: 'https://cmcp.agentrust-io.com',       ext: false },
+    { id: 'ca2a',       label: 'cA2A',         url: 'https://ca2a.agentrust-io.com',       ext: false },
+    { id: 'trace',      label: 'TRACE',        url: 'https://trace.agentrust-io.com',      ext: false },
+    { id: 'governance', label: 'Governance',   url: 'https://governance.agentrust-io.com', ext: false },
+    { id: 'github',     label: 'GitHub',       url: 'https://github.com/agentrust-io',     ext: true  }
   ];
 
   var HOST = location.hostname;
   var PATH = location.pathname;
-  // Quickstart, demos, telemetry and registry live under the apex host, so the
-  // active item cannot be resolved from the hostname alone the way every other
-  // entry can. The /wcm branch below stays for the redirect stub still served
-  // at agentrust-io.com/wcm/: it highlights WCM for the instant before the
-  // reader is moved to wcm.agentrust-io.com.
-
-  var CURRENT_ID = (HOST === 'agentrust-io.com' && PATH.indexOf('/verify') === 0) ? 'verify'
-    : (HOST === 'agentrust-io.com' && PATH.indexOf('/quickstart') === 0) ? 'quickstart'
-    : (HOST === 'agentrust-io.com' && PATH.indexOf('/demos') === 0) ? 'demos'
-    : (HOST === 'agentrust-io.com' && PATH.indexOf('/telemetry') === 0) ? 'telemetry'
-    : (HOST === 'agentrust-io.com' && PATH.indexOf('/registry') === 0) ? 'registry'
-    : (HOST === 'agentrust-io.com' && PATH.indexOf('/wcm') === 0) ? 'wcm'
-    : (HOST === 'agentrust-io.com' && PATH.indexOf('/extensions/ca2a') === 0) ? 'ca2a'
-    : HOST === 'agentrust-io.com' ? 'home'
-    : HOST.indexOf('trace.') === 0    ? 'trace'
-    : HOST.indexOf('manifest.') === 0 ? 'manifest'
+  // One link per property, in chain order. Everything else under the apex host
+  // (quickstart, demos, telemetry, registry, marketplace, community, /go/)
+  // highlights agentrust-io; /verify and the cA2A extension page have their own
+  // links. The /wcm branch stays for the redirect stub still served at
+  // agentrust-io.com/wcm/: it highlights WCM for the instant before the reader is
+  // moved to wcm.agentrust-io.com. The conformance suite belongs under TRACE.
+  var APEX = HOST === 'agentrust-io.com';
+  var CURRENT_ID = (APEX && PATH.indexOf('/verify') === 0) ? 'verify'
+    : (APEX && PATH.indexOf('/wcm') === 0) ? 'wcm'
+    : (APEX && PATH.indexOf('/extensions/ca2a') === 0) ? 'ca2a'
+    : APEX ? 'home'
+    : HOST.indexOf('wcm.') === 0         ? 'wcm'
+    : HOST.indexOf('manifest.') === 0    ? 'manifest'
     : HOST.indexOf('cmcp.') === 0        ? 'cmcp'
     : HOST.indexOf('ca2a.') === 0        ? 'ca2a'
-    : HOST.indexOf('governance.') === 0  ? 'governance'
-    : HOST.indexOf('wcm.') === 0         ? 'wcm'
+    : HOST.indexOf('trace.') === 0       ? 'trace'
     : HOST.indexOf('tests.') === 0       ? 'trace'
+    : HOST.indexOf('governance.') === 0  ? 'governance'
     : 'home';
 
   var NAV_ID = 'agt-supernav';
@@ -110,7 +102,8 @@
 
     var html = '';
     SITES.forEach(function (s, i) {
-      if (i === SITES.length - 2) {
+      // A rule sets the external links apart from the AgenTrust properties.
+      if (s.ext && i > 0 && !SITES[i - 1].ext) {
         html += '<span class="sep"></span>';
       }
       var active = s.id === CURRENT_ID ? ' class="active"' : '';

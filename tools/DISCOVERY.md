@@ -7,6 +7,7 @@ The public HTML is the primary source for readers and crawlers. `llms.txt` is a 
 Run these commands from the repository root with Python 3.11 or later:
 
 ```sh
+python tools/build-header.py
 python tools/build-discovery.py
 python tools/build-discovery.py --check
 python tools/check-discovery.py
