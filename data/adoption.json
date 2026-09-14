@@ -6,7 +6,7 @@
       "logo": "/assets/lf-logo-stacked-color.svg",
       "label": "Neutral host",
       "title": "TRACE Specification is an LF Project",
-      "description": "TRACE is hosted at the Linux Foundation as its own series. Its specification, IP, trademark, and conformance mark sit with the series under the Community Specification License and LF Projects policies, so no single vendor decides what conformance means.",
+      "description": "TRACE is hosted at the Linux Foundation as its own series. Its specification, IP, trademark, and conformance mark sit with the series under the Community Specification License and LF Projects policies, so no single vendor decides what conformance means. It has also been proposed to the Agentic AI Foundation at the Sandbox stage.",
       "evidenceUrl": "https://github.com/agentrust-io/trace-spec/blob/main/GOVERNANCE.md",
       "evidenceLabel": "Read the project governance"
     },
