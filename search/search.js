@@ -116,13 +116,28 @@
     hits.sort(function (a, b) {
       return b.score - a.score || (b.doc.isPage - a.doc.isPage) || a.doc.title.localeCompare(b.doc.title);
     });
-    var perPage = {}, results = [];
-    for (var i = 0; i < hits.length && results.length < LIMIT; i++) {
+    var perPage = {}, capped = [];
+    for (var i = 0; i < hits.length; i++) {
       var key = hits[i].doc.page;
       perPage[key] = (perPage[key] || 0) + 1;
-      if (perPage[key] <= PER_PAGE) results.push(hits[i]);
+      if (perPage[key] <= PER_PAGE) capped.push(hits[i]);
     }
-    return results;
+    return (site && site !== 'all' ? capped : interleave(capped)).slice(0, LIMIT);
+  }
+
+  // Under All, the largest sites would otherwise fill the list on any common
+  // word. Take each site's best remaining hit in turn, strongest site first in
+  // every round, so every site with a match shows within the first few results.
+  function interleave(hits) {
+    var bySite = {}, order = [], out = [];
+    hits.forEach(function (hit) {
+      if (!bySite[hit.doc.site]) { bySite[hit.doc.site] = []; order.push(hit.doc.site); }
+      bySite[hit.doc.site].push(hit);
+    });
+    while (out.length < hits.length) {
+      order.forEach(function (id) { if (bySite[id].length) out.push(bySite[id].shift()); });
+    }
+    return out;
   }
 
   function snippet(text, terms) {
@@ -184,7 +199,7 @@
 
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = { SOURCES: SOURCES, stripHtml: stripHtml, tokenize: tokenize, buildUrl: buildUrl, fromMkDocs: fromMkDocs,
-      score: score, search: search, snippet: snippet, highlight: highlight, renderResult: renderResult, LIMIT: LIMIT, PER_PAGE: PER_PAGE };
+      score: score, search: search, interleave: interleave, snippet: snippet, highlight: highlight, renderResult: renderResult, LIMIT: LIMIT, PER_PAGE: PER_PAGE };
     return;
   }
 

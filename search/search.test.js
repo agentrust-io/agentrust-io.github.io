@@ -62,6 +62,22 @@ assert.equal(s.search(docs, 'attestation', 'cmcp').length, 0);
 assert.ok(s.search(docs, 'attestation', 'wcm').length > 0);
 assert.equal(s.search(docs, '').length, 0);
 
+// Balance under All: a big site with many strong hits cannot push out a site
+// with one weaker hit. hits come in score order, so order of first appearance is
+// each site's best score.
+const big = s.fromMkDocs(s.SOURCES.find((x) => x.id === 'manifest'), { docs: Array.from({ length: 12 }, (_, i) => (
+  { location: `p${i}/`, title: `Attestation ${i}`, text: 'attestation attestation attestation' })) });
+const small = s.fromMkDocs(wcm, { docs: [{ location: 'only/', title: 'Notes', text: 'one mention of attestation' }] });
+const mixed = big.concat(small);
+const balanced = s.search(mixed, 'attestation');
+const sitesWithMatches = new Set(balanced.map((h) => h.doc.site)).size;
+assert.equal(sitesWithMatches, 2);
+assert.equal(balanced[0].doc.site, 'manifest', 'the strongest site leads each round');
+assert.ok(balanced.slice(0, sitesWithMatches).some((h) => h.doc.site === 'wcm'), 'the weaker site appears in the first round');
+const scoreOrder = s.search(mixed, 'attestation', 'manifest').map((h) => h.score);
+assert.deepEqual(scoreOrder, [...scoreOrder].sort((a, b) => b - a), 'a single-site filter keeps score order');
+assert.ok(s.search(mixed, 'attestation').length <= s.LIMIT);
+
 // Snippets centre on the first match and highlight splits only on terms.
 assert.match(s.snippet('x'.repeat(300) + ' attestation ' + 'y'.repeat(300), ['attestation']), /^…x+ attestation y+…$/);
 assert.deepEqual(s.highlight('TDX quote tdx', ['tdx']), [
