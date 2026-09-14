@@ -2,7 +2,7 @@ import { access, readFile, writeFile } from 'node:fs/promises';
 
 const root = new URL('../', import.meta.url);
 const dataUrl = new URL('data/adoption.json', root);
-const pageUrl = new URL('index.html', root);
+const pageUrl = new URL('community/index.html', root);
 const start = '  <!-- adoption:generated:start -->';
 const end = '  <!-- adoption:generated:end -->';
 
@@ -71,7 +71,7 @@ const next = page.slice(0, startAt) + generated + page.slice(endAt + end.length)
 
 if (process.argv.includes('--check')) {
   if (page !== next) {
-    console.error('index.html adoption section is stale; run node scripts/render-adoption.mjs');
+    console.error('community/index.html adoption section is stale; run node scripts/render-adoption.mjs');
     process.exit(1);
   }
   console.log(`PASS ${relationships.length} adoption relationships are in sync`);

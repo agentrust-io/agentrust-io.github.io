@@ -15,8 +15,8 @@
       "name": "OPAQUE Systems",
       "logo": "/assets/opaque-logo.svg",
       "markClass": "opaque-mark",
-      "label": "Founding engineering and infrastructure sponsor",
-      "description": "OPAQUE provides funding, engineering time, infrastructure, and confidential-computing contributions. Sponsorship does not confer ownership of AgenTrust projects or governance authority over their technical decisions.",
+      "label": "Sponsor",
+      "description": "OPAQUE funds the engineering, infrastructure and confidential-computing work behind AgenTrust, and contributes to the projects.",
       "evidenceUrl": "https://github.com/agentrust-io",
       "evidenceLabel": "Review the public project record"
     },
