@@ -52,15 +52,20 @@ assert.ok(
   'og:url must be the docs home',
 );
 
-// The card image stays served from this directory: links cached against
-// agentrust-io.com/wcm/og-launch.png must keep resolving.
+// The card is served from this directory, so a share of this address never
+// depends on another host. og.png is the current card; og-launch.png, the old
+// one, stays because links cached against it must keep resolving.
 assert.ok(
   fs.existsSync(path.join(here, 'og-launch.png')),
   'og-launch.png must stay in place for already-shared cards',
 );
 assert.ok(
-  html.includes('content="https://agentrust-io.com/wcm/og-launch.png"'),
-  'og:image must be absolute and point at the image this directory still serves',
+  fs.existsSync(path.join(here, 'og.png')),
+  'og.png, the current card, must be served from this directory',
+);
+assert.ok(
+  html.includes('<meta property="og:image" content="https://agentrust-io.com/wcm/og.png">'),
+  'og:image must be absolute and point at the card this directory serves',
 );
 
 // A redirect stub is small. If this trips, someone is rebuilding a second
