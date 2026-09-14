@@ -13,8 +13,8 @@ ROOT = Path(__file__).resolve().parents[1]
 class Page(HTMLParser):
     def __init__(self, text):
         super().__init__()
-        self.canonicals, self.descriptions, self.ids = [], [], set()
-        self.title, self.in_title, self.noindex, self.redirect, self.h1 = '', False, False, False, 0
+        self.canonicals, self.descriptions, self.ids, self.meta = [], [], set(), {}
+        self.title, self.in_title, self.noindex, self.redirect, self.h1, self.jsonld = '', False, False, False, 0, 0
         self.feed(text)
 
     def handle_starttag(self, tag, attrs):
@@ -25,9 +25,13 @@ class Page(HTMLParser):
             self.in_title = True
         if tag == 'h1':
             self.h1 += 1
+        if tag == 'script' and a.get('type') == 'application/ld+json':
+            self.jsonld += 1
         if tag == 'link' and 'canonical' in a.get('rel', '').split():
             self.canonicals.append(a.get('href'))
         if tag == 'meta':
+            if a.get('property') or a.get('name'):
+                self.meta[a.get('property') or a.get('name')] = a.get('content', '')
             if a.get('name') == 'description':
                 self.descriptions.append(a.get('content', ''))
             self.noindex |= a.get('name', '').lower() == 'robots' and 'noindex' in a.get('content', '').lower()
@@ -54,6 +58,16 @@ def check():
         assert len(page.descriptions) == 1 and page.descriptions[0].strip(), f'{rel}: missing/duplicate description'
         assert page.title.strip() and page.title not in titles, f'{rel}: missing/duplicate title'
         assert page.h1 == 1, f'{rel}: expected one main heading'
+        # Search results and link cards read these, so they follow one rule rather than page by page taste.
+        title = page.title.strip()
+        social = title.removesuffix(' | AgenTrust')
+        description = page.descriptions[0]
+        assert len(description) <= 160, f'{rel}: description is {len(description)} characters, over 160'
+        assert not re.search('[\u2013\u2014]', title + description), f'{rel}: dash in title or description'
+        assert page.meta.get('og:title') == social == page.meta.get('twitter:title'), f'{rel}: og:title and twitter:title must be the title without " | AgenTrust"'
+        assert page.meta.get('og:description') == description == page.meta.get('twitter:description'), f'{rel}: social descriptions must match the meta description'
+        assert all(page.meta.get(k) for k in ['og:image', 'og:image:width', 'og:image:height', 'og:image:alt']), f'{rel}: og:image needs width, height and alt'
+        assert page.jsonld or rel == 'marketplace/catalog/index.html', f'{rel}: no JSON-LD'
         titles.add(page.title)
         expected.add(expected_url)
     sitemap = ET.parse(ROOT / 'sitemap.xml')
@@ -79,7 +93,7 @@ def check():
     assert catalog.count('<article ') == len(snapshot['items']), 'Static catalog omitted listings'
     assert '<script' not in catalog, 'Static catalog must work without JavaScript'
     assert pages[ROOT / '404.html'].noindex, 'Error page must be excluded from indexing'
-    print(f'PASS {len(locations)} canonical pages; metadata, sitemap, 8 crawler policies, AI guide links, static catalog and 404')
+    print(f'PASS {len(locations)} canonical pages; metadata, social tags, structured data, sitemap, 8 crawler policies, AI guide links, static catalog and 404')
 
 
 if __name__ == '__main__':

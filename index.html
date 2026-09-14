@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AgenTrust: Open Specifications for Verifiable AI</title>
-  <meta name="description" content="Prove what your AI ran and what it did. Open specifications and verifiers bind model weights, agent identity and tool calls to hardware attestation, and anyone can check the evidence offline.">
+  <meta name="description" content="Prove what your AI ran and what it did: open specifications and verifiers that bind model weights, agent identity and tool calls to hardware attestation.">
   <link rel="canonical" href="https://agentrust-io.com/">
   <meta name="robots" content="index, follow">
 
@@ -17,8 +17,8 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AgenTrust">
-  <meta property="og:title" content="AgenTrust: Prove what your AI ran, and what it did">
-  <meta property="og:description" content="Open specifications and verifiers that bind model weights, agent identity and every tool call to hardware attestation. Anyone can check the evidence offline.">
+  <meta property="og:title" content="AgenTrust: Open Specifications for Verifiable AI">
+  <meta property="og:description" content="Prove what your AI ran and what it did: open specifications and verifiers that bind model weights, agent identity and tool calls to hardware attestation.">
   <meta property="og:url" content="https://agentrust-io.com/">
   <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://agentrust-io.com/og.png">
@@ -28,8 +28,8 @@
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="AgenTrust: Prove what your AI ran, and what it did">
-  <meta name="twitter:description" content="Open specifications and verifiers that bind model weights, agent identity and every tool call to hardware attestation. Anyone can check the evidence offline.">
+  <meta name="twitter:title" content="AgenTrust: Open Specifications for Verifiable AI">
+  <meta name="twitter:description" content="Prove what your AI ran and what it did: open specifications and verifiers that bind model weights, agent identity and tool calls to hardware attestation.">
   <meta name="twitter:image" content="https://agentrust-io.com/og.png">
 
   <!-- Structured data: Organization + WebSite -->
@@ -50,6 +50,8 @@
           "https://cmcp.agentrust-io.com",
           "https://ca2a.agentrust-io.com",
           "https://wcm.agentrust-io.com",
+          "https://tests.agentrust-io.com",
+          "https://governance.agentrust-io.com",
           "https://github.com/agentrust-io/agentrust-telemetry"
         ]
       },
@@ -79,6 +81,7 @@
         "item": {
           "@type": "TechArticle",
           "name": "Weight Custody Manifest (WCM)",
+          "headline": "Weight Custody Manifest (WCM)",
           "url": "https://wcm.agentrust-io.com/",
           "description": "An open, pre-1.0 specification that binds model-weight identity and custody terms to key-release policy when a builder deploys weights into infrastructure it does not control."
         }
@@ -89,6 +92,7 @@
         "item": {
           "@type": "TechArticle",
           "name": "Agent Manifest",
+          "headline": "Agent Manifest",
           "url": "https://manifest.agentrust-io.com/",
           "description": "A structured, machine-readable declaration of an agent's capabilities, permissions, and data access policies that operators and orchestrators can verify before invocation."
         }
@@ -99,6 +103,7 @@
         "item": {
           "@type": "TechArticle",
           "name": "Confidential MCP (cMCP)",
+          "headline": "Confidential MCP (cMCP)",
           "url": "https://cmcp.agentrust-io.com/",
           "description": "Confidential MCP (cMCP) evaluates routed MCP tool calls against policy and records the decisions. In a hardware deployment, the runtime is inside a Trusted Execution Environment (TEE); the agent and upstream tool server remain separate. Host confidentiality also depends on the egress policy. Software mode provides no hardware isolation."
         }
@@ -109,6 +114,7 @@
         "item": {
           "@type": "TechArticle",
           "name": "Confidential A2A (cA2A)",
+          "headline": "Confidential A2A (cA2A)",
           "url": "https://ca2a.agentrust-io.com/",
           "description": "A trust profile on the Agent2Agent (A2A) protocol that makes agent-to-agent delegation verifiable and confidential: attested, attenuated delegation, a sealed peer channel, and an offline-verifiable provenance record for every hop."
         }
@@ -119,6 +125,7 @@
         "item": {
           "@type": "TechArticle",
           "name": "TRACE",
+          "headline": "TRACE",
           "url": "https://trace.agentrust-io.com/",
           "description": "TRACE defines portable, signed runtime evidence. Hardware provenance requires attestation verification against a trusted root; software-mode records do not provide that guarantee."
         }

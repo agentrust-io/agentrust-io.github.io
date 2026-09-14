@@ -198,9 +198,8 @@ def render_index(controls):
     with_point = sum(1 for c in controls if c['enforcement_points'])
     links = sum(len(c['opencre']) for c in controls)
     unique = len({o['id'] for c in controls for o in c['opencre']})
-    description = (f'The AgenTrust agentic control set: {total} controls for AI agents, each stated as one '
-                   'requirement and cross-linked to the corresponding Common Requirement in OpenCRE. '
-                   'Stable permalinks at /go/.')
+    description = (f'The AgenTrust agentic control set: {total} controls for AI agents, each one requirement '
+                   'cross-linked to its Common Requirement in OpenCRE. Stable permalinks at /go/.')
     ld = f'''<script type="application/ld+json">
 {{
   "@context": "https://schema.org",
@@ -210,6 +209,16 @@ def render_index(controls):
   "url": "{BASE}/go/",
   "license": "https://opensource.org/licenses/MIT",
   "publisher": {{ "@id": "{BASE}/#organization" }}
+}}
+</script>
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {{ "@type": "ListItem", "position": 1, "name": "AgenTrust", "item": "{BASE}/" }},
+    {{ "@type": "ListItem", "position": 2, "name": "AgenTrust Agentic Controls", "item": "{BASE}/go/" }}
+  ]
 }}
 </script>
 
