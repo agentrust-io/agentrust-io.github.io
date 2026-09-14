@@ -19,8 +19,9 @@
   address is the drift. The Open Graph tags below point at the docs site so a
   crawler that lands on an old share resolves to the same card.
 
-  og-launch.png stays in this directory. Cards cached against
-  agentrust-io.com/wcm/og-launch.png still resolve, and nothing rewrites that path.
+  The card is served from this directory as og.png, the same image the docs
+  site serves, rendered by tools/render-og-card.py wcm. og-launch.png, the old
+  card, stays here too, so shares cached against it still resolve.
 -->
 
 <link rel="canonical" href="https://wcm.agentrust-io.com/">
@@ -32,22 +33,22 @@
 <meta property="og:description" content="An open, pre-1.0 specification for releasing model weights only to an approved, attested runtime, with the guarantee boundary stated plainly.">
 <meta property="og:url" content="https://wcm.agentrust-io.com/">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://agentrust-io.com/wcm/og-launch.png">
-<meta property="og:image:width" content="1731">
-<meta property="og:image:height" content="909">
-<meta property="og:image:alt" content="Weight Custody Manifest: Release, Attest, Revoke">
+<meta property="og:image" content="https://agentrust-io.com/wcm/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Weight Custody Manifest: release model weights only to an attested runtime">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Weight Custody Manifest">
 <meta name="twitter:description" content="An open, pre-1.0 specification for releasing model weights only to an approved, attested runtime, with the guarantee boundary stated plainly.">
-<meta name="twitter:image" content="https://agentrust-io.com/wcm/og-launch.png">
+<meta name="twitter:image" content="https://agentrust-io.com/wcm/og.png">
 
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-<link rel="stylesheet" href="/design-system.css?v=18">
+<link rel="stylesheet" href="/design-system.css?v=21">
 <script>
   // replace() rather than assign(): Back should return to wherever the reader
   // came from, not bounce them through this page again.
