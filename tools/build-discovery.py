@@ -8,6 +8,10 @@ from pathlib import Path
 import re
 from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import site_header  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = 'https://agentrust-io.com'
@@ -55,10 +59,10 @@ def catalog_html(snapshot):
 <title>All AgenTrust Marketplace Integrations | AgenTrust</title>
 <meta name="description" content="Browse AgenTrust and Microsoft AGT integrations with descriptions and source links. This dated catalog works without JavaScript or external catalog requests.">
 <link rel="canonical" href="https://agentrust-io.com/marketplace/catalog/">
-<link rel="stylesheet" href="/design-system.css?v=19"><link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/design-system.css?v=''' + site_header.CSS_VERSION + '''"><link rel="icon" href="/favicon.ico">
 </head><body class="at-page marketplace-page">
-<header class="site-header"><div class="wrap header-inner"><a class="wordmark" href="/">AgenTrust</a><a href="/marketplace/">Search marketplace</a></div></header>
-<main class="wrap"><section><p class="eyebrow">Marketplace catalog</p><h1>All integrations</h1>
+''' + site_header.render(section='Build', script=False) + '''
+<main class="wrap" id="main"><section><p class="eyebrow">Marketplace catalog</p><h1>All integrations</h1>
 <p>Browse descriptions and source links without JavaScript. Use your browser's Find command to locate a framework or technology.</p>
 ''' + f'<p>{len(items)} listings, captured {escape(snapshot["captured"])} from <a href="https://github.com/agentrust-io/integrations/tree/{snapshot["source_commit"]}/marketplace">this source revision</a>. <a href="/marketplace/">Search the live catalog</a> for newer listings.</p>\n' + '''<p>Community listings are manifest-validated, not endorsed. AGT project listings describe integrations in the Microsoft Agent Governance Toolkit. Listing does not establish certification, hardware validation, or commercial availability.</p>
 <div class="grid">
