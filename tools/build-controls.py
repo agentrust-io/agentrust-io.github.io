@@ -145,7 +145,7 @@ FOOTER = '''<footer class="site-footer"><div class="wrap">
     </div>
     <div class="foot-links">
       <a href="/">Home</a>
-      <a href="/quickstart/">Quickstart</a>
+      <a href="/quickstart/">Get started</a>
       <a href="/demos/">Demos</a>
       <a href="https://github.com/agentrust-io">GitHub</a>
     </div>

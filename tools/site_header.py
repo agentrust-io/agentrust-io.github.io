@@ -29,7 +29,7 @@ MENU = [
         ('TRACE conformance suite', 'https://tests.agentrust-io.com'),
     ]),
     ('Build', [
-        ('10-minute quickstart', '/quickstart/'),
+        ('Get started', '/quickstart/'),
         ('Demos', '/demos/'),
         ('Telemetry', '/telemetry/'),
         ('Marketplace', '/marketplace/'),

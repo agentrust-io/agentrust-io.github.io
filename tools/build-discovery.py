@@ -67,7 +67,7 @@ def catalog_html(snapshot):
 ''' + f'<p>{len(items)} listings, captured {escape(snapshot["captured"])} from <a href="https://github.com/agentrust-io/integrations/tree/{snapshot["source_commit"]}/marketplace">this source revision</a>. <a href="/marketplace/">Search the live catalog</a> for newer listings.</p>\n' + '''<p>Community listings are manifest-validated, not endorsed. AGT project listings describe integrations in the Microsoft Agent Governance Toolkit. Listing does not establish certification, hardware validation, or commercial availability.</p>
 <div class="grid">
 ''' + '\n'.join(cards) + '''
-</div></section></main><footer class="site-footer"><div class="wrap"><a href="/">AgenTrust ecosystem</a> · <a href="/wcm/">Weight Custody Manifest</a> · <a href="/quickstart/">First tutorial</a></div></footer>
+</div></section></main><footer class="site-footer"><div class="wrap"><a href="/">AgenTrust ecosystem</a> · <a href="/wcm/">Weight Custody Manifest</a> · <a href="/quickstart/">Get started</a></div></footer>
 </body></html>
 '''
 

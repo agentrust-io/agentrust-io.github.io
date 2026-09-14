@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>cMCP Quickstart: Block a Tool Call and Verify the Receipt | AgenTrust</title>
-<meta name="description" content="A hands-on cMCP quickstart: install the runtime with pip, write a Cedar policy, watch it deny a tool call tagged as PII with HTTP 403 before it is forwarded, and verify the signed TRACE claim. Runs on your laptop in about ten minutes, no special hardware.">
+<title>Get Started with the AgenTrust Specifications | AgenTrust</title>
+<meta name="description" content="One start page per AgenTrust specification, in chain order: Weight Custody Manifest, Agent Manifest, cMCP, cA2A, TRACE and the TRACE conformance suite. Each runs locally in software mode. Or check a real Intel TDX quote in your browser with nothing to install.">
 <link rel="canonical" href="https://agentrust-io.com/quickstart/">
 <meta name="robots" content="index, follow">
 
@@ -15,10 +15,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
 <!-- Open Graph -->
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:site_name" content="AgenTrust">
-<meta property="og:title" content="cMCP Quickstart: Block a Tool Call and Verify the Receipt">
-<meta property="og:description" content="Install the cMCP runtime, write a Cedar policy, watch it deny a tool call tagged as PII with HTTP 403 before it is forwarded, and verify the signed TRACE claim. On your laptop, in about ten minutes.">
+<meta property="og:title" content="Get started with the AgenTrust specifications">
+<meta property="og:description" content="Pick a step in the chain, weights, agent, actions or evidence, and go to that specification's own start page. Or verify a real Intel TDX quote in your browser.">
 <meta property="og:url" content="https://agentrust-io.com/quickstart/">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://agentrust-io.com/og.png">
@@ -28,31 +28,30 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="cMCP Quickstart: Block a Tool Call and Verify the Receipt">
-<meta name="twitter:description" content="Install the cMCP runtime, write a Cedar policy, watch it deny a tool call with HTTP 403 before it is forwarded, and verify the signed TRACE claim. About ten minutes on your laptop.">
+<meta name="twitter:title" content="Get started with the AgenTrust specifications">
+<meta name="twitter:description" content="Pick a step in the chain, weights, agent, actions or evidence, and go to that specification's own start page. Or verify a real Intel TDX quote in your browser.">
 <meta name="twitter:image" content="https://agentrust-io.com/og.png">
 
 <!-- Structured data -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "cMCP Quickstart: block a tool call and verify the receipt",
-  "description": "Install the cMCP runtime, write a Cedar policy that denies a tool call tagged as PII, confirm the runtime returns HTTP 403 before forwarding, and verify the signed TRACE claim the session produces.",
-  "totalTime": "PT10M",
+  "@type": "CollectionPage",
+  "name": "Get started with the AgenTrust specifications",
   "url": "https://agentrust-io.com/quickstart/",
   "publisher": { "@id": "https://agentrust-io.com/#organization" },
-  "supply": [
-    { "@type": "HowToSupply", "name": "Python 3.11 or newer" },
-    { "@type": "HowToSupply", "name": "macOS or Linux, two terminal windows" }
-  ],
-  "step": [
-    { "@type": "HowToStep", "name": "Install the runtime", "url": "https://agentrust-io.com/quickstart/#quickstart" },
-    { "@type": "HowToStep", "name": "Write the config and the Cedar policy", "url": "https://agentrust-io.com/quickstart/#quickstart" },
-    { "@type": "HowToStep", "name": "Start the runtime", "url": "https://agentrust-io.com/quickstart/#quickstart" },
-    { "@type": "HowToStep", "name": "Fire a forbidden tool call and watch it return 403", "url": "https://agentrust-io.com/quickstart/#quickstart" },
-    { "@type": "HowToStep", "name": "Verify the signed TRACE claim", "url": "https://agentrust-io.com/quickstart/#proof" }
-  ]
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Weight Custody Manifest: getting started", "url": "https://wcm.agentrust-io.com/getting-started/" },
+      { "@type": "ListItem", "position": 2, "name": "Agent Manifest: create and check your first manifest", "url": "https://manifest.agentrust-io.com/getting-started/" },
+      { "@type": "ListItem", "position": 3, "name": "cMCP quickstart", "url": "https://cmcp.agentrust-io.com/quickstart/" },
+      { "@type": "ListItem", "position": 4, "name": "cA2A: verify your first delegation chain", "url": "https://ca2a.agentrust-io.com/docs/quickstart/" },
+      { "@type": "ListItem", "position": 5, "name": "TRACE quickstart", "url": "https://trace.agentrust-io.com/docs/quickstart/" },
+      { "@type": "ListItem", "position": 6, "name": "TRACE conformance suite quick start", "url": "https://tests.agentrust-io.com/docs/quickstart/" },
+      { "@type": "ListItem", "position": 7, "name": "Verify an Intel TDX quote in your browser", "url": "https://agentrust-io.com/verify/" }
+    ]
+  }
 }
 </script>
 
@@ -79,7 +78,7 @@
           <li><a href="https://tests.agentrust-io.com">TRACE conformance suite</a></li>
         </ul></details></li>
         <li class="spec-menu is-current"><details><summary>Build</summary><ul>
-          <li><a href="/quickstart/" aria-current="page">10-minute quickstart</a></li>
+          <li><a href="/quickstart/" aria-current="page">Get started</a></li>
           <li><a href="/demos/">Demos</a></li>
           <li><a href="/telemetry/">Telemetry</a></li>
           <li><a href="/marketplace/">Marketplace</a></li>
@@ -94,301 +93,56 @@
 <!-- site-header:end -->
 
 <div class="hero"><div class="wrap">
-  <div class="split">
-    <div>
-      <span class="eyebrow"><a href="/#chain">03 · Actions</a> · cMCP software-mode quickstart</span>
-      <h1>Set policy on your agent. Watch it <em>block a bad action.</em></h1>
-      <p class="sub">Deny a request to a tool tagged as personal data, then verify its signed session record. About ten minutes on your laptop, using a mock tool and software attestation.</p>
-      <div class="actions"><a class="button" href="#quickstart">Start the quickstart</a><a class="button secondary" href="#loop">How it works</a></div>
-    </div>
-    <div>
-      <p class="meta">Preview · simulated, a 30-second look at the block</p>
-      <div class="term">
-        <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="term-title">agent → runtime</span></div>
-        <div class="term-body">
-          <div>$ agent calls salesforce.contacts<br>&nbsp;&nbsp;<span class="dim">catalog tag:</span> <span class="alert">compliance_domain: "pii"</span></div>
-          <button class="runbtn" id="previewBtn" onclick="runPreview()">▶ See it in action</button>
-          <div id="preview-response" hidden>
-            <div class="dim">&lt; HTTP/1.1 <span class="alert">403 Forbidden</span></div>
-            <div class="dim">&lt; "message": "Request denied by policy"</div>
-            <div class="dim">&lt; "error_code": <span class="alert">"POLICY_DENY"</span></div>
-            <div class="ok" style="margin-top:0.6rem;">✓ Blocked before it reached Salesforce</div>
-          </div>
-        </div>
-      </div>
-      <p class="meta">Policy overhead target: p50 under 1ms per tool call (<a href="https://github.com/agentrust-io/cmcp/blob/main/docs/testing/benchmarks.md" target="_blank" rel="noopener">documented targets</a>, not a measurement on your machine)</p>
-    </div>
-  </div>
+  <span class="eyebrow"><a href="/#chain">Weights · Agent · Actions · Evidence</a> · Start pages</span>
+  <h1>Get started</h1>
+  <p class="sub">Each specification has its own start page. Pick the step in the chain your trust boundary needs; no step requires the others.</p>
+  <div><span class="status">Python 3.11 or newer · Git and Bash on Linux, macOS or Windows with WSL · Software mode, no hardware isolation</span></div>
 </div></div>
-
-<nav class="on-this-page" aria-label="On this page">
-  <span>On this page</span>
-  <a href="#loop">How it works</a>
-  <a href="#quickstart">Quickstart</a>
-  <a href="#proof">Proof</a>
-  <a href="https://github.com/agentrust-io/cmcp">GitHub ↗</a>
-</nav>
 
 <main id="main">
 
-<section id="problem">
-  <span class="label">The problem</span>
-  <h2>Allow is not the same as proof</h2>
-  <div class="split even" style="margin-top:2.25rem;">
-    <div>
-      <p class="lead-serif">A customer-service agent pulls records from Salesforce to do its job: names, accounts, PII. What stops it leaking sensitive data on a tool call it shouldn't make, and could you prove to a regulator it didn't?</p>
+<section id="start">
+  <span class="label"><a href="/#chain">The chain</a></span>
+  <h2>Pick a step</h2>
+  <div class="grid">
+    <div class="card static" id="weights">
+      <div class="card-head"><span class="tag">01 · Weights</span> <strong>Weight Custody Manifest</strong></div>
+      <p>Install the reference SDK from source, sign a manifest as builder and custodian, verify it, and gate a key release. It runs on software test doubles, with no GPU or cloud account.</p>
+      <p><a href="https://wcm.agentrust-io.com/getting-started/">Getting started →</a></p>
     </div>
-    <div>
-      <p>An agent calls a tool. Your policy engine says <em>allow</em>. The call goes through. None of that proves the engine itself wasn't tampered with, or that your audit log reflects what actually happened.</p>
-      <p><strong>cMCP checks calls at the tool boundary.</strong> The runtime evaluates routed tool calls against policy and records its decisions. This local demo demonstrates denial and signing; isolation from the host requires a hardware TEE deployment.</p>
+    <div class="card static" id="agent">
+      <div class="card-head"><span class="tag">02 · Agent</span> <strong>Agent Manifest</strong></div>
+      <p>Sign a small agent configuration and verify its declared inputs, then watch an edited record and a changed prompt hash fail. It runs no model and produces no hardware attestation.</p>
+      <p><a href="https://manifest.agentrust-io.com/getting-started/">Create your first manifest →</a></p>
+    </div>
+    <div class="card static" id="actions">
+      <div class="card-head"><span class="tag">03 · Actions</span> <strong>cMCP</strong></div>
+      <p>Run the runtime in dev mode, see a call to a sensitive tool get HTTP 403 before it is forwarded, and verify the signed TRACE claim. With no hardware TEE, verification reports <code>partially_verified</code>.</p>
+      <p><a href="https://cmcp.agentrust-io.com/quickstart/">cMCP quickstart →</a></p>
+    </div>
+    <div class="card static" id="delegation">
+      <div class="card-head"><span class="tag">03 · Actions</span> <strong>cA2A</strong></div>
+      <p>Build a two-hop delegation chain and verify it, then see an untrusted root and a grant wider than its parent rejected. It needs no network, hardware or running peer.</p>
+      <p><a href="https://ca2a.agentrust-io.com/docs/quickstart/">Verify your first chain →</a></p>
+    </div>
+    <div class="card static" id="evidence">
+      <div class="card-head"><span class="tag">04 · Evidence</span> <strong>TRACE</strong></div>
+      <p>Sign a record, verify it, then change one field and watch verification fail. It uses synthetic claims and software signing, with no agent, registry or attestation.</p>
+      <p><a href="https://trace.agentrust-io.com/docs/quickstart/">TRACE quickstart →</a></p>
+    </div>
+    <div class="card static" id="conformance">
+      <div class="card-head"><span class="tag">04 · Evidence</span> <strong>Conformance suite</strong></div>
+      <p>Install <code>agentrust-trace-tests</code>, generate a Level 0 sample record, and run <code>trace-tests verify</code> against it. The sample passes Level 0; Levels 1 and 2 fail without attestation and anchoring.</p>
+      <p><a href="https://tests.agentrust-io.com/docs/quickstart/">Conformance quick start →</a></p>
     </div>
   </div>
 </section>
 
-<section id="loop">
-  <span class="label">How it works</span>
-  <h2>Five steps from install to a blocked leak</h2>
-  <p>Everything leads to step four, the moment you watch your own policy stop something it shouldn't allow.</p>
-  <div class="flow flow-5">
-    <div><span class="n">01</span><strong>Install</strong><span>One <code>pip install</code>. The runtime, that's it.</span></div>
-    <div><span class="n">02</span><strong>Write your policy</strong><span>A few lines of Cedar. Your rules, not ours.</span></div>
-    <div><span class="n">03</span><strong>Wire it in</strong><span>Point one call at the runtime. Nothing else changes.</span></div>
-    <div class="marked"><span class="n">04</span><strong>Watch it block</strong><span>Fire a bad action. Watch the policy return 403.</span></div>
-    <div><span class="n">05</span><strong>Prove it</strong><span>Get a signed, verifiable record of what happened.</span></div>
-  </div>
-</section>
-
-<section id="quickstart">
-  <span class="label">Ten minutes</span>
-  <h2>The quickstart</h2>
-  <p>Copy each block. Every file is filled in for you, nothing to hand-author, nothing to hash. Follow along top to bottom.</p>
-
-  <div class="callout">
-    <p><strong>Before you start.</strong> Python 3.11+ · pip · curl · macOS, Linux, or Windows with WSL and Bash · two terminal windows · about ten minutes.</p>
-    <p style="margin-top:0.6rem;">The install is pinned to <code>cmcp-runtime 0.5.0</code> so the commands match this walkthrough. Report unexpected results by <a href="https://github.com/agentrust-io/cmcp/issues" target="_blank" rel="noopener">opening an issue</a> with the failing command and runtime version.</p>
-  </div>
-
-  <div class="callout"><p><strong>Expected finish:</strong> the tool request returns <code>403 POLICY_DENY</code>. The verifier later reports <code>FAIL (partially_verified)</code> and exits 1 because this demo has no hardware attestation. That is the expected software-mode result.</p></div>
-
-  <nav class="tutorial-toc" aria-label="Quickstart steps"><a href="#install">1. Install</a><a href="#configure">2. Configure</a><a href="#runtime">3. Start</a><a href="#deny">4. Deny</a><a href="#proof">5. Verify</a><a href="#troubleshooting">Troubleshooting</a></nav>
-
-  <div class="steps">
-
-    <div class="step" id="install">
-      <div class="step-num">1</div>
-      <div class="step-body">
-        <h3>Install the runtime</h3>
-        <p class="hint">Creates a project folder, an isolated Python environment, and installs the <code>cmcp</code> runtime, the enforcement engine. (The venv is why <code>pip install</code> won't get blocked on recent macOS.) No tool server needed: in step 4 your policy blocks the call <b>before it forwards</b>, so <code>salesforce.contacts</code> is a placeholder for your real MCP server. Open source (MIT): <a href="https://github.com/agentrust-io/cmcp" target="_blank" rel="noopener">github.com/agentrust-io/cmcp</a></p>
-        <div class="code">
-          <div class="code-head"><span class="code-label">Terminal 1</span><button class="copy">COPY</button></div>
-<pre>mkdir -p cmcp-quickstart &amp;&amp; cd cmcp-quickstart
-python3 -m venv venv &amp;&amp; source venv/bin/activate
-python3 -m pip install cmcp-runtime==0.5.0</pre>
-        </div>
-      </div>
-    </div>
-
-    <div class="step" id="configure">
-      <div class="step-num">2</div>
-      <div class="step-body">
-        <h3>Drop in the config and your policy</h3>
-        <p class="hint"><b>Paste each block into the same Terminal 1, top to bottom.</b> You're already inside <code>cmcp-quickstart</code> from step 1. The <code>cat &gt; … EOF</code> wrapper writes each file for you, no editor needed. Your policy (block 2) is what decides what's allowed. Any <code>*.cedar</code> filename works; <code>manifest.json</code> and <code>schema.cedarschema</code> are the two names the runtime requires.</p>
-        <div class="code">
-          <div class="code-head"><span class="code-label">1 · Creates <span class="file">cmcp-config.yaml</span></span><button class="copy">COPY</button></div>
-<pre>mkdir -p policies
-cat &gt; cmcp-config.yaml &lt;&lt; 'EOF'
-attestation:
-  provider: auto
-  <span class="s">enforcement_mode: enforcing</span>   <span class="c"># enforcing | advisory | silent</span>
-policy_bundle_path: ./policies/
-catalog_path: ./catalog.json
-<span class="s">listen_addr: "127.0.0.1:8443"</span>   <span class="c"># dev mode runs without a bearer token, so stay on loopback</span>
-EOF</pre>
-        </div>
-        <div class="code">
-          <div class="code-head"><span class="code-label">2 · Creates your policy bundle, <span class="file">your rules</span></span><button class="copy">COPY</button></div>
-<pre>cat &gt; policies/manifest.json &lt;&lt; 'EOF'
-{ "version": "0.1.0", "authored_at": "2026-06-05T00:00:00Z",
-  "author_identity": "you@example.com", "commit_sha": "quickstart-demo" }
-EOF
-
-cat &gt; policies/agent.cedar &lt;&lt; 'EOF'
-<span class="c">// Cedar is default-deny: anything these rules don't permit is denied.</span>
-
-<span class="c">// Rule 1: let the demo-agent workflow call tools at all</span>
-permit ( principal, action == cMCP::Action::"call_tool", resource )
-when { context.workflow_id == "demo-agent" };
-
-<span class="c">// Rule 2: but never let it call a tool the catalog tags as PII.</span>
-<span class="c">// forbid always wins over permit in Cedar, so this is the rule</span>
-<span class="c">// that produces the 403 in step 4.</span>
-forbid ( principal, action == cMCP::Action::"call_tool", resource )
-when { context.compliance_domain == <span class="s">"pii"</span> };
-EOF
-
-cat &gt; policies/schema.cedarschema &lt;&lt; 'EOF'
-{"cMCP":{"entityTypes":{"Principal":{"memberOfTypes":[],"shape":{"type":"Record","attributes":{"session_id":{"type":"String","required":true},"workflow_id":{"type":"String","required":true}}}},"Resource":{"memberOfTypes":[],"shape":{"type":"Record","attributes":{"tool_name":{"type":"String","required":true}}}}},"actions":{"call_tool":{"appliesTo":{"principalTypes":["cMCP::Principal"],"resourceTypes":["cMCP::Resource"],"context":{"type":"Record","attributes":{"compliance_domain":{"type":"String","required":true},"session_max_sensitivity":{"type":"String","required":true},"workflow_id":{"type":"String","required":true}}}}}}}}
-EOF</pre>
-        </div>
-        <div class="code">
-          <div class="code-head"><span class="code-label">3 · Creates <span class="file">catalog.json</span>, the approved tool tagged compliance_domain: "pii" (hash pre-computed)</span><button class="copy">COPY</button></div>
-<pre>cat &gt; catalog.json &lt;&lt; 'EOF'
-[
-  {
-    "tool_name": "salesforce.contacts",
-    "server": {
-      "display_name": "Salesforce Contacts MCP Server (mock)",
-      "url": "http://localhost:9001/mcp",
-      "tls_fingerprint": "SHA256:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
-      "transport": "http-sse"
-    },
-    "approved_definition": {
-      "description": "Query Salesforce contacts by account name or contact ID.",
-      "input_schema": {
-        "type": "object",
-        "required": ["query"],
-        "properties": {
-          "query": {"type": "string", "description": "Account name or contact ID"},
-          "max_records": {"type": "integer", "default": 50}
-        }
-      },
-      "output_schema": {
-        "type": "object",
-        "properties": { "contacts": {"type": "array"}, "total_count": {"type": "integer"} }
-      }
-    },
-    "definition_hash": "sha256:b42ecf14612f23456b5b0794864a00288d4038ac444cedb87fc214cefee89e35",
-    <span class="s">"compliance_domain": "pii"</span>,
-    "requires_baa": false,
-    "sensitivity_level": "pii",
-    "added_at": "2026-06-05T00:00:00Z",
-    "approved_by": "you@example.com"
-  }
-]
-EOF</pre>
-        </div>
-        <div class="code">
-          <div class="code-head"><span class="code-label">4 · Sanity check, confirm the config parses</span><button class="copy">COPY</button></div>
-<pre>cmcp validate-config --config cmcp-config.yaml</pre>
-        </div>
-        <p class="hint">Expect <code>✓ Config valid: cmcp-config.yaml</code>. This checks the YAML only; the policy bundle and catalog are loaded when the runtime starts in step 3. If you see an error instead, a block didn't paste cleanly, so re-run that one.</p>
-      </div>
-    </div>
-
-    <div class="step" id="runtime">
-      <div class="step-num">3</div>
-      <div class="step-body">
-        <h3>Start the runtime</h3>
-        <p class="hint">Run this in the <b>same terminal where you just created the files</b> (you're inside <code>cmcp-quickstart</code>). It keeps running and won't return a prompt, which is normal, and the startup notices are expected, not errors. <b>Leave it open</b> and open a second terminal for the next step.</p>
-        <div class="code">
-          <div class="code-head"><span class="code-label">Terminal 1: leave running</span><button class="copy">COPY</button></div>
-<pre>CMCP_DEV_MODE=1 cmcp start --config cmcp-config.yaml</pre>
-        </div>
-      </div>
-    </div>
-
-    <div class="step" id="deny">
-      <div class="step-num">4</div>
-      <div class="step-body">
-        <h3>Fire a bad action, watch it get blocked</h3>
-        <p class="hint">In a <b>second terminal</b>, run <code>cd cmcp-quickstart &amp;&amp; source venv/bin/activate</code> first (so <code>cmcp</code> is available here too), then paste this. It's your support agent trying to pull a customer's Salesforce record. The runtime looks the tool up in your catalog, sees <code>compliance_domain: "pii"</code>, and your rule 2 forbids it. Watch it return a <b>403</b> before it ever reaches Salesforce. Not blocked? You're likely in advisory mode, so check the config says <code>enforcing</code>.</p>
-        <div class="code">
-          <div class="code-head"><span class="code-label">Terminal 2: you, playing the agent</span><button class="copy">COPY</button></div>
-<pre>curl -i -X POST http://localhost:8443/mcp \
-  -H "Content-Type: application/json" \
-  -d '{
-    "jsonrpc": "2.0", "id": 2, "method": "tools/call",
-    "params": {
-      "name": "salesforce.contacts",
-      "arguments": { "query": "Acme Corp" },
-      "_cmcp": { "session_id": "demo-session-001", <span class="s">"workflow_id": "demo-agent"</span> }
-    }
-  }'</pre>
-        </div>
-        <p class="hint"><code>workflow_id</code> is the only field the runtime reads out of <code>_cmcp</code>. The session id is a label for your own logs: the runtime mints its own session id, which is why step 5 looks it up instead of assuming it.</p>
-        <div class="term" style="margin-top:1.15rem;">
-          <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="term-title">what the runtime returns</span></div>
-          <div class="term-body">
-<div class="dim">HTTP/1.1 <span class="alert">403 Forbidden</span><br>content-type: application/json</div>
-<div style="margin-top:0.7rem;">{"jsonrpc":"2.0","error":{"code":-32000,<br>&nbsp;&nbsp;"message":"Request denied by policy",<br>&nbsp;&nbsp;"data":{"error_code":<span class="alert">"POLICY_DENY"</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;"call_id":"51da9a46-149f-40c4-b83f-82d48fd654bd"}},"id":2}</div>
-          </div>
-        </div>
-        <div class="verdict">
-          <div class="flag"><span class="check">✓</span> What just happened</div>
-          <p>Your policy rejected a call to a tool tagged <code>pii</code> <strong>before forwarding</strong>. No Salesforce server runs in this demo, and no personal data is fetched. The decision uses the catalog tag; it does not inspect the request for personal data.</p>
-          <p>Keep an eye on that <code>call_id</code>. The same id lands in the audit chain, so the deny you just watched is the deny you can hand to someone else in step 5. A refusal nobody can check afterwards is just a log line.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="step" id="proof">
-      <div class="step-num">5</div>
-      <div class="step-body">
-        <h3>Walk away with proof</h3>
-        <p class="hint">Closing the session mints a signed <code>TRACE claim</code>, a tamper-evident record of which tools ran and which policy decided each call. Verify it yourself; you don't have to trust us. See the <a href="https://cmcp.agentrust-io.com/SPEC/#5-trace-claim-schema" target="_blank" rel="noopener">full TRACE claim schema</a>.</p>
-        <div class="code">
-          <div class="code-head"><span class="code-label">Terminal 2: finalize the session, then verify</span><button class="copy">COPY</button></div>
-<pre>SID=$(curl -s "http://localhost:8443/audit/export?session_id=demo-session-001" \
-  | python3 -c "import sys,json; print(json.load(sys.stdin)['entries'][0]['session_id'])")
-curl -s -X POST "http://localhost:8443/sessions/$SID/close" | python3 -m json.tool &gt; claim.json
-cmcp verify claim.json</pre>
-        </div>
-        <p class="hint">Expected output in dev mode. The <code>CRYPTO-001</code> line comes first and is an advisory, not a failure: it is the CLI saying up front that a software-mode key binding proves nothing about hardware.</p>
-        <div class="term" style="margin-bottom:1.15rem;">
-          <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="term-title">cmcp verify claim.json</span></div>
-          <div class="term-body"><div class="dim">CRYPTO-001: software-only (dev) mode -- TEE key binding cannot be<br>verified; this claim provides no hardware provenance guarantee</div></div>
-        </div>
-        <div class="checks">
-          <div class="chk"><span>schema</span><span class="pass">PASS ✓</span></div>
-          <div class="chk"><span>signature</span><span class="pass">PASS ✓</span></div>
-          <div class="chk"><span>policy_bundle.hash</span><span class="pass">PASS ✓ <span class="note">(not pinned)</span></span></div>
-          <div class="chk"><span>tool_catalog.hash</span><span class="pass">PASS ✓ <span class="note">(not pinned)</span></span></div>
-          <div class="chk"><span>attestation_freshness</span><span class="pass">PASS ✓</span></div>
-          <div class="chk"><span>audit_chain</span><span class="pass">PASS ✓</span></div>
-          <div class="chk"><span>hardware_attestation</span><span class="warn">FAIL: software-only mode</span></div>
-          <div class="chk result"><span>Result</span><span class="warn">FAIL (partially_verified)</span></div>
-        </div>
-        <p class="note-rule">Every cryptographic check passes. The one <span class="warn">FAIL</span> is hardware attestation, which dev mode can't provide, and <b>that is the honest answer</b>: overall verification only reports <span class="pass">verified</span> when the claim is hardware-backed, so the CLI prints <span class="warn">FAIL (partially_verified)</span> and exits 1 here. A hardware deployment must also supply valid attestation, trusted keys, and the expected policy and catalog bindings. Moving the runtime to a TEE alone does not establish those checks or legal compliance. To see what a passing hardware check looks like, <a href="/verify/">verify a real Intel TDX quote</a> in your browser.</p>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="verdict quiet" style="margin-top:2.25rem;">
-    <div class="flag">Go further: stateful escalation</div>
-    <p>The rule you just wrote is stateless: the tool is tagged PII, so it is always forbidden for this workflow. cMCP also tracks sensitivity <em>across</em> a session. Once a response has been inspected and found to contain PII, the session's <code>session_max_sensitivity</code> rises, and a rule like this starts to bite:</p>
-    <div class="code">
-      <div class="code-head"><span class="code-label">The stateful version of rule 2</span><button class="copy">COPY</button></div>
-<pre>forbid ( principal, action == cMCP::Action::"call_tool", resource )
-when { context.session_max_sensitivity == <span class="s">"pii"</span> };</pre>
-    </div>
-    <p>That one needs a session with history: sensitivity starts at <code>public</code> and only rises after the runtime inspects a real response, so you need an upstream tool server and at least one allowed call before it fires. The reference quickstart sets that up with a mock upstream: <a href="https://cmcp.agentrust-io.com/quickstart/" target="_blank" rel="noopener">cMCP reference quickstart</a>.</p>
-  </div>
-
-  <p class="note-rule"><b>Stuck?</b> Every block above is copy-paste: the file blocks write themselves via <code>cat &gt; … EOF</code>, the rest are commands. Keep your first terminal (the runtime) running while you work in the second. Full walkthrough and troubleshooting: <a href="https://cmcp.agentrust-io.com/quickstart/" target="_blank" rel="noopener">cMCP quickstart</a> · <a href="https://cmcp.agentrust-io.com/tutorials/advisory-mode-debugging/" target="_blank" rel="noopener">debugging guide</a>.</p>
-</section>
-
-<section id="troubleshooting">
-  <span class="label">If a step fails</span><h2>Get back to the expected result</h2>
-  <dl class="troubleshooting">
-    <dt>Connection refused</dt><dd>Keep Terminal 1 running. Confirm startup completed and the address is <code>127.0.0.1:8443</code>.</dd>
-    <dt>Command not found or missing files</dt><dd>Activate the virtual environment in both terminals. Run commands from the <code>cmcp-quickstart</code> folder.</dd>
-    <dt>The tool call is forwarded instead of denied</dt><dd>Check <code>enforcement_mode: enforcing</code>, the catalog's <code>pii</code> tag, and the forbid rule. Restart the runtime after configuration changes.</dd>
-    <dt>FAIL (partially_verified), exit 1</dt><dd>Expected only when the listed software checks pass and hardware attestation is the missing check. Other failures need investigation.</dd>
-  </dl>
-  <p><strong>Finish:</strong> stop the runtime with Ctrl+C in Terminal 1. Keep <code>claim.json</code> to inspect the record.</p>
-  <p><a href="/demos/#governance">Next: run an example with a real local tool server →</a></p>
-</section>
-
-<section id="feedback">
-  <span class="label">You did it</span>
-  <h2>Tell the community how it went</h2>
-  <p>The people building cMCP hang out in Discord. Drop your result, get help, and tell us if it unblocks something you can't ship today.</p>
-  <div class="card static" style="margin-top:2.25rem;max-width:520px;">
-    <h3>Join the AgenTrust Discord</h3>
-    <p>Post your result in <code>#general</code> and answer one question: <b>did it unblock something you can't ship today?</b></p>
-    <div class="actions"><a class="button block" href="https://discord.gg/grgzFEHgkj" target="_blank" rel="noopener">Join the Discord</a></div>
-  </div>
+<section id="no-install">
+  <span class="label">No install</span>
+  <h2>Check real hardware evidence first</h2>
+  <p>Verify a genuine Intel TDX quote from a GCP confidential VM in your browser, including its commitment to the key that signed a TRACE record. Nothing is uploaded.</p>
+  <div class="hero-actions"><a class="button" href="/verify/">Verify a real Intel TDX quote</a><a class="button secondary" href="/demos/">Run the demos</a></div>
 </section>
 
 </main>
@@ -399,18 +153,18 @@ when { context.session_max_sensitivity == <span class="s">"pii"</span> };</pre>
       <a class="wordmark" href="/">AgenTrust</a>
       <div class="tagline">Open specifications for verifiable AI</div>
     </div>
-    <div class="credit"><a href="https://github.com/agentrust-io/cmcp" target="_blank" rel="noopener"><b>cMCP</b></a> evaluates routed MCP tool calls against Cedar policy and emits a signed <b>TRACE</b> session record when the session closes. It is software-rooted in dev mode, and hardware-backed only when the runtime runs in a TEE with verified attestation. <b>Sponsored by OPAQUE</b>, which funds the engineering, infrastructure and confidential-computing work behind these projects.</div>
+    <div class="foot-links">
+      <a href="/">Home</a>
+      <a href="/verify/">Verify</a>
+      <a href="/demos/">Demos</a>
+      <a href="https://github.com/agentrust-io">GitHub</a>
+    </div>
+    <div class="credit"><b>Sponsored by OPAQUE</b>, which funds the engineering, infrastructure and confidential-computing work behind these projects.</div>
   </div>
-  <div class="foot-legal">© 2026 AgenTrust Contributors · cMCP is open source (MIT) · agentrust-io.com</div>
+  <div class="foot-legal">© 2026 AgenTrust Contributors · agentrust-io.com</div>
 </div></footer>
 
 <script src="/supernav.js"></script>
 <script src="/page.js"></script>
-<script>
-  function runPreview(){
-    var r = document.getElementById('preview-response'); if (r) r.hidden = false;
-    var b = document.getElementById('previewBtn'); if (b) b.hidden = true;
-  }
-</script>
 </body>
 </html>
