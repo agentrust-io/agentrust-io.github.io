@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Verify an Intel TDX Quote in Your Browser | AgenTrust</title>
-<meta name="description" content="Check a genuine Intel TDX quote from a GCP confidential VM on your own machine: four signature checks ending at the pinned Intel SGX Root CA, with nothing uploaded.">
+<meta name="description" content="Check a genuine Intel TDX quote from a GCP confidential VM on your own machine: four signature checks ending at the pinned Intel SGX Root CA, then the quote's commitment to a TRACE record's signing key. Nothing is uploaded.">
 <link rel="canonical" href="https://agentrust-io.com/verify/">
 <meta name="robots" content="index, follow">
 
@@ -60,12 +60,12 @@
 <div class="hero"><div class="wrap">
   <span class="eyebrow"><a href="/#chain">04 · Evidence</a> · Offline · In your browser · Intel TDX</span>
   <h1>Verify a real Intel TDX quote</h1>
-  <p class="sub">A genuine quote from a GCP C3 confidential VM, checked on your machine the same way our Python verifier checks it: four signatures, ending at the Intel SGX Root CA pinned in this page. Nothing is uploaded.</p>
+  <p class="sub">A genuine quote from a GCP C3 confidential VM, checked on your machine the same way our Python verifier checks it: four signatures, ending at the Intel SGX Root CA pinned in this page. The latest capture also commits to the key that signed a TRACE record, and the page checks that too. Nothing is uploaded.</p>
   <div class="hero-actions">
     <a class="button" href="#run">See the result</a>
     <a class="button secondary" href="#limits">What it proves, and what it does not</a>
   </div>
-  <div><span class="status">Two captures from 21 July 2026 · Checked against the Python verifier on 3,684 inputs · <a href="/#hardware">SEV-SNP and H100 validation</a></span></div>
+  <div><span class="status">Three captures, 21 July and 14 September 2026 · Checked against the Python verifier on 5,526 inputs · <a href="/#hardware">SEV-SNP and H100 validation</a></span></div>
 </div></div>
 
 <main>
@@ -73,7 +73,7 @@
 <section id="run">
   <span class="label">Run it</span>
   <h2>Check a capture, or bring your own</h2>
-  <p>Both captures come from one trust domain and bind different digests in REPORTDATA. You can also load a TDX v4 quote file from your own machine. It is read locally and never sent anywhere.</p>
+  <p>Capture 3 puts the SHA-256 of a TRACE record's signing key in REPORTDATA. The key was generated inside the trust domain and the record is <a href="fixtures/gcp-tdx-2026-09-14-keybind_record.json">published beside the quote</a>, with the <a href="fixtures/gcp-tdx-2026-09-14-capture.py">program that made both</a>. Captures 1 and 2 come from an earlier trust domain and bind manifest digests whose inputs were not published. You can also load a TDX v4 quote file from your own machine. It is read locally and never sent anywhere.</p>
 
   <noscript>
     <div class="callout caution"><p>The check runs as JavaScript in your browser. Without it, run the Python verifier from the last section of this page instead.</p></div>
@@ -81,7 +81,8 @@
 
   <div id="verifier" hidden>
     <div class="hero-actions">
-      <button class="button" type="button" data-capture="plain">Capture 1: tdx_quote.bin</button>
+      <button class="button" type="button" data-capture="keybind">Capture 3: keybind_quote.bin</button>
+      <button class="button secondary" type="button" data-capture="plain">Capture 1: tdx_quote.bin</button>
       <button class="button secondary" type="button" data-capture="manifest">Capture 2: tdx_quote_manifest.bin</button>
       <button class="button secondary" type="button" id="load-file">Load a quote file</button>
       <input type="file" id="quote-file" hidden>
@@ -103,11 +104,12 @@
   <span class="label">Scope</span>
   <h2>What this proves, and what it does not</h2>
   <p>A pass proves genuine Intel TDX silicon produced and signed the quote, through a certificate chain that ends at Intel's root.</p>
+  <p>For capture 3 it also proves the trust domain committed to the key that signed the TRACE record: SHA-256 of the record's <code>cnf.jwk.x</code> equals REPORTDATA[0:32], and the record carries this quote and claims its MRTD. That is the <code>attested</code> grade in the TRACE runtime evidence profile. The record signature is checked in <a href="https://github.com/agentrust-io/agentrust-io.github.io/blob/main/tools/check-key-binding.py">CI with the Python SDK</a>, not in this page.</p>
   <div class="callout caution">
-    <p><strong>It does not yet tie a TRACE record to this machine.</strong> These captures bind a manifest hash in REPORTDATA, and the input to that hash was not published, so the 32 bytes verifiably came from the TEE and cannot be opened. The next capture binds the record-signing key and publishes what it hashes.</p>
+    <p><strong>It does not show the software inside the trust domain was the image anyone intended.</strong> MRTD and RTMRs are shown, not compared against expected values. The record claims no model and no policy: it exists to show the key binding, and says so in its own fields.</p>
   </div>
-  <p>It checks signature chains only. It does not appraise whether the platform's TCB is current, check certificate revocation, or compare MRTD and RTMRs against expected values.</p>
-  <p>Two quotes from one trust domain share an MRTD. Matching a record's claimed measurement against a quote's MRTD binds the record to a measurement, never to a particular quote.</p>
+  <p>It checks signature chains only. It does not appraise whether the platform's TCB is current or check certificate revocation.</p>
+  <p>Captures 1 and 2 come from one trust domain and share an MRTD. Matching a record's claimed measurement against a quote's MRTD binds the record to a measurement, never to a particular quote. Only the key binding ties a record to one quote.</p>
   <p>Certificate validity is checked against your device's clock.</p>
 </section>
 
@@ -115,13 +117,13 @@
   <span class="label">How it matches the original</span>
   <h2>A port, held to its original</h2>
   <p>This page runs <a href="https://github.com/agentrust-io/agentrust-io.github.io/blob/main/verify/tdx-verify.js">verify/tdx-verify.js</a>, a port of <a href="https://github.com/agentrust-io/agent-manifest/blob/main/python/src/agent_manifest/_tdx_verify.py">agent_manifest._tdx_verify</a>: the same parse, the same checks on every length the quote declares, and the same four steps in the same order.</p>
-  <p>On every change, <a href="https://github.com/agentrust-io/agentrust-io.github.io/blob/main/.github/workflows/verifier.yml">CI</a> runs both verifiers over the two captures and 3,684 generated inputs: byte flips across every length and type field and the certificate text, a stride over everything else, and truncations at each structure edge. It fails if they disagree on a single one.</p>
+  <p>On every change, <a href="https://github.com/agentrust-io/agentrust-io.github.io/blob/main/.github/workflows/verifier.yml">CI</a> runs both verifiers over the three captures and 5,526 generated inputs: byte flips across every length and type field and the certificate text, a stride over everything else, and truncations at each structure edge. It fails if they disagree on a single one. The same job checks capture 3's record with the Python SDK: its signature, the key binding, the quote and MRTD it carries, and that the published capture program is the one the record names.</p>
   <p>To run the original yourself:</p>
   <div class="code">
     <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
 <pre>python -m pip install agent-manifest
-curl -fsSLO https://agentrust-io.com/verify/fixtures/gcp-tdx-2026-07-21-tdx_quote.bin
-python -c "from agent_manifest._tdx_verify import verify_tdx_quote; print(verify_tdx_quote(open('gcp-tdx-2026-07-21-tdx_quote.bin', 'rb').read()))"</pre>
+curl -fsSLO https://agentrust-io.com/verify/fixtures/gcp-tdx-2026-09-14-keybind_quote.bin
+python -c "from agent_manifest._tdx_verify import verify_tdx_quote; print(verify_tdx_quote(open('gcp-tdx-2026-09-14-keybind_quote.bin', 'rb').read()))"</pre>
   </div>
   <p class="hint">A genuine quote prints <code>True</code>.</p>
 </section>

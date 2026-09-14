@@ -30,6 +30,7 @@ FIXTURES = ROOT / "verify" / "fixtures"
 CAPTURES = [
     "gcp-tdx-2026-07-21-tdx_quote.bin",
     "gcp-tdx-2026-07-21-tdx_quote_manifest.bin",
+    "gcp-tdx-2026-09-14-keybind_quote.bin",
 ]
 # Fixed, so a certificate expiring can never make the two runs disagree.
 VERIFICATION_TIME = "2026-09-14T00:00:00+00:00"

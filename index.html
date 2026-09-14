@@ -177,17 +177,17 @@
     <figure class="verify-panel" id="verify-panel" aria-label="A genuine Intel TDX quote, verified in this browser">
       <div class="verify-panel-bar"><span>/verify › tdx_quote.bin</span><span>offline · in this browser</span></div>
       <ol class="verify-rows">
-        <li><span class="key">quote</span><span>Intel TDX v4, GCP C3, captured 2026-07-21</span><span></span></li>
+        <li><span class="key">quote</span><span>Intel TDX v4, GCP C3, captured 2026-09-14</span><span></span></li>
         <li data-step="quote-signature"><span class="key">step 1</span><span>attestation key signature over header and TD report</span><span class="state">not run</span></li>
         <li data-step="qe-binding"><span class="key">step 2</span><span>QE report binds the attestation key</span><span class="state">not run</span></li>
         <li data-step="qe-report-signature"><span class="key">step 3</span><span>QE report signed by the platform PCK certificate</span><span class="state">not run</span></li>
         <li data-step="pck-chain"><span class="key">step 4</span><span>PCK chain ends at the pinned Intel SGX Root CA</span><span class="state">not run</span></li>
-        <li data-step="reportdata"><span class="key">REPORTDATA</span><span>32 bytes set by the guest</span><span class="state note">see note</span></li>
+        <li data-step="reportdata"><span class="key">REPORTDATA</span><span>commits to the key that signed a published TRACE record</span><span class="state">not run</span></li>
         <li data-step="verdict"><span class="key">verdict</span><span>genuine Intel TDX silicon signed this quote</span><span class="state">not run</span></li>
       </ol>
     </figure>
     <div class="verify-foot">
-      <p><span class="tag">Note</span>This quote proves genuine Intel TDX silicon signed it. Its REPORTDATA holds a manifest hash whose input was not published, so it does not yet tie a specific record to this machine.</p>
+      <p><span class="tag">Note</span>Genuine Intel TDX silicon signed this quote, and its REPORTDATA commits to the key that signed the TRACE record published beside it. It does not show that the software inside the trust domain was the image anyone intended.</p>
       <p>Runs in your browser. Nothing is sent back to us.</p>
     </div>
   </div>
@@ -271,7 +271,7 @@
     <article class="ecosystem-card">
       <h3>Intel TDX</h3>
       <p>GCP C3. Quotes verify offline to the pinned Intel SGX Root CA, no collateral service needed.</p>
-      <a class="evidence-link" href="/verify/">Check the 2026-07-21 capture yourself →</a>
+      <a class="evidence-link" href="/verify/">Check the 2026-09-14 capture yourself →</a>
     </article>
     <article class="ecosystem-card">
       <h3>NVIDIA H100 confidential computing</h3>
