@@ -126,51 +126,6 @@
     ]
   }
   </script>
-
-  <!-- Structured data: FAQ (mirrors the visible FAQ below) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is TRACE?",
-        "acceptedAnswer": { "@type": "Answer", "text": "TRACE defines portable, signed runtime evidence. Hardware provenance requires attestation verification against a trusted root; software-mode records do not provide that guarantee." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the Weight Custody Manifest?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The Weight Custody Manifest (WCM) is an open, pre-1.0 specification for protecting model weights a builder deploys into a customer's own or sovereign infrastructure. It binds weight identity and custody terms to key-release policy. Against an operator who physically owns the hardware it provides accountability, not cryptographic custody." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is Agent Manifest?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Agent Manifest is a structured, machine-readable declaration of an agent's capabilities, permissions, and data access policies. Operators and orchestrators can verify an agent's manifest before invocation." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is Confidential MCP (cMCP)?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Confidential MCP (cMCP) evaluates routed MCP tool calls against policy and records the decisions. In a hardware deployment, the runtime is inside a Trusted Execution Environment (TEE); the agent and upstream tool server remain separate. Host confidentiality also depends on the egress policy. Software mode provides no hardware isolation." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is Confidential A2A (cA2A)?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Confidential A2A is a trust profile on the Agent2Agent (A2A) protocol. Where A2A's Signed Agent Card verifies only the domain owner, cA2A adds attested, attenuated delegation, a sealed peer channel that binds the task payload to the peer's attested measurement, and an offline-verifiable provenance record per hop. It is a developer preview." }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I try it without confidential-computing hardware?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. The 10-minute quickstart runs cMCP in software mode: write a policy, observe a denied tool call, and inspect the signed session record. It provides no hardware isolation or hardware-backed provenance. The verify page checks a genuine Intel TDX quote in your browser with no hardware of your own." }
-      },
-      {
-        "@type": "Question",
-        "name": "Are the AgenTrust specifications open source?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes, though not all under one licence. Agent Manifest, the Weight Custody Manifest and the TRACE conformance suite are Apache 2.0, cMCP and cA2A are MIT, and the TRACE specification is under the Community Specification License 1.0 with its code under Apache 2.0. Source, schemas, and examples are on GitHub at github.com/agentrust-io." }
-      }
-    ]
-  }
-  </script>
 <link rel="stylesheet" href="/design-system.css?v=20">
 </head>
 <body class="agentrust-hub" id="top">
@@ -431,46 +386,6 @@
         <a class="btn btn-ghost" href="/community/#adoption">Partners</a>
         <a class="btn btn-ghost" href="/community/#fellowship">Fellowship</a>
       </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- FAQ -->
-<section class="section" id="faq">
-  <div class="section-header">
-    <div class="section-label">FAQ</div>
-    <h2 class="section-title">Frequently Asked Questions</h2>
-  </div>
-  <div class="qa">
-    <div class="qa-item">
-      <div class="qa-q">What is TRACE?</div>
-      <div class="qa-a">TRACE defines portable, signed runtime evidence. Hardware provenance requires attestation verification against a trusted root; software-mode records do not provide that guarantee.</div>
-    </div>
-    <div class="qa-item">
-      <div class="qa-q">What is the Weight Custody Manifest?</div>
-      <div class="qa-a">The Weight Custody Manifest (WCM) is an open, pre-1.0 specification for protecting model weights a builder deploys into a customer's own or sovereign infrastructure. It binds weight identity and custody terms to key-release policy. Against an operator who physically owns the hardware it provides accountability, not cryptographic custody.</div>
-    </div>
-    <div class="qa-item">
-      <div class="qa-q">What is Agent Manifest?</div>
-      <div class="qa-a">Agent Manifest is a structured, machine-readable declaration of an agent's capabilities, permissions, and data access policies. Operators and orchestrators can verify an agent's manifest before invocation.</div>
-    </div>
-    <div class="qa-item">
-      <div class="qa-q">What is Confidential MCP (cMCP)?</div>
-      <div class="qa-a">Confidential MCP (cMCP) evaluates routed MCP tool calls against policy and records the decisions. In a hardware deployment, the runtime is inside a Trusted Execution Environment (TEE); the agent and upstream tool server remain separate. Host confidentiality also depends on the egress policy. Software mode provides no hardware isolation.</div>
-    </div>
-    <div class="qa-item">
-      <div class="qa-q">What is Confidential A2A (cA2A)?</div>
-      <div class="qa-a">Confidential A2A is a trust profile on the Agent2Agent (A2A) protocol. Where A2A's Signed Agent Card verifies only the domain owner, cA2A adds attested, attenuated delegation, a sealed peer channel that binds the task payload to the peer's attested measurement, and an offline-verifiable provenance record per hop. It is a developer preview.</div>
-    </div>
-    <div class="qa-item">
-      <div class="qa-q">Can I try it without confidential-computing hardware?</div>
-      <div class="qa-a">Yes. The <a href="/quickstart/">10-minute quickstart</a> runs cMCP in software mode: write a policy, observe a denied tool call, and inspect the signed session record. It provides no hardware isolation or hardware-backed provenance. The <a href="/verify/">verify page</a> checks a genuine Intel TDX quote in your browser with no hardware of your own.</div>
-    </div>
-    <div class="qa-item">
-      <div class="qa-q">Are the AgenTrust specifications open source?</div>
-      <div class="qa-a">Yes, though not all under one licence. Agent Manifest, the Weight Custody Manifest and the TRACE conformance suite are Apache 2.0, cMCP and cA2A are MIT, and the TRACE specification is under the Community Specification License 1.0 with its code under Apache 2.0. Source, schemas, and examples are on GitHub at github.com/agentrust-io.</div>
     </div>
   </div>
 </section>
