@@ -26,7 +26,12 @@ function row(name, value) {
   th.textContent = name;
   const td = document.createElement('td');
   const code = document.createElement('code');
-  code.textContent = value;
+  // A 96-character measurement has no natural break, so offer one every 16
+  // characters rather than letting the table push a phone-width page sideways.
+  (value.match(/.{1,16}/g) || ['']).forEach((chunk, i) => {
+    if (i) code.append(document.createElement('wbr'));
+    code.append(chunk);
+  });
   td.append(code);
   tr.append(th, td);
   return tr;
