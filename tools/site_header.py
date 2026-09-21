@@ -41,6 +41,7 @@ MENU = [
     ]),
     ('Community', '/community/'),
     ('GitHub', 'https://github.com/agentrust-io'),
+    ('LinkedIn', 'https://www.linkedin.com/company/agentrust-io/'),
 ]
 
 
