@@ -1,0 +1,35 @@
+.research-main { max-width: 1040px; margin: 0 auto; padding: 64px 28px 80px; }
+.research-main a, .research-footer a { color: var(--at-navy); text-underline-offset: 3px; }
+.research-main a:focus-visible, .research-footer a:focus-visible { outline: 2px solid var(--at-red); outline-offset: 4px; }
+.research-eyebrow { font: 600 12px/1.5 var(--at-mono); text-transform: uppercase; letter-spacing: .12em; color: var(--at-muted); }
+.research-intro { max-width: 850px; margin-bottom: 64px; }
+.research-intro h1 { font: 400 clamp(38px, 5vw, 66px)/1.08 var(--at-serif); letter-spacing: -.025em; margin: 20px 0 28px; }
+.research-intro > p:last-child { max-width: 680px; font-size: 19px; line-height: 1.65; }
+.research-label { display: flex; justify-content: space-between; gap: 16px; font: 12px/1.5 var(--at-mono); padding: 16px 0; border-top: 1px solid var(--at-ink); border-bottom: 1px solid var(--at-line); color: var(--at-muted); }
+.paper-card { padding: 32px 0; border-bottom: 1px solid var(--at-line); display: grid; grid-template-columns: 1fr 2fr; column-gap: 40px; }
+.paper-card > .research-eyebrow { grid-column: 1; grid-row: 1 / span 5; margin: 5px 0; }
+.paper-card > :not(.research-eyebrow) { grid-column: 2; }
+.paper-card h2 { font: 400 29px/1.22 var(--at-serif); margin: 0 0 12px; }
+.paper-card h2 a { color: var(--at-ink); text-decoration: none; }
+.paper-card h2 a:hover { text-decoration: underline; }
+.paper-card p { line-height: 1.7; margin: 0 0 12px; }
+.paper-card .paper-card-meta { color: var(--at-muted); font-size: 13px; margin-bottom: 4px; }
+.paper-card-link { margin-top: 18px; font-size: 14px; font-weight: 600; }
+.research-breadcrumb { font-size: 13px; margin-bottom: 35px; color: var(--at-muted); }
+.paper-header h1 { font: 400 clamp(32px, 4.4vw, 48px)/1.13 var(--at-serif); letter-spacing: -.02em; max-width: 950px; margin: 18px 0 24px; }
+.paper-authors { font-size: 17px; margin: 0 0 4px; }
+.paper-affiliation { font-size: 14px; color: var(--at-muted); margin: 0 0 18px; }
+.paper-status { display: flex; flex-wrap: wrap; gap: 10px 24px; color: var(--at-muted); font: 12px/1.6 var(--at-mono); }
+.paper-abstract { margin-top: 30px; max-width: 850px; }
+.paper-abstract h2, .research-section h2 { font: 400 26px/1.3 var(--at-serif); margin: 0 0 16px; }
+.paper-abstract p, .research-section p, .research-section li { font-size: 16px; line-height: 1.8; }
+.paper-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin: 28px 0 40px; font-size: 14px; }
+.paper-actions .primary-action { padding: 12px 18px; background: var(--at-navy); color: var(--at-white); text-decoration: none; }
+.paper-actions .primary-action span { font-size: 12px; }
+.research-section { border-top: 1px solid var(--at-line); padding-top: 28px; margin-top: 36px; }
+.research-section p, .research-section ul { max-width: 850px; }
+.research-section ul { padding-left: 22px; }
+.research-section li { margin-bottom: 12px; }
+.research-section pre { background: var(--at-paper-2); color: var(--at-ink); padding: 20px; overflow-x: auto; font: 12px/1.7 var(--at-mono); }
+.agentrust-hub .research-footer { max-width: 1040px; margin: auto; padding: 28px; border-top: 1px solid var(--at-line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 12px; color: var(--at-muted); background: var(--at-paper); }
+@media(max-width: 640px) { .research-main { padding: 36px 20px 48px; } .research-intro { margin-bottom: 40px; } .paper-card { display: block; } .paper-card > .research-eyebrow { margin-bottom: 14px; } .research-label { flex-direction: column; gap: 4px; } .paper-card h2 { font-size: 26px; } }

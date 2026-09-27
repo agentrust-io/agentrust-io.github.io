@@ -23,6 +23,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 # page file -> (path the header marks current, menu the page belongs to)
 PAGES = {
+    'research/index.html': ('/research/', None),
+    **{f'research/{slug}/{suffix}index.html': (f'/research/{slug}/{suffix}', None)
+       for slug in ('trace', 'cmcp', 'agent-manifest') for suffix in ('', 'v1/')},
     'index.html': (None, None),
     'community/index.html': ('/community/', None),
     'verify/index.html': ('/verify/', None),

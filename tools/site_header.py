@@ -39,6 +39,7 @@ MENU = [
         ('Telemetry', '/telemetry/'),
         ('Marketplace', '/marketplace/'),
     ]),
+    ('Research', '/research/'),
     ('Community', '/community/'),
     ('GitHub', 'https://github.com/agentrust-io'),
     ('LinkedIn', 'https://www.linkedin.com/company/agentrust-io/'),
