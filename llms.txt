@@ -34,6 +34,10 @@ AgenTrust is the ecosystem at https://agentrust-io.com and the GitHub organizati
 - [GitHub organization](https://github.com/agentrust-io): Source, releases, issues, governance, and contribution instructions.
 - [Governance resource directory](https://governance.agentrust-io.com/): Curated tools, standards, and research.
 
+## Research
+
+- [Research reports](https://agentrust-io.com/research/): Versioned TRACE, cMCP and Agent Manifest technical reports, with PDFs, source packages, recorded software evidence, citations and explicit limits. Not peer reviewed; use current specifications for implementation.
+
 ## Community and stewardship
 
 - [Community, partners and sponsor](https://agentrust-io.com/community/#adoption): Published roles and partner relationships, each linked to public evidence. OPAQUE sponsors the work. The NSF submission is in review, not an award.

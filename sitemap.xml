@@ -9,6 +9,13 @@
   <url><loc>https://agentrust-io.com/marketplace/catalog/</loc></url>
   <url><loc>https://agentrust-io.com/quickstart/</loc></url>
   <url><loc>https://agentrust-io.com/registry/</loc></url>
+  <url><loc>https://agentrust-io.com/research/</loc></url>
+  <url><loc>https://agentrust-io.com/research/agent-manifest/</loc></url>
+  <url><loc>https://agentrust-io.com/research/agent-manifest/v1/</loc></url>
+  <url><loc>https://agentrust-io.com/research/cmcp/</loc></url>
+  <url><loc>https://agentrust-io.com/research/cmcp/v1/</loc></url>
+  <url><loc>https://agentrust-io.com/research/trace/</loc></url>
+  <url><loc>https://agentrust-io.com/research/trace/v1/</loc></url>
   <url><loc>https://agentrust-io.com/telemetry/</loc></url>
   <url><loc>https://agentrust-io.com/verify/</loc></url>
 </urlset>
