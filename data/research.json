@@ -145,6 +145,33 @@
         "paper.pdf": "2e9fc6b2c9acebd252594985eaecf783b1e8714b57d39449fa914efc2e2846fb",
         "source.zip": "9289ce4ea510d3c36fac3f91580ab1ae6aba2e570682507f2fd636c96dc01dbc"
       }
+    },
+    {
+      "slug": "agentrust-telemetry",
+      "short_title": "AgenTrust Telemetry",
+      "title": "From Agent Observability to Governance Evidence: A Privacy-Constrained Telemetry Contract",
+      "authors": [
+        "Imran Siddique"
+      ],
+      "topic": "Governance telemetry",
+      "description": "AgenTrust Telemetry technical report: a privacy-constrained contract separating agent observability from governance evidence, with rerun results.",
+      "contribution": "A backend-neutral contract for six governance event families that keeps lossy operational telemetry separate from evidence whose completeness is stated.",
+      "limits": [
+        "The evaluated release is 0.1.0-alpha.2. On September 27, 2026 its 111 Python tests passed and all 13 fixtures gave their expected verdicts again, with agentrust-trace pinned to 0.9.0. The TypeScript suite was not rerun.",
+        "Completeness is a producer assertion that the accumulator records but does not measure.",
+        "A defect found after the evaluation let an edited evidence snapshot be signed at the evaluated release; it was fixed later and is reported beside the results."
+      ],
+      "changes": "Aligns claims with the evaluated code, positions the contract against prior governance telemetry work, and adds a post-evaluation findings section.",
+      "spec": "https://agentrust-io.com/telemetry/",
+      "code": "https://github.com/agentrust-io/agentrust-telemetry",
+      "patent_pending": false,
+      "date": "2026-09-27",
+      "abstract": "Agent observability conventions describe model, tool, and agent operations, but governance facts are commonly fragmented across policy engines, approval stores, cost modules, and audit systems. Copying those facts into ordinary traces creates two hazards: sensitive payload capture and the false inference that sampled operational telemetry is complete audit evidence. This technical report describes AgenTrust Telemetry, a backend-neutral contract for six governance event families: policy decisions, approval lifecycles, usage, classified data flows, action execution, and evidence lifecycle. The contract correlates with W3C Trace Context and OpenTelemetry without installing a provider, exporter, or competing tracing model. A metadata-only profile rejects prompts, outputs, source code, tool arguments and results, credentials, and authorization tokens by key. Durable run and action identifiers survive process and asynchronous handoffs; propagated metadata remains untrusted and does not confer identity or authority. An optional accumulator accepts events before lossy export and can be finalized into a separately verifiable TRACE record. Its completeness status is a producer assertion that the accumulator records but does not measure. The evaluated release, 0.1.0-alpha.2, ships Python and TypeScript reference SDKs over shared schemas and a portable conformance set of six valid and seven invalid fixtures. At that commit 111 Python unit tests pass and all 13 fixtures produce their expected verdicts, on September 3, 2026 and again when rerun for this edition. A defect found after the evaluation let an edited evidence snapshot be signed; it is reported beside the results it qualifies. The contribution is not another agent tracing convention; it is a narrow semantic boundary between operational observation and governance evidence whose completeness must be stated rather than inferred.",
+      "pages": 6,
+      "sha256": {
+        "paper.pdf": "502c3d61e335d47c642ff8d6b7c1cf9ec9c25f5c99213f2eefea0b01b5d7359b",
+        "source.zip": "34517b8856bae49bf757beb3ba4c43b4b7db9f0df25e9b5dd2e40b6d2f30afaa"
+      }
     }
   ]
 }
