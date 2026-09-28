@@ -104,7 +104,7 @@
         "Advisory GHSA-j665-99rh-w85h affects the evaluated version: the key broker did not require GPU confidential-compute mode before release. The fail-closed result does not cover GPU mode.",
         "The measured Azure SEV-SNP platform does not enable ciphertext hiding, so the cryptographic-custody claim does not hold there against a hypervisor-privileged operator. Against an operator who physically owns the machine, WCM claims accountability, not custody."
       ],
-      "changes": "Adds a post-evaluation findings section, corrects the description of the three skipped tests, fixes two citations, and records a software rerun at the evaluated commit.",
+      "changes": "Adds a post-evaluation findings section, corrects the descriptions of the three skipped tests and of the memory-sweep receipt, fixes two citations, and records a software rerun at the evaluated commit.",
       "spec": "https://wcm.agentrust-io.com/",
       "code": "https://github.com/agentrust-io/weight-custody-manifest",
       "patent_pending": true,
@@ -112,8 +112,8 @@
       "abstract": "Deploying proprietary model weights into infrastructure controlled by a customer reverses the usual confidential-computing trust problem: the model builder, rather than the infrastructure owner, supplies the secret. Existing confidential-computing stacks can attest workloads and release secrets, while model-signing systems authenticate model artifacts. Neither capability alone specifies continuing custody of a particular weight artifact after release. This technical report describes the Weight Custody Manifest (WCM), a vendor-neutral protocol and conformance model that binds an exact weight digest, an approved workload measurement, attestation policy, a fresh transport key, renewable authorization, terminal refusal and wipe evidence, and derivative lineage. WCM distinguishes cryptographic custody against software adversaries from accountability-grade controls when the infrastructure operator physically owns the machine. The evaluated Python reference implementation, version 0.28.0, supplies 91 portable conformance vectors across four levels. Its test suite produced 618 passing tests and three skips on September 3, 2026, and the same counts when rerun at the same commit for this edition. Two later findings bound those results: a published advisory showed that the evaluated key broker did not require GPU confidential-compute mode before release, and the SEV-SNP platform used for the hardware run does not enable the ciphertext hiding that the cryptographic-custody claim against a hypervisor-privileged operator requires. The contribution is a portable artifact-to-runtime custody contract with explicit lifecycle evidence, derivative accountability, and conformance, not a new attestation primitive or a certification of any deployment.",
       "pages": 6,
       "sha256": {
-        "paper.pdf": "e3b40be4d0bc6e0e510fed8b104543d2f1cd6a01ebebeaebde6fcd79ec842180",
-        "source.zip": "a2d4f124feb0c9b50d2db853ddd62acfa3c356df4af32f492bc544887625b015"
+        "paper.pdf": "a0338db4e4f8a35f134f5b8313a167f81b829a047c9439d8b3c2b34e3c5e0c59",
+        "source.zip": "ce91e7c14ef7abde96b922129eb4467a5e47720933acee707c5c3cd7c080ddeb"
       }
     }
   ]
