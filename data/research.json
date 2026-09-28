@@ -17,19 +17,34 @@
         "The missing-runtime fixture passes at Level 0 in the saved results. The cMCP fixture fails at all three levels. Those outcomes limit what the historical conformance checks establish.",
         "A signature proves integrity and signing-key possession. Hardware origin requires verified attestation and key binding; inclusion in a log does not prove that every event was recorded."
       ],
-      "changes": "Clarifies the signature and hardware-evidence boundary, corrects the description of saved conformance outcomes, and preserves the historical measurements.",
       "origin": "Based on a manuscript originally dated June 23, 2026, with later recorded experiments. That manuscript date is not presented as a verified publication date.",
       "spec": "https://trace.agentrust-io.com/",
       "code": "https://github.com/agentrust-io/trace-spec",
       "patent_pending": false,
-      "doi": "10.5281/zenodo.23001692",
-      "date": "2026-09-27",
       "abstract": "TRACE (Trust, Runtime Attestation, and Compliance Evidence) proposes a portable record for claims about AI agent runtimes: workload identity, model, policy, data class, tool transcript, build provenance, and appraisal. It composes RATS/EAT, signatures, and transparency evidence into a format that a relying party can evaluate against its own trust policy. A valid signature establishes integrity and possession of the signing key; hardware origin additionally requires verified attestation and a binding from that evidence to the key. This technical report describes the original design and preserves the recorded software evaluation of agentrust-trace 0.2.0 and trace-tests 0.2.0. The evaluation measures canonicalization, Ed25519 signing and verification, record size, and fixture outcomes. It does not measure silicon certificate-chain appraisal or establish that the recorded runtime claims are true. The current normative specification and its implementation limits are maintained separately.",
-      "pages": 15,
-      "sha256": {
-        "paper.pdf": "40034a6d7dd62f0e066798bcc746b5fc7b6fa723078f52e4a3c4c919bd821ded",
-        "source.zip": "b31c13247c98c3f83a44a25dfdf6862f89b6d2f38fc95133ef45340138f383f9"
-      }
+      "versions": [
+        {
+          "version": 1,
+          "date": "2026-09-27",
+          "pages": 15,
+          "changes": "Clarifies the signature and hardware-evidence boundary, corrects the description of saved conformance outcomes, and preserves the historical measurements.",
+          "sha256": {
+            "paper.pdf": "40034a6d7dd62f0e066798bcc746b5fc7b6fa723078f52e4a3c4c919bd821ded",
+            "source.zip": "b31c13247c98c3f83a44a25dfdf6862f89b6d2f38fc95133ef45340138f383f9"
+          },
+          "doi": "10.5281/zenodo.23001692"
+        },
+        {
+          "version": 2,
+          "date": "2026-09-28",
+          "pages": 15,
+          "changes": "Corrects the related-work statement that transparency-log registration makes omitted events detectable, which contradicted the conclusion, and removes three en dashes. Results unchanged.",
+          "sha256": {
+            "paper.pdf": "e4b75dc0b2627486f2d8692193705ddf7db0fe7de225d4b1b8010fcac9382bdd",
+            "source.zip": "3f9b16068aaa22cf7280eba5b8d8a1a9a1e332ca6d5a3c81b92c08bf35577aef"
+          }
+        }
+      ]
     },
     {
       "slug": "cmcp",

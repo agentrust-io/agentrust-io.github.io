@@ -1,0 +1,44 @@
+{
+  "cff-version": "1.2.0",
+  "message": "Cite the versioned technical report. It has not been peer reviewed.",
+  "type": "dataset",
+  "title": "TRACE: Trust, Runtime Attestation, and Compliance Evidence (A Portable Attestation Format for AI Agent Runtime Governance)",
+  "version": "2",
+  "date-released": "2026-09-28",
+  "authors": [
+    {
+      "given-names": "Rishabh",
+      "family-names": "Poddar"
+    },
+    {
+      "given-names": "Aaron",
+      "family-names": "Fulkerson"
+    },
+    {
+      "given-names": "Imran",
+      "family-names": "Siddique"
+    }
+  ],
+  "url": "https://agentrust-io.com/research/trace/v2/",
+  "license": "CC-BY-4.0",
+  "preferred-citation": {
+    "type": "report",
+    "title": "TRACE: Trust, Runtime Attestation, and Compliance Evidence (A Portable Attestation Format for AI Agent Runtime Governance)",
+    "authors": [
+      {
+        "given-names": "Rishabh",
+        "family-names": "Poddar"
+      },
+      {
+        "given-names": "Aaron",
+        "family-names": "Fulkerson"
+      },
+      {
+        "given-names": "Imran",
+        "family-names": "Siddique"
+      }
+    ],
+    "year": 2026,
+    "url": "https://agentrust-io.com/research/trace/v2/"
+  }
+}
