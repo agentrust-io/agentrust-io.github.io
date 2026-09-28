@@ -136,7 +136,7 @@ def generate():
     body=f'''<header class="research-intro"><p class="research-eyebrow">AgenTrust Research</p><h1>Identity, enforcement,<br>and evidence for AI agents.</h1><p>Technical reports with open source, recorded experiments, and explicit limits. Read the work, inspect the evidence, and cite a specific version.</p></header>
 <div class="research-label"><span>Research collection</span><span>{len(papers)} reports / Not peer reviewed</span></div><div class="paper-list">{cards}</div>
 <section class="research-section"><h2>Read the evidence with the claim</h2><p>These reports preserve historical designs and software evaluations. A signature, an attestation result, and an execution-completeness claim establish different properties. Each paper page identifies the evidence evaluated and the limits that remain.</p><p>For implementation, follow the current project specifications linked from each report. Paper text is available under CC BY 4.0; code retains its project license.</p></section>'''
-    outputs[ROOT/'research/index.html']=shell('Research: AI Agent Identity, Enforcement and Evidence','Read AgenTrust technical reports on TRACE, cMCP, Agent Manifest and Weight Custody Manifest, with PDFs, source, evidence, limits and citations.','/research/',body)
+    outputs[ROOT/'research/index.html']=shell('Research: AI Agent Identity, Enforcement and Evidence','AgenTrust technical reports on agent identity, tool-call enforcement, runtime evidence, model custody, delegation and telemetry, with PDFs, source and limits.','/research/',body)
     return outputs
 
 
