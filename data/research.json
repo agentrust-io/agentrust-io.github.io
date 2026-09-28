@@ -172,6 +172,33 @@
         "paper.pdf": "502c3d61e335d47c642ff8d6b7c1cf9ec9c25f5c99213f2eefea0b01b5d7359b",
         "source.zip": "34517b8856bae49bf757beb3ba4c43b4b7db9f0df25e9b5dd2e40b6d2f30afaa"
       }
+    },
+    {
+      "slug": "confidential-handoffs",
+      "short_title": "Confidential Handoffs",
+      "title": "Confidentiality Across Agent Handoffs: Conditions for preserving an inference guarantee through tools and delegation",
+      "authors": [
+        "Imran Siddique"
+      ],
+      "topic": "Confidential handoffs",
+      "description": "Confidential handoffs technical report: conditions for keeping inference confidentiality through agent tool calls and delegation, software evidence.",
+      "contribution": "A conditional composition argument and proposed handoff contract for when tool calls and delegations preserve an authorized plaintext-holder boundary.",
+      "limits": [
+        "All results are software results: attestation in the composed experiment is synthetic and one operator runs every party.",
+        "The composed experiment was rerun on September 27, 2026 at WCM main 94d5519: 36 of 36 hosted and 32 portable cases locally, matching every recorded observation.",
+        "Hardware acceptance and independently operated peers are future work. Raw hardware diagnostic captures are not published."
+      ],
+      "changes": "Reframes the draft as a bounded software edition, records the rerun, updates dependency status and corrects two references.",
+      "spec": "https://wcm.agentrust-io.com/",
+      "code": "https://github.com/agentrust-io/weight-custody-manifest/tree/main/python/composed",
+      "patent_pending": true,
+      "date": "2026-09-27",
+      "abstract": "This paper states conditions under which tool calls and agent handoffs preserve an authorized plaintext-holder boundary. This requires a protected channel bound to an appraised workload, restricted authority, enforceable downstream information-flow rules, and control over every other plaintext sink. A signature on an execution record or a valid hardware quote alone cannot establish these conditions. If a recipient cannot satisfy them, the sender must withhold the data or obtain authorization for a precisely described disclosure. This paper develops a conditional composition argument, a proposed handoff contract, and component experiments that expose failures of appraisal, supervision, and outcome inference. A composed software harness joins provisioning, diagnostic model computation, a confined agent, a mediated tool, delegated peer authentication, and exact-output disclosure. Its paired mutations expose earlier leaks despite successful final delivery; a rerun on September 27, 2026 reproduced all 36 recorded observations. All results are software results with synthetic attestation and a single operator. AgenTrust supplies relevant identity, key-release, gateway, delegation, and evidence primitives, but its present components do not demonstrate the complete property. The distinction matters most at remote tools, CPU-GPU transfers, operator-controlled key brokers, runtime changes, and audit systems.",
+      "pages": 13,
+      "sha256": {
+        "paper.pdf": "21a1abd5e6fbc822105437c2a639c59368880a3ff79c2dc32b4cfac652602728",
+        "source.zip": "b0f2ea632176aff353d78813fe74293bd80e12bed53448d3e1395b1dc699b641"
+      }
     }
   ]
 }
