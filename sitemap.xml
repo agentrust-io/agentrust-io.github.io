@@ -16,6 +16,8 @@
   <url><loc>https://agentrust-io.com/research/cmcp/v1/</loc></url>
   <url><loc>https://agentrust-io.com/research/trace/</loc></url>
   <url><loc>https://agentrust-io.com/research/trace/v1/</loc></url>
+  <url><loc>https://agentrust-io.com/research/weight-custody-manifest/</loc></url>
+  <url><loc>https://agentrust-io.com/research/weight-custody-manifest/v1/</loc></url>
   <url><loc>https://agentrust-io.com/telemetry/</loc></url>
   <url><loc>https://agentrust-io.com/verify/</loc></url>
 </urlset>

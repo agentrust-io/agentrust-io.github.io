@@ -88,6 +88,33 @@
         "paper.pdf": "325969395ca5a6da6917676ef1285b6a2812ee1c35884fb4c5b39c9da9785675",
         "source.zip": "f79f033d5e6de385dc0b6308c387194e2515f6fbf718a942dc5b0058b9d23455"
       }
+    },
+    {
+      "slug": "weight-custody-manifest",
+      "short_title": "Weight Custody Manifest",
+      "title": "Weight Custody Manifest: Portable, Attestation-Gated Custody for Proprietary Model Weights",
+      "authors": [
+        "Imran Siddique"
+      ],
+      "topic": "Model weight custody",
+      "description": "Weight Custody Manifest technical report: attestation-gated custody of model weights, conformance results, later findings and hardware limits.",
+      "contribution": "A portable custody contract binding exact weights, measured workload, fresh channel-bound release, renewable authority, terminal evidence and derivative lineage.",
+      "limits": [
+        "The evaluated version is WCM 0.28.0 (commit 2acedfa). Its software results were rerun on September 27, 2026 with the same counts: 618 passed, 3 skipped, 91 of 91 conformance vectors. The SEV-SNP hardware runs were not repeated.",
+        "Advisory GHSA-j665-99rh-w85h affects the evaluated version: the key broker did not require GPU confidential-compute mode before release. The fail-closed result does not cover GPU mode.",
+        "The measured Azure SEV-SNP platform does not enable ciphertext hiding, so the cryptographic-custody claim does not hold there against a hypervisor-privileged operator. Against an operator who physically owns the machine, WCM claims accountability, not custody."
+      ],
+      "changes": "Adds a post-evaluation findings section, corrects the description of the three skipped tests, fixes two citations, and records a software rerun at the evaluated commit.",
+      "spec": "https://wcm.agentrust-io.com/",
+      "code": "https://github.com/agentrust-io/weight-custody-manifest",
+      "patent_pending": true,
+      "date": "2026-09-27",
+      "abstract": "Deploying proprietary model weights into infrastructure controlled by a customer reverses the usual confidential-computing trust problem: the model builder, rather than the infrastructure owner, supplies the secret. Existing confidential-computing stacks can attest workloads and release secrets, while model-signing systems authenticate model artifacts. Neither capability alone specifies continuing custody of a particular weight artifact after release. This technical report describes the Weight Custody Manifest (WCM), a vendor-neutral protocol and conformance model that binds an exact weight digest, an approved workload measurement, attestation policy, a fresh transport key, renewable authorization, terminal refusal and wipe evidence, and derivative lineage. WCM distinguishes cryptographic custody against software adversaries from accountability-grade controls when the infrastructure operator physically owns the machine. The evaluated Python reference implementation, version 0.28.0, supplies 91 portable conformance vectors across four levels. Its test suite produced 618 passing tests and three skips on September 3, 2026, and the same counts when rerun at the same commit for this edition. Two later findings bound those results: a published advisory showed that the evaluated key broker did not require GPU confidential-compute mode before release, and the SEV-SNP platform used for the hardware run does not enable the ciphertext hiding that the cryptographic-custody claim against a hypervisor-privileged operator requires. The contribution is a portable artifact-to-runtime custody contract with explicit lifecycle evidence, derivative accountability, and conformance, not a new attestation primitive or a certification of any deployment.",
+      "pages": 6,
+      "sha256": {
+        "paper.pdf": "e3b40be4d0bc6e0e510fed8b104543d2f1cd6a01ebebeaebde6fcd79ec842180",
+        "source.zip": "a2d4f124feb0c9b50d2db853ddd62acfa3c356df4af32f492bc544887625b015"
+      }
     }
   ]
 }
