@@ -18,6 +18,7 @@
         "A signature proves integrity and signing-key possession. Hardware origin requires verified attestation and key binding; inclusion in a log does not prove that every event was recorded."
       ],
       "changes": "Clarifies the signature and hardware-evidence boundary, corrects the description of saved conformance outcomes, and preserves the historical measurements.",
+      "origin": "Based on a manuscript originally dated June 23, 2026, with later recorded experiments. That manuscript date is not presented as a verified publication date.",
       "spec": "https://trace.agentrust-io.com/",
       "code": "https://github.com/agentrust-io/trace-spec",
       "patent_pending": false,
@@ -48,6 +49,7 @@
         "Replay and omission detection depend on trusted keys, freshness checks, and an expected session or log boundary. Gateway records alone do not establish complete information flow."
       ],
       "changes": "Narrows the abstract to the measured software behavior, corrects the false-discovery terminology, and adds the publication scope and patent notice.",
+      "origin": "Based on a manuscript originally dated June 23, 2026, with later recorded experiments. That manuscript date is not presented as a verified publication date.",
       "spec": "https://cmcp.agentrust-io.com/",
       "code": "https://github.com/agentrust-io/cmcp",
       "patent_pending": true,
@@ -77,6 +79,7 @@
         "The saved environment does not identify the exact SDK commit. It supports inspection of the recorded results, but not a claim of fully pinned independent reproduction."
       ],
       "changes": "Separates signed-baseline checks from proof of runtime use, states evaluation limits, and adds the publication scope and patent notice.",
+      "origin": "Based on a manuscript originally dated June 23, 2026, with later recorded experiments. That manuscript date is not presented as a verified publication date.",
       "spec": "https://manifest.agentrust-io.com/",
       "code": "https://github.com/agentrust-io/agent-manifest",
       "patent_pending": true,
@@ -105,6 +108,8 @@
         "The measured Azure SEV-SNP platform does not enable ciphertext hiding, so the cryptographic-custody claim does not hold there against a hypervisor-privileged operator. Against an operator who physically owns the machine, WCM claims accountability, not custody."
       ],
       "changes": "Adds a post-evaluation findings section, corrects the descriptions of the three skipped tests and of the memory-sweep receipt, fixes two citations, and records a software rerun at the evaluated commit.",
+      "origin": "Revises a manuscript dated September 3, 2026.",
+      "evidence_note": "The software results were rerun at the evaluated commit for this edition; the hardware runs were not repeated. No independent replication is claimed.",
       "spec": "https://wcm.agentrust-io.com/",
       "code": "https://github.com/agentrust-io/weight-custody-manifest",
       "patent_pending": true,
@@ -135,6 +140,8 @@
         "The results do not show that a peer's key is confined to attested code. Provenance checks on unsigned records establish structural consistency only; authenticity rests on signed records."
       ],
       "changes": "Narrows claims to what the code validates, reruns the experiments on ca2a 0.3.1, corrects three citations, and adds a post-evaluation findings section.",
+      "origin": "Revises a draft dated July 2026.",
+      "evidence_note": "The software experiments were rerun against ca2a 0.3.1 for this edition; no hardware run was repeated. No independent replication is claimed.",
       "spec": "https://ca2a.agentrust-io.com/",
       "code": "https://github.com/agentrust-io/ca2a",
       "patent_pending": true,
@@ -162,6 +169,8 @@
         "A defect found after the evaluation let an edited evidence snapshot be signed at the evaluated release; it was fixed later and is reported beside the results."
       ],
       "changes": "Aligns claims with the evaluated code, positions the contract against prior governance telemetry work, and adds a post-evaluation findings section.",
+      "origin": "Revises a manuscript dated September 3, 2026.",
+      "evidence_note": "The Python results were rerun at the evaluated commit for this edition; the TypeScript suite was not rerun. No independent replication is claimed.",
       "spec": "https://agentrust-io.com/telemetry/",
       "code": "https://github.com/agentrust-io/agentrust-telemetry",
       "patent_pending": false,
@@ -189,6 +198,8 @@
         "Hardware acceptance and independently operated peers are future work. Raw hardware diagnostic captures are not published."
       ],
       "changes": "Reframes the draft as a bounded software edition, records the rerun, updates dependency status and corrects two references.",
+      "origin": "Revises a discussion draft dated September 19, 2026.",
+      "evidence_note": "The composed software experiment was rerun for this edition; no hardware run was repeated. No independent replication is claimed.",
       "spec": "https://wcm.agentrust-io.com/",
       "code": "https://github.com/agentrust-io/weight-custody-manifest/tree/main/python/composed",
       "patent_pending": true,

@@ -72,7 +72,7 @@
 <nav class="paper-actions" aria-label="Paper resources"><a class="primary-action" href="/research/ca2a/v1/paper.pdf">Read PDF <span>(21 pages)</span></a><a href="#cite">Cite this report</a><a href="/research/ca2a/v1/source.zip">Source and recorded evidence</a><a href="https://github.com/agentrust-io/ca2a">Project code</a></nav>
 <section class="research-section"><h2>What this report contributes</h2><p>A trust profile on A2A composing narrowing delegation credentials, peer attestation appraisal, sealed payloads and linked per-hop provenance records.</p></section>
 <section class="research-section"><h2>Evidence and limits</h2><ul><li>Software experiments were rerun on September 27, 2026 against ca2a 0.3.1: correctness counts matched the July 2026 draft, and chain verification cost about 216 rather than 195 microseconds per hop.</li><li>Cross-operator attestation was exercised only with synthetic evidence. Recorded hardware runs cover one-directional appraisal across clouds and a same-operator diagnostic, not mutual attestation between independent operators.</li><li>The results do not show that a peer&#x27;s key is confined to attested code. Provenance checks on unsigned records establish structural consistency only; authenticity rests on signed records.</li></ul>
-<p>The source package preserves the recorded inputs and results. No new experiment run or independent replication is claimed for this edition.</p>
+<p>The source package preserves the recorded inputs and results. The software experiments were rerun against ca2a 0.3.1 for this edition; no hardware run was repeated. No independent replication is claimed.</p>
 <p><a href="https://ca2a.agentrust-io.com/">Read the current specification and implementation guidance</a>. This report describes an earlier design and evaluation; the current specification governs implementation.</p></section>
 <section class="research-section" id="cite"><h2>Cite this report</h2><p>Rishabh Poddar; Aaron Fulkerson; Imran Siddique. cA2A: Confidential Agent-to-Agent Delegation as a Profile on A2A. AgenTrust technical report, version 1, 2026.</p>
 <p><a href="/research/ca2a/v1/citation.bib" download>Download BibTeX</a> / <a href="/research/ca2a/v1/CITATION.cff" download>Download CITATION.cff</a></p><pre><code>@techreport{agentrust2026ca2a,
@@ -86,7 +86,7 @@
 }
 </code></pre></section>
 <section class="research-section"><h2>Version history</h2><p><a href="/research/ca2a/v1/">Version 1, September 27, 2026</a>: Narrows claims to what the code validates, reruns the experiments on ca2a 0.3.1, corrects three citations, and adds a post-evaluation findings section.</p>
-<p>Based on a manuscript originally dated June 23, 2026, with later recorded experiments. That manuscript date is not presented as a verified publication date.</p>
+<p>Revises a draft dated July 2026.</p>
 <p><a href="/research/ca2a/v1/SHA256SUMS">File checksums</a>. Published version files are retained; substantive revisions receive a new version.</p></section>
 <section class="research-section"><h2>Questions and corrections</h2><p>Open an issue in the <a href="https://github.com/agentrust-io/ca2a/issues">project repository</a> and identify the report version and section.</p></section></main>
 <footer class="research-footer"><a href="/research/">AgenTrust Research</a><span>Paper text: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Code retains its project license.</span><a href="https://github.com/agentrust-io">GitHub</a></footer>
