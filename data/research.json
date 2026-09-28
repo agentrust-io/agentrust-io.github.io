@@ -39,6 +39,7 @@
           "date": "2026-09-28",
           "pages": 15,
           "changes": "Corrects the related-work statement that transparency-log registration makes omitted events detectable, which contradicted the conclusion, and removes three en dashes. Results unchanged.",
+          "doi": "10.5281/zenodo.23024103",
           "sha256": {
             "paper.pdf": "e4b75dc0b2627486f2d8692193705ddf7db0fe7de225d4b1b8010fcac9382bdd",
             "source.zip": "3f9b16068aaa22cf7280eba5b8d8a1a9a1e332ca6d5a3c81b92c08bf35577aef"
