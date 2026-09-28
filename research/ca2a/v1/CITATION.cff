@@ -21,6 +21,7 @@
   ],
   "url": "https://agentrust-io.com/research/ca2a/v1/",
   "license": "CC-BY-4.0",
+  "doi": "10.5281/zenodo.23022872",
   "preferred-citation": {
     "type": "report",
     "title": "cA2A: Confidential Agent-to-Agent Delegation as a Profile on A2A",
