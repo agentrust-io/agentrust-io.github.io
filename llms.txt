@@ -41,7 +41,6 @@ AgenTrust is the ecosystem at https://agentrust-io.com and the GitHub organizati
 ## Community and stewardship
 
 - [Community, partners and sponsor](https://agentrust-io.com/community/#adoption): Published roles and partner relationships, each linked to public evidence. OPAQUE sponsors the work. The NSF submission is in review, not an award.
-- [Fellowship status](https://agentrust-io.com/community/#fellowship): Current application and selection information. Use this page rather than dates copied from older announcements.
 - [Architecting at Scale](https://agentrust-io.com/community/#book): The field guide and its public companion code.
 
 ## More documentation
