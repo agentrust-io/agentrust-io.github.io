@@ -1,0 +1,28 @@
+{
+  "cff-version": "1.2.0",
+  "message": "Cite the versioned technical report. It has not been peer reviewed.",
+  "type": "dataset",
+  "title": "Acceptance Before Export: A Bounded Evidence Contract for Governance Telemetry",
+  "version": "1",
+  "date-released": "2026-09-27",
+  "authors": [
+    {
+      "given-names": "Imran",
+      "family-names": "Siddique"
+    }
+  ],
+  "url": "https://agentrust-io.com/research/telemetry-evidence-acceptance/v1/",
+  "license": "CC-BY-4.0",
+  "preferred-citation": {
+    "type": "report",
+    "title": "Acceptance Before Export: A Bounded Evidence Contract for Governance Telemetry",
+    "authors": [
+      {
+        "given-names": "Imran",
+        "family-names": "Siddique"
+      }
+    ],
+    "year": 2026,
+    "url": "https://agentrust-io.com/research/telemetry-evidence-acceptance/v1/"
+  }
+}
