@@ -229,6 +229,35 @@
         "paper.pdf": "21a1abd5e6fbc822105437c2a639c59368880a3ff79c2dc32b4cfac652602728",
         "source.zip": "b0f2ea632176aff353d78813fe74293bd80e12bed53448d3e1395b1dc699b641"
       }
+    },
+    {
+      "slug": "telemetry-evidence-acceptance",
+      "short_title": "Acceptance Before Export",
+      "title": "Acceptance Before Export: A Bounded Evidence Contract for Governance Telemetry",
+      "authors": [
+        "Imran Siddique"
+      ],
+      "topic": "Governance telemetry",
+      "description": "Acceptance Before Export technical report: accept governance evidence into a local cryptographic prefix before any lossy telemetry export.",
+      "contribution": "A source-side contract that accepts each governance event into a run-scoped cryptographic prefix before operational export, keeping export failures separate from evidence failures.",
+      "limits": [
+        "Software-only. At the pinned agentrust-telemetry commit 29c13cf, 111 Python tests and 13 conformance fixtures gave expected results on September 4 and again on September 27, 2026. The TypeScript suite was not run.",
+        "No durable store, crash-restart, multi-process or deployed-exporter experiment was run. Acknowledgment loss repeats external writes; exactly-once persistence is not provided.",
+        "An empty accumulator can be sealed as complete. Completeness remains a producer assertion, not something the contract measures."
+      ],
+      "changes": "Adds the rerun, a later-revision probe result, a comparison with prior logging systems in place of the filing notes, and corrected patent and RFC references.",
+      "origin": "Revises a manuscript dated September 4, 2026.",
+      "evidence_note": "Tests, fixtures and boundary probes were rerun at the pinned commit for this edition. No independent replication is claimed.",
+      "spec": "https://agentrust-io.com/telemetry/",
+      "code": "https://github.com/agentrust-io/agentrust-telemetry",
+      "patent_pending": true,
+      "date": "2026-09-27",
+      "abstract": "An operational telemetry backend can lose events through sampling, retention and exporter failures. Its observations therefore cannot, by themselves, establish complete governance evidence. We describe a source-side acceptance boundary in AgenTrust Telemetry: validate a metadata-constrained event, check context correlation, accept an isolated representation into a run-scoped cryptographic prefix, and only then attempt operational projections. In a durable configuration, an external callback must acknowledge persistence before the local prefix advances. Export failures remain distinct from evidence failures. We formalize the conditional ordering property and test its limits, including acknowledgment loss and an empty accumulator declared complete. At a pinned source revision, 111 Python tests and 13 portable conformance fixtures produced expected results on September 4 and again on September 27, 2026. Four additional probes demonstrate both the useful separation and the absence of automatic completeness or distributed exactly-once persistence. The contribution is a precise contract for acceptance before export, with explicit trust and recovery obligations, rather than a claim that a hash chain proves every event occurred.",
+      "pages": 4,
+      "sha256": {
+        "paper.pdf": "8723749e0e0c31f2f17ae43492eee4bb1e96fa16d1e099fbeaebf9627515261b",
+        "source.zip": "455b2e6dbb245d0bccbc525aa432e1dd6caa4c9c7d0d4e6b49368a9124a3ebc6"
+      }
     }
   ]
 }
