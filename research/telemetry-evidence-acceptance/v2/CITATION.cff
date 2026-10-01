@@ -13,6 +13,7 @@
   ],
   "url": "https://agentrust-io.com/research/telemetry-evidence-acceptance/v2/",
   "license": "CC-BY-4.0",
+  "doi": "10.5281/zenodo.23074733",
   "preferred-citation": {
     "type": "report",
     "title": "Acceptance Before Export: A Bounded Evidence Contract for Governance Telemetry",
