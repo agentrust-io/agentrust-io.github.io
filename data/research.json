@@ -241,7 +241,8 @@
           "sha256": {
             "paper.pdf": "974680a59d741bb6e1725ce3ca1f433a337bad9aa1763ba88d0c1a593b2c2555",
             "source.zip": "da518ca6e15b474ee733abd73780ae890ac1f63ac8a0468724be00aa74afeb17"
-          }
+          },
+          "doi": "10.5281/zenodo.23074670"
         }
       ]
     },
@@ -275,7 +276,8 @@
           "sha256": {
             "paper.pdf": "8723749e0e0c31f2f17ae43492eee4bb1e96fa16d1e099fbeaebf9627515261b",
             "source.zip": "455b2e6dbb245d0bccbc525aa432e1dd6caa4c9c7d0d4e6b49368a9124a3ebc6"
-          }
+          },
+          "doi": "10.5281/zenodo.23071908"
         },
         {
           "version": 2,
@@ -285,7 +287,8 @@
           "sha256": {
             "paper.pdf": "301155b7775960c49dadf6be4500ef71d04fe86c942549d90b1a2747a6df94cf",
             "source.zip": "b7a0ba3e4eafc0c07dd91ec2efdaecc6d6f1189f89a6673350d4c126239bbe0e"
-          }
+          },
+          "doi": "10.5281/zenodo.23074733"
         }
       ]
     }
