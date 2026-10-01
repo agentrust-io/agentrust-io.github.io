@@ -35,6 +35,8 @@
   <url><loc>https://agentrust-io.com/research/exact-output-disclosure/v1/</loc></url>
   <url><loc>https://agentrust-io.com/research/handoff-response-authentication/</loc></url>
   <url><loc>https://agentrust-io.com/research/handoff-response-authentication/v1/</loc></url>
+  <url><loc>https://agentrust-io.com/research/kill-switch/</loc></url>
+  <url><loc>https://agentrust-io.com/research/kill-switch/v1/</loc></url>
   <url><loc>https://agentrust-io.com/research/model-key-broker-provisioning/</loc></url>
   <url><loc>https://agentrust-io.com/research/model-key-broker-provisioning/v1/</loc></url>
   <url><loc>https://agentrust-io.com/research/receipt-gated-model-serving/</loc></url>

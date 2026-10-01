@@ -1,0 +1,28 @@
+{
+  "cff-version": "1.2.0",
+  "message": "Cite the versioned technical report. It has not been peer reviewed.",
+  "type": "dataset",
+  "title": "What Does an AI Kill Switch Prove? Evidence and limits of shutdown at an agent tool gateway",
+  "version": "1",
+  "date-released": "2026-10-01",
+  "authors": [
+    {
+      "given-names": "Imran",
+      "family-names": "Siddique"
+    }
+  ],
+  "url": "https://agentrust-io.com/research/kill-switch/v1/",
+  "license": "CC-BY-4.0",
+  "preferred-citation": {
+    "type": "report",
+    "title": "What Does an AI Kill Switch Prove? Evidence and limits of shutdown at an agent tool gateway",
+    "authors": [
+      {
+        "given-names": "Imran",
+        "family-names": "Siddique"
+      }
+    ],
+    "year": 2026,
+    "url": "https://agentrust-io.com/research/kill-switch/v1/"
+  }
+}
