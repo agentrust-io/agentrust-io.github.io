@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Owner-Approved Provisioning of a Model-Key Broker: Binding the broker&#x27;s configuration, receiving key and policy epoch before the model key leaves the owner (version 1) | AgenTrust</title>
+<meta name="description" content="Broker provisioning technical report: owner approval of a model-key broker&#x27;s configuration, receiving key and policy epoch, with lifecycle experiments.">
+<link rel="canonical" href="https://agentrust-io.com/research/model-key-broker-provisioning/v1/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AgenTrust">
+<meta property="og:title" content="Owner-Approved Provisioning of a Model-Key Broker: Binding the broker&#x27;s configuration, receiving key and policy epoch before the model key leaves the owner (version 1)">
+<meta property="og:description" content="Broker provisioning technical report: owner approval of a model-key broker&#x27;s configuration, receiving key and policy epoch, with lifecycle experiments.">
+<meta property="og:url" content="https://agentrust-io.com/research/model-key-broker-provisioning/v1/">
+<meta property="og:image" content="https://agentrust-io.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AgenTrust research: identity, enforcement and runtime evidence">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Owner-Approved Provisioning of a Model-Key Broker: Binding the broker&#x27;s configuration, receiving key and policy epoch before the model key leaves the owner (version 1)">
+<meta name="twitter:description" content="Broker provisioning technical report: owner approval of a model-key broker&#x27;s configuration, receiving key and policy epoch, with lifecycle experiments.">
+<meta name="twitter:image" content="https://agentrust-io.com/og.png">
+<meta name="citation_title" content="Owner-Approved Provisioning of a Model-Key Broker: Binding the broker&#x27;s configuration, receiving key and policy epoch before the model key leaves the owner">
+<meta name="citation_publication_date" content="2026/10/01">
+<meta name="citation_pdf_url" content="https://agentrust-io.com/research/model-key-broker-provisioning/v1/paper.pdf">
+<meta name="citation_author" content="Imran Siddique">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ScholarlyArticle", "headline": "Owner-Approved Provisioning of a Model-Key Broker: Binding the broker's configuration, receiving key and policy epoch before the model key leaves the owner", "abstract": "A model owner can require workload attestation before a key broker releases a decryption key, and still lose control if the deployment operator can change the broker itself: its trust roots, its list of accepted model manifests, or the owner key it trusts. This report describes provisioning in the other direction. The owner treats the broker as a recipient. Before sending the model key, the owner appraises a signed attestation report that commits to the broker's launch measurement, a digest of the configuration the broker actually constructed, a fresh receiving key, the model identity and the policy epoch. A separate deployment approval pins the build artifacts and launch parameters. The receiver installs one owner-authenticated envelope, serves workloads, and refuses every path after retirement. We evaluate the implementation in the Weight Custody Manifest library, released in weight-custody-manifest 0.28.4 and later. All 84 existing tests pass, and removing the configuration or measurement check makes 5 and 3 specific tests fail. A retired receiver in its own process refused all four API paths, and an old envelope would not install in a replacement. Across separate owner processes sharing one epoch store, a stale live owner, a restarted stale owner and a same-epoch substitution were all refused, and a killed policy admission left the floor unchanged. Every number was reproduced on October 1, 2026 at the evaluated revision and at current main.", "url": "https://agentrust-io.com/research/model-key-broker-provisioning/v1/", "author": [{"@type": "Person", "name": "Imran Siddique"}], "datePublished": "2026-10-01", "version": "1", "creativeWorkStatus": "Technical report; not peer reviewed", "license": "https://creativecommons.org/licenses/by/4.0/", "encoding": {"@type": "MediaObject", "encodingFormat": "application/pdf", "contentUrl": "https://agentrust-io.com/research/model-key-broker-provisioning/v1/paper.pdf"}}</script>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/design-system.css?v=22">
+<link rel="stylesheet" href="/research/research.css">
+</head><body class="agentrust-hub research-page">
+<!-- site-header:start (generated by tools/build-header.py from tools/site_header.py) -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="hub-header">
+  <div class="header-inner">
+    <a href="/" class="logo">AgenTrust</a>
+    <nav aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-links" hidden>Menu</button>
+      <ul class="header-nav" id="primary-links">
+        <li><a href="/verify/">Verify</a></li>
+        <li class="spec-menu"><details><summary>Specs</summary><ul>
+          <li><a href="https://wcm.agentrust-io.com">Model-weight custody (WCM)</a></li>
+          <li><a href="https://manifest.agentrust-io.com">Agent identity (Manifest)</a></li>
+          <li><a href="https://cmcp.agentrust-io.com">Tool-call enforcement (cMCP)</a></li>
+          <li><a href="https://ca2a.agentrust-io.com">Agent delegation (cA2A)</a></li>
+          <li><a href="https://trace.agentrust-io.com">Runtime evidence (TRACE)</a></li>
+          <li><a href="/registry/">TRACE Registry</a></li>
+          <li><a href="https://tests.agentrust-io.com">TRACE conformance suite</a></li>
+        </ul></details></li>
+        <li class="spec-menu"><details><summary>Build</summary><ul>
+          <li><a href="/quickstart/">Get started</a></li>
+          <li><a href="/demos/">Demos</a></li>
+          <li><a href="/telemetry/">Telemetry</a></li>
+          <li><a href="/marketplace/">Marketplace</a></li>
+        </ul></details></li>
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="https://github.com/agentrust-io">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/company/agentrust-io/">LinkedIn</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<script src="/hub-nav.js" defer></script>
+<!-- site-header:end -->
+<main id="main" class="research-main"><nav class="research-breadcrumb" aria-label="Breadcrumb"><a href="/research/">Research</a> / Model-Key Broker Provisioning / Version 1</nav>
+<header class="paper-header"><p class="research-eyebrow">Technical report / Version 1</p>
+<h1>Owner-Approved Provisioning of a Model-Key Broker: Binding the broker&#x27;s configuration, receiving key and policy epoch before the model key leaves the owner</h1>
+<p class="paper-authors">Imran Siddique</p><p class="paper-affiliation">OPAQUE Systems</p>
+<div class="paper-status"><span>October 1, 2026</span><span>Not peer reviewed</span></div>
+</header>
+<section class="paper-abstract" aria-labelledby="abstract"><h2 id="abstract">Abstract</h2><p>A model owner can require workload attestation before a key broker releases a decryption key, and still lose control if the deployment operator can change the broker itself: its trust roots, its list of accepted model manifests, or the owner key it trusts. This report describes provisioning in the other direction. The owner treats the broker as a recipient. Before sending the model key, the owner appraises a signed attestation report that commits to the broker&#x27;s launch measurement, a digest of the configuration the broker actually constructed, a fresh receiving key, the model identity and the policy epoch. A separate deployment approval pins the build artifacts and launch parameters. The receiver installs one owner-authenticated envelope, serves workloads, and refuses every path after retirement. We evaluate the implementation in the Weight Custody Manifest library, released in weight-custody-manifest 0.28.4 and later. All 84 existing tests pass, and removing the configuration or measurement check makes 5 and 3 specific tests fail. A retired receiver in its own process refused all four API paths, and an old envelope would not install in a replacement. Across separate owner processes sharing one epoch store, a stale live owner, a restarted stale owner and a same-epoch substitution were all refused, and a killed policy admission left the floor unchanged. Every number was reproduced on October 1, 2026 at the evaluated revision and at current main.</p></section>
+<nav class="paper-actions" aria-label="Paper resources"><a class="primary-action" href="/research/model-key-broker-provisioning/v1/paper.pdf">Read PDF <span>(6 pages)</span></a><a href="#cite">Cite this report</a><a href="/research/model-key-broker-provisioning/v1/source.zip">Source and recorded evidence</a><a href="https://github.com/agentrust-io/weight-custody-manifest">Project code</a></nav>
+<section class="research-section"><h2>What this report contributes</h2><p>An owner-side provisioning protocol that appraises the broker as a recipient, binding its configuration, fresh receiving key, model identity and policy epoch before the model key leaves.</p></section>
+<section class="research-section"><h2>Evidence and limits</h2><ul><li>Software-only, on one Windows host. Attestation reports are synthetic SNP-format reports from a generated certificate chain; no SEV-SNP hardware or real model key was used.</li><li>Whether approved build inputs determine the receiver that actually runs needs a hardware launch experiment with an independently predicted measurement. It has not been run.</li><li>The owner epoch store needs rollback-protected storage: restoring or deleting it let a stale owner provision again. Secure erasure of retired key material is not established.</li></ul>
+<p>The source package preserves the recorded inputs and results. Every experiment was rerun on October 1, 2026 in a fresh environment at the evaluated revision and at current main. No independent replication is claimed.</p>
+<p><a href="https://wcm.agentrust-io.com/">Read the current specification and implementation guidance</a>. This report describes an earlier design and evaluation; the current specification governs implementation.</p></section>
+<section class="research-section" id="cite"><h2>Cite this report</h2><p>Imran Siddique. Owner-Approved Provisioning of a Model-Key Broker: Binding the broker&#x27;s configuration, receiving key and policy epoch before the model key leaves the owner. AgenTrust technical report, version 1, 2026.</p>
+<p><a href="/research/model-key-broker-provisioning/v1/citation.bib" download>Download BibTeX</a> / <a href="/research/model-key-broker-provisioning/v1/CITATION.cff" download>Download CITATION.cff</a></p><pre><code>@techreport{agentrust2026modelkeybrokerprovisioning,
+  title = {Owner-Approved Provisioning of a Model-Key Broker: Binding the broker&#x27;s configuration, receiving key and policy epoch before the model key leaves the owner},
+  author = {Imran Siddique},
+  institution = {AgenTrust},
+  year = {2026},
+  type = {Technical report},
+  note = {Version 1; not peer reviewed},
+  url = {https://agentrust-io.com/research/model-key-broker-provisioning/v1/}
+}
+</code></pre></section>
+<section class="research-section"><h2>Version history</h2><p><a href="/research/model-key-broker-provisioning/v1/">Version 1, October 1, 2026</a>: First public edition. Evaluates Weight Custody Manifest db8f106; every count was reproduced on October 1, 2026 at that revision and at main 5ef8c12.</p>
+<p>Based on an internal study drafted September 23, 2026 and rerun September 27, 2026.</p>
+<p><a href="/research/model-key-broker-provisioning/v1/SHA256SUMS">File checksums</a>. Published version files are retained; substantive revisions receive a new version.</p></section>
+<section class="research-section"><h2>Questions and corrections</h2><p>Open an issue in the <a href="https://github.com/agentrust-io/weight-custody-manifest/issues">project repository</a> and identify the report version and section.</p></section></main>
+<footer class="research-footer"><a href="/research/">AgenTrust Research</a><span>Paper text: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Code retains its project license.</span><a href="https://github.com/agentrust-io">GitHub</a></footer>
+<script src="/supernav.js?v=22" defer></script>
+</body></html>

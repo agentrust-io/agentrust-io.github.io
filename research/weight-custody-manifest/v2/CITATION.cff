@@ -1,0 +1,28 @@
+{
+  "cff-version": "1.2.0",
+  "message": "Cite the versioned technical report. It has not been peer reviewed.",
+  "type": "dataset",
+  "title": "Weight Custody Manifest: Portable, Attestation-Gated Custody for Proprietary Model Weights",
+  "version": "2",
+  "date-released": "2026-10-01",
+  "authors": [
+    {
+      "given-names": "Imran",
+      "family-names": "Siddique"
+    }
+  ],
+  "url": "https://agentrust-io.com/research/weight-custody-manifest/v2/",
+  "license": "CC-BY-4.0",
+  "preferred-citation": {
+    "type": "report",
+    "title": "Weight Custody Manifest: Portable, Attestation-Gated Custody for Proprietary Model Weights",
+    "authors": [
+      {
+        "given-names": "Imran",
+        "family-names": "Siddique"
+      }
+    ],
+    "year": 2026,
+    "url": "https://agentrust-io.com/research/weight-custody-manifest/v2/"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "cff-version": "1.2.0",
+  "message": "Cite the versioned technical report. It has not been peer reviewed.",
+  "type": "dataset",
+  "title": "Owner-Approved Provisioning of a Model-Key Broker: Binding the broker's configuration, receiving key and policy epoch before the model key leaves the owner",
+  "version": "1",
+  "date-released": "2026-10-01",
+  "authors": [
+    {
+      "given-names": "Imran",
+      "family-names": "Siddique"
+    }
+  ],
+  "url": "https://agentrust-io.com/research/model-key-broker-provisioning/v1/",
+  "license": "CC-BY-4.0",
+  "preferred-citation": {
+    "type": "report",
+    "title": "Owner-Approved Provisioning of a Model-Key Broker: Binding the broker's configuration, receiving key and policy epoch before the model key leaves the owner",
+    "authors": [
+      {
+        "given-names": "Imran",
+        "family-names": "Siddique"
+      }
+    ],
+    "year": 2026,
+    "url": "https://agentrust-io.com/research/model-key-broker-provisioning/v1/"
+  }
+}

@@ -44,6 +44,24 @@
             "paper.pdf": "e4b75dc0b2627486f2d8692193705ddf7db0fe7de225d4b1b8010fcac9382bdd",
             "source.zip": "3f9b16068aaa22cf7280eba5b8d8a1a9a1e332ca6d5a3c81b92c08bf35577aef"
           }
+        },
+        {
+          "version": 3,
+          "date": "2026-10-01",
+          "pages": 14,
+          "changes": "Corrects the identification of the evaluated SDK and five bibliography entries, narrows the conformance-module descriptions, states that the evaluated vectors use the v0.1 profile URI, fixes the install command and restores bold and italic type. Results unchanged.",
+          "abstract": "TRACE (Trust, Runtime Attestation, and Compliance Evidence) proposes a portable record for claims about AI agent runtimes: workload identity, model, policy, data class, tool transcript, build provenance, and appraisal. It composes RATS/EAT, signatures, and transparency evidence into a format that a relying party can evaluate against its own trust policy. A valid signature establishes integrity and possession of the signing key; hardware origin additionally requires verified attestation and a binding from that evidence to the key. This technical report describes the original design and preserves the recorded software evaluation of agentrust-trace (trace-spec revision 523f8cc, whose signing code is release 0.3.0) and trace-tests 0.2.0. The evaluation measures canonicalization, Ed25519 signing and verification, record size, and fixture outcomes. It does not measure silicon certificate-chain appraisal or establish that the recorded runtime claims are true. The current normative specification and its implementation limits are maintained separately.",
+          "limits": [
+            "The recorded run of July 1, 2026 measured trace-spec revision 523f8cc, whose signing code is release 0.3.0, and trace-tests 0.2.0. It did not measure silicon certificate-chain appraisal.",
+            "The missing-runtime fixture passes at Level 0 in the saved results. The cMCP fixture fails at all three levels. Those outcomes limit what the historical conformance checks establish.",
+            "The evaluated checker canonicalized with sorted JSON rather than RFC 8785, so a record with a non-ASCII subject that the SDK signs and verifies fails its signature check.",
+            "A signature proves integrity and signing-key possession. Hardware origin requires verified attestation and key binding; inclusion in a log does not prove that every event was recorded."
+          ],
+          "evidence_note": "The benchmark was rerun at the identified revisions and at current main on October 1, 2026; the report keeps the original numbers. No independent replication is claimed.",
+          "sha256": {
+            "paper.pdf": "e050e959252bec95ea836eabbec5f167be46d7779bd4a2a14709ec3fe3d847f0",
+            "source.zip": "649a36e7f2446393f84d519ec54e851860b22f690e1a8e51f385dbb04cb6e391"
+          }
         }
       ]
     },
@@ -64,19 +82,35 @@
         "The reported 11 of 16 blocked calls measures the false-discovery proportion among blocked calls. It is not the conventional false-positive rate over all negative cases.",
         "Replay and omission detection depend on trusted keys, freshness checks, and an expected session or log boundary. Gateway records alone do not establish complete information flow."
       ],
-      "changes": "Narrows the abstract to the measured software behavior, corrects the false-discovery terminology, and adds the publication scope and patent notice.",
       "origin": "Based on a manuscript originally dated June 23, 2026, with later recorded experiments. That manuscript date is not presented as a verified publication date.",
       "spec": "https://cmcp.agentrust-io.com/",
       "code": "https://github.com/agentrust-io/cmcp",
       "patent_pending": true,
-      "doi": "10.5281/zenodo.23001694",
-      "date": "2026-09-27",
       "abstract": "cMCP (Confidential MCP) proposes a gateway for policy evaluation at the Model Context Protocol tool-call boundary. The gateway evaluates Cedar policies before dispatch and emits signed records binding policy measurements, session identifiers, and tool-call evidence. Its design combines policy hashing, monotonic session sensitivity, tool-catalog pinning, and audit-chain checks. This technical report preserves software-only experiments for those mechanisms, including synthetic healthcare call traces and simulated attestation paths. The measurements illustrate behavior under the stated inputs and assumptions; they do not validate a hardware TEE, establish complete information-flow tracking, or show that every tool invocation was captured. Hardware provenance requires independent attestation appraisal and signing-key binding. Replay and omission detection additionally depend on freshness checks and an expected session or log boundary. The report distinguishes these deployment requirements from the software behavior measured here.",
-      "pages": 18,
-      "sha256": {
-        "paper.pdf": "f5e90fbe9a466dab97ac3d3da8c436285b78bd77f1de4a9dc0a6f9794707492f",
-        "source.zip": "d50104e97da7744859eb6e7d3e638af3a0e20adaf0dd5137ae4bfc38b474ef1b"
-      }
+      "versions": [
+        {
+          "version": 1,
+          "date": "2026-09-27",
+          "pages": 18,
+          "changes": "Narrows the abstract to the measured software behavior, corrects the false-discovery terminology, and adds the publication scope and patent notice.",
+          "sha256": {
+            "paper.pdf": "f5e90fbe9a466dab97ac3d3da8c436285b78bd77f1de4a9dc0a6f9794707492f",
+            "source.zip": "d50104e97da7744859eb6e7d3e638af3a0e20adaf0dd5137ae4bfc38b474ef1b"
+          },
+          "doi": "10.5281/zenodo.23001694"
+        },
+        {
+          "version": 2,
+          "date": "2026-10-01",
+          "pages": 18,
+          "changes": "Corrects the REPORT_DATA size, the session-claim nonce, when the catalog check runs, trial counts, two citations and two performance figures, names the measured revision and its advisories, and restores bold and italic type. Correctness results unchanged.",
+          "evidence_note": "Every experiment was rerun on October 1, 2026 at the measured revision 6f12cce and at current main; correctness results are unchanged. No independent replication is claimed.",
+          "sha256": {
+            "paper.pdf": "e92d8b6b3ac47ca45256769161c582ebc3c0f0fa2238cd21f9b50f782355c001",
+            "source.zip": "41d9e2a6228d3243331fb19e54b012e2def73a5c86efa8e24d1805b2c5b6e4c4"
+          }
+        }
+      ]
     },
     {
       "slug": "agent-manifest",
@@ -94,19 +128,41 @@
         "Signed artifacts do not establish that those artifacts were used during execution. Continuous validation of mutable memory and retrieval state is outside this evaluation.",
         "The saved environment does not identify the exact SDK commit. It supports inspection of the recorded results, but not a claim of fully pinned independent reproduction."
       ],
-      "changes": "Separates signed-baseline checks from proof of runtime use, states evaluation limits, and adds the publication scope and patent notice.",
       "origin": "Based on a manuscript originally dated June 23, 2026, with later recorded experiments. That manuscript date is not presented as a verified publication date.",
       "spec": "https://manifest.agentrust-io.com/",
       "code": "https://github.com/agentrust-io/agent-manifest",
       "patent_pending": true,
-      "doi": "10.5281/zenodo.23001698",
-      "date": "2026-09-27",
       "abstract": "Agent Manifest proposes a signed record of the artifacts that define an AI agent, including its system prompt, model, policy, tools, retrieval corpus, memory, decision trace, delegation, supply chain, and human approvals. Artifact digests and canonical serialization make changes to the recorded baseline detectable when a verifier has the relevant artifacts and trusted keys. The design composes SPIFFE identities, RFC 8785 canonicalization, Ed25519 signatures, an optional ML-DSA-65 profile, and hardware-attestation bindings. This technical report describes the original model and preserves the recorded Ed25519 software benchmarks, delegation checks, and tamper probes. Signed metadata alone does not prove that the recorded configuration was used during execution. The evaluation does not measure post-quantum performance or establish live hardware provenance; continuous verification of mutable memory and retrieval state is outside its scope. Current SDK behavior and normative requirements are maintained separately.",
-      "pages": 12,
-      "sha256": {
-        "paper.pdf": "325969395ca5a6da6917676ef1285b6a2812ee1c35884fb4c5b39c9da9785675",
-        "source.zip": "f79f033d5e6de385dc0b6308c387194e2515f6fbf718a942dc5b0058b9d23455"
-      }
+      "versions": [
+        {
+          "version": 1,
+          "date": "2026-09-27",
+          "pages": 12,
+          "changes": "Separates signed-baseline checks from proof of runtime use, states evaluation limits, and adds the publication scope and patent notice.",
+          "sha256": {
+            "paper.pdf": "325969395ca5a6da6917676ef1285b6a2812ee1c35884fb4c5b39c9da9785675",
+            "source.zip": "f79f033d5e6de385dc0b6308c387194e2515f6fbf718a942dc5b0058b9d23455"
+          },
+          "doi": "10.5281/zenodo.23001698"
+        },
+        {
+          "version": 2,
+          "date": "2026-10-01",
+          "pages": 12,
+          "changes": "Corrects the signature pre-image description, the tamper-probe field list, the per-hop delegation figure and the conformance test count, records that the evaluated verifier did not authenticate human approvals, and adds an October 2026 rerun. Results unchanged.",
+          "limits": [
+            "The saved benchmark run is dated July 1, 2026, on Windows 11, CPython 3.12.10, and an ARMv8 Qualcomm host. It did not record its SDK commit; the inferred revision is 67c21db.",
+            "A rerun at that revision on October 1, 2026 reproduced every size and tamper outcome, but its Level 1 verify median of 3.9 to 4.9 ms did not reproduce the 2.7 ms bound.",
+            "At the evaluated revision the verifier did not check human approval signatures: forged approvals still returned APPROVED. Later SDK revisions verify them.",
+            "Only the Ed25519 profile was measured. Signed artifacts do not establish that those artifacts were used during execution."
+          ],
+          "evidence_note": "The benchmark was rerun at the inferred revision on October 1, 2026 with the SDK clock frozen at the original run time. No independent replication is claimed.",
+          "sha256": {
+            "paper.pdf": "f3ff0522dd14071380b0b7719d65f9910ded38b50458eef8a0b765055d29cb33",
+            "source.zip": "25bfeb15f54e69ac0e83dbe3edcb8f332a576565fe61b0357c6ef17e59fd5a24"
+          }
+        }
+      ]
     },
     {
       "slug": "weight-custody-manifest",
@@ -123,20 +179,42 @@
         "Advisory GHSA-j665-99rh-w85h affects the evaluated version: the key broker did not require GPU confidential-compute mode before release. The fail-closed result does not cover GPU mode.",
         "The measured Azure SEV-SNP platform does not enable ciphertext hiding, so the cryptographic-custody claim does not hold there against a hypervisor-privileged operator. Against an operator who physically owns the machine, WCM claims accountability, not custody."
       ],
-      "changes": "Adds a post-evaluation findings section, corrects the descriptions of the three skipped tests and of the memory-sweep receipt, fixes two citations, and records a software rerun at the evaluated commit.",
       "origin": "Revises a manuscript dated September 3, 2026.",
       "evidence_note": "The software results were rerun at the evaluated commit for this edition; the hardware runs were not repeated. No independent replication is claimed.",
       "spec": "https://wcm.agentrust-io.com/",
       "code": "https://github.com/agentrust-io/weight-custody-manifest",
       "patent_pending": true,
-      "doi": "10.5281/zenodo.23020644",
-      "date": "2026-09-27",
       "abstract": "Deploying proprietary model weights into infrastructure controlled by a customer reverses the usual confidential-computing trust problem: the model builder, rather than the infrastructure owner, supplies the secret. Existing confidential-computing stacks can attest workloads and release secrets, while model-signing systems authenticate model artifacts. Neither capability alone specifies continuing custody of a particular weight artifact after release. This technical report describes the Weight Custody Manifest (WCM), a vendor-neutral protocol and conformance model that binds an exact weight digest, an approved workload measurement, attestation policy, a fresh transport key, renewable authorization, terminal refusal and wipe evidence, and derivative lineage. WCM distinguishes cryptographic custody against software adversaries from accountability-grade controls when the infrastructure operator physically owns the machine. The evaluated Python reference implementation, version 0.28.0, supplies 91 portable conformance vectors across four levels. Its test suite produced 618 passing tests and three skips on September 3, 2026, and the same counts when rerun at the same commit for this edition. Two later findings bound those results: a published advisory showed that the evaluated key broker did not require GPU confidential-compute mode before release, and the SEV-SNP platform used for the hardware run does not enable the ciphertext hiding that the cryptographic-custody claim against a hypervisor-privileged operator requires. The contribution is a portable artifact-to-runtime custody contract with explicit lifecycle evidence, derivative accountability, and conformance, not a new attestation primitive or a certification of any deployment.",
-      "pages": 6,
-      "sha256": {
-        "paper.pdf": "a0338db4e4f8a35f134f5b8313a167f81b829a047c9439d8b3c2b34e3c5e0c59",
-        "source.zip": "ce91e7c14ef7abde96b922129eb4467a5e47720933acee707c5c3cd7c080ddeb"
-      }
+      "versions": [
+        {
+          "version": 1,
+          "date": "2026-09-27",
+          "pages": 6,
+          "changes": "Adds a post-evaluation findings section, corrects the descriptions of the three skipped tests and of the memory-sweep receipt, fixes two citations, and records a software rerun at the evaluated commit.",
+          "sha256": {
+            "paper.pdf": "a0338db4e4f8a35f134f5b8313a167f81b829a047c9439d8b3c2b34e3c5e0c59",
+            "source.zip": "ce91e7c14ef7abde96b922129eb4467a5e47720933acee707c5c3cd7c080ddeb"
+          },
+          "doi": "10.5281/zenodo.23020644"
+        },
+        {
+          "version": 2,
+          "date": "2026-10-01",
+          "pages": 6,
+          "changes": "Adds the verification defects fixed in WCM 0.28.5 and 0.29.0, attributes the SEV-SNP attestation break to Battering RAM rather than BadRAM, states that sealed release is a broker setting, and restores bold and italic type. Software rerun with the same counts.",
+          "abstract": "Deploying proprietary model weights into infrastructure controlled by a customer reverses the usual confidential-computing trust problem: the model builder, rather than the infrastructure owner, supplies the secret. Existing confidential-computing stacks can attest workloads and release secrets, while model-signing systems authenticate model artifacts. Neither capability alone specifies continuing custody of a particular weight artifact after release. This technical report describes the Weight Custody Manifest (WCM), a vendor-neutral protocol and conformance model that binds an exact weight digest, an approved workload measurement, attestation policy, a fresh transport key, renewable authorization, terminal refusal and wipe evidence, and derivative lineage. WCM distinguishes cryptographic custody against software adversaries from accountability-grade controls when the infrastructure operator physically owns the machine. The evaluated Python reference implementation, version 0.28.0, supplies 91 portable conformance vectors across four levels. Its test suite produced 618 passing tests and three skips on September 3, 2026, and the same counts when rerun at the same commit for this edition. Later findings bound those results. The evaluated key broker compared the approved workload measurement with an unsigned evidence field rather than the signed report, and did not require GPU confidential-compute mode before release; both are fixed in later releases. The SEV-SNP platform used for the hardware run does not enable the ciphertext hiding that the cryptographic-custody claim against a hypervisor-privileged operator requires. The contribution is a portable artifact-to-runtime custody contract with explicit lifecycle evidence, derivative accountability, and conformance, not a new attestation primitive or a certification of any deployment.",
+          "limits": [
+            "The evaluated version is WCM 0.28.0 (commit 2acedfa). Its software results were rerun on September 27 and October 1, 2026 with the same counts: 618 passed, 3 skipped, 91 of 91 conformance vectors. The SEV-SNP hardware runs were not repeated.",
+            "Later findings affect the evaluated version: the key broker compared the approved measurement with an unsigned evidence field (fixed in 0.29.0) and did not require GPU confidential-compute mode (GHSA-j665-99rh-w85h).",
+            "The measured Azure SEV-SNP platform does not enable ciphertext hiding, so the cryptographic-custody claim does not hold there against a hypervisor-privileged operator. Against an operator who physically owns the machine, WCM claims accountability, not custody."
+          ],
+          "evidence_note": "The software results were rerun at the evaluated commit on September 27 and October 1, 2026; the hardware runs were not repeated. No independent replication is claimed.",
+          "sha256": {
+            "paper.pdf": "2ac1d1ace101642dca3283767fe7d99b60ce04c8f288358294cc618c77064c10",
+            "source.zip": "e8e354cf33fb5f2d9ab002f69d74f692a54ab57d60bad7aaa74a5bb7295a83d1"
+          }
+        }
+      ]
     },
     {
       "slug": "ca2a",
@@ -183,6 +261,17 @@
             "source.zip": "be0428adb5ae8ba81d9c809c60af89812e104d70e7bd45a92b4f393bbd78ef12"
           },
           "doi": "10.5281/zenodo.23086110"
+        },
+        {
+          "version": 3,
+          "date": "2026-10-01",
+          "pages": 20,
+          "changes": "Adds the caller-attestation relay that ca2a 0.4.0 fixed (GHSA-xxj2-p57x-x954), which affects the evaluated release, corrects four statements, including that a transparency log does not make omission detectable, and restores bold and italic type. Results unchanged.",
+          "evidence_note": "The software experiments were rerun against ca2a 0.3.1 on September 27 and again on October 1, 2026; no hardware run was repeated. No independent replication is claimed.",
+          "sha256": {
+            "paper.pdf": "00cc50b3cf0977dbe01e6ea0c187cb28b3944ebb541735f056d0370c85915955",
+            "source.zip": "701fd3e235ea8110efee0faf37151a3597c877f426c8889e16b5ea279bf313b7"
+          }
         }
       ]
     },
@@ -201,20 +290,36 @@
         "Completeness is a producer assertion that the accumulator records but does not measure.",
         "A defect found after the evaluation let an edited evidence snapshot be signed at the evaluated release; it was fixed later and is reported beside the results."
       ],
-      "changes": "Aligns claims with the evaluated code, positions the contract against prior governance telemetry work, and adds a post-evaluation findings section.",
       "origin": "Revises a manuscript dated September 3, 2026.",
       "evidence_note": "The Python results were rerun at the evaluated commit for this edition; the TypeScript suite was not rerun. No independent replication is claimed.",
       "spec": "https://agentrust-io.com/telemetry/",
       "code": "https://github.com/agentrust-io/agentrust-telemetry",
       "patent_pending": false,
-      "doi": "10.5281/zenodo.23022882",
-      "date": "2026-09-27",
       "abstract": "Agent observability conventions describe model, tool, and agent operations, but governance facts are commonly fragmented across policy engines, approval stores, cost modules, and audit systems. Copying those facts into ordinary traces creates two hazards: sensitive payload capture and the false inference that sampled operational telemetry is complete audit evidence. This technical report describes AgenTrust Telemetry, a backend-neutral contract for six governance event families: policy decisions, approval lifecycles, usage, classified data flows, action execution, and evidence lifecycle. The contract correlates with W3C Trace Context and OpenTelemetry without installing a provider, exporter, or competing tracing model. A metadata-only profile rejects prompts, outputs, source code, tool arguments and results, credentials, and authorization tokens by key. Durable run and action identifiers survive process and asynchronous handoffs; propagated metadata remains untrusted and does not confer identity or authority. An optional accumulator accepts events before lossy export and can be finalized into a separately verifiable TRACE record. Its completeness status is a producer assertion that the accumulator records but does not measure. The evaluated release, 0.1.0-alpha.2, ships Python and TypeScript reference SDKs over shared schemas and a portable conformance set of six valid and seven invalid fixtures. At that commit 111 Python unit tests pass and all 13 fixtures produce their expected verdicts, on September 3, 2026 and again when rerun for this edition. A defect found after the evaluation let an edited evidence snapshot be signed; it is reported beside the results it qualifies. The contribution is not another agent tracing convention; it is a narrow semantic boundary between operational observation and governance evidence whose completeness must be stated rather than inferred.",
-      "pages": 6,
-      "sha256": {
-        "paper.pdf": "502c3d61e335d47c642ff8d6b7c1cf9ec9c25f5c99213f2eefea0b01b5d7359b",
-        "source.zip": "34517b8856bae49bf757beb3ba4c43b4b7db9f0df25e9b5dd2e40b6d2f30afaa"
-      }
+      "versions": [
+        {
+          "version": 1,
+          "date": "2026-09-27",
+          "pages": 6,
+          "changes": "Aligns claims with the evaluated code, positions the contract against prior governance telemetry work, and adds a post-evaluation findings section.",
+          "sha256": {
+            "paper.pdf": "502c3d61e335d47c642ff8d6b7c1cf9ec9c25f5c99213f2eefea0b01b5d7359b",
+            "source.zip": "34517b8856bae49bf757beb3ba4c43b4b7db9f0df25e9b5dd2e40b6d2f30afaa"
+          },
+          "doi": "10.5281/zenodo.23022882"
+        },
+        {
+          "version": 2,
+          "date": "2026-10-01",
+          "pages": 6,
+          "changes": "Corrects the statement that approval digests prevent an approval from being attached to another action, which the reference finalizer does not check, and restores the bold type that the version 1 build dropped. Results unchanged.",
+          "patent_pending": true,
+          "sha256": {
+            "paper.pdf": "6a2416ecc052cacae474d6e7dd860804c7b9a4cce8d4ebbb63b68b25aad8d367",
+            "source.zip": "306d655c241affbfd85d8d3e5e68bb21ea2245b27cbf7b8721f69aff651698c6"
+          }
+        }
+      ]
     },
     {
       "slug": "confidential-handoffs",
@@ -259,6 +364,16 @@
             "source.zip": "da518ca6e15b474ee733abd73780ae890ac1f63ac8a0468724be00aa74afeb17"
           },
           "doi": "10.5281/zenodo.23074670"
+        },
+        {
+          "version": 3,
+          "date": "2026-10-01",
+          "pages": 13,
+          "changes": "Qualifies the section 7.6 mutual-appraisal result after advisory GHSA-xxj2-p57x-x954, notes that ca2a-runtime 0.3.1 is affected, and updates two redirected links. Results unchanged; the portable composed cases were rerun on October 1, 2026.",
+          "sha256": {
+            "paper.pdf": "bdd16a51dcafb0c4cf7ceb54c50235fa48bfe0ae344e461330f4679ef0d6b1cf",
+            "source.zip": "7d668e9f794e4e4b334f56851bb8d41c324d313bcb7ab3ac97642af46a042024"
+          }
         }
       ]
     },
@@ -305,8 +420,222 @@
             "source.zip": "b7a0ba3e4eafc0c07dd91ec2efdaecc6d6f1189f89a6673350d4c126239bbe0e"
           },
           "doi": "10.5281/zenodo.23074733"
+        },
+        {
+          "version": 3,
+          "date": "2026-10-01",
+          "pages": 4,
+          "changes": "Adds the defect in the pinned revision's TRACE finalizer that the truncation argument depends on, and cites the Internet-Draft that already chains agent audit records over RFC 8785 bytes. Results unchanged.",
+          "evidence_note": "Tests, fixtures and boundary probes were rerun at the pinned commit on September 27 and October 1, 2026. No independent replication is claimed.",
+          "sha256": {
+            "paper.pdf": "b89f5d608b0712ba2a18048da69b35af3cede1038e9790d0413c8b9576baeb9d",
+            "source.zip": "1103abe9814b772a3615f0de3ef06dbddf621ee96d959b73502b741da36d53d0"
+          }
         }
       ]
+    },
+    {
+      "slug": "challenge-bound-memory-sweep",
+      "short_title": "Memory-Consistency Predicate",
+      "title": "A Challenge-Bound Memory-Consistency Predicate for Model-Key Release",
+      "authors": [
+        "Imran Siddique"
+      ],
+      "topic": "Model weight custody",
+      "description": "Memory-sweep technical report: a challenge-bound, signed write/read predicate for model-key release, with pinned software tests and coverage limits.",
+      "contribution": "A supplementary key-release predicate: a challenge-bound, signed write/read sweep of a declared memory range, accepted only when fresh, mismatch-free and signed by a pinned key.",
+      "limits": [
+        "Software-only. At Weight Custody Manifest revision 2acedfa, 35 memory-sweep and broker tests passed on September 4, September 27 and October 1, 2026. No hardware quote chain or physical attack was exercised.",
+        "The 256 MiB protected-guest figure comes from a receipt retained from August 27, 2026. That hardware run was not repeated and is not a fresh end-to-end key-release experiment.",
+        "The predicate observes a declared logical range only. It does not prove full model-memory coverage, defeat a physical-owner attack, or show that memory stays unchanged after the check."
+      ],
+      "changes": "First public edition. Revises a manuscript dated September 4, 2026; tests and probes were rerun on September 27 and October 1, 2026 and compared with main of September 30.",
+      "origin": "Revises a manuscript dated September 4, 2026.",
+      "evidence_note": "Tests and probes were rerun at the pinned revision on October 1, 2026 in a fresh environment. No independent replication is claimed.",
+      "spec": "https://wcm.agentrust-io.com/",
+      "code": "https://github.com/agentrust-io/weight-custody-manifest",
+      "patent_pending": false,
+      "date": "2026-10-01",
+      "abstract": "A key broker that gates model-key release on attestation checks code identity. It does not see how a designated memory region behaves while the release request is in flight. We describe a supplementary predicate implemented in Weight Custody Manifest. A runtime derives page-specific values and two traversal orders from a secret and the broker's challenge, writes every logical page, reads every page back, and signs a transcript of declared geometry, page counts, a readback commitment and a mismatch flag. The broker accepts the transcript only if it carries the current challenge, reports no mismatch and verifies under a pinned key, in addition to its existing release policy. At a pinned revision, 35 local tests across the memory sweep and broker modules passed on September 4, September 27 and October 1, 2026. A controlled aliased adapter yields an authentic negative transcript, which shows why signature verification and release approval have to be separate checks. We also analyze a retained 256 MiB protected-guest receipt without treating it as a fresh end-to-end key-release experiment. The predicate gives a bounded observation over a declared logical range. It does not prove full model-memory coverage, defeat a physical-owner attack or establish that memory stays unchanged after the check.",
+      "pages": 4,
+      "sha256": {
+        "paper.pdf": "b9de5b439864438d4ceaeb0cb63ec0ec40520c1e1fd0df69851d479f3196cc72",
+        "source.zip": "7996cdf7e25f8c3dfa0ac82cacc3d5f8a18ba00c94adb137049e923c673f34e3"
+      }
+    },
+    {
+      "slug": "requirement-preserving-human-approval",
+      "short_title": "Human Approvals",
+      "title": "Requirement-Preserving Human Approvals for Signed Agent Manifests",
+      "authors": [
+        "Imran Siddique"
+      ],
+      "topic": "Human oversight",
+      "description": "Human approval technical report: keep an issuer's oversight requirement signed while human approvals attach later, with pinned probe results.",
+      "contribution": "A two-domain signing boundary: the issuer signs the oversight requirement with approvals normalized to empty, and each human signs an approval bound to a manifest and scope.",
+      "limits": [
+        "Software-only. At the pinned Agent Manifest revision, 74 signing and delegation tests passed on September 4, September 27 and October 1, 2026. No hardware authenticator, identity provider or enrolled approver was exercised.",
+        "At the pinned revision the human signature did not cover the outer authenticator-method label. A later upstream change binds it, and the probe fails against two later revisions.",
+        "A verified approval signature is not enough to act on: a runtime still needs identity, action-correspondence and authenticator evidence that this construction does not supply."
+      ],
+      "changes": "First public edition. Revises a manuscript dated September 4, 2026; tests and probes were rerun on September 27 and October 1, 2026, and the probes were run against two later revisions.",
+      "origin": "Revises a manuscript dated September 4, 2026.",
+      "evidence_note": "Tests and probes were rerun at the pinned revision on October 1, 2026 in a fresh environment. No independent replication is claimed.",
+      "spec": "https://manifest.agentrust-io.com/",
+      "code": "https://github.com/agentrust-io/agent-manifest",
+      "patent_pending": false,
+      "date": "2026-10-01",
+      "abstract": "Human approval often arrives after an agent manifest has been issued. If the issuer signs the approval collection as immutable content, nobody can attach an approval later without a new signature. If the issuer leaves the whole oversight record unsigned, anyone can weaken the requirement. We analyze a two-domain construction: the issuer signs the oversight requirement while normalizing only its approvals array to empty, and each human separately signs an approval bound to a manifest and scope. A verifier reconstructs the issuer pre-image and evaluates human evidence on its own terms. Agent Manifest uses this pre-image for version 0.1 manifests; its version 0.2 COSE envelope reaches the same split by carrying approvals in the unprotected header. At a pinned Agent Manifest revision, 74 signing and delegation/HITL tests passed on September 4, September 27 and October 1, 2026. Separate probes confirm requirement binding and appendability. At the pinned revision they also show that the human signature did not cover the outer authenticator-method label. A later upstream change binds that label, and the same probe fails against two later revisions, including the October 1 main branch. The result is a precise signing boundary and a list of the identity, action and authenticator evidence a runtime still needs before it acts on an approval.",
+      "pages": 4,
+      "sha256": {
+        "paper.pdf": "2382f88aa3f1a160f3fa70c8fa70693fb3e489f3e5ee138fbe73c678729ed65e",
+        "source.zip": "87aae20b032cbd8fe5a489c44cb41519b9e5a88f30387323de40b4605148aade"
+      }
+    },
+    {
+      "slug": "exact-output-disclosure",
+      "short_title": "Exact-Output Disclosure",
+      "title": "Exact-Output Disclosure for Agent Workflows: Owner approval of exact bytes, consumed once before delivery",
+      "authors": [
+        "Imran Siddique"
+      ],
+      "topic": "Disclosure control",
+      "description": "Exact-output disclosure technical report: owner approval of exact output bytes, consumed once before delivery, with concurrency and fault experiments.",
+      "contribution": "A release gate that ties owner-signed exact output bytes to a scoped, persistent, single-attempt decision and reports an uncertain delivery as unknown instead of repeating it.",
+      "limits": [
+        "Software-only, on one Windows host with a local SQLite ledger, synthetic payloads and a loopback recipient. A networked ledger and an independently operated recipient are untested.",
+        "Restoring an earlier ledger re-enables an approval. Rollback protection, egress confinement and trusted classification are outside the gate.",
+        "A low-entropy output can be guessed from its digest, so approval records need private storage. The gate has no delivery watchdog."
+      ],
+      "changes": "First public edition. Evaluates cMCP 2cdb168; every count was reproduced on October 1, 2026 at that revision and at main a3f61e1.",
+      "origin": "Based on an internal study drafted September 23, 2026 and rerun September 27, 2026.",
+      "evidence_note": "Every experiment was rerun on October 1, 2026 in a fresh environment at the evaluated revision and at current main. No independent replication is claimed.",
+      "spec": "https://cmcp.agentrust-io.com/",
+      "code": "https://github.com/agentrust-io/cmcp",
+      "patent_pending": false,
+      "date": "2026-10-01",
+      "abstract": "An answer an agent writes from a confidential record keeps the record's restrictions, even when it reads like a harmless summary. This report describes a release path for that case. An owner signs the exact output bytes together with the recipient, purpose, source scope, inherited labels, policy version and a validity interval. A gate checks the signer's authority for that scope, verifies the signature, and commits a request identifier to a persistent ledger before it calls the one registered delivery adapter. If the acknowledgment is lost, the attempt stays consumed and the outcome is reported as unknown. Nothing is sent twice. We evaluate the implementation in cMCP, which ships in cmcp-runtime 0.6.0 and later. All 46 existing tests pass, and removing either of two controls makes specific tests fail. In 20 rounds of 16 concurrent attempts, every round delivered once. In 10 rounds of 8 competing sender processes, every round produced exactly one recorded receipt. Process kills on both sides of the ledger commit, lock timeouts, a corrupted ledger and a dropped acknowledgment never produced a second receipt; with replay consumption removed, all 9 of those cases fail. Every number was reproduced on October 1, 2026 at the evaluated revision and at current main.",
+      "pages": 6,
+      "sha256": {
+        "paper.pdf": "abab3d5243eca1d857f862f99995800772b46c822c3706aa1d5bd327580f40e0",
+        "source.zip": "d4f69438ef3d9b62456205424ed6ac421426a3b069c48725ccea56f0c8c44365"
+      }
+    },
+    {
+      "slug": "model-key-broker-provisioning",
+      "short_title": "Model-Key Broker Provisioning",
+      "title": "Owner-Approved Provisioning of a Model-Key Broker: Binding the broker's configuration, receiving key and policy epoch before the model key leaves the owner",
+      "authors": [
+        "Imran Siddique"
+      ],
+      "topic": "Model weight custody",
+      "description": "Broker provisioning technical report: owner approval of a model-key broker's configuration, receiving key and policy epoch, with lifecycle experiments.",
+      "contribution": "An owner-side provisioning protocol that appraises the broker as a recipient, binding its configuration, fresh receiving key, model identity and policy epoch before the model key leaves.",
+      "limits": [
+        "Software-only, on one Windows host. Attestation reports are synthetic SNP-format reports from a generated certificate chain; no SEV-SNP hardware or real model key was used.",
+        "Whether approved build inputs determine the receiver that actually runs needs a hardware launch experiment with an independently predicted measurement. It has not been run.",
+        "The owner epoch store needs rollback-protected storage: restoring or deleting it let a stale owner provision again. Secure erasure of retired key material is not established."
+      ],
+      "changes": "First public edition. Evaluates Weight Custody Manifest db8f106; every count was reproduced on October 1, 2026 at that revision and at main 5ef8c12.",
+      "origin": "Based on an internal study drafted September 23, 2026 and rerun September 27, 2026.",
+      "evidence_note": "Every experiment was rerun on October 1, 2026 in a fresh environment at the evaluated revision and at current main. No independent replication is claimed.",
+      "spec": "https://wcm.agentrust-io.com/",
+      "code": "https://github.com/agentrust-io/weight-custody-manifest",
+      "patent_pending": false,
+      "date": "2026-10-01",
+      "abstract": "A model owner can require workload attestation before a key broker releases a decryption key, and still lose control if the deployment operator can change the broker itself: its trust roots, its list of accepted model manifests, or the owner key it trusts. This report describes provisioning in the other direction. The owner treats the broker as a recipient. Before sending the model key, the owner appraises a signed attestation report that commits to the broker's launch measurement, a digest of the configuration the broker actually constructed, a fresh receiving key, the model identity and the policy epoch. A separate deployment approval pins the build artifacts and launch parameters. The receiver installs one owner-authenticated envelope, serves workloads, and refuses every path after retirement. We evaluate the implementation in the Weight Custody Manifest library, released in weight-custody-manifest 0.28.4 and later. All 84 existing tests pass, and removing the configuration or measurement check makes 5 and 3 specific tests fail. A retired receiver in its own process refused all four API paths, and an old envelope would not install in a replacement. Across separate owner processes sharing one epoch store, a stale live owner, a restarted stale owner and a same-epoch substitution were all refused, and a killed policy admission left the floor unchanged. Every number was reproduced on October 1, 2026 at the evaluated revision and at current main.",
+      "pages": 6,
+      "sha256": {
+        "paper.pdf": "6a3cd702343a3ff22b4d32a042fb68e6913b81da59c27b3f0f6fe604f7a51771",
+        "source.zip": "a7c651e23ba6ac3a442be20f29838aaefc0209b17bb7af5f7ad69445a6efa30b"
+      }
+    },
+    {
+      "slug": "durable-shutdown-blocks",
+      "short_title": "Kill Switch Trips",
+      "title": "When an Agent Kill Switch Trips: Durable blocks, linked refusals and work already in flight at a tool gateway",
+      "authors": [
+        "Imran Siddique"
+      ],
+      "topic": "Tool-call enforcement",
+      "description": "Kill switch technical report: durable blocks, signed refusals linked to the closing claim, and work already in flight at the cMCP tool gateway.",
+      "contribution": "A tested account of what a tool-gateway kill switch establishes: a durable block, signed refusals that name the closing claim, explicit recovery, and the fate of work already admitted.",
+      "limits": [
+        "Software-only, on one Windows host with software signing keys over loopback HTTP. The Linux container isolation suite was not run, no live agent was stopped and no multi-region propagation was measured.",
+        "A call running in a worker thread completed its effect about 1.2 s after the trip returned. Cancelling work already in flight needs support outside the gateway.",
+        "A valid refusal is historical evidence. The freshness check that asks whether a block is in force now is a prototype written for this study, not part of cMCP."
+      ],
+      "changes": "First public edition. Evaluates cMCP 2cdb168; results were rerun on October 1, 2026 from a fresh environment, and the same harness passes on main a3f61e1.",
+      "origin": "Based on an internal study drafted September 23, 2026 and rerun September 27, 2026.",
+      "evidence_note": "Every experiment was rerun on October 1, 2026 in a fresh environment at the evaluated revision and at current main. No independent replication is claimed.",
+      "spec": "https://cmcp.agentrust-io.com/",
+      "code": "https://github.com/agentrust-io/cmcp",
+      "patent_pending": false,
+      "date": "2026-10-01",
+      "abstract": "An operator presses the kill switch on an agent. What is actually true a second later, a day later, and after someone restarts the gateway? We study this at one place where the answer can be tested: the cMCP tool gateway, which stores an identity block durably, closes the governed session with a signed claim, and signs every later refusal so that it names that claim by digest. Recovery takes an explicit operator action with a separate credential. On the pinned source, 86 selected tests pass, and removing the durable block lookup or the refusal signature check makes 17 and 2 of them fail. A block written once is seen by 20 of 20 reopened store connections. With four slow tool calls in flight, an operator trip admits nothing new in three different timing cases: calls sent 54 to 71 ms after the trip starts, and after it returns, are refused with a receipt that verifies. The same experiment measures what a trip does to work already admitted. Cooperative calls finish or are cancelled at the drain deadline, but a call running in a worker thread completes its effect about 1.2 s after the trip has returned, while its caller receives HTTP 500. A prototype challenge-response check, written for this study, lets a verifier ask whether the block is in force now, which an archived refusal cannot answer. All results were rerun on October 1, 2026 from a fresh environment and match the earlier records, and the same harness passes on current cMCP main.",
+      "pages": 6,
+      "sha256": {
+        "paper.pdf": "ecdeef160106170d2c5fc47818c5863375821acd41f62771a0259a90068839db",
+        "source.zip": "3597af5a7a28327f99a3b65191cf22ca6fececedab02bcdedf442d57d580c59a"
+      }
+    },
+    {
+      "slug": "handoff-response-authentication",
+      "short_title": "Handoff Response Authentication",
+      "title": "Authenticating the Answer in an Agent Handoff: Single-use, request-bound response authentication and the outcome a caller cannot know",
+      "authors": [
+        "Imran Siddique"
+      ],
+      "topic": "Delegation evidence",
+      "description": "Handoff response technical report: single-use, request-bound authentication of cA2A peer responses, with race and connection-cut experiments.",
+      "contribution": "A strict response-authentication mode that binds the appraised peer key, the complete request and a fresh occurrence into a single-use key, and reports unknown outcomes instead of guessing.",
+      "limits": [
+        "Software-only, on one Windows host over loopback with software peer assurance. Hardware protection of the peer key and key rotation on attested hardware were not tested.",
+        "The authentication is for the live caller: the caller can compute the same MAC, so a stored response does not prove peer authorship to a third party.",
+        "A MAC does not encrypt the response, a compromised peer can authenticate a wrong answer, and the test oracle shares some serializers with the implementation."
+      ],
+      "changes": "First public edition. Evaluates cA2A fc22c64; results were rerun on October 1, 2026 from a fresh environment, and the same harness passes on main 19407fb.",
+      "origin": "Based on an internal study drafted September 23, 2026 and rerun September 27, 2026.",
+      "evidence_note": "Every experiment was rerun on October 1, 2026 in a fresh environment at the evaluated revision and at current main. No independent replication is claimed.",
+      "spec": "https://ca2a.agentrust-io.com/",
+      "code": "https://github.com/agentrust-io/ca2a",
+      "patent_pending": false,
+      "date": "2026-10-01",
+      "abstract": "One agent appraises a peer, delegates a task to it, and gets an HTTP response back. Appraising the peer before sending says nothing about who wrote that response. A relay can swap the body, replay an answer from another call, or turn an error into a success. We study the strict response-authentication mode of the cA2A runtime, which binds the appraised peer key, the complete request and a fresh request occurrence into a key that can verify exactly one response, once. It authenticates success and denial bodies, binds the status the caller will act on, and reports an unknown outcome whenever verification or transport fails, instead of guessing. On the pinned source, 57 selected tests pass, including loopback HTTP exchanges, and removing the MAC comparison or the single-use consumption makes 4 and 3 of them fail. In 20 rounds of 16 concurrent verifications, exactly one response is accepted per round. With separate caller, relay and peer processes and the connection cut before dispatch, after execution, mid-body, or with the caller killed, the client submits once, reports unknown, and a restarted caller cannot accept the captured response. A control client that resends once on a transport error makes the peer execute one business operation twice. The authentication is for the live caller: the caller can compute the same MAC, so a stored response is not proof of peer authorship to a third party. All results were rerun on October 1, 2026 from a fresh environment and match the earlier records, and the same harness passes on current cA2A main.",
+      "pages": 6,
+      "sha256": {
+        "paper.pdf": "fcccf2c0691ab30fb5aebac1b6e04dd149eabd37894145de2f46d34f81719e1d",
+        "source.zip": "4b8899d9a47a85ed00d2630c30482b85107ce885fe9f08864998b105bbf041a7"
+      }
+    },
+    {
+      "slug": "receipt-gated-model-serving",
+      "short_title": "Receipt-Gated Model Serving",
+      "title": "Receipt-Gated Model Serving: Routing to a confidential model host only after a signed admission receipt",
+      "authors": [
+        "Imran Siddique"
+      ],
+      "topic": "Model serving",
+      "description": "Receipt-gated serving technical report: route to a confidential model host only after a signed admission receipt, with a reference implementation.",
+      "contribution": "A routing gate for confidential model hosts: the Kubernetes Service exists only from a verified first admission receipt for one session, and a durable per-session ledger keeps revoked sessions unroutable.",
+      "limits": [
+        "Software-only. No cluster, Service proxy, confidential GPU or model inference was used; the controller ran against a fake Kubernetes API, and no revocation latency was measured.",
+        "The evaluated planner is internal and its source is not published; the public reference implementation reproduces every result. Restoring an old ledger copy reopened a revoked session.",
+        "Deleting a Service does not close open connections or other paths to the Pod, and the selector label can be set by anyone with Pod write access."
+      ],
+      "changes": "First public edition. Evaluates an internal planner at two commits and a published reference implementation, rerun on October 1, 2026, and fixes a revocation-chaining defect found after the September 27 draft.",
+      "origin": "Based on an internal study drafted September 23, 2026; an internal draft followed on September 27, 2026.",
+      "evidence_note": "Every experiment was rerun on October 1, 2026 in a fresh environment against both evaluated commits and the reference implementation. No independent replication is claimed.",
+      "spec": null,
+      "code": "https://agentrust-io.com/research/receipt-gated-model-serving/v1/source.zip",
+      "patent_pending": false,
+      "date": "2026-10-01",
+      "abstract": "A confidential model host has to exist before it can attest, so the Pod comes first. The open question is when clients may reach it. This report describes a mechanism that answers it with evidence. A planner produces a bootstrap Pod that holds only encrypted model material, and produces the Kubernetes Service that routes to it only after it has verified a signed admission receipt for that exact hosting session: pinned signer key, first position in the receipt chain, and equality with six application bindings (tenant, model, encrypted artifact, workload, policy, transport). A signed, terminal lifecycle receipt for the same session removes the route. Because the planner keeps no state, a controller carries a durable, monotonic per-session ledger, so a session that has been revoked can never be routed again from its old admission. We evaluated the planner in an internal repository at two commits, and a reference implementation published with this report. The planner passed its 6 selected tests, rejected six correctly signed receipts that each carried one wrong binding, and, as expected for a stateless component, still accepted an old admission after revocation. The controller, run against a fake Kubernetes API in which every action is a fresh process, kept every revoked session unroutable across all 12 cases of its test matrix. Removing the ledger check, or keeping the ledger in memory, failed 7 of 12 cases. Restoring an old copy of the ledger reopened a revoked session, so the ledger itself needs rollback protection. The evidence is software only; no cluster, confidential GPU or model inference was used.",
+      "pages": 8,
+      "sha256": {
+        "paper.pdf": "78bf3cbd8e8143d425bb3b006cf89f20f65a7e5ab298e930375da499b49a8393",
+        "source.zip": "8b431634b05c54bb5d11a5a4447d436f59e19a3cdd05e2f0e37e14974ead8a2a"
+      }
     }
   ]
 }

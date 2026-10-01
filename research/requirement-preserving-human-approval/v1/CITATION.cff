@@ -1,0 +1,28 @@
+{
+  "cff-version": "1.2.0",
+  "message": "Cite the versioned technical report. It has not been peer reviewed.",
+  "type": "dataset",
+  "title": "Requirement-Preserving Human Approvals for Signed Agent Manifests",
+  "version": "1",
+  "date-released": "2026-10-01",
+  "authors": [
+    {
+      "given-names": "Imran",
+      "family-names": "Siddique"
+    }
+  ],
+  "url": "https://agentrust-io.com/research/requirement-preserving-human-approval/v1/",
+  "license": "CC-BY-4.0",
+  "preferred-citation": {
+    "type": "report",
+    "title": "Requirement-Preserving Human Approvals for Signed Agent Manifests",
+    "authors": [
+      {
+        "given-names": "Imran",
+        "family-names": "Siddique"
+      }
+    ],
+    "year": 2026,
+    "url": "https://agentrust-io.com/research/requirement-preserving-human-approval/v1/"
+  }
+}
