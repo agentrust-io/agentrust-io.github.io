@@ -13,6 +13,7 @@
   ],
   "url": "https://agentrust-io.com/research/weight-custody-manifest/v2/",
   "license": "CC-BY-4.0",
+  "doi": "10.5281/zenodo.23091278",
   "preferred-citation": {
     "type": "report",
     "title": "Weight Custody Manifest: Portable, Attestation-Gated Custody for Proprietary Model Weights",

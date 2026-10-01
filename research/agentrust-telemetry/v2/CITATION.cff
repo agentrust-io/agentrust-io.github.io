@@ -13,6 +13,7 @@
   ],
   "url": "https://agentrust-io.com/research/agentrust-telemetry/v2/",
   "license": "CC-BY-4.0",
+  "doi": "10.5281/zenodo.23091282",
   "preferred-citation": {
     "type": "report",
     "title": "From Agent Observability to Governance Evidence: A Privacy-Constrained Telemetry Contract",

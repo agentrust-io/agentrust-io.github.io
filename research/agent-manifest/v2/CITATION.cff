@@ -13,6 +13,7 @@
   ],
   "url": "https://agentrust-io.com/research/agent-manifest/v2/",
   "license": "CC-BY-4.0",
+  "doi": "10.5281/zenodo.23091277",
   "preferred-citation": {
     "type": "report",
     "title": "Agent Manifest: Portable, Hardware-Attestable Identity and Provenance for AI Agents",
