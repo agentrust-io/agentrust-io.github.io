@@ -181,7 +181,8 @@
           "sha256": {
             "paper.pdf": "275927a47972fd9ae5f08df97dc29c2e2baa2daa2ebf53e90820e59c68d885aa",
             "source.zip": "be0428adb5ae8ba81d9c809c60af89812e104d70e7bd45a92b4f393bbd78ef12"
-          }
+          },
+          "doi": "10.5281/zenodo.23086110"
         }
       ]
     },
