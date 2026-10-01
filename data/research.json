@@ -155,20 +155,35 @@
         "Cross-operator attestation was exercised only with synthetic evidence. Recorded hardware runs cover one-directional appraisal across clouds and a same-operator diagnostic, not mutual attestation between independent operators.",
         "The results do not show that a peer's key is confined to attested code. Provenance checks on unsigned records establish structural consistency only; authenticity rests on signed records."
       ],
-      "changes": "Narrows claims to what the code validates, reruns the experiments on ca2a 0.3.1, corrects three citations, and adds a post-evaluation findings section.",
       "origin": "Revises a draft dated July 2026.",
       "evidence_note": "The software experiments were rerun against ca2a 0.3.1 for this edition; no hardware run was repeated. No independent replication is claimed.",
       "spec": "https://ca2a.agentrust-io.com/",
       "code": "https://github.com/agentrust-io/ca2a",
       "patent_pending": true,
-      "doi": "10.5281/zenodo.23022872",
-      "date": "2026-09-27",
       "abstract": "The Agent2Agent (A2A) protocol moves tasks between agents, and its Signed Agent Card lets a client check that a domain owner issued a card. The card does not bound the authority a delegating agent passes on, establish what code a peer runs, keep a task payload from the peer's host, or leave an offline record of who delegated what to whom. This technical report describes cA2A (Confidential A2A), a trust profile layered on A2A rather than a new transport. It composes four mechanisms: signed delegation credentials whose scope can only narrow at each hop, appraisal of a peer's attestation evidence before a task is sent, a payload sealed to the channel key that evidence vouches for, and a signed per-hop provenance record linked to its parent. Attenuated delegation and provenance binding are covered by prior capability-token work and IETF drafts; the contribution here is their composition on A2A with an open implementation. We state six properties and report software experiments rerun against ca2a 0.3.1: attenuation checks over 5,400 generated chains, rejection of in-chain replay and cross-chain splicing, intersection of delegated scope with local policy, sealed-payload behavior at the cryptographic layer, structural checks on linked provenance records, and a cross-operator attestation protocol exercised with synthetic evidence. Chain verification cost about 0.22 ms per hop in this environment. These results do not show that a peer's key is confined to attested code or that attestation works across independent operators. Recorded hardware runs cover one-directional appraisal of an Intel TDX peer by an AMD SEV-SNP peer in another cloud and a same-operator mutual SEV-SNP diagnostic; mutual attestation between independent operators has not been demonstrated.",
-      "pages": 21,
-      "sha256": {
-        "paper.pdf": "2e9fc6b2c9acebd252594985eaecf783b1e8714b57d39449fa914efc2e2846fb",
-        "source.zip": "9289ce4ea510d3c36fac3f91580ab1ae6aba2e570682507f2fd636c96dc01dbc"
-      }
+      "versions": [
+        {
+          "version": 1,
+          "date": "2026-09-27",
+          "pages": 21,
+          "changes": "Narrows claims to what the code validates, reruns the experiments on ca2a 0.3.1, corrects three citations, and adds a post-evaluation findings section.",
+          "sha256": {
+            "paper.pdf": "2e9fc6b2c9acebd252594985eaecf783b1e8714b57d39449fa914efc2e2846fb",
+            "source.zip": "9289ce4ea510d3c36fac3f91580ab1ae6aba2e570682507f2fd636c96dc01dbc"
+          },
+          "doi": "10.5281/zenodo.23022872"
+        },
+        {
+          "version": 2,
+          "date": "2026-10-01",
+          "pages": 21,
+          "changes": "Corrects the claim that the chain checks close cross-workflow splicing: a credential carries no task or execution field, so a delegate can reuse a valid chain across tasks. Scopes the confused-deputy claim to a single chain and cites history-based access control, provenance-based access control and PIC. Results unchanged.",
+          "sha256": {
+            "paper.pdf": "275927a47972fd9ae5f08df97dc29c2e2baa2daa2ebf53e90820e59c68d885aa",
+            "source.zip": "be0428adb5ae8ba81d9c809c60af89812e104d70e7bd45a92b4f393bbd78ef12"
+          }
+        }
+      ]
     },
     {
       "slug": "agentrust-telemetry",
