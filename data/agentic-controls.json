@@ -147,6 +147,16 @@
           "id": "402-706",
           "name": "Log relevant",
           "url": "https://www.opencre.org/cre/402-706"
+        },
+        {
+          "id": "443-447",
+          "name": "Log access control decisions",
+          "url": "https://www.opencre.org/cre/443-447"
+        },
+        {
+          "id": "555-048",
+          "name": "Log events sufficiently to recreate their order",
+          "url": "https://www.opencre.org/cre/555-048"
         }
       ]
     },
@@ -262,6 +272,16 @@
           "id": "010-308",
           "name": "Input validation",
           "url": "https://www.opencre.org/cre/010-308"
+        },
+        {
+          "id": "146-706",
+          "name": "Enforce JSON schema before processing",
+          "url": "https://www.opencre.org/cre/146-706"
+        },
+        {
+          "id": "653-242",
+          "name": "Enforce schema on type/contents of structured data",
+          "url": "https://www.opencre.org/cre/653-242"
         }
       ]
     },
