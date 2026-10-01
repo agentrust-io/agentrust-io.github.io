@@ -1,0 +1,44 @@
+{
+  "cff-version": "1.2.0",
+  "message": "Cite the versioned technical report. It has not been peer reviewed.",
+  "type": "dataset",
+  "title": "cA2A: Confidential Agent-to-Agent Delegation as a Profile on A2A",
+  "version": "2",
+  "date-released": "2026-10-01",
+  "authors": [
+    {
+      "given-names": "Rishabh",
+      "family-names": "Poddar"
+    },
+    {
+      "given-names": "Aaron",
+      "family-names": "Fulkerson"
+    },
+    {
+      "given-names": "Imran",
+      "family-names": "Siddique"
+    }
+  ],
+  "url": "https://agentrust-io.com/research/ca2a/v2/",
+  "license": "CC-BY-4.0",
+  "preferred-citation": {
+    "type": "report",
+    "title": "cA2A: Confidential Agent-to-Agent Delegation as a Profile on A2A",
+    "authors": [
+      {
+        "given-names": "Rishabh",
+        "family-names": "Poddar"
+      },
+      {
+        "given-names": "Aaron",
+        "family-names": "Fulkerson"
+      },
+      {
+        "given-names": "Imran",
+        "family-names": "Siddique"
+      }
+    ],
+    "year": 2026,
+    "url": "https://agentrust-io.com/research/ca2a/v2/"
+  }
+}
