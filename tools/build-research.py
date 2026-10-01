@@ -113,6 +113,13 @@ def paper_page(p, v=None):
     archive = f'<a href="https://doi.org/{esc(q["doi"], quote=True)}">Archive and DOI</a>' if q.get('doi') else ''
     origin = f'<p>{esc(q["origin"])}</p>\n' if q.get('origin') else ''
     evidence = q.get('evidence_note', 'No new experiment run or independent replication is claimed for this edition.')
+    # Code outside a public GitHub repository (a reference implementation in the source package)
+    # has no issue tracker of its own; corrections then go to the organization's public tracker.
+    on_github = q['code'].startswith('https://github.com/')
+    code_label = 'Project code' if on_github else 'Reference implementation'
+    issues = q['code'] + '/issues' if on_github else 'https://github.com/agentrust-io/.github/issues'
+    spec = (f'<p><a href="{esc(q["spec"])}">Read the current specification and implementation guidance</a>. This report describes an earlier design and evaluation; the current specification governs implementation.</p>'
+            if q.get('spec') else '<p>No separate specification exists for this mechanism. The reference implementation in the source package is the implementation guidance.</p>')
     rows=''.join(f'<p><a href="/research/{slug}/v{h["version"]}/">Version {h["version"]}, {human_date(h["date"])}</a>: {esc(h["changes"])}</p>\n' for h in reversed(history))
     body=f'''<nav class="research-breadcrumb" aria-label="Breadcrumb"><a href="/research/">Research</a> / {esc(q['short_title'])}{f' / Version {n}' if v else ''}</nav>
 <header class="paper-header"><p class="research-eyebrow">Technical report / Version {n}</p>
@@ -121,15 +128,15 @@ def paper_page(p, v=None):
 <div class="paper-status"><span>{human_date(q['date'])}</span><span>Not peer reviewed</span>{patent}</div>
 </header>
 <section class="paper-abstract" aria-labelledby="abstract"><h2 id="abstract">Abstract</h2><p>{esc(q['abstract'])}</p></section>
-<nav class="paper-actions" aria-label="Paper resources"><a class="primary-action" href="{artifact}paper.pdf">Read PDF <span>({q['pages']} pages)</span></a><a href="#cite">Cite this report</a><a href="{artifact}source.zip">Source and recorded evidence</a><a href="{esc(q['code'])}">Project code</a>{archive}</nav>
+<nav class="paper-actions" aria-label="Paper resources"><a class="primary-action" href="{artifact}paper.pdf">Read PDF <span>({q['pages']} pages)</span></a><a href="#cite">Cite this report</a><a href="{artifact}source.zip">Source and recorded evidence</a><a href="{esc(q['code'])}">{code_label}</a>{archive}</nav>
 <section class="research-section"><h2>What this report contributes</h2><p>{esc(q['contribution'])}</p></section>
 <section class="research-section"><h2>Evidence and limits</h2><ul>{''.join('<li>'+esc(item)+'</li>' for item in q['limits'])}</ul>
 <p>The source package preserves the recorded inputs and results. {esc(evidence)}</p>
-<p><a href="{esc(q['spec'])}">Read the current specification and implementation guidance</a>. This report describes an earlier design and evaluation; the current specification governs implementation.</p></section>
+{spec}</section>
 <section class="research-section" id="cite"><h2>Cite this report</h2><p>{esc('; '.join(q['authors']))}. {esc(q['title'])}. AgenTrust technical report, version {n}, 2026.</p>
 <p><a href="{artifact}citation.bib" download>Download BibTeX</a> / <a href="{artifact}CITATION.cff" download>Download CITATION.cff</a></p><pre><code>{esc(citation(q))}</code></pre></section>
 <section class="research-section"><h2>Version history</h2>{rows}{origin}<p><a href="{artifact}SHA256SUMS">File checksums</a>. Published version files are retained; substantive revisions receive a new version.</p></section>
-<section class="research-section"><h2>Questions and corrections</h2><p>Open an issue in the <a href="{esc(q['code'])}/issues">project repository</a> and identify the report version and section.</p></section>'''
+<section class="research-section"><h2>Questions and corrections</h2><p>Open an issue in the <a href="{esc(issues)}">{'project repository' if on_github else 'AgenTrust public issue tracker'}</a> and identify the report version and section.</p></section>'''
     title=q['title'] + (f' (version {n})' if v else '')
     return shell(title,q['description'],path,body,q)
 

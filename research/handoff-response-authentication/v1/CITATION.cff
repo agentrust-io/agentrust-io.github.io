@@ -1,0 +1,28 @@
+{
+  "cff-version": "1.2.0",
+  "message": "Cite the versioned technical report. It has not been peer reviewed.",
+  "type": "dataset",
+  "title": "Authenticating the Answer in an Agent Handoff: Single-use, request-bound response authentication and the outcome a caller cannot know",
+  "version": "1",
+  "date-released": "2026-10-01",
+  "authors": [
+    {
+      "given-names": "Imran",
+      "family-names": "Siddique"
+    }
+  ],
+  "url": "https://agentrust-io.com/research/handoff-response-authentication/v1/",
+  "license": "CC-BY-4.0",
+  "preferred-citation": {
+    "type": "report",
+    "title": "Authenticating the Answer in an Agent Handoff: Single-use, request-bound response authentication and the outcome a caller cannot know",
+    "authors": [
+      {
+        "given-names": "Imran",
+        "family-names": "Siddique"
+      }
+    ],
+    "year": 2026,
+    "url": "https://agentrust-io.com/research/handoff-response-authentication/v1/"
+  }
+}
