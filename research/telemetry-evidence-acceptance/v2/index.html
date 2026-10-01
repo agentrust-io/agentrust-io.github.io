@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Acceptance Before Export: A Bounded Evidence Contract for Governance Telemetry | AgenTrust</title>
+<title>Acceptance Before Export: A Bounded Evidence Contract for Governance Telemetry (version 2) | AgenTrust</title>
 <meta name="description" content="Acceptance Before Export technical report: accept governance evidence into a local cryptographic prefix before any lossy telemetry export.">
-<link rel="canonical" href="https://agentrust-io.com/research/telemetry-evidence-acceptance/">
+<link rel="canonical" href="https://agentrust-io.com/research/telemetry-evidence-acceptance/v2/">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="AgenTrust">
-<meta property="og:title" content="Acceptance Before Export: A Bounded Evidence Contract for Governance Telemetry">
+<meta property="og:title" content="Acceptance Before Export: A Bounded Evidence Contract for Governance Telemetry (version 2)">
 <meta property="og:description" content="Acceptance Before Export technical report: accept governance evidence into a local cryptographic prefix before any lossy telemetry export.">
-<meta property="og:url" content="https://agentrust-io.com/research/telemetry-evidence-acceptance/">
+<meta property="og:url" content="https://agentrust-io.com/research/telemetry-evidence-acceptance/v2/">
 <meta property="og:image" content="https://agentrust-io.com/og.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="AgenTrust research: identity, enforcement and runtime evidence">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Acceptance Before Export: A Bounded Evidence Contract for Governance Telemetry">
+<meta name="twitter:title" content="Acceptance Before Export: A Bounded Evidence Contract for Governance Telemetry (version 2)">
 <meta name="twitter:description" content="Acceptance Before Export technical report: accept governance evidence into a local cryptographic prefix before any lossy telemetry export.">
 <meta name="twitter:image" content="https://agentrust-io.com/og.png">
 <meta name="citation_title" content="Acceptance Before Export: A Bounded Evidence Contract for Governance Telemetry">
 <meta name="citation_publication_date" content="2026/09/30">
 <meta name="citation_pdf_url" content="https://agentrust-io.com/research/telemetry-evidence-acceptance/v2/paper.pdf">
 <meta name="citation_author" content="Imran Siddique">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ScholarlyArticle", "headline": "Acceptance Before Export: A Bounded Evidence Contract for Governance Telemetry", "abstract": "An operational telemetry backend can lose events through sampling, retention and exporter failures. Its observations therefore cannot, by themselves, establish complete governance evidence. We describe a source-side acceptance boundary in AgenTrust Telemetry: validate a metadata-constrained event, check context correlation, accept an isolated representation into a run-scoped cryptographic prefix, and only then attempt operational projections. In a durable configuration, an external callback must acknowledge persistence before the local prefix advances. Export failures remain distinct from evidence failures. We formalize the conditional ordering property and test its limits, including acknowledgment loss and an empty accumulator declared complete. At a pinned source revision, 111 Python tests and 13 portable conformance fixtures produced expected results on September 4 and again on September 27, 2026. Four additional probes demonstrate both the useful separation and the absence of automatic completeness or distributed exactly-once persistence. The contribution is a precise contract for acceptance before export, with explicit trust and recovery obligations, rather than a claim that a hash chain proves every event occurred.", "url": "https://agentrust-io.com/research/telemetry-evidence-acceptance/", "author": [{"@type": "Person", "name": "Imran Siddique"}], "datePublished": "2026-09-30", "version": "2", "creativeWorkStatus": "Technical report; not peer reviewed", "license": "https://creativecommons.org/licenses/by/4.0/", "encoding": {"@type": "MediaObject", "encodingFormat": "application/pdf", "contentUrl": "https://agentrust-io.com/research/telemetry-evidence-acceptance/v2/paper.pdf"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ScholarlyArticle", "headline": "Acceptance Before Export: A Bounded Evidence Contract for Governance Telemetry", "abstract": "An operational telemetry backend can lose events through sampling, retention and exporter failures. Its observations therefore cannot, by themselves, establish complete governance evidence. We describe a source-side acceptance boundary in AgenTrust Telemetry: validate a metadata-constrained event, check context correlation, accept an isolated representation into a run-scoped cryptographic prefix, and only then attempt operational projections. In a durable configuration, an external callback must acknowledge persistence before the local prefix advances. Export failures remain distinct from evidence failures. We formalize the conditional ordering property and test its limits, including acknowledgment loss and an empty accumulator declared complete. At a pinned source revision, 111 Python tests and 13 portable conformance fixtures produced expected results on September 4 and again on September 27, 2026. Four additional probes demonstrate both the useful separation and the absence of automatic completeness or distributed exactly-once persistence. The contribution is a precise contract for acceptance before export, with explicit trust and recovery obligations, rather than a claim that a hash chain proves every event occurred.", "url": "https://agentrust-io.com/research/telemetry-evidence-acceptance/v2/", "author": [{"@type": "Person", "name": "Imran Siddique"}], "datePublished": "2026-09-30", "version": "2", "creativeWorkStatus": "Technical report; not peer reviewed", "license": "https://creativecommons.org/licenses/by/4.0/", "encoding": {"@type": "MediaObject", "encodingFormat": "application/pdf", "contentUrl": "https://agentrust-io.com/research/telemetry-evidence-acceptance/v2/paper.pdf"}}</script>
 <link rel="icon" href="/favicon.ico">
 <link rel="stylesheet" href="/design-system.css?v=22">
 <link rel="stylesheet" href="/research/research.css">
@@ -60,7 +60,7 @@
 </header>
 <script src="/hub-nav.js" defer></script>
 <!-- site-header:end -->
-<main id="main" class="research-main"><nav class="research-breadcrumb" aria-label="Breadcrumb"><a href="/research/">Research</a> / Acceptance Before Export</nav>
+<main id="main" class="research-main"><nav class="research-breadcrumb" aria-label="Breadcrumb"><a href="/research/">Research</a> / Acceptance Before Export / Version 2</nav>
 <header class="paper-header"><p class="research-eyebrow">Technical report / Version 2</p>
 <h1>Acceptance Before Export: A Bounded Evidence Contract for Governance Telemetry</h1>
 <p class="paper-authors">Imran Siddique</p><p class="paper-affiliation">OPAQUE Systems</p>

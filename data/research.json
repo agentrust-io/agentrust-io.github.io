@@ -215,20 +215,35 @@
         "The composed experiment was rerun on September 27, 2026 at WCM main 94d5519: 36 of 36 hosted and 32 portable cases locally, matching every recorded observation.",
         "Hardware acceptance and independently operated peers are future work. Raw hardware diagnostic captures are not published."
       ],
-      "changes": "Reframes the draft as a bounded software edition, records the rerun, updates dependency status and corrects two references.",
       "origin": "Revises a discussion draft dated September 19, 2026.",
       "evidence_note": "The composed software experiment was rerun for this edition; no hardware run was repeated. No independent replication is claimed.",
       "spec": "https://wcm.agentrust-io.com/",
       "code": "https://github.com/agentrust-io/weight-custody-manifest/tree/main/python/composed",
       "patent_pending": true,
-      "doi": "10.5281/zenodo.23022884",
-      "date": "2026-09-27",
       "abstract": "This paper states conditions under which tool calls and agent handoffs preserve an authorized plaintext-holder boundary. This requires a protected channel bound to an appraised workload, restricted authority, enforceable downstream information-flow rules, and control over every other plaintext sink. A signature on an execution record or a valid hardware quote alone cannot establish these conditions. If a recipient cannot satisfy them, the sender must withhold the data or obtain authorization for a precisely described disclosure. This paper develops a conditional composition argument, a proposed handoff contract, and component experiments that expose failures of appraisal, supervision, and outcome inference. A composed software harness joins provisioning, diagnostic model computation, a confined agent, a mediated tool, delegated peer authentication, and exact-output disclosure. Its paired mutations expose earlier leaks despite successful final delivery; a rerun on September 27, 2026 reproduced all 36 recorded observations. All results are software results with synthetic attestation and a single operator. AgenTrust supplies relevant identity, key-release, gateway, delegation, and evidence primitives, but its present components do not demonstrate the complete property. The distinction matters most at remote tools, CPU-GPU transfers, operator-controlled key brokers, runtime changes, and audit systems.",
-      "pages": 13,
-      "sha256": {
-        "paper.pdf": "21a1abd5e6fbc822105437c2a639c59368880a3ff79c2dc32b4cfac652602728",
-        "source.zip": "b0f2ea632176aff353d78813fe74293bd80e12bed53448d3e1395b1dc699b641"
-      }
+      "versions": [
+        {
+          "version": 1,
+          "date": "2026-09-27",
+          "pages": 13,
+          "changes": "Reframes the draft as a bounded software edition, records the rerun, updates dependency status and corrects two references.",
+          "sha256": {
+            "paper.pdf": "21a1abd5e6fbc822105437c2a639c59368880a3ff79c2dc32b4cfac652602728",
+            "source.zip": "b0f2ea632176aff353d78813fe74293bd80e12bed53448d3e1395b1dc699b641"
+          },
+          "doi": "10.5281/zenodo.23022884"
+        },
+        {
+          "version": 2,
+          "date": "2026-09-30",
+          "pages": 13,
+          "changes": "Adds the missing citation to the Forough, Kogias and Haddadi survey that lists multi-hop attestation as an open challenge (arXiv:2605.03213). Results unchanged.",
+          "sha256": {
+            "paper.pdf": "974680a59d741bb6e1725ce3ca1f433a337bad9aa1763ba88d0c1a593b2c2555",
+            "source.zip": "da518ca6e15b474ee733abd73780ae890ac1f63ac8a0468724be00aa74afeb17"
+          }
+        }
+      ]
     },
     {
       "slug": "telemetry-evidence-acceptance",
@@ -245,19 +260,34 @@
         "No durable store, crash-restart, multi-process or deployed-exporter experiment was run. Acknowledgment loss repeats external writes; exactly-once persistence is not provided.",
         "An empty accumulator can be sealed as complete. Completeness remains a producer assertion, not something the contract measures."
       ],
-      "changes": "Adds the rerun, a later-revision probe result, a comparison with prior logging systems in place of the filing notes, and corrected patent and RFC references.",
       "origin": "Revises a manuscript dated September 4, 2026.",
       "evidence_note": "Tests, fixtures and boundary probes were rerun at the pinned commit for this edition. No independent replication is claimed.",
       "spec": "https://agentrust-io.com/telemetry/",
       "code": "https://github.com/agentrust-io/agentrust-telemetry",
       "patent_pending": true,
-      "date": "2026-09-27",
       "abstract": "An operational telemetry backend can lose events through sampling, retention and exporter failures. Its observations therefore cannot, by themselves, establish complete governance evidence. We describe a source-side acceptance boundary in AgenTrust Telemetry: validate a metadata-constrained event, check context correlation, accept an isolated representation into a run-scoped cryptographic prefix, and only then attempt operational projections. In a durable configuration, an external callback must acknowledge persistence before the local prefix advances. Export failures remain distinct from evidence failures. We formalize the conditional ordering property and test its limits, including acknowledgment loss and an empty accumulator declared complete. At a pinned source revision, 111 Python tests and 13 portable conformance fixtures produced expected results on September 4 and again on September 27, 2026. Four additional probes demonstrate both the useful separation and the absence of automatic completeness or distributed exactly-once persistence. The contribution is a precise contract for acceptance before export, with explicit trust and recovery obligations, rather than a claim that a hash chain proves every event occurred.",
-      "pages": 4,
-      "sha256": {
-        "paper.pdf": "8723749e0e0c31f2f17ae43492eee4bb1e96fa16d1e099fbeaebf9627515261b",
-        "source.zip": "455b2e6dbb245d0bccbc525aa432e1dd6caa4c9c7d0d4e6b49368a9124a3ebc6"
-      }
+      "versions": [
+        {
+          "version": 1,
+          "date": "2026-09-27",
+          "pages": 4,
+          "changes": "Adds the rerun, a later-revision probe result, a comparison with prior logging systems in place of the filing notes, and corrected patent and RFC references.",
+          "sha256": {
+            "paper.pdf": "8723749e0e0c31f2f17ae43492eee4bb1e96fa16d1e099fbeaebf9627515261b",
+            "source.zip": "455b2e6dbb245d0bccbc525aa432e1dd6caa4c9c7d0d4e6b49368a9124a3ebc6"
+          }
+        },
+        {
+          "version": 2,
+          "date": "2026-09-30",
+          "pages": 4,
+          "changes": "Adds the missing citation to Crosby and Wallach's tamper-evident history trees (USENIX Security 2009). Results unchanged.",
+          "sha256": {
+            "paper.pdf": "301155b7775960c49dadf6be4500ef71d04fe86c942549d90b1a2747a6df94cf",
+            "source.zip": "b7a0ba3e4eafc0c07dd91ec2efdaecc6d6f1189f89a6673350d4c126239bbe0e"
+          }
+        }
+      ]
     }
   ]
 }
