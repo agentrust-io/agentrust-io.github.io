@@ -61,7 +61,8 @@
           "sha256": {
             "paper.pdf": "e050e959252bec95ea836eabbec5f167be46d7779bd4a2a14709ec3fe3d847f0",
             "source.zip": "649a36e7f2446393f84d519ec54e851860b22f690e1a8e51f385dbb04cb6e391"
-          }
+          },
+          "doi": "10.5281/zenodo.23091275"
         }
       ]
     },
@@ -108,7 +109,8 @@
           "sha256": {
             "paper.pdf": "e92d8b6b3ac47ca45256769161c582ebc3c0f0fa2238cd21f9b50f782355c001",
             "source.zip": "41d9e2a6228d3243331fb19e54b012e2def73a5c86efa8e24d1805b2c5b6e4c4"
-          }
+          },
+          "doi": "10.5281/zenodo.23091276"
         }
       ]
     },
@@ -160,7 +162,8 @@
           "sha256": {
             "paper.pdf": "f3ff0522dd14071380b0b7719d65f9910ded38b50458eef8a0b765055d29cb33",
             "source.zip": "25bfeb15f54e69ac0e83dbe3edcb8f332a576565fe61b0357c6ef17e59fd5a24"
-          }
+          },
+          "doi": "10.5281/zenodo.23091277"
         }
       ]
     },
@@ -212,7 +215,8 @@
           "sha256": {
             "paper.pdf": "2ac1d1ace101642dca3283767fe7d99b60ce04c8f288358294cc618c77064c10",
             "source.zip": "e8e354cf33fb5f2d9ab002f69d74f692a54ab57d60bad7aaa74a5bb7295a83d1"
-          }
+          },
+          "doi": "10.5281/zenodo.23091278"
         }
       ]
     },
@@ -271,7 +275,8 @@
           "sha256": {
             "paper.pdf": "00cc50b3cf0977dbe01e6ea0c187cb28b3944ebb541735f056d0370c85915955",
             "source.zip": "701fd3e235ea8110efee0faf37151a3597c877f426c8889e16b5ea279bf313b7"
-          }
+          },
+          "doi": "10.5281/zenodo.23091279"
         }
       ]
     },
@@ -317,7 +322,8 @@
           "sha256": {
             "paper.pdf": "6a2416ecc052cacae474d6e7dd860804c7b9a4cce8d4ebbb63b68b25aad8d367",
             "source.zip": "306d655c241affbfd85d8d3e5e68bb21ea2245b27cbf7b8721f69aff651698c6"
-          }
+          },
+          "doi": "10.5281/zenodo.23091282"
         }
       ]
     },
@@ -373,7 +379,8 @@
           "sha256": {
             "paper.pdf": "bdd16a51dcafb0c4cf7ceb54c50235fa48bfe0ae344e461330f4679ef0d6b1cf",
             "source.zip": "7d668e9f794e4e4b334f56851bb8d41c324d313bcb7ab3ac97642af46a042024"
-          }
+          },
+          "doi": "10.5281/zenodo.23074704"
         }
       ]
     },
@@ -430,7 +437,8 @@
           "sha256": {
             "paper.pdf": "b89f5d608b0712ba2a18048da69b35af3cede1038e9790d0413c8b9576baeb9d",
             "source.zip": "1103abe9814b772a3615f0de3ef06dbddf621ee96d959b73502b741da36d53d0"
-          }
+          },
+          "doi": "10.5281/zenodo.23091285"
         }
       ]
     },
@@ -461,7 +469,8 @@
       "sha256": {
         "paper.pdf": "b9de5b439864438d4ceaeb0cb63ec0ec40520c1e1fd0df69851d479f3196cc72",
         "source.zip": "7996cdf7e25f8c3dfa0ac82cacc3d5f8a18ba00c94adb137049e923c673f34e3"
-      }
+      },
+      "doi": "10.5281/zenodo.23091290"
     },
     {
       "slug": "requirement-preserving-human-approval",
@@ -490,7 +499,8 @@
       "sha256": {
         "paper.pdf": "2382f88aa3f1a160f3fa70c8fa70693fb3e489f3e5ee138fbe73c678729ed65e",
         "source.zip": "87aae20b032cbd8fe5a489c44cb41519b9e5a88f30387323de40b4605148aade"
-      }
+      },
+      "doi": "10.5281/zenodo.23091292"
     },
     {
       "slug": "exact-output-disclosure",
@@ -519,7 +529,8 @@
       "sha256": {
         "paper.pdf": "abab3d5243eca1d857f862f99995800772b46c822c3706aa1d5bd327580f40e0",
         "source.zip": "d4f69438ef3d9b62456205424ed6ac421426a3b069c48725ccea56f0c8c44365"
-      }
+      },
+      "doi": "10.5281/zenodo.23091294"
     },
     {
       "slug": "model-key-broker-provisioning",
@@ -548,7 +559,8 @@
       "sha256": {
         "paper.pdf": "6a3cd702343a3ff22b4d32a042fb68e6913b81da59c27b3f0f6fe604f7a51771",
         "source.zip": "a7c651e23ba6ac3a442be20f29838aaefc0209b17bb7af5f7ad69445a6efa30b"
-      }
+      },
+      "doi": "10.5281/zenodo.23091296"
     },
     {
       "slug": "durable-shutdown-blocks",
@@ -577,7 +589,8 @@
       "sha256": {
         "paper.pdf": "ecdeef160106170d2c5fc47818c5863375821acd41f62771a0259a90068839db",
         "source.zip": "3597af5a7a28327f99a3b65191cf22ca6fececedab02bcdedf442d57d580c59a"
-      }
+      },
+      "doi": "10.5281/zenodo.23091298"
     },
     {
       "slug": "handoff-response-authentication",
@@ -606,7 +619,8 @@
       "sha256": {
         "paper.pdf": "fcccf2c0691ab30fb5aebac1b6e04dd149eabd37894145de2f46d34f81719e1d",
         "source.zip": "4b8899d9a47a85ed00d2630c30482b85107ce885fe9f08864998b105bbf041a7"
-      }
+      },
+      "doi": "10.5281/zenodo.23091302"
     },
     {
       "slug": "receipt-gated-model-serving",
@@ -635,7 +649,8 @@
       "sha256": {
         "paper.pdf": "78bf3cbd8e8143d425bb3b006cf89f20f65a7e5ab298e930375da499b49a8393",
         "source.zip": "8b431634b05c54bb5d11a5a4447d436f59e19a3cdd05e2f0e37e14974ead8a2a"
-      }
+      },
+      "doi": "10.5281/zenodo.23091307"
     },
     {
       "slug": "kill-switch",
@@ -664,7 +679,8 @@
       "sha256": {
         "paper.pdf": "d6703450646fd260a597165c56ee73d1f5b0531edcb366c4da51995b84a5dcf5",
         "source.zip": "5204e01d837d74b50a44473de8bcb85a7da16efac6e884cbd74d63033afa9bb0"
-      }
+      },
+      "doi": "10.5281/zenodo.23091310"
     }
   ]
 }

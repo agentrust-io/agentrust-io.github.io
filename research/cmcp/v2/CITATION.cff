@@ -21,6 +21,7 @@
   ],
   "url": "https://agentrust-io.com/research/cmcp/v2/",
   "license": "CC-BY-4.0",
+  "doi": "10.5281/zenodo.23091276",
   "preferred-citation": {
     "type": "report",
     "title": "cMCP: Verifiable Policy Enforcement for AI Agent Tool Calls",

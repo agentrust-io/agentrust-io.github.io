@@ -13,6 +13,7 @@
   ],
   "url": "https://agentrust-io.com/research/requirement-preserving-human-approval/v1/",
   "license": "CC-BY-4.0",
+  "doi": "10.5281/zenodo.23091292",
   "preferred-citation": {
     "type": "report",
     "title": "Requirement-Preserving Human Approvals for Signed Agent Manifests",

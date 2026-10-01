@@ -13,6 +13,7 @@
   ],
   "url": "https://agentrust-io.com/research/challenge-bound-memory-sweep/v1/",
   "license": "CC-BY-4.0",
+  "doi": "10.5281/zenodo.23091290",
   "preferred-citation": {
     "type": "report",
     "title": "A Challenge-Bound Memory-Consistency Predicate for Model-Key Release",
