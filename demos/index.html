@@ -120,7 +120,7 @@
   <span>On this page</span>
   <a href="#weights">Model weights</a>
   <a href="#governance">Agent actions</a>
-  <a href="https://github.com/agentrust-io/demos">Get the demos ↗</a>
+  <a href="https://github.com/agentrust-io/integrations/tree/main/demos">Get the demos ↗</a>
 </nav>
 
 <main id="main">
@@ -131,13 +131,13 @@
   <p>Use Python 3.11+, Git, and Bash on macOS, Linux, or Windows with WSL for the commands below. No cloud account is needed. These demos use software attestation and do not demonstrate hardware isolation.</p>
   <div class="code">
     <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
-<pre>git clone https://github.com/agentrust-io/demos &amp;&amp; cd demos
+<pre>git clone https://github.com/agentrust-io/integrations &amp;&amp; cd integrations/demos
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
 python demo.py 1          <span class="c"># start with tool-call policy enforcement</span></pre>
   </div>
-  <p>The requirements install cMCP for demos 1 to 5, Weight Custody Manifest for demos 6 to 9, and the OpenAI client for demo 10. <code>demo.py</code> sets dev mode and the bearer token for you, so there is nothing to export. Source: <a href="https://github.com/agentrust-io/demos">github.com/agentrust-io/demos</a>.</p>
+  <p>The requirements install cMCP for demos 1 to 5, Weight Custody Manifest for demos 6 to 9, and the OpenAI client for demo 10. <code>demo.py</code> sets dev mode and the bearer token for you, so there is nothing to export. Source: <a href="https://github.com/agentrust-io/integrations/tree/main/demos">github.com/agentrust-io/integrations/tree/main/demos</a>.</p>
 
   <p><strong>What to look for:</strong> demo 1 routes calls through the local gateway and closes the session into a signed record. Software mode does not pass hardware-attestation verification. To explore weight custody, run <code>python demo.py 6</code>; to run the full set without pauses, use <code>python demo.py --no-pause</code>.</p>
   <p><strong>Individual commands below:</strong> run them from the <code>demos</code> folder with the environment activated. For demos that start cMCP, set <code>export CMCP_BEARER_TOKEN=demo-token</code> first. The <code>demo.py</code> launcher handles this setup for you.</p>
@@ -309,14 +309,14 @@ python demo.py 1          <span class="c"># start with tool-call policy enforcem
   <span class="label">Keep going</span>
   <h2>Where to go next</h2>
   <ul>
-    <li><a href="https://github.com/agentrust-io/demos">Demo source on GitHub</a>, including a web console and a plain JSON-RPC test server</li>
+    <li><a href="https://github.com/agentrust-io/integrations/tree/main/demos">Demo source on GitHub</a>, including a web console and a plain JSON-RPC test server</li>
     <li><a href="https://pypi.org/project/weight-custody-manifest/">weight-custody-manifest on PyPI</a>, the reference SDK behind demos 6 to 9</li>
-    <li><a href="https://github.com/agentrust-io/examples/tree/main/weight-custody-manifest">Worked WCM examples</a></li>
+    <li><a href="https://github.com/agentrust-io/integrations/tree/main/examples/weight-custody-manifest">Worked WCM examples</a></li>
     <li><a href="https://cmcp.agentrust-io.com">cMCP</a> and <a href="https://trace.agentrust-io.com">TRACE</a> specifications</li>
     <li><a href="https://cmcp.agentrust-io.com/quickstart/">The cMCP quickstart</a> if you would rather write the policy yourself</li>
   </ul>
   <div class="actions">
-    <a class="button" href="https://github.com/agentrust-io/demos">Clone the demos</a>
+    <a class="button" href="https://github.com/agentrust-io/integrations/tree/main/demos">Clone the demos</a>
     <a class="button secondary" href="https://cmcp.agentrust-io.com/quickstart/">Write the policy yourself</a>
   </div>
 </section>
