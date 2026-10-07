@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TRACE Registry | AgenTrust</title>
-<meta name="description" content="Verify TRACE Registry checkpoint signatures and log consistency locally from published files, and see where key trust and witnesses are still required.">
+<meta name="description" content="A public, add-only log of TRACE receipts with signed snapshots and an outside witness. Download the files, check them yourself, and see what they cannot prove.">
 <link rel="canonical" href="https://agentrust-io.com/registry/">
 <meta name="robots" content="index, follow">
 
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AgenTrust">
 <meta property="og:title" content="TRACE Registry">
-<meta property="og:description" content="Verify TRACE Registry checkpoint signatures and log consistency locally from published files, and see where key trust and witnesses are still required.">
+<meta property="og:description" content="A public, add-only log of TRACE receipts with signed snapshots and an outside witness. Download the files, check them yourself, and see what they cannot prove.">
 <meta property="og:url" content="https://agentrust-io.com/registry/">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://agentrust-io.com/og.png">
@@ -23,7 +23,7 @@
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="TRACE Registry">
-<meta name="twitter:description" content="Verify TRACE Registry checkpoint signatures and log consistency locally from published files, and see where key trust and witnesses are still required.">
+<meta name="twitter:description" content="A public, add-only log of TRACE receipts with signed snapshots and an outside witness. Download the files, check them yourself, and see what they cannot prove.">
 <meta name="twitter:image" content="https://agentrust-io.com/og.png">
 
 <!-- Icons -->
@@ -67,7 +67,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="/design-system.css?v=22">
+<link rel="stylesheet" href="/design-system.css?v=23">
 </head>
 <body class="at-page">
 
@@ -109,7 +109,7 @@
 <div class="hero"><div class="wrap">
   <span class="eyebrow"><a href="/#chain">04 · Evidence</a> · Append-only · Signed checkpoints · Offline verification</span>
   <h1>Check the published history<br>of agent evidence</h1>
-  <p class="sub">The TRACE Registry publishes anchors for signed trust records. Download its files and check checkpoint signatures and log consistency locally, without an account or API key. Establishing who controls a signing key and detecting conflicting histories require evidence beyond the log itself.</p>
+  <p class="sub">The TRACE Registry is a public logbook for <a href="/#plain-terms">signed receipts</a> of what AI agents did. Entries can be added but never edited or removed, and the whole log is a set of files anyone can download and check on their own computer, with no account. Two things need evidence from outside the log: who really controls the signing key, and whether everyone is being shown the same history.</p>
   <div class="hero-actions">
     <a class="button" href="#verify">Verify a checkpoint yourself</a>
     <a class="button secondary" href="#limits">Read what it does not prove</a>
@@ -119,6 +119,7 @@
 
 <nav class="on-this-page" aria-label="On this page">
   <span>On this page</span>
+  <a href="#plain">Terms</a>
   <a href="#checkpoint">Checkpoint</a>
   <a href="#how">How it works</a>
   <a href="#verify">Verify it</a>
@@ -130,25 +131,39 @@
 
 <section id="proof" class="proof-section" aria-label="Registry evidence">
   <div class="proof-grid">
-    <a href="https://github.com/agentrust-io/trace-registry/tree/main/registry"><strong>2</strong><span>Published entries</span></a>
-    <a href="#checkpoint"><strong>1</strong><span>Signed checkpoint</span></a>
-    <a href="https://pypi.org/project/trace-verify/"><strong>0.4.1</strong><span>Verifier on PyPI</span></a>
-    <a href="#witness"><strong>1</strong><span>External checkpoint receipt</span></a>
+    <a href="https://github.com/agentrust-io/trace-registry/tree/main/registry"><strong>3</strong><span>Published entries</span></a>
+    <a href="#checkpoint"><strong>2</strong><span>Signed checkpoints</span></a>
+    <a href="https://pypi.org/project/trace-verify/"><strong>0.4.3</strong><span>Verifier on PyPI</span></a>
+    <a href="#witness"><strong>1</strong><span>Outside witness receipt</span></a>
   </div>
-  <p class="proof-note">Two published entries and one checkpoint, counted at registry commit <code>ee57e71</code>. Neither entry is production evidence. Checkpoint 1 has a separately fetched, offline-verified external receipt. PyPI currently publishes <code>trace-verify 0.4.1</code>; the witness receipt tool and its dependency lock are in the registry repository.</p>
+  <p class="proof-note">Counted at registry commit <code>ba566ed</code> (October 6, 2026). The first two entries (June 12 and September 1) were produced by us and are not production evidence. The third, anchored September 25, is the first from an outside producer: one software-only record from a real run of Bernstein 3.20.0 (<a href="https://github.com/agentrust-io/trace-registry/pull/85">trace-registry #85</a>). Checkpoint 1 has an outside witness receipt; checkpoint 2 does not. The verifier on PyPI is <code>trace-verify 0.4.3</code>.</p>
+</section>
+
+<section id="plain">
+  <span class="label">In plain English</span>
+  <h2>The words on this page</h2>
+  <table style="margin-top:1.5rem;">
+    <tr><th>Term</th><th>What it means here</th></tr>
+    <tr><td><strong>Transparency log</strong></td><td>A public list that can only grow. Anyone can download it, and old entries cannot be changed without the change showing up.</td></tr>
+    <tr><td><strong>Anchor</strong></td><td>A short fingerprint of a signed receipt. The registry stores the fingerprint, not the receipt, so the receipt itself stays with whoever made it.</td></tr>
+    <tr><td><strong>Checkpoint</strong></td><td>A signed snapshot of the whole log at one moment: how many entries it holds, one fingerprint covering all of them, and the same two facts from the snapshot before. If anyone rewrites an earlier entry, the snapshots stop matching.</td></tr>
+    <tr><td><strong>Witness</strong></td><td>An outside party, run by someone else, that signs a receipt saying it saw a given checkpoint. A witness makes it harder for the log to quietly show different histories to different people, but catching that still needs people to keep and compare what they were shown.</td></tr>
+    <tr><td><strong>Mirror</strong></td><td>A full copy of the log kept by another organization, so the history does not depend on one operator staying honest or online.</td></tr>
+  </table>
 </section>
 
 <section id="problem">
   <span class="label">The design problem</span>
   <h2>A registry's job is to be believed by strangers</h2>
-  <p>Signatures prove that records are authentic. They do not prove that everyone is being shown the same set of records. A log operator who can quietly serve one history to an auditor and another to everyone else has defeated the point, and no amount of signing catches it.</p>
-  <p>So "trust our database" fails in exactly the situations a registry exists for: disputes, audits, and adversaries. The requirements that fall out of that are narrow and testable. The log must be append-only with cheap proofs. It must verify offline. Nothing sensitive should leave the producer by default. And its integrity should eventually be anchored somewhere the operator does not control.</p>
+  <p>A signature proves a record has not been changed. It does not prove that everyone is seeing the same set of records. An operator who shows one history to an auditor and a different one to everyone else has defeated the point, and signing alone cannot catch that.</p>
+  <p>"Trust our database" fails in exactly the moments a registry exists for: disputes, audits and attacks. So the rules are simple and testable. The log only grows, and proving that is cheap. It can be checked offline. Nothing sensitive leaves the producer by default. And over time, its integrity is backed by parties the operator does not control.</p>
 </section>
 
 <section id="checkpoint">
   <span class="label">The live record</span>
   <h2>Checkpoint 1, as published</h2>
-  <p>These fields identify the first signed checkpoint in <code>registry/2026/09/01.ndjson</code>. The <code>key_id</code> is the raw 32-byte Ed25519 public key in hex. The command below reads the complete checkpoint, including its signature. A matching signature establishes consistency with that key; authenticate the key separately before trusting the signer.</p>
+  <p>This is the first signed snapshot of the log, from the file <code>registry/2026/09/01.ndjson</code>. It says the log held one entry, gives the fingerprint covering it (<code>root</code>), and records that the snapshot before it was empty (<code>prev_size</code> 0). A second checkpoint, signed September 25, 2026, extends it to cover the third entry.</p>
+  <p>The <code>key_id</code> is the public half of the signing key. A matching signature shows the snapshot was signed with that key. It does not tell you who holds the key; check that separately before you trust the signer.</p>
   <div class="term" aria-label="Published TRACE Registry checkpoint 1">
     <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="term-title">registry/2026/09/01.ndjson · mmr_checkpoint</span></div>
     <div class="term-body">
@@ -161,7 +176,10 @@
       <div><span class="dim">verify</span> <span class="ok">offline signature check against the embedded public key</span></div>
     </div>
   </div>
-  <p class="hint">Checkpoints carry commitments, never claim content. A checkpoint is a few hundred bytes describing the shape of the log: its size, its root, and the size and root of the checkpoint before it. Trust-record payloads stay with whoever produced them.</p>
+  <p class="hint">A checkpoint holds fingerprints, never the content of any receipt. It is a few hundred bytes describing the shape of the log. The receipts themselves stay with whoever produced them.</p>
+  <details class="tech-detail"><summary>Technical detail: the key format</summary>
+    <p class="hint">The <code>key_id</code> is the raw 32-byte Ed25519 public key in hex. The verification command below reads the complete checkpoint, including its signature, and checks it against that key.</p>
+  </details>
 </section>
 
 <section id="how">
@@ -172,51 +190,57 @@
     <div class="step">
       <div class="step-num">1</div>
       <div class="step-body">
-        <h3>A producer signs a trust record</h3>
-        <p>The record is signed where it is produced, under the producer's own key. The registry never sees a private key and does not sign on anyone's behalf.</p>
+        <h3>A producer signs a receipt</h3>
+        <p>Whoever runs the agent signs the receipt with their own key, on their own system. The registry never sees a private key and never signs for anyone.</p>
       </div>
     </div>
 
     <div class="step">
       <div class="step-num">2</div>
       <div class="step-body">
-        <h3>Only a digest is anchored</h3>
-        <p>What lands in the registry is an anchor leaf derived from the exact signed bytes under Anchor Format v1, not the record. Recomputing the leaf from a changed record produces a different value and stops matching.</p>
+        <h3>Only a fingerprint goes in the registry</h3>
+        <p>The registry stores a short fingerprint calculated from the exact signed receipt, not the receipt. Change one character of the receipt and its fingerprint no longer matches.</p>
       </div>
     </div>
 
     <div class="step">
       <div class="step-num">3</div>
       <div class="step-body">
-        <h3>The verifier checks append-only growth</h3>
-        <p>Checkpointed entries accumulate in a Merkle Mountain Range. Inclusion proofs bind an entry to a particular root; consistency proofs connect an earlier root to a later one. Keep the checkpoint associated with each proof.</p>
+        <h3>Proofs show the log only grew</h3>
+        <p>A short proof can show that one entry is in a given snapshot, and another can show that a later snapshot contains everything in an earlier one. Keep the snapshot that goes with each proof.</p>
       </div>
     </div>
 
     <div class="step">
       <div class="step-num">4</div>
       <div class="step-body">
-        <h3>A signed checkpoint commits to the history</h3>
-        <p>The scheduled anchor pipeline emits a signed checkpoint carrying the log's size and root plus the previous checkpoint's size and root. A verifier checks predecessor linkage and the MMR consistency proof, then recomputes the covered entries. Equality of the previous size and root alone does not prove append-only growth.</p>
+        <h3>A signed checkpoint locks in the history</h3>
+        <p>On a schedule, the registry signs a new snapshot that also names the snapshot before it. A checker confirms the link, confirms the proof that the log only grew, and recalculates the fingerprints from the entries themselves.</p>
       </div>
     </div>
 
   </div>
+  <details class="tech-detail"><summary>Technical detail: anchor format and the Merkle Mountain Range</summary>
+    <p class="hint">Each anchor leaf is derived from the exact signed bytes under Anchor Format v1. Checkpointed entries accumulate in a Merkle Mountain Range (MMR). Inclusion proofs bind an entry to a particular root; consistency proofs connect an earlier root to a later one. Each signed checkpoint carries the log's size and root plus the previous checkpoint's size and root. A verifier checks predecessor linkage and the MMR consistency proof, then recomputes the covered entries. Equality of the previous size and root alone does not prove append-only growth.</p>
+  </details>
 </section>
 
 <section id="witness">
   <span class="label">Independent witnesses</span>
-  <h2>One checkpoint, one verified external receipt</h2>
-  <p>Checkpoint 1's signing-body digest is included under a Merkle root signed by a separately operated witness. The returned receipt and two independently fetched copies agree; verification runs offline against an explicitly pinned witness key. This was demonstrated on September 7, 2026, ahead of the September 9 briefing.</p>
-  <p>The response reports <code>countersigned-observed</code>. Whether a receipt carries a witness time or a signed grade is a property of that receipt rather than of the profile, so the verifier reports <code>witness_time_established</code> and <code>grade_cryptographically_bound</code> instead of asserting either. Both are false for the September 7 capture and stay false for it: that receipt's protected header is algorithm and tree profile only, and the witness signature covers that header, so a receipt carrying either field is a separately signed receipt rather than this one re-read. The witness deployed support for both fields on September 12, 2026, and that does not change this capture: it registers a checkpoint by a content-addressed entry hash and deduplicates on it, so re-submitting checkpoint 1 returns the original receipt. Because that hash is derived from the signed fields rather than the submitted bytes, reformatting the submission does not produce a new one either. A receipt carrying a witness time therefore requires a checkpoint the witness has not seen. The receipt does not certify registry continuity. It authenticates inclusion of the signing-body digest, with the registry signature checked separately.</p>
-  <p>No recurring witness submission, reciprocal witnessing, or second witness is claimed. Parallel independent witnesses remain a deployment choice; original records stay with their holders.</p>
+  <h2>One checkpoint, one verified outside receipt</h2>
+  <p>On September 7, 2026, we sent checkpoint 1 to a witness run by a separate operator. The witness signed a receipt saying it had recorded that checkpoint. The receipt we got back matches two copies fetched separately, and anyone can check it offline against the witness's published key.</p>
+  <p>The receipt proves the witness saw checkpoint 1. It does not prove when, it does not vouch for the log's later history, and the registry's own signature is checked separately.</p>
+  <details class="tech-detail"><summary>Technical detail: what this receipt does and does not carry</summary>
+  <p class="hint">Checkpoint 1's signing-body digest is included under a Merkle root signed by the witness, and verification runs against an explicitly pinned witness key. This was demonstrated ahead of the September 9 briefing. The response reports <code>countersigned-observed</code>. Whether a receipt carries a witness time or a signed grade is a property of that receipt rather than of the profile, so the verifier reports <code>witness_time_established</code> and <code>grade_cryptographically_bound</code> instead of asserting either. Both are false for the September 7 capture and stay false for it: that receipt's protected header is algorithm and tree profile only, and the witness signature covers that header, so a receipt carrying either field is a separately signed receipt rather than this one re-read. The witness deployed support for both fields on September 12, 2026, and that does not change this capture: it registers a checkpoint by a content-addressed entry hash and deduplicates on it, so re-submitting checkpoint 1 returns the original receipt. Because that hash is derived from the signed fields rather than the submitted bytes, reformatting the submission does not produce a new one either. A receipt carrying a witness time therefore requires a checkpoint the witness has not seen. The receipt does not certify registry continuity. It authenticates inclusion of the signing-body digest, with the registry signature checked separately.</p>
+  </details>
+  <p>The registry does not yet send every new checkpoint to a witness, and there is no second witness. More independent witnesses can be added as a deployment choice. The original receipts stay with their holders throughout.</p>
   <a class="button" href="https://github.com/agentrust-io/trace-registry/tree/main/docs/evidence/witness-2026-09-07">Receipt, key provenance and offline verification</a>
 </section>
 
 <section id="verify">
   <span class="label">Check our work</span>
   <h2>The verification runs on your machine, not ours</h2>
-  <p>Run the repository's reference verifier against the published files. It checks checkpoint signatures, consistency proofs, and roots recomputed from checkpointed entries. It does not authenticate a signer merely because the checkpoint supplies a public key.</p>
+  <p>Three commands download the log and check it on your computer. The checker confirms each snapshot's signature, confirms each one only adds to the last, and recalculates the fingerprints from the entries. It does not tell you who the signer is just because a snapshot names a key.</p>
 
   <div class="steps">
 
@@ -251,7 +275,7 @@ cd trace-registry</pre>
       <div class="step-num">3</div>
       <div class="step-body">
         <h3>Verify the checkpoint chain</h3>
-        <p class="hint">Checks each checkpoint's signature from its own <code>key_id</code>, then checks that each one extends the last and matches the raw entries it claims to cover.</p>
+        <p class="hint">Checks each snapshot's signature against its own <code>key_id</code>, then checks that each one extends the last and matches the entries it claims to cover.</p>
         <div class="code">
           <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
 <pre>python tools/verify_checkpoint_chain.py \
@@ -274,14 +298,14 @@ cd trace-registry</pre>
 <section id="limits">
   <span class="label">Honest scope</span>
   <h2>What a registry entry is, and what it is not</h2>
-  <p>An inclusion proof binds an entry to a checkpoint. The checkpoint timestamp is the signer's statement, not an independently witnessed time. Neither inclusion nor a valid signature certifies the producer or establishes that a record's claims are true.</p>
+  <p>An entry in the registry shows a receipt existed and has not changed since. It does not show the receipt's claims are true, and it does not vouch for whoever produced it. The time on a checkpoint is the signer's own statement; no outside party confirmed it.</p>
 
   <table style="margin-top:2.25rem;">
     <tr><th>Limit</th><th>Why it stands</th></tr>
-    <tr><td><strong>Consistency, not coverage</strong></td><td>The checkpoint chain proves the consistency of what it covers. It does not prove that the registry covers everything it could have. Completeness is a property of producers keeping their own records, not something a log can assert about itself.</td></tr>
-    <tr><td><strong>The June 2026 entry is outside the chain</strong></td><td>It predates checkpointing and is deliberately not folded in retroactively, which is the same rule the chain verifier applies. Backdating an entry into a chain would make the chain say more than it checked.</td></tr>
-    <tr><td><strong>One receipt; bounded assurance</strong></td><td>The captured receipt proves inclusion of checkpoint 1's signing-body digest under the accepted witness key. It does not authenticate the response grade, establish a witness time, certify continuity, prevent split views, or cover the June entry. See the evidence packet and verifier results.</td></tr>
-    <tr><td><strong>One producer key is single-use by construction</strong></td><td>The producer key behind the first anchored record verifies that record and will never sign another, because the demo that produced it generates keys per run and never persists private ones. That is a property of that entry, not a general guarantee.</td></tr>
+    <tr><td><strong>It cannot show what was never sent</strong></td><td>The snapshots prove that what they cover has not been altered. They cannot prove every receipt that should be here was sent. Completeness depends on producers keeping their own records.</td></tr>
+    <tr><td><strong>The June 2026 entry is outside the chain</strong></td><td>It was published before snapshots started, and it is deliberately not added after the fact. Backdating it in would make the chain claim more than it checked.</td></tr>
+    <tr><td><strong>One witness receipt, with limits</strong></td><td>The receipt proves the witness recorded checkpoint 1. It does not confirm a time or a grade, vouch for later history, stop the log showing different histories to different people, or cover the June entry or checkpoint 2. See the evidence packet and verifier results.</td></tr>
+    <tr><td><strong>One producer key is used once by design</strong></td><td>The key behind the first anchored record will never sign another, because the demo that made it creates a fresh key each run and never saves the private half. That is true of that entry only, not a general guarantee.</td></tr>
   </table>
 
   <div class="callout"><p><strong>A witness attesting to more than it checked is worse than no witness.</strong> That principle is why the limits above are on this page instead of in a footnote, why the entry counts here are the real ones, and why the receipt announcement names exactly which properties were verified.</p></div>
@@ -294,7 +318,7 @@ cd trace-registry</pre>
   <h2>Three ways in</h2>
   <div class="grid-3">
     <article class="card"><h3>Register as a producer</h3><p>Publish anchors for your own signed trust records under your own key. The conventions, naming, and submission path are documented in the repository.</p><a href="https://github.com/agentrust-io/trace-registry/blob/main/CONTRIBUTING.md">Read the contributor guide →</a></article>
-    <article class="card"><h3>Run a mirror or a witness</h3><p>Single-operator dependency is a weakness we name rather than hide. Independent mirrors and independent witnesses can reduce it when observers retain and compare evidence. Neither is a blanket guarantee against split views.</p><a href="https://github.com/agentrust-io/trace-registry/blob/main/MIRRORS.md">Mirroring guide &rarr;</a> <a href="https://github.com/action-state-group/capsule-anchor/blob/main/OPERATOR_GUIDE.md">Witness guide &rarr;</a></article>
+    <article class="card"><h3>Run a mirror or a witness</h3><p>Depending on one operator is a weakness, and we say so. Copies kept by others, and witnesses run by others, reduce it when people keep and compare what they were shown. Two organizations outside AgenTrust already run registered mirrors. Neither mirrors nor witnesses fully stop a log from showing different histories to different people.</p><a href="https://github.com/agentrust-io/trace-registry/blob/main/MIRRORS.md">Mirroring guide &rarr;</a> <a href="https://github.com/action-state-group/capsule-anchor/blob/main/OPERATOR_GUIDE.md">Witness guide &rarr;</a></article>
     <article class="card"><h3>Attack the claims</h3><p>The most useful contribution is a demonstration that something on this page overstates what the code actually does. Open an issue in public.</p><a href="https://github.com/agentrust-io/trace-registry/issues">Open an issue →</a></article>
   </div>
 </section>
@@ -318,7 +342,7 @@ cd trace-registry</pre>
   <div class="foot-legal">© 2026 AgenTrust Contributors · agentrust-io.com</div>
 </div></footer>
 
-<script src="/supernav.js?v=22"></script>
+<script src="/supernav.js?v=23"></script>
 <script src="/page.js"></script>
 </body>
 </html>

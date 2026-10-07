@@ -71,7 +71,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="/design-system.css?v=22">
+<link rel="stylesheet" href="/design-system.css?v=23">
 </head>
 <body class="at-page">
 
@@ -113,6 +113,7 @@
 <div class="hero"><div class="wrap">
   <span class="eyebrow"><a href="/#chain">03 · Actions</a> · A2A extension URI</span>
   <h1>Confidential A2A<br>(cA2A) v0.1</h1>
+  <p class="sub">cA2A (Confidential Agent-to-Agent) adds safety checks to A2A, a common protocol for one AI agent handing work to another: who passed the job on, how much permission came with it, and a signed record of each hand-off. The address below is the official name agents use to say they support it.</p>
   <p class="sub">This page is what the cA2A v0.1 extension URI resolves to. The URI is an identifier, not an endpoint: A2A agents put it in their Agent Card to advertise the profile, and clients echo it in the <code>A2A-Extensions</code> header to opt in.</p>
   <span class="uri">https://agentrust-io.com/extensions/ca2a/v0.1</span>
 </div></div>
@@ -135,7 +136,11 @@
     <p><strong>No agent is served on this domain.</strong> agentrust-io.com and its subdomains publish specifications and documentation. They do not host an A2A agent, an MCP server, or a Signed Agent Card. The card linked below is a reference example whose interface URL points at <code>example.com</code> deliberately.</p>
   </div>
 
+  <p>In plain terms: A2A can already show which organisation published an agent's description. cA2A adds proof of what each hand-off was allowed to do, and it fits inside fields A2A already has, so agents that have never heard of cA2A keep working.</p>
+
   <p>A2A's Signed Agent Card answers one question: did the domain owner issue this card. cA2A adds a trust envelope around a delegated task, carried entirely in A2A extension metadata. It defines no new wire format and no new endpoint. Removing every cA2A key from a message leaves a valid A2A task, which is what lets a cA2A deployment interoperate with peers that have never heard of the profile.</p>
+
+  <p>Each addition rides on an existing part of A2A. A delegation credential is a signed note saying who handed the task to whom and with what permission. A measurement is the fingerprint of the software a chip reports it is running. A DAG (directed acyclic graph) is the family tree of hand-offs.</p>
 
   <table style="margin-top:2.25rem;">
     <tr><th>A2A element</th><th>cA2A addition</th></tr>
@@ -149,6 +154,8 @@
 <section id="declare">
   <span class="label">Declaring support</span>
   <h2>One entry in the Agent Card</h2>
+  <p>An Agent Card is an agent's public description, a small JSON file listing what it can do. Saying "I support cA2A" takes one entry in it.</p>
+
   <p>An agent supporting the profile advertises the URI under <code>capabilities.extensions</code> in its Agent Card:</p>
 
 <pre><code>{
@@ -171,7 +178,8 @@
 <section id="status">
   <span class="label">Status</span>
   <h2>Developer preview, stated plainly</h2>
-  <p>The v0.1 URI identifies the profile. The current release, ca2a-runtime 0.2.0, is a developer preview and will change shape before v1. The delegation chain is verified and the payload is sealed, but binding that seal to a hardware-verified peer measurement is not yet wired: the reference transport runs in software mode with <code>assurance="none"</code>. Running the peer path end to end off hardware is not evidence that cA2A is attested across trust domains.</p>
+  <p>In short: the delegation checks work today in software, and the hardware part is not finished yet.</p>
+  <p>The v0.1 URI identifies the profile. The current release, ca2a-runtime 0.4.0, is a developer preview and will change shape before v1. The delegation chain is verified and the payload is sealed, but binding that seal to a hardware-verified peer measurement is not yet wired: the reference transport runs in software mode with <code>assurance="none"</code>. Running the peer path end to end off hardware is not evidence that cA2A is attested across trust domains.</p>
 </section>
 
 <section id="normative">
@@ -207,6 +215,6 @@
   <div class="foot-legal">© 2026 AgenTrust Contributors · MIT licensed · agentrust-io.com</div>
 </div></footer>
 
-<script src="/supernav.js?v=22"></script>
+<script src="/supernav.js?v=23"></script>
 </body>
 </html>

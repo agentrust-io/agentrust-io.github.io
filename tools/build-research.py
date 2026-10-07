@@ -120,6 +120,10 @@ def paper_page(p, v=None):
     issues = q['code'] + '/issues' if on_github else 'https://github.com/agentrust-io/.github/issues'
     spec = (f'<p><a href="{esc(q["spec"])}">Read the current specification and implementation guidance</a>. This report describes an earlier design and evaluation; the current specification governs implementation.</p>'
             if q.get('spec') else '<p>No separate specification exists for this mechanism. The reference implementation in the source package is the implementation guidance.</p>')
+    # The plain-English summary is site prose, not part of the frozen release, so it is
+    # rendered on the current paper page only; versioned pages stay byte-identical.
+    plain = (f'<section class="paper-plain" aria-labelledby="plain-english"><h2 id="plain-english">In plain English</h2><p>{esc(q["plain"])}</p></section>\n'
+             if q.get('plain') and not v else '')
     rows=''.join(f'<p><a href="/research/{slug}/v{h["version"]}/">Version {h["version"]}, {human_date(h["date"])}</a>: {esc(h["changes"])}</p>\n' for h in reversed(history))
     body=f'''<nav class="research-breadcrumb" aria-label="Breadcrumb"><a href="/research/">Research</a> / {esc(q['short_title'])}{f' / Version {n}' if v else ''}</nav>
 <header class="paper-header"><p class="research-eyebrow">Technical report / Version {n}</p>
@@ -127,7 +131,7 @@ def paper_page(p, v=None):
 <p class="paper-authors">{esc(', '.join(q['authors']))}</p><p class="paper-affiliation">OPAQUE Systems</p>
 <div class="paper-status"><span>{human_date(q['date'])}</span><span>Not peer reviewed</span>{patent}</div>
 </header>
-<section class="paper-abstract" aria-labelledby="abstract"><h2 id="abstract">Abstract</h2><p>{esc(q['abstract'])}</p></section>
+{plain}<section class="paper-abstract" aria-labelledby="abstract"><h2 id="abstract">Abstract</h2><p>{esc(q['abstract'])}</p></section>
 <nav class="paper-actions" aria-label="Paper resources"><a class="primary-action" href="{artifact}paper.pdf">Read PDF <span>({q['pages']} pages)</span></a><a href="#cite">Cite this report</a><a href="{artifact}source.zip">Source and recorded evidence</a><a href="{esc(q['code'])}">{code_label}</a>{archive}</nav>
 <section class="research-section"><h2>What this report contributes</h2><p>{esc(q['contribution'])}</p></section>
 <section class="research-section"><h2>Evidence and limits</h2><ul>{''.join('<li>'+esc(item)+'</li>' for item in q['limits'])}</ul>
@@ -170,12 +174,12 @@ def generate():
         outputs[ROOT/'research'/p['slug']/'index.html']=paper_page(p)
     def card(p):
         latest=versions(p)[-1]
-        return f'''<article class="paper-card"><p class="research-eyebrow">{esc(p['topic'])}</p><h2><a href="/research/{p['slug']}/">{esc(p['title'])}</a></h2><p>{esc(p['contribution'])}</p><p class="paper-card-meta">{esc(', '.join(p['authors']))}</p><p class="paper-card-meta">Version {latest['version']} / {human_date(latest['date'])} / Technical report</p><a class="paper-card-link" href="/research/{p['slug']}/">Read the report <span aria-hidden="true">&rarr;</span></a></article>'''
+        return f'''<article class="paper-card"><p class="research-eyebrow">{esc(p['topic'])}</p><h2><a href="/research/{p['slug']}/">{esc(p['title'])}</a></h2><p>{esc(p.get('plain') or p['contribution'])}</p><p class="paper-card-meta">{esc(', '.join(p['authors']))}</p><p class="paper-card-meta">Version {latest['version']} / {human_date(latest['date'])} / Technical report</p><a class="paper-card-link" href="/research/{p['slug']}/">Read the report <span aria-hidden="true">&rarr;</span></a></article>'''
     cards=''.join(card(p) for p in papers)
-    body=f'''<header class="research-intro"><p class="research-eyebrow">AgenTrust Research</p><h1>Identity, enforcement,<br>and evidence for AI agents.</h1><p>Technical reports with open source, recorded experiments, and explicit limits. Read the work, inspect the evidence, and cite a specific version.</p></header>
+    body=f'''<header class="research-intro"><p class="research-eyebrow">AgenTrust Research</p><h1>Identity, enforcement,<br>and evidence for AI agents.</h1><p>Reports on how to check what an AI agent is, what it is allowed to do, and what it actually did. Each comes with a PDF, its source code and recorded test results, and says plainly what it does not prove. Read the work, check the evidence yourself, and cite a specific version.</p></header>
 <div class="research-label"><span>Research collection</span><span>{len(papers)} reports / Not peer reviewed</span></div><div class="paper-list">{cards}</div>
-<section class="research-section"><h2>Read the evidence with the claim</h2><p>These reports preserve historical designs and software evaluations. A signature, an attestation result, and an execution-completeness claim establish different properties. Each paper page identifies the evidence evaluated and the limits that remain.</p><p>For implementation, follow the current project specifications linked from each report. Paper text is available under CC BY 4.0; code retains its project license.</p></section>'''
-    outputs[ROOT/'research/index.html']=shell('Research: AI Agent Identity, Enforcement and Evidence','AgenTrust technical reports on agent identity, tool-call enforcement, runtime evidence, model custody, delegation and telemetry, with PDFs, source and limits.','/research/',body)
+<section class="research-section"><h2>Read the evidence with the claim</h2><p>Each report records a design and its tests as they stood on a given date. A digital signature, a hardware check (<a href="/#plain-terms">attestation</a>) and a claim that every action was recorded each prove different things. Each paper page says which evidence was examined and what is still unproven.</p><p>To build on this work, follow the current project specifications linked from each report. Paper text is available under CC BY 4.0; code keeps its project license.</p></section>'''
+    outputs[ROOT/'research/index.html']=shell('Research: AI Agent Identity, Enforcement and Evidence','Reports on how to check what AI agents are, what they may do and what they did, each with a PDF, source code, recorded test results and stated limits.','/research/',body)
     return outputs
 
 

@@ -21,6 +21,9 @@
 .paper-affiliation { font-size: 14px; color: var(--at-muted); margin: 0 0 18px; }
 .paper-status { display: flex; flex-wrap: wrap; gap: 10px 24px; color: var(--at-muted); font: 12px/1.6 var(--at-mono); }
 .paper-abstract { margin-top: 30px; max-width: 850px; }
+.paper-plain { margin-top: 30px; max-width: 850px; }
+.paper-plain h2 { font: 400 26px/1.3 var(--at-serif); margin: 0 0 16px; }
+.paper-plain p { font-size: 17px; line-height: 1.8; }
 .paper-abstract h2, .research-section h2 { font: 400 26px/1.3 var(--at-serif); margin: 0 0 16px; }
 .paper-abstract p, .research-section p, .research-section li { font-size: 16px; line-height: 1.8; }
 .paper-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin: 28px 0 40px; font-size: 14px; }

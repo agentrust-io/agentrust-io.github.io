@@ -2116,3 +2116,8 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
 .search-hit mark { background: rgba(185, 28, 28, .14); color: inherit; border-radius: 3px; padding: 0 .1em; }
 .site-search-empty { margin-top: 1.5rem; padding: 2rem; border: 1px dashed var(--at-line); border-radius: 16px; text-align: center; }
 @media (max-width: 560px) { .site-search-form { flex-direction: column; } }
+
+/* Collapsible technical detail under plain-language copy */
+details.tech-detail { margin: 1.25rem 0; padding: 0.75rem 1rem; border: 1px solid var(--at-line); border-radius: 6px; background: rgba(0,0,0,0.015); }
+details.tech-detail > summary { cursor: pointer; font-weight: 600; color: var(--at-navy); }
+details.tech-detail[open] > summary { margin-bottom: 0.75rem; }

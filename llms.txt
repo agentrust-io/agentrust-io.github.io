@@ -1,8 +1,8 @@
 # AgenTrust
 
-> Open specifications and verifiers that bind model weights, agent identity and tool calls to hardware attestation, with evidence anyone can check offline.
+> Free, open specifications and tools that make a signed receipt for an AI system: which model ran, which agent acted, and each step it took. On supported confidential-computing chips, the processor itself vouches for where the work ran (hardware attestation). Anyone can check a receipt on their own computer, offline.
 
-AgenTrust is the ecosystem at https://agentrust-io.com and the GitHub organization https://github.com/agentrust-io. Use the linked project documentation for normative requirements, release versions, licenses, and deployment prerequisites.
+AgenTrust lives at https://agentrust-io.com, with its source code in the GitHub organization https://github.com/agentrust-io. It covers four steps that can be used separately: the model file (Weight Custody Manifest), the agent's identity (Agent Manifest), each action the agent takes (cMCP for tool calls, cA2A for hand-offs between agents) and the receipt format (TRACE). The start pages and demos run in software mode: the receipts are real, but no chip vouches for them. For exact requirements, current release versions, licenses and setup needs, use each project's own documentation linked below.
 
 ## Start here
 
@@ -36,7 +36,7 @@ AgenTrust is the ecosystem at https://agentrust-io.com and the GitHub organizati
 
 ## Research
 
-- [Research reports](https://agentrust-io.com/research/): Versioned TRACE, cMCP and Agent Manifest technical reports, with PDFs, source packages, recorded software evidence, citations and explicit limits. Not peer reviewed; use current specifications for implementation.
+- [Research reports](https://agentrust-io.com/research/): Technical reports on TRACE, cMCP, Agent Manifest, Weight Custody Manifest, cA2A and related problems, each with explicit limits. Published reports are versioned, with PDFs, source packages, recorded software evidence and citations. Not peer reviewed; use current specifications for implementation.
 
 ## Community and stewardship
 
