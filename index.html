@@ -179,26 +179,26 @@
   <div class="hero-inner">
     <p class="hero-eyebrow">Open specifications for verifiable AI</p>
     <h1>Prove what your AI ran, and what it did.</h1>
-    <p>Open specifications and verifiers that bind model weights, agent identity and every tool call to hardware attestation. Anyone can check the evidence offline, without asking us.</p>
+    <p>When an AI system acts, most of what you can see afterwards is its own logs, and the system can edit those. AgenTrust is a set of free, open specifications and tools that produce a signed receipt instead: which model ran, which agent acted, and each step it took. On supported hardware the processor itself vouches for where the work ran. Anyone can check a receipt on their own computer, without asking us.</p>
     <div class="hero-actions">
-      <a href="/verify/" class="btn btn-primary">Verify a real Intel TDX quote →</a>
-      <a href="#scope" class="btn btn-ghost">What this proves, and what it does not</a>
+      <a href="/verify/" class="btn btn-primary">Check a real hardware receipt →</a>
+      <a href="#plain-terms" class="btn btn-ghost">The terms, in plain English</a>
     </div>
 
-    <figure class="verify-panel" id="verify-panel" aria-label="A genuine Intel TDX quote, verified in this browser">
+    <figure class="verify-panel" id="verify-panel" aria-label="A real Intel processor report, checked in this browser">
       <div class="verify-panel-bar"><span>/verify › keybind_quote.bin</span><span>offline · in this browser</span></div>
       <ol class="verify-rows">
-        <li><span class="key">quote</span><span>Intel TDX v4, GCP C3, captured 2026-09-14</span><span></span></li>
-        <li data-step="quote-signature"><span class="key">step 1</span><span>attestation key signature over header and TD report</span><span class="state">not run</span></li>
-        <li data-step="qe-binding"><span class="key">step 2</span><span>QE report binds the attestation key</span><span class="state">not run</span></li>
-        <li data-step="qe-report-signature"><span class="key">step 3</span><span>QE report signed by the platform PCK certificate</span><span class="state">not run</span></li>
-        <li data-step="pck-chain"><span class="key">step 4</span><span>PCK chain ends at the pinned Intel SGX Root CA</span><span class="state">not run</span></li>
-        <li data-step="reportdata"><span class="key">REPORTDATA</span><span>commits to the key that signed a published TRACE record</span><span class="state">not run</span></li>
-        <li data-step="verdict"><span class="key">verdict</span><span>genuine Intel TDX silicon signed this quote</span><span class="state">not run</span></li>
+        <li><span class="key">report</span><span>Signed report from an Intel TDX processor on Google Cloud, captured 2026-09-14</span><span></span></li>
+        <li data-step="quote-signature"><span class="key">step 1</span><span>The processor's attestation key signed the report</span><span class="state">not run</span></li>
+        <li data-step="qe-binding"><span class="key">step 2</span><span>Intel's quoting enclave vouches for that key</span><span class="state">not run</span></li>
+        <li data-step="qe-report-signature"><span class="key">step 3</span><span>That vouching is signed by the chip's own Intel certificate (PCK)</span><span class="state">not run</span></li>
+        <li data-step="pck-chain"><span class="key">step 4</span><span>The certificate chain ends at Intel's root certificate</span><span class="state">not run</span></li>
+        <li data-step="reportdata"><span class="key">link</span><span>The report names the key that signed a published TRACE receipt</span><span class="state">not run</span></li>
+        <li data-step="verdict"><span class="key">verdict</span><span>A genuine Intel processor produced this report</span><span class="state">not run</span></li>
       </ol>
     </figure>
     <div class="verify-foot">
-      <p><span class="tag">Note</span>Genuine Intel TDX silicon signed this quote, and its REPORTDATA commits to the key that signed the TRACE record published beside it. It does not show that the software inside the trust domain was the image anyone intended.</p>
+      <p><span class="tag">Note</span>This box checks a real processor report while you watch. A genuine Intel TDX processor signed it, and the report names the key that signed the TRACE receipt published beside it. It does not show which software was running inside.</p>
       <p>Runs in your browser. Nothing is sent back to us.</p>
     </div>
   </div>
@@ -218,11 +218,11 @@
     </article>
     <article class="ecosystem-card">
       <h3>The tooling around agents is the attack surface.</h3>
-      <p>In June 2026 a remote UI package for a popular coding-agent CLI, at about 29,000 weekly npm downloads, shipped code that exfiltrated users' non-expiring OAuth refresh tokens.</p>
+      <p>In June 2026 an add-on for a popular coding agent, downloaded about 29,000 times a week, shipped code that quietly copied users' long-lived login tokens to an attacker.</p>
     </article>
     <article class="ecosystem-card">
-      <h3>Weights are leaving the building.</h3>
-      <p>Sovereign and on-premises deployment puts a model builder's weights on hardware somebody else owns. Weight-security research recommends confidential computing for the highest protection levels, and current silicon still falls to an operator with physical access.</p>
+      <h3>Models are leaving the building.</h3>
+      <p>A model's weights are the trained file that is the model. Running a model in a customer's or a government's own data centre puts that file on hardware somebody else owns. Weight-security research recommends confidential computing for the highest protection levels, and today's chips can still be broken by someone with physical access to the machine.</p>
       <a class="evidence-link" href="https://www.rand.org/pubs/research_reports/RRA2849-1.html">Read the weight-security research ↗</a>
     </article>
   </div>
@@ -240,29 +240,48 @@
     <div class="trust-step">
       <span class="trust-number">01 · WEIGHTS</span>
       <strong>Is this the model that was released, and who may release its key?</strong>
-      <p><a href="https://wcm.agentrust-io.com">Weight Custody Manifest</a></p>
-      <span class="trust-home">Spec pre-1.0, SDK 0.28.1, 91 portable conformance vectors</span>
+      <p><a href="https://wcm.agentrust-io.com">Weight Custody Manifest</a>: a signed record of exactly which model file this is, and the rules for who may release the key that decrypts it.</p>
+      <span class="trust-home">Spec pre-1.0, SDK 0.30.0, 91 portable conformance vectors</span>
     </div>
     <div class="trust-step">
       <span class="trust-number">02 · AGENT</span>
       <strong>What is this agent, and what is it allowed to do?</strong>
-      <p><a href="https://manifest.agentrust-io.com">Agent Manifest</a></p>
-      <span class="trust-home">SDK 0.12.0, proposed to CoSAI WS4 (<a href="https://github.com/cosai-oasis/ws4-secure-design-agentic-systems/issues/149">RFC #149</a>)</span>
+      <p><a href="https://manifest.agentrust-io.com">Agent Manifest</a>: a signed ID card for an agent, listing what it is and what it may touch.</p>
+      <span class="trust-home">SDK 0.15.0, proposed to CoSAI WS4 (<a href="https://github.com/cosai-oasis/ws4-secure-design-agentic-systems/issues/149">RFC #149</a>)</span>
     </div>
     <div class="trust-step">
       <span class="trust-number">03 · ACTIONS</span>
-      <strong>Was each tool call and each delegation checked inside attested hardware?</strong>
-      <p><a href="https://cmcp.agentrust-io.com">cMCP</a> and <a href="https://ca2a.agentrust-io.com">cA2A</a></p>
-      <span class="trust-home">cmcp-runtime 0.5.0; cA2A 0.2.0 developer preview</span>
+      <strong>Was each action the agent took, and each job it handed to another agent, checked against the rules?</strong>
+      <p><a href="https://cmcp.agentrust-io.com">cMCP</a> checks every tool an agent uses, such as sending an email or querying a database. <a href="https://ca2a.agentrust-io.com">cA2A</a> does the same when one agent hands work to another.</p>
+      <span class="trust-home">cmcp-runtime 0.7.0; ca2a-runtime 0.4.0 developer preview</span>
     </div>
     <div class="trust-step">
       <span class="trust-number">04 · EVIDENCE</span>
-      <strong>Can a third party verify all of it offline, years later?</strong>
-      <p><a href="https://trace.agentrust-io.com">TRACE</a>, <a href="/registry/">TRACE Registry</a>, <a href="https://tests.agentrust-io.com">conformance suite</a></p>
-      <span class="trust-home">TRACE spec v0.2, a Series of LF Projects with an AAIF Sandbox proposal open, agentrust-trace 0.10.0, signed registry checkpoints with an external witness receipt</span>
+      <strong>Can someone else check all of it, offline, years later?</strong>
+      <p><a href="https://trace.agentrust-io.com">TRACE</a> is the receipt format. The <a href="/registry/">TRACE Registry</a> is a public log of receipts with signed checkpoints, and the <a href="https://tests.agentrust-io.com">conformance suite</a> tests that a tool reads them correctly.</p>
+      <span class="trust-home">TRACE spec v0.2, a Series of LF Projects with an AAIF Sandbox proposal open, agentrust-trace 0.11.0, signed registry checkpoints with an external witness receipt</span>
     </div>
   </div>
-  <p class="trust-note">Each step links to its project site. No step requires the others; use the ones your trust boundary needs.</p>
+  <p class="trust-note">Each step links to its own project site. No step needs the others, so start with the one that answers your question.</p>
+</section>
+
+<hr class="divider">
+
+<!-- Plain terms -->
+<section class="section" id="plain-terms">
+  <div class="section-header">
+    <div class="section-label">In plain English</div>
+    <h2 class="section-title">The words on this site, in one line each.</h2>
+  </div>
+  <div class="qa">
+    <div class="qa-item"><div class="qa-q">AI agent</div><div class="qa-a">An AI system that takes actions on its own, such as reading files or sending messages, instead of only answering questions.</div></div>
+    <div class="qa-item"><div class="qa-q">Tool call</div><div class="qa-a">One action an agent takes through another piece of software. MCP (Model Context Protocol) is a common way agents connect to those tools.</div></div>
+    <div class="qa-item"><div class="qa-q">Delegation</div><div class="qa-a">One agent handing part of a job to another agent. A2A (Agent2Agent) is a common protocol for it.</div></div>
+    <div class="qa-item"><div class="qa-q">Confidential computing</div><div class="qa-a">Chips that keep a program's memory encrypted while it runs, so even the server's owner cannot read it. Intel TDX, AMD SEV-SNP and NVIDIA H100 are three kinds. The protected area is called a trusted execution environment (TEE).</div></div>
+    <div class="qa-item"><div class="qa-q">Attestation</div><div class="qa-a">A report signed by the chip itself about what it is and what is loaded on it. The signature traces back to the chip maker, not the cloud provider.</div></div>
+    <div class="qa-item"><div class="qa-q">Signed receipt</div><div class="qa-a">A record with a digital signature attached. If anyone changes a single character, the signature check fails. TRACE is the receipt format used here.</div></div>
+    <div class="qa-item"><div class="qa-q">Verify offline</div><div class="qa-a">Check a receipt on your own computer, with no call to us or to any service that could change the answer.</div></div>
+  </div>
 </section>
 
 <hr class="divider">
@@ -271,26 +290,26 @@
 <section class="section" id="hardware">
   <div class="section-header">
     <div class="section-label">Where it runs</div>
-    <h2 class="section-title">Validated on real silicon, verified to the vendor's root.</h2>
+    <h2 class="section-title">Tested on real confidential-computing chips, checked back to the chip maker.</h2>
   </div>
   <div class="ecosystem-grid">
     <article class="ecosystem-card">
       <h3>AMD SEV-SNP</h3>
-      <p>Azure confidential VM. Report signatures verify to the AMD root.</p>
+      <p>On a Microsoft Azure confidential virtual machine. The processor's reports check out against AMD's root certificate.</p>
       <a class="evidence-link" href="https://github.com/agentrust-io/agent-manifest/pull/227">agent-manifest #227, merged 2026-07-21 ↗</a>
     </article>
     <article class="ecosystem-card">
       <h3>Intel TDX</h3>
-      <p>GCP C3. Quotes verify offline to the pinned Intel SGX Root CA, no collateral service needed.</p>
-      <a class="evidence-link" href="/verify/">Check the 2026-09-14 capture yourself →</a>
+      <p>On Google Cloud. Reports check out against Intel's root certificate entirely offline, with no call to Intel's online services.</p>
+      <a class="evidence-link" href="/verify/">Check the 2026-09-14 report yourself →</a>
     </article>
     <article class="ecosystem-card">
       <h3>NVIDIA H100 confidential computing</h3>
-      <p>Through the Weight Custody Manifest path.</p>
+      <p>The GPU that runs the model. The Weight Custody Manifest checks its signed reports, cross-checked against NVIDIA's own verifier.</p>
       <a class="evidence-link" href="https://github.com/agentrust-io/weight-custody-manifest/pull/54">weight-custody-manifest #54, merged 2026-07-28 ↗</a>
     </article>
   </div>
-  <p class="trust-note">We verify signature chains. We do not appraise whether a platform's TCB is current.</p>
+  <p class="trust-note">We check that each signature traces back to the chip maker. We do not judge whether a chip's firmware has its latest security updates.</p>
 </section>
 
 <hr class="divider">
@@ -302,12 +321,12 @@
     <h2 class="section-title">What this proves, and what it does not.</h2>
   </div>
   <ul class="scope-list">
-    <li>A signature shows who signed a record and that it has not changed. It says nothing about where the signer ran.</li>
-    <li>Hardware origin needs a verified attestation that binds the signing key.</li>
-    <li>Memory-bus attacks such as TEE.fail and BadRAM defeat current confidential-computing silicon against an operator who physically owns the machine. Weight custody is scoped to match.</li>
-    <li>The start pages and demos run in software mode, with no hardware isolation.</li>
-    <li>Conformance vectors are self-tests. They are not certification.</li>
-    <li>A registry entry shows a record was anchored. It does not validate the record's claims.</li>
+    <li>A signature proves who signed a receipt and that nobody changed it since. On its own, it does not prove where the signer was running.</li>
+    <li>Proving that a receipt came from protected hardware needs a checked processor report (attestation) that names the key that signed it.</li>
+    <li>Someone who physically owns the machine can break today's confidential-computing chips by tapping the memory wires (published attacks include TEE.fail and BadRAM). Weight custody is designed with that limit in mind.</li>
+    <li>The quick start pages and demos run in software mode: the receipts are real, but no chip vouches for them.</li>
+    <li>The conformance tests are self-tests. Passing them is not a certification.</li>
+    <li>An entry in the registry shows a receipt was published. It does not show that what the receipt says is true.</li>
   </ul>
 </section>
 
@@ -317,22 +336,22 @@
 <section class="section" id="audiences">
   <div class="section-header">
     <div class="section-label">Who it is for</div>
-    <h2 class="section-title">Start where your trust boundary is.</h2>
+    <h2 class="section-title">Start with the part you are responsible for.</h2>
   </div>
   <div class="ecosystem-grid">
     <article class="ecosystem-card">
       <h3>Model builders</h3>
-      <p>Deploying weights into customer or sovereign infrastructure.</p>
+      <p>Who run their model on a customer's or a government's own hardware and need to stay in control of it.</p>
       <a class="evidence-link" href="https://wcm.agentrust-io.com">Start with the Weight Custody Manifest →</a>
     </article>
     <article class="ecosystem-card">
       <h3>Teams running agents in production</h3>
-      <p>Who need identity, tool-call policy and delegation they can show to someone else.</p>
+      <p>Who need to show someone else what each agent is, what it was allowed to do, and what it did.</p>
       <a class="evidence-link" href="https://manifest.agentrust-io.com">Start with Agent Manifest and cMCP →</a>
     </article>
     <article class="ecosystem-card">
       <h3>Security, audit and risk teams</h3>
-      <p>Who have to check another party's claims.</p>
+      <p>Who have to check another company's claims about its AI, instead of taking its word for it.</p>
       <a class="evidence-link" href="/registry/">Start with the TRACE verifier and the registry →</a>
     </article>
   </div>
@@ -347,7 +366,7 @@
     <h2 class="section-title">Anyone can read it, run it and check it.</h2>
   </div>
   <article class="adoption-card">
-    <p>TRACE is its own Series of LF Projects, announced by the Linux Foundation on 25 August 2026 and developed with AMD, Intel, Microsoft, OPAQUE and TII. It has also been proposed to the Agentic AI Foundation at the Sandbox stage (<a href="https://github.com/aaif/project-proposals/issues/42">aaif/project-proposals #42</a>, opened 14 September 2026).</p>
+    <p>TRACE, the receipt format, is hosted at the Linux Foundation as its own project (a Series of LF Projects), announced on 25 August 2026 and developed with AMD, Intel, Microsoft, OPAQUE and TII. It has also been proposed to the Agentic AI Foundation as an early-stage Sandbox project (<a href="https://github.com/aaif/project-proposals/issues/42">aaif/project-proposals #42</a>, opened 14 September 2026).</p>
     <div class="logo-row">
       <img src="/assets/lf-logo-stacked-color.svg" alt="The Linux Foundation" loading="lazy">
       <img src="/assets/amd-mark.svg" alt="AMD" loading="lazy">
@@ -368,8 +387,8 @@
     <article class="adoption-card">
       <div class="qa">
         <div class="qa-item"><div class="qa-a">Every project is open source. Licences vary by project and are listed on each site.</div></div>
-        <div class="qa-item"><div class="qa-a">8 of 9 repositories hold an OpenSSF Best Practices passing badge.</div></div>
-        <div class="qa-item"><div class="qa-a">Software policy enforcement builds on the <a href="https://github.com/microsoft/agent-governance-toolkit">Microsoft Agent Governance Toolkit</a>.</div></div>
+        <div class="qa-item"><div class="qa-a">10 project repositories hold an OpenSSF Best Practices passing badge, an independent checklist for how open source projects are run.</div></div>
+        <div class="qa-item"><div class="qa-a">The software rule-checking builds on the <a href="https://github.com/microsoft/agent-governance-toolkit">Microsoft Agent Governance Toolkit</a>.</div></div>
       </div>
     </article>
   </div>
@@ -383,7 +402,7 @@
     <div>
       <h3>Build with it</h3>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="/quickstart/">Get started, software mode</a>
+        <a class="btn btn-primary" href="/quickstart/">Get started (no special hardware needed)</a>
         <a class="btn btn-ghost" href="/demos/">Demos</a>
         <a class="btn btn-ghost" href="/research/">Research papers</a>
         <a class="btn btn-ghost" href="/telemetry/">Telemetry</a>
