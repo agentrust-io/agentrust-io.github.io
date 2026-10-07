@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Get Started with the AgenTrust Specifications | AgenTrust</title>
-<meta name="description" content="One start page per AgenTrust specification, in chain order and software mode, or check a real Intel TDX quote in your browser with nothing to install.">
+<meta name="description" content="Try each AgenTrust specification on your own computer with no special hardware, or check a real Intel processor report in your browser with nothing to install.">
 <link rel="canonical" href="https://agentrust-io.com/quickstart/">
 <meta name="robots" content="index, follow">
 
@@ -18,7 +18,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AgenTrust">
 <meta property="og:title" content="Get Started with the AgenTrust Specifications">
-<meta property="og:description" content="One start page per AgenTrust specification, in chain order and software mode, or check a real Intel TDX quote in your browser with nothing to install.">
+<meta property="og:description" content="Try each AgenTrust specification on your own computer with no special hardware, or check a real Intel processor report in your browser with nothing to install.">
 <meta property="og:url" content="https://agentrust-io.com/quickstart/">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://agentrust-io.com/og.png">
@@ -29,7 +29,7 @@
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Get Started with the AgenTrust Specifications">
-<meta name="twitter:description" content="One start page per AgenTrust specification, in chain order and software mode, or check a real Intel TDX quote in your browser with nothing to install.">
+<meta name="twitter:description" content="Try each AgenTrust specification on your own computer with no special hardware, or check a real Intel processor report in your browser with nothing to install.">
 <meta name="twitter:image" content="https://agentrust-io.com/og.png">
 
 <!-- Structured data -->
@@ -75,7 +75,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="/design-system.css?v=22">
+<link rel="stylesheet" href="/design-system.css?v=23">
 </head>
 <body class="at-page">
 
@@ -117,8 +117,8 @@
 <div class="hero"><div class="wrap">
   <span class="eyebrow"><a href="/#chain">Weights · Agent · Actions · Evidence</a> · Start pages</span>
   <h1>Get started</h1>
-  <p class="sub">Each specification has its own start page. Pick the step in the chain your trust boundary needs; no step requires the others.</p>
-  <div><span class="status">Python 3.11 or newer · Git and Bash on Linux, macOS or Windows with WSL · Software mode, no hardware isolation</span></div>
+  <p class="sub">Each AgenTrust specification has its own short tutorial that runs on an ordinary computer. Pick the one that answers your question; none of them needs the others. If you only want to see real hardware evidence, <a href="#no-install">skip to the no-install check</a>.</p>
+  <div><span class="status">Python 3.11 or newer · Git and Bash on Linux, macOS or Windows with WSL · Software mode: no special hardware</span></div>
 </div></div>
 
 <main id="main">
@@ -126,35 +126,37 @@
 <section id="start">
   <span class="label"><a href="/#chain">The chain</a></span>
   <h2>Pick a step</h2>
+  <p><strong>What you will have at the end:</strong> a signed receipt or record made on your own machine, a check that passes on it, and the same check failing once you change something. That is the core idea: anyone can tell when a signed record has been altered.</p>
+  <p><strong>Software mode</strong> means the receipts are real but no chip vouches for them. Every tutorial here runs that way, so you need no special hardware or cloud account. The signatures are genuine, but nothing proves where the code ran. That proof needs confidential-computing hardware (see <a href="/#plain-terms">the terms, in plain English</a>).</p>
   <div class="grid">
     <div class="card static" id="weights">
       <div class="card-head"><span class="tag">01 · Weights</span> <strong>Weight Custody Manifest</strong></div>
-      <p>Install the reference SDK from source, sign a manifest as builder and custodian, verify it, and gate a key release. It runs on software test doubles, with no GPU or cloud account.</p>
+      <p>A signed record of exactly which model file you have, and who may release the key that decrypts it. You install the reference SDK (the official code library) from source, sign the record as the model builder and as the party holding the model (the custodian), check it, and see the key that decrypts the model released only when the checks pass. Stand-in software replaces the hardware, so you need no GPU or cloud account.</p>
       <p><a href="https://wcm.agentrust-io.com/getting-started/">Getting started →</a></p>
     </div>
     <div class="card static" id="agent">
       <div class="card-head"><span class="tag">02 · Agent</span> <strong>Agent Manifest</strong></div>
-      <p>Sign a small agent configuration and verify its declared inputs, then watch an edited record and a changed prompt hash fail. It runs no model and produces no hardware attestation.</p>
+      <p>A signed ID card for an agent. You sign a small agent configuration and check what it says it uses, then watch the check fail when the record is edited or the agent's instructions (its prompt) change. No AI model runs, and no hardware report is produced.</p>
       <p><a href="https://manifest.agentrust-io.com/getting-started/">Create your first manifest →</a></p>
     </div>
     <div class="card static" id="actions">
       <div class="card-head"><span class="tag">03 · Actions</span> <strong>cMCP</strong></div>
-      <p>Run the runtime in dev mode, see a call to a sensitive tool get HTTP 403 before it is forwarded, and verify the signed TRACE claim. With no hardware TEE, verification reports <code>partially_verified</code>.</p>
+      <p>A gatekeeper between an agent and its tools. You run it in development mode, watch it refuse a call to a sensitive tool (an HTTP 403 "forbidden" reply) before the call reaches the tool, and check the signed TRACE receipt it writes. Without confidential-computing hardware, the check reports <code>partially_verified</code>: the signature holds, but no chip vouches for where it ran.</p>
       <p><a href="https://cmcp.agentrust-io.com/quickstart/">cMCP quickstart →</a></p>
     </div>
     <div class="card static" id="delegation">
       <div class="card-head"><span class="tag">03 · Actions</span> <strong>cA2A</strong></div>
-      <p>Build a two-hop delegation chain and verify it, then see an untrusted root and a grant wider than its parent rejected. It needs no network, hardware or running peer.</p>
+      <p>Rules for one agent handing work to another. You build a chain of two hand-offs and check it, then see it rejected when it starts from someone untrusted or when an agent passes on more permission than it was given. It needs no network, hardware or second running agent.</p>
       <p><a href="https://ca2a.agentrust-io.com/docs/quickstart/">Verify your first chain →</a></p>
     </div>
     <div class="card static" id="evidence">
       <div class="card-head"><span class="tag">04 · Evidence</span> <strong>TRACE</strong></div>
-      <p>Sign a record, verify it, then change one field and watch verification fail. It uses synthetic claims and software signing, with no agent, registry or attestation.</p>
+      <p>The receipt format itself. You sign a record, check it, then change one field and watch the check fail. It uses made-up example data and software signing, with no agent, registry or hardware report.</p>
       <p><a href="https://trace.agentrust-io.com/docs/quickstart/">TRACE quickstart →</a></p>
     </div>
     <div class="card static" id="conformance">
       <div class="card-head"><span class="tag">04 · Evidence</span> <strong>Conformance suite</strong></div>
-      <p>Install <code>agentrust-trace-tests</code>, generate a Level 0 sample record, and run <code>trace-tests verify</code> against it. The sample passes Level 0; Levels 1 and 2 fail without attestation and anchoring.</p>
+      <p>The tests that show whether a tool reads TRACE receipts correctly. You install <code>agentrust-trace-tests</code>, make a basic (Level 0) sample record, and run <code>trace-tests verify</code> on it. The sample passes Level 0. Levels 1 and 2 fail, as expected, because they also need a hardware report and an entry in a public log, which a sample does not have.</p>
       <p><a href="https://tests.agentrust-io.com/docs/quickstart/">Conformance quick start →</a></p>
     </div>
   </div>
@@ -163,8 +165,8 @@
 <section id="no-install">
   <span class="label">No install</span>
   <h2>Check real hardware evidence first</h2>
-  <p>Verify a genuine Intel TDX quote from a GCP confidential VM in your browser, including its commitment to the key that signed a TRACE record. Nothing is uploaded.</p>
-  <div class="hero-actions"><a class="button" href="/verify/">Verify a real Intel TDX quote</a><a class="button secondary" href="/demos/">Run the demos</a></div>
+  <p>This is the hardware proof the tutorials leave out. In your browser, check a genuine signed report from an Intel TDX processor on a Google Cloud confidential virtual machine, including the part that names the key that signed a TRACE receipt. Nothing is uploaded.</p>
+  <div class="hero-actions"><a class="button" href="/verify/">Check a real Intel processor report</a><a class="button secondary" href="/demos/">Run the demos</a></div>
 </section>
 
 </main>
@@ -186,7 +188,7 @@
   <div class="foot-legal">© 2026 AgenTrust Contributors · agentrust-io.com</div>
 </div></footer>
 
-<script src="/supernav.js?v=22"></script>
+<script src="/supernav.js?v=23"></script>
 <script src="/page.js"></script>
 </body>
 </html>

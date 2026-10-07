@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Runnable Demos: Model Weights and Agent Actions | AgenTrust</title>
-<meta name="description" content="Ten runnable demos for model-weight custody and policy checks on agent tool and model calls, about thirteen minutes on a laptop with no special hardware.">
+<meta name="description" content="Ten short demos you run on a laptop: a tampered model file refused, an agent action blocked by a rule, a receipt checked offline. About thirteen minutes.">
 <link rel="canonical" href="https://agentrust-io.com/demos/">
 <meta name="robots" content="index, follow">
 
@@ -12,7 +12,7 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="AgenTrust">
 <meta property="og:title" content="Runnable Demos: Model Weights and Agent Actions">
-<meta property="og:description" content="Ten runnable demos for model-weight custody and policy checks on agent tool and model calls, about thirteen minutes on a laptop with no special hardware.">
+<meta property="og:description" content="Ten short demos you run on a laptop: a tampered model file refused, an agent action blocked by a rule, a receipt checked offline. About thirteen minutes.">
 <meta property="og:url" content="https://agentrust-io.com/demos/">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://agentrust-io.com/og.png">
@@ -23,7 +23,7 @@
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Runnable Demos: Model Weights and Agent Actions">
-<meta name="twitter:description" content="Ten runnable demos for model-weight custody and policy checks on agent tool and model calls, about thirteen minutes on a laptop with no special hardware.">
+<meta name="twitter:description" content="Ten short demos you run on a laptop: a tampered model file refused, an agent action blocked by a rule, a receipt checked offline. About thirteen minutes.">
 <meta name="twitter:image" content="https://agentrust-io.com/og.png">
 
 <!-- Icons -->
@@ -41,7 +41,7 @@
       "@id": "https://agentrust-io.com/demos/#page",
       "url": "https://agentrust-io.com/demos/",
       "name": "Runnable Demos: Model Weights and Agent Actions",
-      "description": "Ten runnable demos for model-weight custody and policy checks on agent tool and model calls, about thirteen minutes on a laptop with no special hardware.",
+      "description": "Ten short demos you run on a laptop: a tampered model file refused, an agent action blocked by a rule, a receipt checked offline. About thirteen minutes.",
       "isPartOf": {
         "@id": "https://agentrust-io.com/#website"
       },
@@ -70,7 +70,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="/design-system.css?v=22">
+<link rel="stylesheet" href="/design-system.css?v=23">
 </head>
 <body class="at-page">
 
@@ -112,7 +112,7 @@
 <div class="hero"><div class="wrap">
   <span class="eyebrow"><a href="/#chain">Weights · Actions · Evidence</a> · Runnable demos</span>
   <h1>Run a policy check.<br><em>Inspect the result.</em></h1>
-  <p class="sub">Ten demos, about thirteen minutes end to end. Four cover custody of model weights. Five govern what an agent does at the tool boundary. One governs model calls through an OpenAI-compatible endpoint.</p>
+  <p class="sub">Small programs you run on your own laptop to watch the AgenTrust tools work: a tampered model file refused before it loads, an agent's action blocked by a written rule, a signed receipt checked with no network. Ten demos, about thirteen minutes in all. Four protect model files, five check what an agent does with its tools, and one checks what an agent sends to an AI model.</p>
   <div><span class="status">Software mode · <code>CMCP_DEV_MODE=1</code> · no special hardware</span></div>
 </div></div>
 
@@ -128,7 +128,7 @@
 <section id="start">
   <span class="label">Quick start</span>
   <h2>Start with one demo</h2>
-  <p>Use Python 3.11+, Git, and Bash on macOS, Linux, or Windows with WSL for the commands below. No cloud account is needed. These demos use software attestation and do not demonstrate hardware isolation.</p>
+  <p>You need Python 3.11 or later, Git, and Bash on macOS, Linux, or Windows with WSL. No cloud account and no special hardware. The demos stand in software for the chip's signed report (<a href="/#plain-terms">attestation</a>), so they show the checks working but not the hardware protection itself.</p>
   <div class="code">
     <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
 <pre>git clone https://github.com/agentrust-io/integrations &amp;&amp; cd integrations/demos
@@ -137,9 +137,9 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 python demo.py 1          <span class="c"># start with tool-call policy enforcement</span></pre>
   </div>
-  <p>The requirements install cMCP for demos 1 to 5, Weight Custody Manifest for demos 6 to 9, and the OpenAI client for demo 10. <code>demo.py</code> sets dev mode and the bearer token for you, so there is nothing to export. Source: <a href="https://github.com/agentrust-io/integrations/tree/main/demos">github.com/agentrust-io/integrations/tree/main/demos</a>.</p>
+  <p>The requirements install cMCP for demos 1 to 5, Weight Custody Manifest for demos 6 to 9, and a model API client for demo 10. <code>demo.py</code> sets dev mode and the bearer token for you, so there is nothing to export. Source: <a href="https://github.com/agentrust-io/integrations/tree/main/demos">github.com/agentrust-io/integrations/tree/main/demos</a>.</p>
 
-  <p><strong>What to look for:</strong> demo 1 routes calls through the local gateway and closes the session into a signed record. Software mode does not pass hardware-attestation verification. To explore weight custody, run <code>python demo.py 6</code>; to run the full set without pauses, use <code>python demo.py --no-pause</code>.</p>
+  <p><strong>What to look for:</strong> demo 1 sends an agent's actions through a local checkpoint (the cMCP gateway) and ends with a signed record of what was allowed and refused. Because there is no real hardware, that record does not pass a hardware check. To explore weight custody, run <code>python demo.py 6</code>; to run the full set without pauses, use <code>python demo.py --no-pause</code>.</p>
   <p><strong>Individual commands below:</strong> run them from the <code>demos</code> folder with the environment activated. For demos that start cMCP, set <code>export CMCP_BEARER_TOKEN=demo-token</code> first. The <code>demo.py</code> launcher handles this setup for you.</p>
   <p class="meta" style="margin-top:2.25rem;">What demo 6 prints on <code>weight-custody-manifest 0.28.2</code></p>
   <div class="term">
@@ -168,15 +168,16 @@ python demo.py 1          <span class="c"># start with tool-call policy enforcem
 <section id="weights">
   <span class="label">Model weights</span>
   <h2>Securing model weights</h2>
-  <p class="lead-serif">A fine-tune trained on your own data is IP that never existed publicly, and the weights are where it lives. These four demos treat the weights as the asset: bind the exact checkpoint, release the decryption key only into a serving stack that proves what it is, and keep the lineage of every derivative verifiable back to its base.</p>
+  <p class="lead-serif">A model's weights are the trained file that is the model. A version you trained further on your own data (a fine-tune) is valuable work that exists nowhere else. These four demos protect that file: record exactly which file it is, hand the key that decrypts it only to a server that proves what it is running, and keep a checkable family tree from every derived model back to its original.</p>
 
   <div class="callout caution">
-    <p><strong>The honest limit, stated up front.</strong> Against an adversary who physically owns the silicon, no current confidential-computing platform is custody-grade. <a href="https://tee.fail/">TEE.fail</a> and BadRAM are the reason. What these demos give you is accountability-grade custody under an operator-trust model, plus a threshold scheme (demo 9) for when one operator's word is not enough. Anyone selling you weight protection "without operator trust assumptions" is overstating what the hardware does.</p>
+    <p><strong>The honest limit, stated up front.</strong> If an attacker physically owns the machine, no confidential-computing chip on sale today can keep the weights safe. Published attacks such as <a href="https://tee.fail/">TEE.fail</a> and BadRAM show why. What these demos give you is a clear, signed record of who could release the key and when, which holds as long as you trust the operator not to attack their own hardware. Demo 9 adds a scheme where several parties must agree before a key is released, for when one operator's word is not enough. Anyone selling you weight protection "without operator trust assumptions" is overstating what the hardware does.</p>
   </div>
 
   <div class="stack">
   <div class="card static">
     <div class="card-head"><span class="tag">Demo 6</span> <strong>Weight custody</strong> <span class="meta">~60 seconds</span></div>
+    <p><strong>What you will see:</strong> a model file with one changed byte is refused before it loads, while the genuine file gets its key.</p>
     <p>A Weight Custody Manifest binds the checkpoint's exact <code>weights_hash</code>, gates the decryption key behind attestation, and carries the fine-tune's lineage.</p>
     <ul>
       <li>a manifest jointly signed by builder and custodian binds the exact <code>weights_hash</code>, and the signature verifies</li>
@@ -189,6 +190,7 @@ python demo.py 1          <span class="c"># start with tool-call policy enforcem
 
   <div class="card static">
     <div class="card-head"><span class="tag">Demo 7</span> <strong>Closed-weight custody</strong> <span class="meta">~60 seconds</span></div>
+    <p><strong>What you will see:</strong> a server that could leak the secret model file asks for the key and is turned away.</p>
     <p>The mirror of demo 6. Here the base model is closed, a frontier lab shipping weights into a customer's or a sovereign's own enclave, so the weights themselves are the secret and the job is keeping the key off the operator.</p>
     <ul>
       <li>a manifest with <code>base_confidentiality: confidential</code>, jointly signed by lab and customer</li>
@@ -201,6 +203,7 @@ python demo.py 1          <span class="c"># start with tool-call policy enforcem
 
   <div class="card static">
     <div class="card-head"><span class="tag">Demo 8</span> <strong>Derivative lineage</strong> <span class="meta">~60 seconds</span></div>
+    <p><strong>What you will see:</strong> a model trained from a protected base is traced back to it, and an unauthorised copy of the new model is rejected.</p>
     <p>Fine-tune inside the enclave on private data and the result is novel IP. It gets its own signed manifest with a <code>derived_from</code> pointer and a <code>rights_holder</code> split.</p>
     <ul>
       <li>a base permitting <code>fine-tune-only</code>, and a derivative permitting <code>none</code></li>
@@ -213,6 +216,7 @@ python demo.py 1          <span class="c"># start with tool-call policy enforcem
 
   <div class="card static">
     <div class="card-head"><span class="tag">Demo 9</span> <strong>Sovereign threshold</strong> <span class="meta">~90 seconds</span></div>
+    <p><strong>What you will see:</strong> one party alone cannot decrypt the model; it takes two of the three key holders.</p>
     <p>This is the answer to the limit in the callout above. If a hardware owner who forges one attestation could release a key, then never let one release be enough.</p>
     <ul>
       <li>the model key is split <strong>2-of-3</strong> across the lab, the sovereign authority, and the customer</li>
@@ -228,11 +232,12 @@ python demo.py 1          <span class="c"># start with tool-call policy enforcem
 <section id="governance">
   <span class="label">Agent actions</span>
   <h2>Checking what an agent does</h2>
-  <p class="lead-serif">Demos 6 to 9 protect the weights. These six put the policy at the boundary the agent has to cross: five at the tool call, and demo 10 at the model call. What is it allowed to invoke, under which workflow, with what compliance attributes, and what evidence survives afterwards. Cedar is enforced on every call and each session closes with a signed TRACE claim.</p>
+  <p class="lead-serif">These six put written rules at the point an agent has to pass through: five where it uses a tool, and demo 10 where it sends a request to an AI model. The rules decide what the agent may do, in which job, and with what kind of data. They are written in Cedar, an open policy language, checked on every call, and each session ends with a signed TRACE receipt of what happened.</p>
 
   <div class="stack">
   <div class="card static">
     <div class="card-head"><span class="tag">Demo 1</span> <strong>cMCP in action</strong> <span class="meta">~90 seconds</span></div>
+    <p><strong>What you will see:</strong> an agent writes and reads a file, is refused when it tries to list a folder, and gets a signed record of all three.</p>
     <p>An agent calls three tools through the cMCP gateway. Cedar is enforced on every call, and the session closes with a signed TRACE claim carrying the policy bundle hash.</p>
     <ul>
       <li><code>write_file</code> and <code>read_file</code> allowed, real files written to <code>workspace/</code></li>
@@ -245,6 +250,7 @@ python demo.py 1          <span class="c"># start with tool-call policy enforcem
 
   <div class="card static">
     <div class="card-head"><span class="tag">Demo 2</span> <strong>Policy swap is an attestation failure</strong> <span class="meta">~90 seconds</span></div>
+    <p><strong>What you will see:</strong> someone quietly swaps the rule set, and the receipt check catches it.</p>
     <p>The operator quietly loads a different policy bundle. The claim's hash changes, and a verifier pinned to the old hash rejects it.</p>
     <ul>
       <li>v1 and v2 bundle hashes printed, visibly different</li>
@@ -257,6 +263,7 @@ python demo.py 1          <span class="c"># start with tool-call policy enforcem
 
   <div class="card static">
     <div class="card-head"><span class="tag">Demo 3</span> <strong>Offline TRACE verification</strong> <span class="meta">~60 seconds</span></div>
+    <p><strong>What you will see:</strong> a receipt checked on your machine with no network, with a plain list of what could and could not be confirmed.</p>
     <p>Verify the signed claim with no gateway, no server, and no network call at all.</p>
     <ul>
       <li>schema, signature, policy hash, catalog hash and audit chain all check out</li>
@@ -269,7 +276,8 @@ python demo.py 1          <span class="c"># start with tool-call policy enforcem
 
   <div class="card static">
     <div class="card-head"><span class="tag">Demo 4</span> <strong>Context-aware enforcement</strong> <span class="meta">~90 seconds</span></div>
-    <p>The same tool, the same arguments, allowed in one workflow and denied in another. Authorization tracks the declared call context, not the tool's name and not the model's stated intent.</p>
+    <p><strong>What you will see:</strong> the same action allowed in one job and refused in another.</p>
+    <p>The same tool, the same arguments, allowed in one workflow and denied in another. The decision depends on the job the call says it belongs to. The tool's name and the model's stated reason do not change it.</p>
     <ul>
       <li><code>write_file</code> under <code>workflow_id="invoice-run"</code>: allowed</li>
       <li>the identical call under <code>workflow_id="chat-freeform"</code>: <strong>denied</strong>, default-deny holds</li>
@@ -281,7 +289,8 @@ python demo.py 1          <span class="c"># start with tool-call policy enforcem
 
   <div class="card static">
     <div class="card-head"><span class="tag">Demo 5</span> <strong>Attribute-based enforcement</strong> <span class="meta">~90 seconds</span></div>
-    <p>Deny on the tool's compliance attributes rather than its name. A tool that is not BAA-covered is refused by one guardrail rule, whatever it is called.</p>
+    <p><strong>What you will see:</strong> a tool that is not cleared for patient data is refused, whatever its name.</p>
+    <p>Refuse a tool based on its labels instead of its name. A tool not covered by a business associate agreement (BAA, the US contract required to handle patient data) is refused by one rule, whatever it is called.</p>
     <ul>
       <li>tools tagged <code>compliance_domain=clinical</code>, <code>baa_covered=true</code>: allowed</li>
       <li>a tool tagged <code>baa_covered=false</code>: <strong>denied</strong></li>
@@ -293,11 +302,12 @@ python demo.py 1          <span class="c"># start with tool-call policy enforcem
 
   <div class="card static">
     <div class="card-head"><span class="tag">Demo 10</span> <strong>Governed model calls</strong> <span class="meta">~90 seconds</span></div>
-    <p>Put policy in front of an OpenAI-compatible model endpoint and route each request according to its data class.</p>
+    <p><strong>What you will see:</strong> each prompt sent to a different model route, or cleaned first, depending on how sensitive its data is.</p>
+    <p>Put rules in front of a model endpoint that uses the common chat-completions API, and send each request where its kind of data is allowed to go.</p>
     <ul>
       <li>public prompts can use the shared model route</li>
-      <li>PII leaves only after identifiers are stripped</li>
-      <li>confidential and PHI prompts stay on approved regional infrastructure</li>
+      <li>personal data (PII) leaves only after names and other identifiers are stripped</li>
+      <li>confidential prompts and patient health data (PHI) stay on approved servers in the right region</li>
       <li>the same governance boundary applies to model calls, not only MCP tools</li>
     </ul>
     <pre><code>python demo-10-model-gateway/run.py</code></pre>
@@ -339,7 +349,7 @@ python demo.py 1          <span class="c"># start with tool-call policy enforcem
   <div class="foot-legal">© 2026 AgenTrust Contributors · MIT licensed · agentrust-io.com</div>
 </div></footer>
 
-<script src="/supernav.js?v=22"></script>
+<script src="/supernav.js?v=23"></script>
 <script src="/page.js"></script>
 </body>
 </html>

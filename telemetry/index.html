@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Telemetry and Evidence Events for Agent Runtimes | AgenTrust</title>
-<meta name="description" content="A backend-neutral event contract and reference SDKs for agent policy decisions, approvals, actions, data flow, usage, cost and evidence, with runnable fixtures.">
+<meta name="description" content="One shared format for what an AI agent's controls decided and did: policy calls, approvals, actions, data flow and cost. By default it leaves out prompts.">
 <link rel="canonical" href="https://agentrust-io.com/telemetry/">
 <meta name="robots" content="index, follow">
 
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AgenTrust">
 <meta property="og:title" content="Telemetry and Evidence Events for Agent Runtimes">
-<meta property="og:description" content="A backend-neutral event contract and reference SDKs for agent policy decisions, approvals, actions, data flow, usage, cost and evidence, with runnable fixtures.">
+<meta property="og:description" content="One shared format for what an AI agent's controls decided and did: policy calls, approvals, actions, data flow and cost. By default it leaves out prompts.">
 <meta property="og:url" content="https://agentrust-io.com/telemetry/">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://agentrust-io.com/og.png">
@@ -23,7 +23,7 @@
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Telemetry and Evidence Events for Agent Runtimes">
-<meta name="twitter:description" content="A backend-neutral event contract and reference SDKs for agent policy decisions, approvals, actions, data flow, usage, cost and evidence, with runnable fixtures.">
+<meta name="twitter:description" content="One shared format for what an AI agent's controls decided and did: policy calls, approvals, actions, data flow and cost. By default it leaves out prompts.">
 <meta name="twitter:image" content="https://agentrust-io.com/og.png">
 
 <!-- Icons -->
@@ -67,7 +67,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="/design-system.css?v=22">
+<link rel="stylesheet" href="/design-system.css?v=23">
 </head>
 <body class="at-page">
 
@@ -109,12 +109,12 @@
 <div class="hero"><div class="wrap">
   <span class="eyebrow"><a href="/#chain">Between actions and evidence</a> · Observe · Correlate</span>
   <h1>Portable telemetry and evidence<br>for AI-agent runtimes</h1>
-  <p class="sub">Normalize the governance facts around an agent run: policy decisions, approvals, actions, classified data flow, usage, cost, and evidence, without replacing your OpenTelemetry stack, policy engine, framework, or UI.</p>
+  <p class="sub">AgenTrust Telemetry is an open record format, with code libraries for Python and TypeScript, for the oversight side of an <a href="/#plain-terms">AI agent</a> run: which rule allowed or blocked an action, who approved it, what the agent did, where data went, and what it cost. Today those facts sit in separate logs and dashboards. This puts them in one consistent shape, alongside the monitoring tools you already run, without recording prompts or outputs by default.</p>
   <div class="hero-actions">
     <a class="button" href="#use">Emit your first local event</a>
     <a class="button secondary" href="#contract">Explore the six event families</a>
   </div>
-  <div><span class="status">Alpha contract 0.1.0-alpha.4 · Python and TypeScript · MIT licensed</span></div>
+  <div><span class="status">Alpha contract 0.1.0-alpha.6 · Python and TypeScript · MIT licensed</span></div>
 </div></div>
 
 <nav class="on-this-page" aria-label="On this page">
@@ -130,37 +130,44 @@
 
 <section id="fit">
   <span class="label">Where it fits</span>
-  <h2>One correlation layer across the trust chain</h2>
-  <p>AgenTrust Telemetry sits between the actions and evidence steps of the AgenTrust chain. It records runtime facts in a backend-neutral contract, correlates them with the application's existing OpenTelemetry context, and can finalize a complete durable evidence set into a TRACE record.</p>
+  <h2>One record that ties the steps together</h2>
+  <p>Who would use it: a team running AI agents that needs to answer, after the fact, "what did the agent do, was it allowed, who signed off, and what did it cost?" for an audit, an incident review or a cost report.</p>
+  <p>It sits between the actions and evidence steps of the AgenTrust chain. Each fact is written as a small event in a format any storage system can accept. Events are tagged so they line up with the application's existing OpenTelemetry traces (OpenTelemetry is the common open standard for recording what software does). When a run's events are complete and saved, they can be turned into a signed TRACE receipt.</p>
   <div class="flow" role="group" aria-label="Evidence integration stages, not network or security boundaries">
     <div><span class="n">01</span><strong>Agent Manifest</strong><span>Agent step: declared identity and authority</span></div>
     <div><span class="n">02</span><strong>cMCP / cA2A</strong><span>Actions step: policy and delegated actions</span></div>
     <div class="marked"><span class="n">03</span><strong>Telemetry</strong><span>Correlated governance facts</span></div>
     <div><span class="n">04</span><strong>TRACE</strong><span>Evidence step: verifiable evidence</span></div>
   </div>
-  <p style="margin-top:2rem;">Agent applications can already emit model and tool traces. Governance facts are the ones that stay trapped: in policy-engine decision logs, approval databases, cost modules, and proprietary dashboards. This gives those facts one privacy-conscious contract and correlates them with the trace the application already produces.</p>
+  <p style="margin-top:2rem;">Agent applications can already record which model and tools they called. The oversight facts are the ones that stay scattered: in policy-engine logs, approval databases, cost modules and vendor dashboards. This gives them one shared format that leaves sensitive content out, and links them to the trace the application already produces.</p>
 </section>
 
 <section id="contract">
   <span class="label">The contract</span>
   <h2>Six event families</h2>
-  <p>Each family is a JSON Schema 2020-12 contract with valid and invalid fixtures. An event reports a fact observed elsewhere; this project never makes the authorization decision itself.</p>
+  <p>There are six kinds of event. Each one reports something that happened elsewhere, such as a decision made by a policy engine. This project only records decisions. Your policy engine makes them.</p>
   <table style="margin-top:2.25rem;">
     <tr><th>Family</th><th>What it records</th></tr>
-    <tr><td><strong>Policy decision</strong></td><td>Allow, deny, challenge, error, enforcement mode, policy identity and timing</td></tr>
-    <tr><td><strong>Approval lifecycle</strong></td><td>Requested through terminal decision and execution outcome, bound to an action digest</td></tr>
-    <tr><td><strong>Action execution</strong></td><td>Resolved tool, MCP, A2A, file, HTTP, and database attempts</td></tr>
-    <tr><td><strong>Data flow</strong></td><td>Classified source-to-destination metadata, without payload capture</td></tr>
-    <tr><td><strong>Usage</strong></td><td>Per-call and per-run token and cost facts, with explicit cost provenance</td></tr>
-    <tr><td><strong>Evidence lifecycle</strong></td><td>Run checkpoints, completeness, and optional TRACE finalization status</td></tr>
+    <tr><td><strong>Policy decision</strong></td><td>Whether a rule allowed, blocked or questioned an action (or errored), which rule it was, whether it was enforced, and when</td></tr>
+    <tr><td><strong>Approval lifecycle</strong></td><td>A request for human sign-off, through the final decision and what happened next, tied to a fingerprint of the exact action approved</td></tr>
+    <tr><td><strong>Action execution</strong></td><td>Each finished attempt to use a tool, call another agent, touch a file, make a web request or query a database</td></tr>
+    <tr><td><strong>Data flow</strong></td><td>Which kind of data moved from where to where, by label only, never the data itself</td></tr>
+    <tr><td><strong>Usage</strong></td><td>Tokens used and cost, per call and per run, with a note of where each cost figure came from</td></tr>
+    <tr><td><strong>Evidence lifecycle</strong></td><td>Progress points in a run, whether its record is complete, and whether it became a TRACE receipt</td></tr>
   </table>
-  <div class="callout"><p><strong>Privacy boundary:</strong> the metadata-only profile prohibits raw prompts, outputs, source code, tool arguments or results, credentials, and authorization tokens. Propagated identifiers are correlation data, not proof of identity or authorization.</p></div>
+  <details class="tech-detail"><summary>Technical detail: schema format</summary>
+    <p class="hint">Each family is a JSON Schema 2020-12 contract with valid and invalid fixtures. Approvals bind to an action digest. Actions cover resolved tool, MCP, A2A, file, HTTP and database attempts.</p>
+  </details>
+  <div class="callout"><p><strong>Privacy boundary:</strong> by default (the metadata-only profile), events may not contain prompts, model outputs, source code, tool inputs or results, passwords or access tokens. The IDs passed between agents only help line events up; they do not prove who an agent is or what it may do.</p></div>
 </section>
 
 <section id="use">
   <span class="label">Use it</span>
   <h2>Keep the stack you already operate</h2>
-  <p>The reference SDK uses the caller's current OpenTelemetry span. It does not install a provider, processor, exporter, collector, or global propagator. Standard OpenTelemetry fields take precedence over AgenTrust extensions.</p>
+  <p>The library attaches each event to whatever OpenTelemetry trace your application is already recording. It does not set up or replace any part of your monitoring pipeline, and where a standard OpenTelemetry field exists, that field wins over an AgenTrust one.</p>
+  <details class="tech-detail"><summary>Technical detail: what the SDK does not install</summary>
+    <p class="hint">The reference SDK uses the caller's current OpenTelemetry span. It does not install a provider, processor, exporter, collector, or global propagator.</p>
+  </details>
 
   <div class="callout"><p><strong>Before you start:</strong> Python 3.11+, Git, and Bash on macOS, Linux, or Windows with WSL. Commands run from the repository root. No telemetry backend is needed for the first example.</p></div>
 
@@ -197,9 +204,11 @@ python -m pip install -e ".[otel]"</pre>
     <div class="step">
       <div class="step-num">3</div>
       <div class="step-body">
-        <h3>Carry correlation across process boundaries</h3>
-        <p class="hint"><strong>Integration sketch:</strong> this block assumes your application already defines <code>tracer</code> and <code>event</code>. For a complete runnable version, use <code>python examples/governed_workflow.py</code> after installing <code>".[test]"</code> as shown below.</p>
+        <h3>Keep events linked when one agent hands work to another</h3>
+        <p class="hint">When one agent passes work to another program, pass the run's IDs along with it so both sides' events line up in one story. <strong>Integration sketch:</strong> this block assumes your application already defines <code>tracer</code> and <code>event</code>. For a complete runnable version, use <code>python examples/governed_workflow.py</code> after installing <code>".[test]"</code> as shown below.</p>
+        <details><summary>Technical detail: direct calls versus queued work</summary>
         <p class="hint">For synchronous cross-process agent calls, propagate the caller's W3C context and the durable AgenTrust identifiers, then use the extracted context as the receiving span's remote parent. For asynchronous queue handoffs, start a new trace with <code>links=[remote.link()]</code> instead: that preserves causality without representing queued work as a synchronous child span.</p>
+        </details>
         <div class="code">
           <div class="code-head"><span class="code-label">Python</span><button class="copy">COPY</button></div>
 <pre><span class="k">from</span> agentrust_telemetry <span class="k">import</span> extract_context, inject_context
@@ -211,7 +220,7 @@ remote = extract_context(carrier)
 <span class="k">with</span> tracer.start_as_current_span(<span class="s">"worker"</span>, context=remote.otel_context):
     event.update(remote.event_fields(agent_id=<span class="s">"worker"</span>))</pre>
         </div>
-        <p class="hint">Propagated metadata is untrusted input. It does not establish agent identity or authorization.</p>
+        <p class="hint">Treat IDs received from another agent as unverified. They do not prove who that agent is or what it is allowed to do.</p>
       </div>
     </div>
 
@@ -232,10 +241,10 @@ npm run check</pre>
 
   </div>
 
-  <p><strong>Expected first result:</strong> a printed policy event and an <code>EmitResult</code> with <code>accepted=True</code> and <code>log_emitted=True</code>. A missing span is expected without an active OpenTelemetry span. This synthetic event does not enforce a policy.</p>
+  <p><strong>Expected first result:</strong> a printed policy event and an <code>EmitResult</code> with <code>accepted=True</code> and <code>log_emitted=True</code>. A missing span is expected without an active OpenTelemetry span. This is a made-up sample event; it does not enforce any policy.</p>
 
   <h3 style="margin-top:3rem;">Two runnable examples</h3>
-  <p>Both ship in the repository. The second walks the complete governance, OpenTelemetry, durable-evidence, and TRACE reference workflow.</p>
+  <p>Both ship in the repository. The second runs the whole path end to end: policy events, OpenTelemetry tracing, saving the complete record, and producing a TRACE receipt.</p>
   <div class="code">
     <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
 <pre>python examples/manual_governance.py
@@ -248,7 +257,10 @@ python examples/governed_workflow.py</pre>
 <section id="adapters">
   <span class="label">Adapters</span>
   <h2>Map what your policy engine already emits</h2>
-  <p>You should not have to hand-build envelopes. The event factory owns specification version, producer identity, event UUID, timestamp, correlation fields, and both schema and privacy validation, so adapters only translate a source record. All of these exist in both Python and TypeScript, and TypeScript takes plain source records with no runtime dependency on the upstream package.</p>
+  <p>If you already use a policy engine, an adapter turns its decision log into these events for you. Adapters exist for Cedar and OPA (two widely used open-source policy engines) and for AGT (the Agent Governance Toolkit), in both Python and TypeScript.</p>
+  <details class="tech-detail"><summary>Technical detail: what the event factory fills in</summary>
+    <p class="hint">You should not have to hand-build envelopes. The event factory owns specification version, producer identity, event UUID, timestamp, correlation fields, and both schema and privacy validation, so adapters only translate a source record. TypeScript adapters take plain source records with no runtime dependency on the upstream package.</p>
+  </details>
   <div class="grid grid-3">
     <div class="card ruled">
       <h3>Cedar</h3>
@@ -269,25 +281,25 @@ python examples/governed_workflow.py</pre>
 <section id="verify">
   <span class="label">Verify it</span>
   <h2>Don't take the contract on trust</h2>
-  <p>The repository ships valid and invalid conformance fixtures and an independent Python runner. The invalid fixtures are the interesting half: raw content, a numeric timestamp, a zero trace ID, an action without a digest, usage without a measurement, an aggregate cost without a rollup. Each one must be rejected.</p>
+  <p>The repository ships sample events that must pass and sample events that must fail, plus a separate checker. The failing samples show what gets rejected: an event containing raw content, a timestamp in the wrong form, an all-zero trace ID, an action with no fingerprint, usage with no measurement, a total cost with no breakdown. Each one must be rejected.</p>
   <div class="code">
     <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
 <pre>python -m pip install -r conformance/requirements.txt
 python conformance/runner/validate.py
 python -m unittest discover -s tests -v</pre>
   </div>
-  <div class="callout caution"><p><strong>What the validator does not check.</strong> It verifies schema conformance and the metadata-only privacy invariant. It does not yet validate OTLP projection or TRACE mapping, so a passing run is evidence about the event contract, not about the whole pipeline.</p></div>
+  <div class="callout caution"><p><strong>What the checker does not cover.</strong> It confirms events have the right shape and contain no prohibited content. It does not yet check how events are exported to OpenTelemetry (OTLP projection) or turned into TRACE receipts, so a passing run tells you about the event format only, not the whole pipeline.</p></div>
 </section>
 
 <section id="principles">
   <span class="label">Contract principles</span>
   <h2>The rules the schemas enforce</h2>
   <ul>
-    <li><code>run_id</code> is durable execution correlation; <code>trace_id</code> is an optional W3C operational trace context. They are not interchangeable.</li>
+    <li><code>run_id</code> names one agent run and is kept for the record; <code>trace_id</code> is an optional link to the W3C trace used for day-to-day monitoring. One cannot stand in for the other.</li>
     <li>Standard OpenTelemetry fields take precedence over AgenTrust extensions.</li>
-    <li>Raw prompts, outputs, source code, tool arguments and results, credentials, and authorization tokens are prohibited in the metadata-only profile.</li>
-    <li>Operational telemetry can be lossy. Evidence completeness must never be overstated.</li>
-    <li>An event reports a fact observed elsewhere. This project does not make authorization decisions.</li>
+    <li>By default, prompts, outputs, source code, tool inputs and results, passwords and access tokens are not allowed in any event.</li>
+    <li>Monitoring data can be lost along the way. A record must never claim to be more complete than it is.</li>
+    <li>An event reports a fact observed elsewhere. This project does not decide what is allowed.</li>
   </ul>
 </section>
 
@@ -296,18 +308,18 @@ python -m unittest discover -s tests -v</pre>
   <h2>What is not true yet</h2>
   <p>Stated here rather than in a footnote, because a governance evidence layer that oversells itself is worse than none.</p>
   <div class="callout caution">
-    <p><strong>The contract is alpha.</strong> Version <code>0.1.0-alpha.4</code> carries no stable SDK API and no compatibility guarantee. It may change incompatibly.</p>
-    <p><strong>The SDK validates declared metadata; it cannot prove the declaration is true.</strong> A producer can report an inaccurate policy decision, identity, classification, token count, or cost. TRACE can bind signed evidence, and verified hardware attestation can establish runtime provenance within its trust policy. Neither automatically establishes the truth of every reported fact.</p>
-    <p><strong>Operational delivery is not audit evidence.</strong> OpenTelemetry spans may be sampled or dropped. Complete evidence must be accumulated durably before any TRACE claim is made, and TRACE finalization here is software-only: it requires explicitly complete evidence plus trusted caller configuration.</p>
-    <p><strong>Evidence memory mode is not durable.</strong> Callback mode defines acknowledgement and retry behaviour, but the adopter owns storage, idempotency, and recovery.</p>
-    <p><strong>Interoperability has been exercised locally</strong> against OpenTelemetry Python, not across collectors, backends, or languages. Action telemetry also records resolved attempts only; it does not expose in-flight lifecycle transitions.</p>
+    <p><strong>The format is alpha.</strong> Version <code>0.1.0-alpha.6</code> has no stable code interface and no compatibility promise. It may change in ways that break existing users.</p>
+    <p><strong>It checks the shape of what is reported, not whether it is true.</strong> A producer can report a wrong policy decision, identity, data label, token count or cost. A signed TRACE receipt can show the record was not changed, and a verified <a href="/#plain-terms">attestation</a> can show where the software ran. Neither proves every reported fact is true.</p>
+    <p><strong>Everyday monitoring is not audit evidence.</strong> OpenTelemetry may sample or drop data. The complete record has to be saved somewhere durable before any TRACE receipt is made, and the TRACE step here runs in software only: it needs a record explicitly marked complete plus settings from a trusted caller.</p>
+    <p><strong>The in-memory evidence mode does not survive a restart.</strong> The callback mode defines how saves are confirmed and retried, but you own the storage, duplicate handling and recovery.</p>
+    <p><strong>It has only been tested together locally</strong> with OpenTelemetry for Python, not across collectors, storage backends or other languages. Action events also record finished attempts only, not each step while an action is still running.</p>
   </div>
 </section>
 
 <section id="boundaries">
   <span class="label">Boundaries</span>
   <h2>What it deliberately does not become</h2>
-  <p>It is not a telemetry collector, storage service, dashboard, or SaaS backend. It is not a policy engine or an approval workflow. It is not an agent framework, not a model pricing catalog, and not auto-instrumentation duplicating OpenTelemetry GenAI or OpenInference.</p>
+  <p>It does not collect, store or display data, and it is not a hosted service. It does not decide what is allowed or run approvals. It is not a framework for building agents, not a price list for models, and it does not repeat the automatic recording that OpenTelemetry GenAI and OpenInference already do.</p>
   <div class="actions">
     <a class="button" href="https://github.com/agentrust-io/agentrust-telemetry">Read the repository</a>
     <a class="button secondary" href="https://github.com/agentrust-io/agentrust-telemetry/issues">Integration questions</a>
@@ -351,7 +363,7 @@ python -m unittest discover -s tests -v</pre>
   <div class="foot-legal">© 2026 AgenTrust Contributors · MIT licensed · agentrust-io.com</div>
 </div></footer>
 
-<script src="/supernav.js?v=22"></script>
+<script src="/supernav.js?v=23"></script>
 <script src="/page.js"></script>
 </body>
 </html>

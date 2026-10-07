@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Verify an Intel TDX Quote in Your Browser | AgenTrust</title>
-<meta name="description" content="Check a genuine Intel TDX quote from a GCP confidential VM in your browser, to the pinned Intel root and its commitment to a TRACE record's key. No upload.">
+<meta name="description" content="Check a real Intel TDX hardware report from Google Cloud on your own computer, back to Intel's root certificate, plus its link to a signed TRACE receipt.">
 <link rel="canonical" href="https://agentrust-io.com/verify/">
 <meta name="robots" content="index, follow">
 
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AgenTrust">
 <meta property="og:title" content="Verify an Intel TDX Quote in Your Browser">
-<meta property="og:description" content="Check a genuine Intel TDX quote from a GCP confidential VM in your browser, to the pinned Intel root and its commitment to a TRACE record's key. No upload.">
+<meta property="og:description" content="Check a real Intel TDX hardware report from Google Cloud on your own computer, back to Intel's root certificate, plus its link to a signed TRACE receipt.">
 <meta property="og:url" content="https://agentrust-io.com/verify/">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://agentrust-io.com/og.png">
@@ -23,7 +23,7 @@
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Verify an Intel TDX Quote in Your Browser">
-<meta name="twitter:description" content="Check a genuine Intel TDX quote from a GCP confidential VM in your browser, to the pinned Intel root and its commitment to a TRACE record's key. No upload.">
+<meta name="twitter:description" content="Check a real Intel TDX hardware report from Google Cloud on your own computer, back to Intel's root certificate, plus its link to a signed TRACE receipt.">
 <meta name="twitter:image" content="https://agentrust-io.com/og.png">
 
 <!-- Icons -->
@@ -38,7 +38,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareSourceCode",
   "name": "In-browser Intel TDX quote verifier",
-  "description": "A JavaScript port of the Intel TDX v4 DCAP quote verifier in the agent-manifest SDK, checked against the Python original in continuous integration.",
+  "description": "A JavaScript copy of the Intel TDX v4 quote verifier in the agent-manifest SDK that runs in the browser, tested against the Python original on every change.",
   "url": "https://agentrust-io.com/verify/",
   "codeRepository": "https://github.com/agentrust-io/agentrust-io.github.io/tree/main/verify",
   "programmingLanguage": ["JavaScript"],
@@ -66,7 +66,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="/design-system.css?v=22">
+<link rel="stylesheet" href="/design-system.css?v=23">
 </head>
 <body class="at-page">
 
@@ -107,11 +107,11 @@
 
 <div class="hero"><div class="wrap">
   <span class="eyebrow"><a href="/#chain">04 · Evidence</a> · Offline · In your browser · Intel TDX</span>
-  <h1>Verify a real Intel TDX quote</h1>
-  <p class="sub">A genuine quote from a GCP C3 confidential VM, checked on your machine the same way our Python verifier checks it: four signatures, ending at the Intel SGX Root CA pinned in this page. The latest capture also commits to the key that signed a TRACE record, and the page checks that too. Nothing is uploaded.</p>
+  <h1>Check a real Intel TDX report yourself</h1>
+  <p class="sub">Intel TDX processors can sign a report, called a quote, that says what the chip is and what software it loaded. This page checks a real one from a Google Cloud machine on your own computer, and follows its signatures back to Intel. Nothing is uploaded.</p>
   <div class="hero-actions">
     <a class="button" href="#run">See the result</a>
-    <a class="button secondary" href="#limits">What it proves, and what it does not</a>
+    <a class="button secondary" href="#limits">What a pass means, and what it does not</a>
   </div>
   <div><span class="status">Three captures, 21 July and 14 September 2026 · Checked against the Python verifier on 5,526 inputs · <a href="/#hardware">SEV-SNP and H100 validation</a></span></div>
 </div></div>
@@ -129,7 +129,8 @@
 <section id="run">
   <span class="label">Run it</span>
   <h2>Check a capture, or bring your own</h2>
-  <p>Capture 3 puts the SHA-256 of a TRACE record's signing key in REPORTDATA. The key was generated inside the trust domain and the record is <a href="fixtures/gcp-tdx-2026-09-14-keybind_record.json">published beside the quote</a>, with the <a href="fixtures/gcp-tdx-2026-09-14-capture.py">program that made both</a>. Captures 1 and 2 come from an earlier trust domain and bind manifest digests whose inputs were not published. You can also load a TDX v4 quote file from your own machine. It is read locally and never sent anywhere.</p>
+  <p>The check starts by itself when the page loads, using capture 3. You do not need to do anything. Each line ends in PASS or FAIL, and the last line gives the verdict: ACCEPTED means the report is genuine.</p>
+  <p>To check something else, click another capture, or load a quote file from your own computer. Your file is read in this browser and never sent anywhere. New to these terms? See <a href="/#plain-terms">the site's plain-English list</a>.</p>
 
   <noscript>
     <div class="callout caution"><p>The check runs as JavaScript in your browser. Without it, run the Python verifier from the last section of this page instead.</p></div>
@@ -149,7 +150,19 @@
       <div class="term-body" id="term-body"><div class="dim">Loading the capture</div></div>
     </div>
 
+    <h3>How to read the result</h3>
+    <ul>
+      <li><strong>profile:</strong> the file is the kind of report this page knows how to check (TDX version 4).</li>
+      <li><strong>step 1:</strong> the processor's attestation key signed the report.</li>
+      <li><strong>step 2:</strong> Intel's quoting enclave, a small Intel program on the same chip, vouches for that key.</li>
+      <li><strong>step 3:</strong> that vouching is signed by the chip's own Intel certificate (PCK).</li>
+      <li><strong>step 4:</strong> the certificates lead back to Intel's root certificate, which is built into this page.</li>
+      <li><strong>key binding</strong> (capture 3 only): the report names the key that signed a TRACE receipt published beside it.</li>
+    </ul>
+    <p>Capture 3 links the hardware report to a signed TRACE receipt. Software inside the protected machine created a signing key and wrote its fingerprint (a SHA-256 hash) into the report. The <a href="fixtures/gcp-tdx-2026-09-14-keybind_record.json">receipt</a> and the <a href="fixtures/gcp-tdx-2026-09-14-capture.py">program that made both</a> are published here. Captures 1 and 2 are earlier reports from a different protected virtual machine. They carry fingerprints of manifests whose contents were not published, so they show only that the chip is genuine.</p>
+
     <h3>What the quote says</h3>
+    <p>MRTD and RTMR0 to RTMR3 are fingerprints of the software the machine loaded. REPORTDATA is a 64-byte field the software inside can fill; capture 3 puts the key fingerprint in its first half. The certificates are the chain back to Intel.</p>
     <table>
       <tbody id="fields"></tbody>
     </table>
@@ -159,21 +172,32 @@
 <section id="limits">
   <span class="label">Scope</span>
   <h2>What this proves, and what it does not</h2>
-  <p>A pass proves genuine Intel TDX silicon produced and signed the quote, through a certificate chain that ends at Intel's root.</p>
-  <p>For capture 3 it also proves the trust domain committed to the key that signed the TRACE record: SHA-256 of the record's <code>cnf.jwk.x</code> equals REPORTDATA[0:32], and the record carries this quote and claims its MRTD. That is the <code>attested</code> grade in the TRACE runtime evidence profile. The record signature is checked in <a href="https://github.com/agentrust-io/agentrust-io.github.io/blob/main/tools/check-key-binding.py">CI with the Python SDK</a>, not in this page.</p>
+  <p>A pass means a genuine Intel TDX processor produced and signed this report, through a chain of certificates that ends at Intel's root.</p>
+  <p>For capture 3 it also means the TRACE receipt was signed by a key created inside that protected machine. In the TRACE runtime evidence profile, this is the <code>attested</code> grade.</p>
   <div class="callout caution">
-    <p><strong>It does not show the software inside the trust domain was the image anyone intended.</strong> MRTD and RTMRs are shown, not compared against expected values. The record claims no model and no policy: it exists to show the key binding, and says so in its own fields.</p>
+    <p><strong>It does not show that the software inside was the software anyone intended.</strong> The page shows the software fingerprints but does not compare them with expected values. The receipt names no model and no policy: it exists only to show the key link, and says so in its own fields.</p>
   </div>
-  <p>It checks signature chains only. It does not appraise whether the platform's TCB is current or check certificate revocation.</p>
-  <p>Captures 1 and 2 come from one trust domain and share an MRTD. Matching a record's claimed measurement against a quote's MRTD binds the record to a measurement, never to a particular quote. Only the key binding ties a record to one quote.</p>
-  <p>Certificate validity is checked against your device's clock.</p>
+  <p>It checks signatures only. It does not check whether the chip's firmware is up to date (what Intel calls TCB status), or whether any certificate has been revoked.</p>
+  <p>Certificate dates are checked against your device's clock.</p>
+
+  <details class="tech-detail">
+    <summary>Technical detail: the key binding and what a measurement match does not prove</summary>
+    <p>The key binding holds when the SHA-256 of the record's <code>cnf.jwk.x</code> equals REPORTDATA[0:32], and the record carries this quote and claims its MRTD. The record's own signature is checked in <a href="https://github.com/agentrust-io/agentrust-io.github.io/blob/main/tools/check-key-binding.py">CI with the Python SDK</a>, not in this page.</p>
+    <p>Captures 1 and 2 come from one trust domain and share an MRTD. Matching a record's claimed measurement against a quote's MRTD binds the record to a measurement, never to a particular quote. Only the key binding ties a record to one quote.</p>
+  </details>
 </section>
 
 <section id="source">
   <span class="label">How it matches the original</span>
   <h2>A port, held to its original</h2>
-  <p>This page runs <a href="https://github.com/agentrust-io/agentrust-io.github.io/blob/main/verify/tdx-verify.js">verify/tdx-verify.js</a>, a port of <a href="https://github.com/agentrust-io/agent-manifest/blob/main/python/src/agent_manifest/_tdx_verify.py">agent_manifest._tdx_verify</a>: the same parse, the same checks on every length the quote declares, and the same four steps in the same order.</p>
-  <p>On every change, <a href="https://github.com/agentrust-io/agentrust-io.github.io/blob/main/.github/workflows/verifier.yml">CI</a> runs both verifiers over the three captures and 5,526 generated inputs: byte flips across every length and type field and the certificate text, a stride over everything else, and truncations at each structure edge. It fails if they disagree on a single one. The same job checks capture 3's record with the Python SDK: its signature, the key binding, the quote and MRTD it carries, and that the published capture program is the one the record names.</p>
+  <p>The code on this page, <a href="https://github.com/agentrust-io/agentrust-io.github.io/blob/main/verify/tdx-verify.js">verify/tdx-verify.js</a>, is a JavaScript copy of the Python verifier in the Agent Manifest SDK, <a href="https://github.com/agentrust-io/agent-manifest/blob/main/python/src/agent_manifest/_tdx_verify.py">agent_manifest._tdx_verify</a>. It reads the report the same way and runs the same four steps in the same order.</p>
+  <p>On every change, <a href="https://github.com/agentrust-io/agentrust-io.github.io/blob/main/.github/workflows/verifier.yml">CI</a> runs both verifiers over the three captures and 5,526 deliberately damaged copies of them. The build fails if the two disagree on a single one.</p>
+
+  <details class="tech-detail">
+    <summary>Technical detail: what the differential test covers</summary>
+    <p>The port does the same parse and the same checks on every length the quote declares. The 5,526 generated inputs are byte flips across every length and type field and the certificate text, a stride over everything else, and truncations at each structure edge. The same CI job checks capture 3's record with the Python SDK: its signature, the key binding, the quote and MRTD it carries, and that the published capture program is the one the record names.</p>
+  </details>
+
   <p>To run the original yourself:</p>
   <div class="code">
     <div class="code-head"><span class="code-label">Terminal</span><button class="copy">COPY</button></div>
@@ -203,7 +227,7 @@ python -c "from agent_manifest._tdx_verify import verify_tdx_quote; print(verify
   <div class="foot-legal">© 2026 AgenTrust Contributors · agentrust-io.com</div>
 </div></footer>
 
-<script src="/supernav.js?v=22"></script>
+<script src="/supernav.js?v=23"></script>
 <script src="/page.js"></script>
 <script type="module" src="/verify/verify-page.js"></script>
 </body>

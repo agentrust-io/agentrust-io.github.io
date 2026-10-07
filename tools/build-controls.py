@@ -82,6 +82,9 @@ def load():
         for point in c['enforcement_points']:
             if point not in ENFORCEMENT_POINTS:
                 problems.append(f'{where}: unknown enforcement point {point!r}')
+        plain = c.get('plain')
+        if plain is not None and not (isinstance(plain, str) and 0 < len(plain) <= 160):
+            problems.append(f'{where}: plain must be a non-empty sentence of at most 160 characters')
         if not c['opencre']:
             problems.append(f'{where}: no OpenCRE link')
         for link in c['opencre']:
@@ -168,7 +171,8 @@ def card(c):
         '  <div class="card" style="margin-top:1.5rem;">',
         f'    <h4 id="{c["slug"]}"><span class="meta">{e(c["id"])}</span> {e(c["name"])}</h4>',
         f'    {tags}',
-        f'    <p>{e(c["requirement"])}</p>',
+        *([f'    <p>{e(c["plain"])}</p>'] if c.get('plain') else []),
+        f'    <p><strong>Requirement:</strong> {e(c["requirement"])}</p>' if c.get('plain') else f'    <p>{e(c["requirement"])}</p>',
         f'    <p class="meta">Common Requirements: {cres}</p>',
     ]
     spec = c.get('spec') or {}
@@ -198,8 +202,8 @@ def render_index(controls):
     with_point = sum(1 for c in controls if c['enforcement_points'])
     links = sum(len(c['opencre']) for c in controls)
     unique = len({o['id'] for c in controls for o in c['opencre']})
-    description = (f'The AgenTrust agentic control set: {total} controls for AI agents, each one requirement '
-                   'cross-linked to its Common Requirement in OpenCRE. Stable permalinks at /go/.')
+    description = (f'{total} safeguards for AI agents, from identity to shutdown, each stated as one requirement '
+                   'linked to the matching OpenCRE entry, with a stable web address.')
     ld = f'''<script type="application/ld+json">
 {{
   "@context": "https://schema.org",
@@ -233,9 +237,10 @@ def render_index(controls):
 <div class="hero"><div class="wrap">
   <span class="eyebrow">{EYEBROW}</span>
   <h1>AgenTrust<br>Agentic Controls</h1>
-  <p class="sub">{words(total).capitalize()} controls for AI agents, each stated as one requirement and cross-linked to the
-  Common Requirement that already covers it in OpenCRE. Every control has a stable permalink so an
-  external standard can cite it without the link rotting.</p>
+  <p class="sub">A checklist of {words(total)} safeguards for AI agents: who the agent is, what it may do, what
+  gets recorded, and how to stop it. Each control is one requirement, linked to the matching entry in
+  <a href="https://www.opencre.org/">OpenCRE</a>, a free public catalog that connects security standards.
+  Every control has a fixed web address, so other standards can cite it without the link breaking.</p>
   <div><span class="status">{total} controls &middot; {links} OpenCRE links &middot; {unique} Common Requirements</span></div>
 </div></div>
 
@@ -251,24 +256,26 @@ def render_index(controls):
 <section id="opencre">
   <span class="label">How to read this</span>
   <h2>The links point outward on purpose</h2>
-  <p>Most of what an agent needs is not new. Identity, least privilege, logging, injection handling and
-  rate limiting are decades old, and OpenCRE already organizes them across ASVS, CWE, ISO 27001,
-  NIST 800-53, SAMM and the OWASP AI Exchange. So each control below names the Common Requirement it
-  belongs to rather than restating it.</p>
-  <p>Where a control reads new, it is usually the same requirement applied to a different subject: a
-  non-human principal, a grant derived from another grant, or a platform the relying party does not
-  control. That distinction is what the OpenCRE links make visible.</p>
-  <div class="callout"><p><strong>This is a mapping, not a conformance claim.</strong> A link to a
-  Common Requirement says a control belongs to that topic. It is not evidence that anything is
-  implemented, tested, or deployed.</p></div>
+  <p>Most of what an AI agent needs is not new. Checking identity, giving only the access a task needs,
+  keeping logs, handling malicious input and limiting how fast things happen are decades old.
+  OpenCRE already links them across security standards such as ASVS, CWE, ISO 27001, NIST 800-53,
+  SAMM and the OWASP AI Exchange. So each control below points to the existing OpenCRE entry, called a
+  Common Requirement, instead of restating it.</p>
+  <p>Where a control looks new, it is usually an old requirement applied to something new: software
+  acting on its own instead of a person, a permission handed down from another permission, or a
+  computer that the party doing the checking does not control. The OpenCRE links make that visible.</p>
+  <div class="callout"><p><strong>This page maps topics and makes no conformance claim.</strong> A link
+  to a Common Requirement says which topic a control belongs to. It is not evidence that anything is
+  built, tested or in use.</p></div>
 </section>
 
 <section id="controls">
   <span class="label">The control set</span>
   <h2>{words(total).capitalize()} controls</h2>
-  <p>Where a control is enforced at a specific point in the agent loop, the point is named on the
-  control itself. {words(with_point).capitalize()} of the {words(total)} have one. The rest do not have a single point and are left
-  unmarked rather than forced into one.</p>''']
+  <p>Each control gives a plain summary first, then the exact requirement text that standards cite.
+  Some controls apply at one specific moment in the agent's work, shown as a tag, for example
+  <code>pre_tool_call</code> (just before a tool runs) or <code>agent_startup</code> (when the agent
+  starts). {words(with_point).capitalize()} of the {words(total)} have one. The rest apply throughout and carry no tag.</p>''']
     lines = []
     family = None
     for c in controls:
@@ -278,11 +285,11 @@ def render_index(controls):
         lines += card(c)
     lines += ['', '</section>', '', '<section id="limits">', '  <span class="label">Limits</span>',
               '  <h2>What this page does not do</h2>', '  <ul>',
-              f'    <li>It does not claim these controls are absent from OpenCRE. Every one of the {words(total)} maps to an',
+              f'    <li>It does not claim these controls are missing from OpenCRE. Every one of the {words(total)} maps to an',
               '    existing Common Requirement. None proposes a new one.</li>',
-              '    <li>It does not rank the controls or assert a maturity model over them.</li>',
-              '    <li>It does not assert that any AgenTrust implementation satisfies any of them. Conformance is',
-              '    tested per specification, not asserted here.</li>']
+              '    <li>It does not rank the controls or grade them on a maturity scale.</li>',
+              '    <li>It does not claim that any AgenTrust software meets any of them. Each specification has',
+              '    its own conformance tests, and this page asserts nothing beyond them.</li>']
     lines += private_bullet(controls)
     lines += ['  </ul>', f'  <p class="meta" style="margin-top:2rem;">{GENERATED_NOTE}</p>', '</section>',
               '', '</main>', '']
@@ -305,7 +312,7 @@ def render_stub(c):
 </main>
 
 '''
-    return (head(f'{e(c["name"])} | AgenTrust Agentic Controls', e(c['requirement']), f'{BASE}{anchor}',
+    return (head(f'{e(c["name"])} | AgenTrust Agentic Controls', e(c.get('plain') or c['requirement']), f'{BASE}{anchor}',
                  'noindex, follow', e(c['name']), f'{BASE}{anchor}', extra)
             + body + FOOTER.format(tagline=TAGLINE))
 

@@ -12,6 +12,7 @@
       "topic": "Runtime evidence",
       "description": "TRACE technical report: portable runtime claims, recorded software benchmarks, conformance outcomes, source and explicit attestation limits.",
       "contribution": "A portable format for runtime claims, with recorded measurements of signing, verification, record size, and conformance fixtures.",
+      "plain": "When an AI agent runs, the people who rely on it often want proof of what it ran: which model, which policy, which tools it called. TRACE proposes one portable, signed record of those facts that anyone can check against their own rules. The report measures how quickly such records are signed and checked and how large they are, and states plainly that a signature alone does not prove the record came from trusted hardware or that its claims are true.",
       "limits": [
         "The recorded run used agentrust-trace 0.2.0 and trace-tests 0.2.0 on July 1, 2026. It did not measure silicon certificate-chain appraisal.",
         "The missing-runtime fixture passes at Level 0 in the saved results. The cMCP fixture fails at all three levels. Those outcomes limit what the historical conformance checks establish.",
@@ -78,6 +79,7 @@
       "topic": "Tool-call enforcement",
       "description": "cMCP technical report: policy evaluation at the MCP boundary, software experiments, source, citations and limits of the recorded evidence.",
       "contribution": "A gateway design combining policy evaluation, session sensitivity, tool-catalog pinning, and signed tool-call records.",
+      "plain": "AI agents act through tools, and MCP (the Model Context Protocol) is a common way they call them. cMCP puts a checkpoint in front of those tool calls: it checks each call against a written policy before it runs and keeps a signed record of the decision. The report tests this in software with made-up healthcare traces; it did not test real confidential hardware or show that every call was captured.",
       "limits": [
         "The reported experiments use software-only TEE mode and synthetic traces. No hardware TEE or independent cross-organization deployment is evaluated in this report.",
         "The reported 11 of 16 blocked calls measures the false-discovery proportion among blocked calls. It is not the conventional false-positive rate over all negative cases.",
@@ -124,6 +126,7 @@
       "topic": "Agent identity",
       "description": "Agent Manifest technical report: signed artifact baselines, recorded Ed25519 benchmarks, delegation checks, source and runtime-evidence limits.",
       "contribution": "A signed baseline for agent artifacts, with recorded Ed25519 benchmarks, delegation checks, and tamper probes.",
+      "plain": "An AI agent is defined by many parts: its instructions, model, policy, tools, memory and the people who approved it. Agent Manifest proposes a signed list of those parts, so that a later change to any of them can be spotted by someone holding the parts and the right keys. The report measures signing speed and tampering tests, notes that the tested version accepted forged human approvals (later versions check them), and states that a signed list alone does not prove the agent actually ran with those parts.",
       "limits": [
         "The saved benchmark run is dated July 1, 2026, on Windows 11, CPython 3.12.10, and an ARMv8 Qualcomm host.",
         "Only the Ed25519 profile was measured. The recorded environment did not have the optional post-quantum dependency; no ML-DSA-65 performance result is claimed.",
@@ -177,6 +180,7 @@
       "topic": "Model weight custody",
       "description": "Weight Custody Manifest technical report: attestation-gated custody of model weights, conformance results, later findings and hardware limits.",
       "contribution": "A portable custody contract binding exact weights, measured workload, fresh channel-bound release, renewable authority, terminal evidence and derivative lineage.",
+      "plain": "When a company runs its private AI model on computers someone else controls, it needs a way to keep control of the model. WCM is an open protocol that releases the model's key only to approved, checked software, requires that permission to be renewed, and records evidence of deletion and of any models derived from it. The tested code passed all 91 shared conformance tests; the report also describes two flaws in that version (fixed later) and a missing hardware setting on the tested cloud machine without which the strongest protection does not hold.",
       "limits": [
         "The evaluated version is WCM 0.28.0 (commit 2acedfa). Its software results were rerun on September 27, 2026 with the same counts: 618 passed, 3 skipped, 91 of 91 conformance vectors. The SEV-SNP hardware runs were not repeated.",
         "Advisory GHSA-j665-99rh-w85h affects the evaluated version: the key broker did not require GPU confidential-compute mode before release. The fail-closed result does not cover GPU mode.",
@@ -232,6 +236,7 @@
       "topic": "Delegation evidence",
       "description": "cA2A technical report: attenuated, attested delegation between AI agents on A2A, rerun experiments, later findings and hardware limits.",
       "contribution": "A trust profile on A2A composing narrowing delegation credentials, peer attestation appraisal, sealed payloads and linked per-hop provenance records.",
+      "plain": "When one AI agent hands a task to another, the standard A2A protocol does not limit the authority passed along, check what software the other agent runs, or leave a record of who asked whom. cA2A adds those protections on top of A2A: permissions that can only shrink at each handoff, a check of the other agent's hardware evidence before sending, an encrypted task and a signed record of each step. Software tests confirm these behaviors, but trust between hardware run by two independent organizations has not yet been shown.",
       "limits": [
         "Software experiments were rerun on September 27, 2026 against ca2a 0.3.1: correctness counts matched the July 2026 draft, and chain verification cost about 216 rather than 195 microseconds per hop.",
         "Cross-operator attestation was exercised only with synthetic evidence. Recorded hardware runs cover one-directional appraisal across clouds and a same-operator diagnostic, not mutual attestation between independent operators.",
@@ -290,6 +295,7 @@
       "topic": "Governance telemetry",
       "description": "AgenTrust Telemetry technical report: a privacy-constrained contract separating agent observability from governance evidence, with rerun results.",
       "contribution": "A backend-neutral contract for six governance event families that keeps lossy operational telemetry separate from evidence whose completeness is stated.",
+      "plain": "Monitoring tools for AI agents record what happened, but they drop data and can capture sensitive content, so they make poor audit evidence. This report proposes a shared format for six kinds of governance events, such as policy decisions and human approvals, that keeps prompts, outputs and secrets out and keeps everyday monitoring separate from audit evidence. The tested release passed its tests, but whether the evidence is complete is something the producer states rather than something the system measures, and a defect found later let an edited snapshot be signed.",
       "limits": [
         "The evaluated release is 0.1.0-alpha.2. On September 27, 2026 its 111 Python tests passed and all 13 fixtures gave their expected verdicts again, with agentrust-trace pinned to 0.9.0. The TypeScript suite was not rerun.",
         "Completeness is a producer assertion that the accumulator records but does not measure.",
@@ -337,6 +343,7 @@
       "topic": "Confidential handoffs",
       "description": "Confidential handoffs technical report: conditions for keeping inference confidentiality through agent tool calls and delegation, software evidence.",
       "contribution": "A conditional composition argument and proposed handoff contract for when tool calls and delegations preserve an authorized plaintext-holder boundary.",
+      "plain": "Keeping data private inside one protected AI system is not enough if an agent then passes it to a tool or to another agent. This paper sets out the conditions each handoff must meet for the data to stay private, and says the sender must hold the data back when a recipient cannot meet them. Its software experiments show leaks earlier in a workflow even when the final answer arrives correctly, and it states that today's AgenTrust components do not yet deliver the full guarantee.",
       "limits": [
         "All results are software results: attestation in the composed experiment is synthetic and one operator runs every party.",
         "The composed experiment was rerun on September 27, 2026 at WCM main 94d5519: 36 of 36 hosted and 32 portable cases locally, matching every recorded observation.",
@@ -394,6 +401,7 @@
       "topic": "Governance telemetry",
       "description": "Acceptance Before Export technical report: accept governance evidence into a local cryptographic prefix before any lossy telemetry export.",
       "contribution": "A source-side contract that accepts each governance event into a run-scoped cryptographic prefix before operational export, keeping export failures separate from evidence failures.",
+      "plain": "Monitoring systems can lose events, so their records cannot prove that every governance event was kept. This report proposes recording each event as evidence at the source first, before it is sent to any monitoring system, so a failed export never means lost evidence. Tests confirm that separation and also show its limits: nothing guarantees an event is stored exactly once, and an empty record can still be declared complete.",
       "limits": [
         "Software-only. At the pinned agentrust-telemetry commit 29c13cf, 111 Python tests and 13 conformance fixtures gave expected results on September 4 and again on September 27, 2026. The TypeScript suite was not run.",
         "No durable store, crash-restart, multi-process or deployed-exporter experiment was run. Acknowledgment loss repeats external writes; exactly-once persistence is not provided.",
@@ -452,6 +460,7 @@
       "topic": "Model weight custody",
       "description": "Memory-sweep technical report: a challenge-bound, signed write/read predicate for model-key release, with pinned software tests and coverage limits.",
       "contribution": "A supplementary key-release predicate: a challenge-bound, signed write/read sweep of a declared memory range, accepted only when fresh, mismatch-free and signed by a pinned key.",
+      "plain": "Before a model's decryption key is released, the key service checks what software is running but not how its memory behaves. This report adds an extra check: the machine writes and reads back a pattern over a stated memory range, based on a fresh challenge, signs the result, and gets the key only if that result is fresh, clean and signed by the expected key. It passed its software tests, but it covers only the stated range at that moment and does not stop an attacker with physical access to the machine.",
       "limits": [
         "Software-only. At Weight Custody Manifest revision 2acedfa, 35 memory-sweep and broker tests passed on September 4, September 27 and October 1, 2026. No hardware quote chain or physical attack was exercised.",
         "The 256 MiB protected-guest figure comes from a receipt retained from August 27, 2026. That hardware run was not repeated and is not a fresh end-to-end key-release experiment.",
@@ -482,6 +491,7 @@
       "topic": "Human oversight",
       "description": "Human approval technical report: keep an issuer's oversight requirement signed while human approvals attach later, with pinned probe results.",
       "contribution": "A two-domain signing boundary: the issuer signs the oversight requirement with approvals normalized to empty, and each human signs an approval bound to a manifest and scope.",
+      "plain": "A person often approves an AI agent after its signed description, its manifest, has already been issued. This report shows how to sign the rule that a human must approve so nobody can weaken it, while still letting each approver add their own signed approval later. Tests confirm the design and found a gap in the tested version that a later change closed, and the report lists the further checks on identity and action a system still needs before acting on an approval.",
       "limits": [
         "Software-only. At the pinned Agent Manifest revision, 74 signing and delegation tests passed on September 4, September 27 and October 1, 2026. No hardware authenticator, identity provider or enrolled approver was exercised.",
         "At the pinned revision the human signature did not cover the outer authenticator-method label. A later upstream change binds it, and the probe fails against two later revisions.",
@@ -512,6 +522,7 @@
       "topic": "Disclosure control",
       "description": "Exact-output disclosure technical report: owner approval of exact output bytes, consumed once before delivery, with concurrency and fault experiments.",
       "contribution": "A release gate that ties owner-signed exact output bytes to a scoped, persistent, single-attempt decision and reports an uncertain delivery as unknown instead of repeating it.",
+      "plain": "An answer an AI agent writes from confidential data still carries that data's restrictions. This report describes a release step in which the data's owner approves the exact answer for a named recipient and purpose, and the system delivers it at most once, reporting the outcome as unknown instead of resending when delivery is uncertain. Concurrency and crash tests in cMCP never produced a second delivery, though they ran on one machine and the approval ledger must itself be protected from being rolled back.",
       "limits": [
         "Software-only, on one Windows host with a local SQLite ledger, synthetic payloads and a loopback recipient. A networked ledger and an independently operated recipient are untested.",
         "Restoring an earlier ledger re-enables an approval. Rollback protection, egress confinement and trusted classification are outside the gate.",
@@ -542,6 +553,7 @@
       "topic": "Model weight custody",
       "description": "Broker provisioning technical report: owner approval of a model-key broker's configuration, receiving key and policy epoch, with lifecycle experiments.",
       "contribution": "An owner-side provisioning protocol that appraises the broker as a recipient, binding its configuration, fresh receiving key, model identity and policy epoch before the model key leaves.",
+      "plain": "A model owner can require checks before a key service releases the model's key, but that does not help if the operator can quietly change the key service itself. This report has the owner check the key service first, confirming its software, its settings and a fresh receiving key, before handing over the model key. Software tests show that changed or outdated setups are refused, but no real hardware or model key was used, and the owner's own records must be protected against rollback.",
       "limits": [
         "Software-only, on one Windows host. Attestation reports are synthetic SNP-format reports from a generated certificate chain; no SEV-SNP hardware or real model key was used.",
         "Whether approved build inputs determine the receiver that actually runs needs a hardware launch experiment with an independently predicted measurement. It has not been run.",
@@ -572,6 +584,7 @@
       "topic": "Tool-call enforcement",
       "description": "Kill switch technical report: durable blocks, signed refusals linked to the closing claim, and work already in flight at the cMCP tool gateway.",
       "contribution": "A tested account of what a tool-gateway kill switch establishes: a durable block, signed refusals that name the closing claim, explicit recovery, and the fate of work already admitted.",
+      "plain": "When an operator presses an AI agent's kill switch, what is actually stopped, and does it stay stopped after a restart? Testing the cMCP tool gateway, the report finds that new tool calls are refused with signed refusals anyone can check, and that the block survives restarts. It also finds that work already under way can still finish, in one case about 1.2 seconds after the kill switch had returned.",
       "limits": [
         "Software-only, on one Windows host with software signing keys over loopback HTTP. The Linux container isolation suite was not run, no live agent was stopped and no multi-region propagation was measured.",
         "A call running in a worker thread completed its effect about 1.2 s after the trip returned. Cancelling work already in flight needs support outside the gateway.",
@@ -602,6 +615,7 @@
       "topic": "Delegation evidence",
       "description": "Handoff response technical report: single-use, request-bound authentication of cA2A peer responses, with race and connection-cut experiments.",
       "contribution": "A strict response-authentication mode that binds the appraised peer key, the complete request and a fresh occurrence into a single-use key, and reports unknown outcomes instead of guessing.",
+      "plain": "When one agent sends a task to another, checking the other agent beforehand does not prove who wrote the answer that comes back, because a relay in between could swap or replay it. This report tests a cA2A mode that lets the caller accept exactly one genuine answer to its exact request, and report the outcome as unknown instead of retrying when something fails. Tests show it blocks swapped, replayed and doubled answers, but the check works only for the live caller and does not prove authorship to anyone else later.",
       "limits": [
         "Software-only, on one Windows host over loopback with software peer assurance. Hardware protection of the peer key and key rotation on attested hardware were not tested.",
         "The authentication is for the live caller: the caller can compute the same MAC, so a stored response does not prove peer authorship to a third party.",
@@ -632,6 +646,7 @@
       "topic": "Model serving",
       "description": "Receipt-gated serving technical report: route to a confidential model host only after a signed admission receipt, with a reference implementation.",
       "contribution": "A routing gate for confidential model hosts: the Kubernetes Service exists only from a verified first admission receipt for one session, and a durable per-session ledger keeps revoked sessions unroutable.",
+      "plain": "A confidential AI model host has to start before it can prove it is trustworthy, so the question is when users should be allowed to reach it. This report sends traffic to the host only after a signed admission receipt for that exact session has been checked, removes the route when the session ends, and keeps a durable record so a revoked session can never be reopened. Software tests confirm the design without a real cluster or confidential GPU, and show that the record itself must be protected against being rolled back.",
       "limits": [
         "Software-only. No cluster, Service proxy, confidential GPU or model inference was used; the controller ran against a fake Kubernetes API, and no revocation latency was measured.",
         "The evaluated planner is internal and its source is not published; the public reference implementation reproduces every result. Restoring an old ledger copy reopened a revoked session.",
@@ -662,6 +677,7 @@
       "topic": "Tool-call enforcement",
       "description": "Kill switch technical report: what a gateway shutdown, a signed refusal and the absence of later effects each establish, with a reproducible evaluator.",
       "contribution": "An evaluator protocol that separates admission, drain, persistence, recovery and evidence at a tool gateway, with counterexamples to reading a signed refusal as proof of continuing shutdown.",
+      "plain": "Pressing a kill switch, getting a signed refusal and seeing nothing further happen are three different things. Testing the cMCP gateway, the report finds that it refuses new work and stays blocked after a restart, but also that a call already admitted can finish and a tool reached directly, around the gateway, can still act. It proposes a way to evaluate shutdown that checks each of these separately, including a fresh check of whether the block holds now.",
       "limits": [
         "Software-only and author operated, on one Windows host with software keys over loopback HTTP. No language model, confidential hardware or independently operated peer was used.",
         "A direct path to the tool produced an effect while the gateway was stopped, which the gateway's records cannot show, and a call admitted before the trip still completed.",
