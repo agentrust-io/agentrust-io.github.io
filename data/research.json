@@ -710,7 +710,8 @@
           "sha256": {
             "paper.pdf": "9ce0166a61e6225eabab67c42dd2e8a232c6cb499a566914e87df69fb9fb3023",
             "source.zip": "d15611000995a4b3562dc2033a5a2454e5bc1f3a53d2d1930d53c9a52dca2594"
-          }
+          },
+          "doi": "10.5281/zenodo.23308975"
         }
       ]
     }
