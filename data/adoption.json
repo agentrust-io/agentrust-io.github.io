@@ -13,8 +13,6 @@
     {
       "kind": "evidence",
       "name": "OPAQUE Systems",
-      "logo": "/assets/opaque-logo.svg",
-      "markClass": "opaque-mark",
       "label": "Past sponsor",
       "description": "OPAQUE Systems sponsored early development until October 2026.",
       "evidenceUrl": "https://github.com/agentrust-io",
@@ -36,9 +34,7 @@
       "logo": "/assets/tii-mark.svg",
       "markClass": "uae-mark",
       "label": "Confirmed founding partner",
-      "description": "TII is the confirmed AgenTrust founding partner. It keeps the work grounded in what a country needs when it runs AI on infrastructure it controls.",
-      "evidenceUrl": "https://www.opaque.co/resources/articles/opaque-extends-the-agent-governance-toolkit-with-verifiable-identity-and-first-ever-verifiably-governed-and-secure-mcp",
-      "evidenceLabel": "Read the OPAQUE announcement"
+      "description": "TII is the confirmed AgenTrust founding partner. It keeps the work grounded in what a country needs when it runs AI on infrastructure it controls."
     },
     {
       "kind": "evidence",

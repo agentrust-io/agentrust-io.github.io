@@ -1069,8 +1069,6 @@ html:has(body.agentrust-hub) { scroll-behavior: smooth; }
 .agentrust-hub .adopter-mark { min-height: 36px; color: var(--at-ink); font-size: 1.2rem; font-weight: 750; letter-spacing: -0.045em; }
 .agentrust-hub .adopter-mark:has(img) { display: flex; align-items: center; }
 .agentrust-hub .adopter-mark img { display: block; width: auto; max-width: 96px; height: 22px; object-fit: contain; object-position: left center; }
-.agentrust-hub .opaque-mark { width: fit-content; min-width: 0; padding: 5px 8px; border-radius: 5px; background: #111; }
-.agentrust-hub .opaque-mark img { height: 15px; }
 .agentrust-hub .uae-mark img { height: 26px; }
 .agentrust-hub .microsoft-mark img,
 .agentrust-hub .amd-mark img,
