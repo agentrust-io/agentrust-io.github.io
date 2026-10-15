@@ -128,7 +128,7 @@ def paper_page(p, v=None):
     body=f'''<nav class="research-breadcrumb" aria-label="Breadcrumb"><a href="/research/">Research</a> / {esc(q['short_title'])}{f' / Version {n}' if v else ''}</nav>
 <header class="paper-header"><p class="research-eyebrow">Technical report / Version {n}</p>
 <h1>{esc(q['title'])}</h1>
-<p class="paper-authors">{esc(', '.join(q['authors']))}</p><p class="paper-affiliation">OPAQUE Systems</p>
+<p class="paper-authors">{esc(', '.join(q['authors']))}</p><p class="paper-affiliation">AgenTrust</p>
 <div class="paper-status"><span>{human_date(q['date'])}</span><span>Not peer reviewed</span>{patent}</div>
 </header>
 {plain}<section class="paper-abstract" aria-labelledby="abstract"><h2 id="abstract">Abstract</h2><p>{esc(q['abstract'])}</p></section>
