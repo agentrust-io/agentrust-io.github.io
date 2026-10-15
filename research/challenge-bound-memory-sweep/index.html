@@ -64,7 +64,7 @@
 <main id="main" class="research-main"><nav class="research-breadcrumb" aria-label="Breadcrumb"><a href="/research/">Research</a> / Memory-Consistency Predicate</nav>
 <header class="paper-header"><p class="research-eyebrow">Technical report / Version 1</p>
 <h1>A Challenge-Bound Memory-Consistency Predicate for Model-Key Release</h1>
-<p class="paper-authors">Imran Siddique</p><p class="paper-affiliation">AgenTrust</p>
+<p class="paper-authors">Imran Siddique</p><p class="paper-affiliation">OPAQUE Systems</p>
 <div class="paper-status"><span>October 1, 2026</span><span>Not peer reviewed</span></div>
 </header>
 <section class="paper-plain" aria-labelledby="plain-english"><h2 id="plain-english">In plain English</h2><p>Before a model&#x27;s decryption key is released, the key service checks what software is running but not how its memory behaves. This report adds an extra check: the machine writes and reads back a pattern over a stated memory range, based on a fresh challenge, signs the result, and gets the key only if that result is fresh, clean and signed by the expected key. It passed its software tests, but it covers only the stated range at that moment and does not stop an attacker with physical access to the machine.</p></section>
