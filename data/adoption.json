@@ -34,7 +34,9 @@
       "logo": "/assets/tii-mark.svg",
       "markClass": "uae-mark",
       "label": "Confirmed founding partner",
-      "description": "TII is the confirmed AgenTrust founding partner. It keeps the work grounded in what a country needs when it runs AI on infrastructure it controls."
+      "description": "TII is the confirmed AgenTrust founding partner. It keeps the work grounded in what a country needs when it runs AI on infrastructure it controls.",
+      "evidenceUrl": "https://www.linuxfoundation.org/press/linux-foundation-welcomes-trace-to-advance-verifiable-runtime-evidence-for-ai-workloads",
+      "evidenceLabel": "Read the Linux Foundation announcement"
     },
     {
       "kind": "evidence",
