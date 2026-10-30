@@ -1,15 +1,15 @@
 {
-  "reviewed_at": "2026-10-21",
+  "reviewed_at": "2026-10-30",
   "entries": [
     {
       "project": "cA2A",
       "repository": "ca2a",
       "capability": "Compare the official A2A TCK baseline with the extension enabled",
-      "revision": "d312e90307c0fe679101afb28a43a6d19554d3f0",
+      "revision": "877ade76e03878ccf83bb16ef059948a9cb1d40a",
       "pull_request": 266,
-      "run": 39665799848,
+      "run": 41028279638,
       "evidence_class": "synthetic",
-      "result": "Paired TCK runs passed 79 tests each; protected handlers were not invoked.",
+      "result": "Paired TCK runs passed 79 tests each with identical outcomes; protected handlers were not invoked.",
       "limits": "Draft, unmerged implementation. Each run skipped 156 tests and deselected 30. This is bounded interoperability evidence, not full TCK conformance or live deployment acceptance."
     },
     {
@@ -27,12 +27,12 @@
       "project": "Telemetry",
       "repository": "agentrust-telemetry",
       "capability": "Exercise Python and TypeScript exporters through a real OpenTelemetry Collector",
-      "revision": "27141868bbe729c23ddd97a99aa19fe43251cc59",
+      "revision": "3cf135ad1698d9157e99ff1396e8c1665bb0b4a3",
       "pull_request": 100,
-      "run": 39665486568,
+      "run": 40204492721,
       "evidence_class": "synthetic",
-      "result": "Twelve collector cases passed across healthy delivery, 503, lost acknowledgement, partial success, duplicate replay and restart.",
-      "limits": "Draft, unmerged implementation. Inputs and backend are synthetic. Row-count checks and backend deduplication do not prove exactly-once delivery, full projection fidelity, queue saturation or in-flight restart behavior."
+      "result": "Twenty synthetic Collector cases and six observer controls passed, including saturation, in-flight restart and reversed input timestamps.",
+      "limits": "Draft, unmerged implementation. Loopback inputs and backend are synthetic; saturation deliberately observes loss and the queue is in memory. Backend deduplication does not prove exactly-once delivery or durable queue replay. Concurrent HTTP arrival order is not guaranteed."
     }
   ]
 }
