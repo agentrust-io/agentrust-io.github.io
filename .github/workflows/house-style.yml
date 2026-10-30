@@ -39,3 +39,8 @@ jobs:
         run: node marketplace/marketplace.test.js
       - name: Search ranking and escaping
         run: node search/search.test.js
+
+      - name: Capability evidence rendering and freshness
+        run: |
+          node --test scripts/render-capabilities.test.mjs
+          node scripts/render-capabilities.mjs --check

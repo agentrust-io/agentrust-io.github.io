@@ -1,0 +1,38 @@
+{
+  "reviewed_at": "2026-10-30",
+  "entries": [
+    {
+      "project": "cA2A",
+      "repository": "ca2a",
+      "capability": "Compare the official A2A TCK baseline with the extension enabled",
+      "revision": "877ade76e03878ccf83bb16ef059948a9cb1d40a",
+      "pull_request": 266,
+      "run": 41028279638,
+      "evidence_class": "synthetic",
+      "result": "Paired TCK runs passed 79 tests each with identical outcomes; protected handlers were not invoked.",
+      "limits": "Draft, unmerged implementation. Each run skipped 156 tests and deselected 30. This is bounded interoperability evidence, not full TCK conformance or live deployment acceptance."
+    },
+    {
+      "project": "TRACE Registry",
+      "repository": "trace-registry",
+      "capability": "Persist witness publication intent and fail closed on journal recovery errors",
+      "revision": "e70c10c05ab2b0c4f482d65332d0b8a91fc5882b",
+      "pull_request": 144,
+      "run": 39665123383,
+      "evidence_class": "synthetic",
+      "result": "The 413-test suite passed, including seven new durable-journal regression tests.",
+      "limits": "Draft, unmerged implementation. No live witness deployment or automated retry reconciliation is demonstrated; witness policy remains an operator decision."
+    },
+    {
+      "project": "Telemetry",
+      "repository": "agentrust-telemetry",
+      "capability": "Exercise Python and TypeScript exporters through a real OpenTelemetry Collector",
+      "revision": "3cf135ad1698d9157e99ff1396e8c1665bb0b4a3",
+      "pull_request": 100,
+      "run": 40204492721,
+      "evidence_class": "synthetic",
+      "result": "Twenty synthetic Collector cases and six observer controls passed, including saturation, in-flight restart and reversed input timestamps.",
+      "limits": "Draft, unmerged implementation. Loopback inputs and backend are synthetic; saturation deliberately observes loss and the queue is in memory. Backend deduplication does not prove exactly-once delivery or durable queue replay. Concurrent HTTP arrival order is not guaranteed."
+    }
+  ]
+}

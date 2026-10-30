@@ -208,6 +208,23 @@ python -c "from agent_manifest._tdx_verify import verify_tdx_quote; print(verify
   <p class="hint">A genuine quote prints <code>True</code>.</p>
 </section>
 
+<!-- capabilities:start -->
+<section id="capability-evidence">
+  <span class="label">Evidence inventory</span>
+  <h2>Capabilities under review</h2>
+  <p>Selected contributions with revision-specific execution evidence, reviewed 2026-10-30. These are draft implementations, not a released-product support matrix. Follow each pull request for current status.</p>
+  <p>Synthetic means controlled fixtures or workloads; captured means previously collected evidence; live means a documented live operation. A real collector does not make its synthetic workload live evidence. Missing rows mean not assessed here, not unsupported.</p>
+  <div role="region" aria-label="Capability evidence table" tabindex="0" style="overflow-x:auto">
+    <table><caption>Bounded test results and limitations</caption><thead><tr><th scope="col">Project</th><th scope="col">Capability and source</th><th scope="col">Validation evidence</th><th scope="col">Limits</th></tr></thead><tbody>
+<tr><th scope="row">cA2A</th><td>Compare the official A2A TCK baseline with the extension enabled<br><a href="https://github.com/agentrust-io/ca2a/tree/877ade76e03878ccf83bb16ef059948a9cb1d40a">Source 877ade76e038</a><br><a href="https://github.com/agentrust-io/ca2a/pull/266">Draft PR #266</a></td><td>synthetic<br>Paired TCK runs passed 79 tests each with identical outcomes; protected handlers were not invoked.<br><a href="https://github.com/agentrust-io/ca2a/actions/runs/41028279638">Executable CI run</a></td><td>Draft, unmerged implementation. Each run skipped 156 tests and deselected 30. This is bounded interoperability evidence, not full TCK conformance or live deployment acceptance.</td></tr>
+<tr><th scope="row">TRACE Registry</th><td>Persist witness publication intent and fail closed on journal recovery errors<br><a href="https://github.com/agentrust-io/trace-registry/tree/e70c10c05ab2b0c4f482d65332d0b8a91fc5882b">Source e70c10c05ab2</a><br><a href="https://github.com/agentrust-io/trace-registry/pull/144">Draft PR #144</a></td><td>synthetic<br>The 413-test suite passed, including seven new durable-journal regression tests.<br><a href="https://github.com/agentrust-io/trace-registry/actions/runs/39665123383">Executable CI run</a></td><td>Draft, unmerged implementation. No live witness deployment or automated retry reconciliation is demonstrated; witness policy remains an operator decision.</td></tr>
+<tr><th scope="row">Telemetry</th><td>Exercise Python and TypeScript exporters through a real OpenTelemetry Collector<br><a href="https://github.com/agentrust-io/agentrust-telemetry/tree/3cf135ad1698d9157e99ff1396e8c1665bb0b4a3">Source 3cf135ad1698</a><br><a href="https://github.com/agentrust-io/agentrust-telemetry/pull/100">Draft PR #100</a></td><td>synthetic<br>Twenty synthetic Collector cases and six observer controls passed, including saturation, in-flight restart and reversed input timestamps.<br><a href="https://github.com/agentrust-io/agentrust-telemetry/actions/runs/40204492721">Executable CI run</a></td><td>Draft, unmerged implementation. Loopback inputs and backend are synthetic; saturation deliberately observes loss and the queue is in memory. Backend deduplication does not prove exactly-once delivery or durable queue replay. Concurrent HTTP arrival order is not guaranteed.</td></tr>
+    </tbody></table>
+  </div>
+  <p>Run artifacts can expire. A passing run supports its recorded scope only; it does not establish conformance, production acceptance or hardware provenance. Canonical requirements remain in each project's specification.</p>
+</section>
+<!-- capabilities:end -->
+
 </main>
 
 <footer class="site-footer"><div class="wrap">
